@@ -62,7 +62,8 @@ You can start a new document using the sphinx-quickstart command.  Choose a fold
 Using Runestone Extensions
 --------------------------
 
-* Video
+Video
+~~~~~
 
 The video directive is perhaps the easiest, so I'll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.
 
@@ -128,7 +129,8 @@ To give you an idea of what happens when sphinx processes a video directive here
 * embed youtube
 
 
-* Activecode
+Activecode
+~~~~~~~~~~
 
 The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.
 
@@ -182,7 +184,9 @@ The identifier after the ``:: `` must be unique.
 ``:include:``  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.
 
 
-* Codelens
+Codelens
+~~~~~~~~
+
 
 The codelens directive creates an interactive environment for you to step through small code examples.  codelens displays the values of variables and shows the contents and links between your objects.  Unlinke a normal debugger, codelens lets you step forward and backward through the code.
 
@@ -242,11 +246,8 @@ The identifier after the ``:: `` must be unique.
 
 ``:breakline:``  This is the line that you want the program to stop at and ask show the question.
 
-* Assessments
-
-**Example**
-
-::
+Assessments
+~~~~~~~~~~~
 
 **Description**
 

@@ -121,9 +121,8 @@ line and that will build the following targets:</p>
 </div>
 <div class="section" id="using-runestone-extensions">
 <h2>Using Runestone Extensions<a class="headerlink" href="#using-runestone-extensions" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Video</li>
-</ul>
+<div class="section" id="video">
+<h3>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h3>
 <p>The video directive is perhaps the easiest, so I&#8217;ll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.</p>
 <p><strong>Example</strong></p>
 <div class="highlight-python"><pre>.. video:: list_unique
@@ -167,8 +166,10 @@ line and that will build the following targets:</p>
 <ul class="simple">
 <li>embed Vimeo</li>
 <li>embed youtube</li>
-<li>Activecode</li>
 </ul>
+</div>
+<div class="section" id="activecode">
+<h3>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
 <p>The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.</p>
 <p><strong>Example</strong></p>
 <div class="highlight-python"><pre>.. activecode:: ac_example1
@@ -216,9 +217,9 @@ for i in range(4):
 <p><tt class="docutils literal"><span class="pre">:nocanvas:</span></tt>  &#8211; This flag prevents a <tt class="docutils literal"><span class="pre">&lt;canvas&gt;</span></tt> element from getting created.</p>
 <p><tt class="docutils literal"><span class="pre">:caption:</span></tt>  The text argument to this parameter is formatted as a caption, underneath the activecode block</p>
 <p><tt class="docutils literal"><span class="pre">:include:</span></tt>  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.</p>
-<ul class="simple">
-<li>Codelens</li>
-</ul>
+</div>
+<div class="section" id="codelens">
+<h3>Codelens<a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h3>
 <p>The codelens directive creates an interactive environment for you to step through small code examples.  codelens displays the values of variables and shows the contents and links between your objects.  Unlinke a normal debugger, codelens lets you step forward and backward through the code.</p>
 <p>The way codelens works is that when the book is built, it takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.</p>
 <p>In addition to stepping through the code you as an author can embed a question into the example.  You may ask the student to predict how the value of a variable will change, or you may ask the student to predict which line of code will be executed next.  This is an excellent way to help students develop a good mental model of how python works.</p>
@@ -279,12 +280,10 @@ $(window).resize(function() {
 <p><tt class="docutils literal"><span class="pre">:correct:</span></tt> This is the correct answer.  This should be specified as a value from the trace data.  for example in the example above you might ask the student for the value of numlist[0].  The correct answer would be specified as globals.numlist[0]</p>
 <p><tt class="docutils literal"><span class="pre">:feedback:</span></tt>  If the student gives the wrong answer you can give them a few sentences of feedback.</p>
 <p><tt class="docutils literal"><span class="pre">:breakline:</span></tt>  This is the line that you want the program to stop at and ask show the question.</p>
-<ul class="simple">
-<li>Assessments</li>
-</ul>
-<p><strong>Example</strong></p>
-<div class="highlight-python"><pre>**Description**</pre>
 </div>
+<div class="section" id="assessments">
+<h3>Assessments<a class="headerlink" href="#assessments" title="Permalink to this headline">¶</a></h3>
+<p><strong>Description</strong></p>
 <p>Assessment questions come in several forms.  Single answer multiple choice, multi-answer multiple choice, fill in the blank, parson&#8217;s problems for coding, and some code tracing prediction tasks.  For example, given some code, the student can step through the code line by line until the system asks them to predict the value of a variable, or to predict the next line that will be executed.</p>
 <p>The directives are as follows:</p>
 <div class="highlight-python"><pre>.. mchoicemf
@@ -434,27 +433,27 @@ correct number as well as the feedback for each.</p>
 
         Solve this problem.
         <div>
-        <div id="parsons-orig-423" style="display:none;">def findmax(alist):
+        <div id="parsons-orig-424" style="display:none;">def findmax(alist):
    if len(alist) == 0:\n   return None
    curmax = alist[0]\nfor item in alist:
       if item &gt; curmax:
          curmax = item
    return curmax</div>
-        <div id="parsons-sortableTrash-423" class="sortable-code"></div>
-        <div id="parsons-sortableCode-423" class="sortable-code"></div>
+        <div id="parsons-sortableTrash-424" class="sortable-code"></div>
+        <div id="parsons-sortableCode-424" class="sortable-code"></div>
 	<div style="clear:left;"></div>
-        <div id="parsons-message-423" style="background: pink; padding: 1em;"></div>
-        <a href="#" id="newInstanceLink-423">Reset</a>
-        <a href="#" id="feedbackLink-423">Get feedback</a>
+        <div id="parsons-message-424" style="background: pink; padding: 1em;"></div>
+        <a href="#" id="newInstanceLink-424">Reset</a>
+        <a href="#" id="feedbackLink-424">Get feedback</a>
         </div>
 
     <script>
         $pjQ(document).ready(function(){
-            var msgBox = $("#parsons-message-423");
+            var msgBox = $("#parsons-message-424");
             msgBox.hide();
 	    var displayErrors = function (fb) {
 	        if(fb.errors.length > 0) {
-                    var hash = pp_423.getHash("#ul-parsons-sortableCode-423");
+                    var hash = pp_424.getHash("#ul-parsons-sortableCode-424");
                     msgBox.fadeIn(500);
                     msgBox.css("background-color","pink");
                     msgBox.html(fb.errors[0]);
@@ -469,39 +468,39 @@ correct number as well as the feedback for each.</p>
 	    }
  
 
-        var pp_423 = new ParsonsWidget({
-                'sortableId': 'parsons-sortableCode-423',
-		'trashId': 'parsons-sortableTrash-423',
+        var pp_424 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-424',
+		'trashId': 'parsons-sortableTrash-424',
                 'max_wrong_lines': 1,
                 'feedback_cb' : displayErrors
         });
-        pp_423.init($pjQ("#parsons-orig-423").text());
-	pp_423.shuffleLines();
+        pp_424.init($pjQ("#parsons-orig-424").text());
+	pp_424.shuffleLines();
         if(localStorage.getItem('question1_100_5') && localStorage.getItem('question1_100_5-trash')) {
             try {
                 var solution = localStorage.getItem('question1_100_5');
                 var trash = localStorage.getItem('question1_100_5-trash');
-                pp_423.createHTMLFromHashes(solution,trash);
-                pp_423.getFeedback();
+                pp_424.createHTMLFromHashes(solution,trash);
+                pp_424.getFeedback();
             } catch(err) {
                 var text = "An error occured restoring old question1_100_5 state.  Error: ";
                 console.log(text + err.message);
             }
 
         }
-            $pjQ("#newInstanceLink-423").click(function(event){
+            $pjQ("#newInstanceLink-424").click(function(event){
                 event.preventDefault();
-                pp_423.shuffleLines();
+                pp_424.shuffleLines();
             });
-            $pjQ("#feedbackLink-423").click(function(event){
+            $pjQ("#feedbackLink-424").click(function(event){
                 event.preventDefault();
 
-                var hash = pp_423.getHash("#ul-parsons-sortableCode-423");
+                var hash = pp_424.getHash("#ul-parsons-sortableCode-424");
                 localStorage.setItem('question1_100_5',hash);
-                hash = pp_423.getHash("#ul-parsons-sortableTrash-423");
+                hash = pp_424.getHash("#ul-parsons-sortableTrash-424");
                 localStorage.setItem('question1_100_5-trash',hash);
 
-                pp_423.getFeedback();
+                pp_424.getFeedback();
 
             });
             
@@ -510,6 +509,7 @@ correct number as well as the feedback for each.</p>
 
 <p><strong>Optional Arguments</strong></p>
 <p>There are no optional arguments for the parson&#8217;s problem directive.</p>
+</div>
 </div>
 <div class="section" id="extension-authors">
 <h2>Extension Authors<a class="headerlink" href="#extension-authors" title="Permalink to this headline">¶</a></h2>
@@ -544,7 +544,13 @@ correct number as well as the feedback for each.</p>
 <li><a class="reference internal" href="#starting-a-document">Starting a Document</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-runestone-extensions">Using Runestone Extensions</a></li>
+<li><a class="reference internal" href="#using-runestone-extensions">Using Runestone Extensions</a><ul>
+<li><a class="reference internal" href="#video">Video</a></li>
+<li><a class="reference internal" href="#activecode">Activecode</a></li>
+<li><a class="reference internal" href="#codelens">Codelens</a></li>
+<li><a class="reference internal" href="#assessments">Assessments</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#extension-authors">Extension Authors</a></li>
 <li><a class="reference internal" href="#getting-help">Getting Help</a></li>
 </ul>
