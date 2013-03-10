@@ -9,9 +9,11 @@ Welcome to Runestone Interactive's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    developer.rst
+   writingAnExtension.rst
+   gettinghelp.rst
 
 Indices and tables
 ==================

@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Extension Authors &mdash; Runestone Interactive 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="_static/js-parsons/lib/prettify.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="_static/assess.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
+    <link rel="next" title="Getting Help" href="gettinghelp.html" />
+    <link rel="prev" title="Developer Documentation for Runestone Interactive Tools" href="developer.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gettinghelp.html" title="Getting Help"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="developer.html" title="Developer Documentation for Runestone Interactive Tools"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Runestone Interactive 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="extension-authors">
+<h1>Extension Authors<a class="headerlink" href="#extension-authors" title="Permalink to this headline">¶</a></h1>
+<p>In this section I will take you through an example of writing a new directive for the runestone interactive system.  In this case we will look at adding a <tt class="docutils literal"><span class="pre">datafile</span></tt> directive.</p>
+<p>The <tt class="docutils literal"><span class="pre">datafile</span></tt> directive is going to be used in conjunction with the skulpt file operations.  For skulpt to read a file we must provide some data that data can either be data that is part of a <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> element or if we want the data to be editable we can embed the data in a <tt class="docutils literal"><span class="pre">&lt;textarea&gt;</span></tt> element.   In the case of the <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> element the data might be visible or it might be hidden.  Our directive will look something like this:</p>
+<p>Indentation is important.  Following the directive line, you can have as many optional parameters as you want.  Followed by a blank line, followed by the main body of your directive.</p>
+<div class="highlight-python"><pre>.. datafile::  myid
+   :edit:
+   :rows: 20
+   :cols: 65
+
+   line 1  some data
+   line 2  some more data
+   line 3  this is the end</pre>
+</div>
+<p>So the datafile takes one required parameter, a unique id that is used by the Skulpt <tt class="docutils literal"><span class="pre">open</span></tt> function as the file name.  The <tt class="docutils literal"><span class="pre">:edit:</span></tt> parameter tells us to make a textarea rather than a pre.  The <tt class="docutils literal"><span class="pre">:rows:</span></tt> and <tt class="docutils literal"><span class="pre">:cols:</span></tt> tell us how many rows and columns to add to the textarea.  If these are not present, then our directive should do its best to figure out a reasonable number of rows and columns.</p>
+<p>The html output of the directive above should be:</p>
+<div class="highlight-python"><pre>&lt;textarea id="myid" cols="65" rows="20"&gt;
+line 1  some data
+line 2  some more data
+line 3  this is the end
+&lt;/textarea&gt;</pre>
+</div>
+<p>We will also make this extension work if the user wants to generate a non-interactive paper or pdf version of some text using LaTeX.  In this case the output of our directive should simply be:</p>
+<div class="highlight-python"><pre>\begin{verbatim}
+line 1  some data
+line 2  some more data
+line 3  this is the end
+\end{verbatim}</pre>
+</div>
+<p>Unless the <tt class="docutils literal"><span class="pre">:hide:</span></tt> flag is present in which case we won&#8217;t generate anything.</p>
+<div class="section" id="components-of-a-directive">
+<h2>Components of a directive<a class="headerlink" href="#components-of-a-directive" title="Permalink to this headline">¶</a></h2>
+<p>There are several parts to writing an extension.</p>
+<ol class="arabic simple">
+<li>Initialization:  In this part you need to let sphinx know that there there is a new directive.  The name of the directive is associated with a Python class that derives from the restructuredText <tt class="docutils literal"><span class="pre">Directive</span></tt> class.</li>
+<li>Parse Time:  In this stage of processing sphinx is building the document object model.  A tree of nodes.  At this stage we process all of the arguments and gather the main content into a structure that can be used later when rendering a document in whatever format:  html, latex, epub, etc.</li>
+<li>Output:  At this stage we take the data that we have and format it for output by whatever <em>writer</em> is being used, again html, latex, etc.</li>
+</ol>
+<p>All of the components of a directive can go in a single Python file.  Sphinx sees these extensions as simple python packages, so you can create a folder with an <tt class="docutils literal"><span class="pre">__init.py</span></tt> file or you can create an <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file that imports one or more of your own files.</p>
+<p>The <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file should go in the modules folder following the folder heirarchy that is in place.  For example  <tt class="docutils literal"><span class="pre">luther/sphinx/datafile/</span></tt>.</p>
+</div>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>For the initialization phase we need to provide a setup function.  The setup function connects the directive name with a class, and tells skulpt about any css or javscript files that will be needed to support any html output.</p>
+<p>The initialization code for the datafile directive looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">directives</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s">&#39;datafile&#39;</span><span class="p">,</span><span class="n">DataFile</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;bookfuncs.js&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;skulpt/dist/skulpt.js&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;skulpt/dist/builtin.js&#39;</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">DataFileNode</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="p">(</span><span class="n">visit_df_node</span><span class="p">,</span> <span class="n">depart_df_node</span><span class="p">))</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;doctree-resolved&#39;</span><span class="p">,</span><span class="n">process_datafile_nodes</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;env-purge-doc&#39;</span><span class="p">,</span> <span class="n">purge_datafiles</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The key function here is the setup function.   The <tt class="docutils literal"><span class="pre">add_directive</span></tt> method maps the <tt class="docutils literal"><span class="pre">datafile</span></tt> directive to the <tt class="docutils literal"><span class="pre">DataFile</span></tt> class.  Then we add three javascript files we want to include along with a new node type called <tt class="docutils literal"><span class="pre">DataFileNode</span></tt>  This is the node that will get added to the document object model.</p>
+<p>The next line connects the <tt class="docutils literal"><span class="pre">'doctree-resolved'</span></tt> event with a function called <tt class="docutils literal"><span class="pre">process_datafile_nodes</span></tt>.  This function could be used to create an index of our datafiles, or do nothing.  the <tt class="docutils literal"><span class="pre">env-purge-doc</span></tt> event is simliar but is called after all datafile nodes have been processed.</p>
+</div>
+<div class="section" id="parsing">
+<h2>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h2>
+<p>During the parse phase there is one class for every directive.  This class must supply a run method that returns a list of nodes.  If you know that your directive is only ever going to create output for a particular rendering, e.g. html you can finish your run method by returning a <tt class="docutils literal"><span class="pre">raw</span></tt> node that is simply a string.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">mystring</span> <span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;html&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>In this case mystring could be as long and complicated an html string as you might like to make.  A minimal hello world type example might be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;h1&gt;Hello World&lt;/h1&gt;&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;html&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>In other cases you will defer the rendering of the node until later, having built a structure that can support multiple output styles.  In our example you will see that we return:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">DataFileNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Where the DataFileNode just maintains a dictionary of data items we will use when we want to render any of the possible output formats.</p>
+<p>If you return a <tt class="docutils literal"><span class="pre">raw</span></tt> node then you can ignore the <tt class="docutils literal"><span class="pre">app.add_node(DataFileNode,</span> <span class="pre">html=(visit_df_node,</span> <span class="pre">depart_df_node))</span></tt> line in the <tt class="docutils literal"><span class="pre">setup</span></tt> method.</p>
+<p>Here is the DataFile class along with its run method.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DataFile</span><span class="p">(</span><span class="n">Directive</span><span class="p">):</span>
+    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">optional_arguments</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">has_content</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;hide&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+        <span class="s">&#39;edit&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+        <span class="s">&#39;rows&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span><span class="p">,</span>
+        <span class="s">&#39;cols&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">env</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="s">&#39;datafilecounter&#39;</span><span class="p">):</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">datafilecounter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">env</span><span class="o">.</span><span class="n">datafilecounter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="s">&#39;cols&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;cols&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span><span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s">&#39;rows&#39;</span><span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;rows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;divid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;filecontent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+
+        <span class="k">if</span> <span class="s">&#39;hide&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;block&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span>
+
+        <span class="k">if</span> <span class="s">&#39;edit&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;edit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">DataFileNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>As you can see our class has some shared/static/class level variables that specify whether the directive has content, how many arguments, and what the names and types of the arguments are.</p>
+<p>Here are the possible types for the options:</p>
+<ul class="simple">
+<li>flag: For options with no option arguments. Checks for an argument (raises ValueError if found), returns None for valid flag options.</li>
+<li>unchanged_required: Returns the text argument, unchanged. Raises ValueError if no argument is found.</li>
+<li>unchanged: Returns the text argument, unchanged. Returns an empty string (&#8220;&#8221;) if no argument is found.</li>
+<li>path: Returns the path argument unwrapped (with newlines removed). Raises ValueError if no argument is found.</li>
+<li>uri: Returns the URI argument with whitespace removed. Raises ValueError if no argument is found.</li>
+<li>nonnegative_int: Checks for a nonnegative integer argument, and raises ValueError if not.</li>
+<li>class_option: Converts the argument into an ID-compatible string and returns it. Raises ValueError if no argument is found.</li>
+<li>unicode_code: Convert a Unicode character code to a Unicode character.</li>
+<li>single_char_or_unicode: A single character is returned as-is. Unicode characters codes are converted as in unicode_code.</li>
+<li>single_char_or_whitespace_or_unicode: As with single_char_or_unicode, but &#8220;tab&#8221; and &#8220;space&#8221; are also supported.</li>
+<li>positive_int: Converts the argument into an integer. Raises ValueError for negative, zero, or non-integer values.</li>
+<li>positive_int_list: Converts a space- or comma-separated list of integers into a Python list of integers. Raises ValueError for non-positive-integer values.</li>
+<li>encoding: Verfies the encoding argument by lookup. Raises ValueError for unknown encodings.</li>
+</ul>
+<p>There are two important instance variables to think about.</p>
+<ul class="simple">
+<li>self.content  Refers to the body content of the directive.  That is the indented text that comes after the options.  This can be anything, and you can make up your own conventions for how to interpret the body of a directive.</li>
+<li>self.options  Is a dictionary that contins key value pairs for all of  the optional parameters.  Of course you are free to modify this dictionary as much as you wish.</li>
+</ul>
+<p>The <tt class="docutils literal"><span class="pre">self.options</span></tt> instance variable is a dictionary that will be used later to fill in a template for our output.  So, most of the processing in the <tt class="docutils literal"><span class="pre">run</span></tt> method is checking to see if the author provided values for these options and providing some default values for them if they have not.</p>
+<p>The last line of <tt class="docutils literal"><span class="pre">run</span></tt> creates an instance of our DataFileNode.  This object doesn&#8217;t do much other than act as a container to hold our data until it is time to render the output.  Nevertheless here is the code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DataFileNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">General</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments:</span>
+<span class="sd">        - `self`:</span>
+<span class="sd">        - `content`:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DataFileNode</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_content</span> <span class="o">=</span> <span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<p>In the final stage of processing we render the document in whatever format the author is requesting.  In this stage we take the data stored away in our <tt class="docutils literal"><span class="pre">DataFileNode</span></tt> and turn it into html or latex or whatever.</p>
+<p>Each output format is handled by their own function that is registered back in the setup phase.  recall that we used the following line to connect our html output with a couple of functions:  <tt class="docutils literal"><span class="pre">app.add_node(DataFileNode,</span> <span class="pre">html=(visit_df_node,</span> <span class="pre">depart_df_node))</span></tt>.</p>
+<p>We will use Python triple quoted strings to create a couple of templates to fill in.  In the code below these templates are <tt class="docutils literal"><span class="pre">PRE</span></tt> and <tt class="docutils literal"><span class="pre">TEXTA</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PRE</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">&lt;pre id=&quot;</span><span class="si">%(divid)s</span><span class="s">&quot; style=&quot;display: </span><span class="si">%(hide)s</span><span class="s">;&quot;&gt;</span>
+<span class="si">%(filecontent)s</span><span class="s"></span>
+<span class="s">&lt;/pre&gt;</span>
+<span class="s">&#39;&#39;&#39;</span>
+
+<span class="n">TEXTA</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">&lt;textarea id=&quot;</span><span class="si">%(divid)s</span><span class="s">&quot; rows=&quot;</span><span class="si">%(rows)d</span><span class="s">&quot; cols=&quot;</span><span class="si">%(cols)d</span><span class="s">&quot;&gt;</span>
+<span class="si">%(filecontent)s</span><span class="s"></span>
+<span class="s">&lt;/textarea&gt;</span>
+<span class="s">&#39;&#39;&#39;</span>
+
+<span class="c"># self for these functions is an instance of the writer class.  For example</span>
+<span class="c"># in html, self is sphinx.writers.html.SmartyPantsHTMLTranslator</span>
+<span class="c"># The node that is passed as a parameter is an instance of our node class.</span>
+<span class="k">def</span> <span class="nf">visit_df_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">df_content</span><span class="p">[</span><span class="s">&#39;edit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">TEXTA</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">PRE</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">%</span> <span class="n">node</span><span class="o">.</span><span class="n">df_content</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;u&#39;&quot;</span><span class="p">,</span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>  <span class="c"># hack:  there must be a better way to include the list and avoid unicode strings</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">depart_ac_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; This is called at the start of processing an activecode node.  If activecode had recursive nodes</span>
+<span class="sd">        etc and did not want to do all of the processing in visit_ac_node any finishing touches could be</span>
+<span class="sd">        added here.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">visit_df_node</span></tt> function is called when a DataFileNode is found in the document tree.  The visit function is called when the node is first encountered.  The <tt class="docutils literal"><span class="pre">depart_df_node</span></tt> function is called after all the children have been visited.</p>
+<p>Notice that <tt class="docutils literal"><span class="pre">visit_df_node</span></tt> mainly just looks at its options to see if we need to create a textarea or a pre element and then lets Python&#8217;s formatted strings take care of the rest.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Extension Authors</a><ul>
+<li><a class="reference internal" href="#components-of-a-directive">Components of a directive</a></li>
+<li><a class="reference internal" href="#initialization">Initialization</a></li>
+<li><a class="reference internal" href="#parsing">Parsing</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="developer.html"
+                        title="previous chapter">Developer Documentation for Runestone Interactive Tools</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gettinghelp.html"
+                        title="next chapter">Getting Help</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/writingAnExtension.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gettinghelp.html" title="Getting Help"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="developer.html" title="Developer Documentation for Runestone Interactive Tools"
+             >previous</a> |</li>
+        <li><a href="index.html">Runestone Interactive 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Brad Miller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
