@@ -80,7 +80,7 @@ The video directive is perhaps the easiest, so I'll start by describing that one
 
 **Description**
 
-All directives start out with ``..`` followed by the name of the directive, in this case ``video::``  Any required arguments follow after the ``::``.  
+All directives start out with ``..`` followed by the name of the directive, in this case ``video::``  Any required arguments follow after the ``::``.
 
 **Required Arguments**
 
@@ -92,7 +92,7 @@ There are two optional arguments to the video directive.
 
 ``:controls:``  The controls argument is a flag that if present tells sphinx to generate the usual set of video controls, play, pause, rewind, fast forward. If not present the video will automatically play when the page is loaded.
 
-``:thumb:`` references an image that will serve as the thumbnail for this video. If this parameter is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail.  clicking on the thumbnail will cause the full video to appear at full size.   If the ``:thumb:`` directive is not present then the video will appear on the page in its full size.  
+``:thumb:`` references an image that will serve as the thumbnail for this video. If this parameter is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail.  clicking on the thumbnail will cause the full video to appear at full size.   If the ``:thumb:`` directive is not present then the video will appear on the page in its full size.
 
 
 **Content**
@@ -143,28 +143,28 @@ The activecode directive allows you to create executable example code.  Not only
        :nocanvas:
        :caption: This is my caption
        :include: activecode_id, [activecode_id,...]
-       
+
        for i in range(10):
            print('hello world %d\n' % i)
-           
-       
-       
+
+
+
 **Description**
 
-The activecode directive creates a runnable python listing.  It looks like this: 
+The activecode directive creates a runnable python listing.  It looks like this:
 
 .. activecode:: ac_example1
    :caption: This is my caption
 
    import turtle
    t = turtle.Turtle()
-      
+
    for i in range(4):
        t.forward(100)
        t.left(90)
 
 
-The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python. 
+The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python.
 
 Normally and output from a print statment is appended to a ``<pre></pre>`` element in the page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
 
@@ -246,6 +246,45 @@ The identifier after the ``:: `` must be unique.
 
 ``:breakline:``  This is the line that you want the program to stop at and ask show the question.
 
+
+Datafile
+~~~~~~~~
+
+The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the users local hard drive we can fake files in two different ways.
+
+1.  We can put the data into ``pre`` element.  The id on the element serves as the filename.
+
+2.  We can put the data into a ``textarea`` element.  Again the id on the element serves as the file name.  However with a text area the file data can be modified.
+
+**Example**
+
+::
+
+    .. datafile:: mydata.dat
+       :edit:
+       :rows: 20
+       :cols: 60
+
+       data line one
+       data line two
+       data line three
+
+The example will produce a text area that is 20 rows long and 60 columns wide.  The ``:edit:`` flag tells the directive to produce a textarea rather than a pre element.
+
+**Arguments**
+
+The required argument is the 'filename'  In the example it is mydata.dat  This must be unique within the document as it does become the id of the element.
+
+**Optional Arguments**
+
+``:hide:``  -- This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where its not important that the student see all the data.
+
+``:edit:``  -- This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program.
+
+``rows``  -- This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided the directive will do its best to guess the number of rows within a reasonable number.
+
+``cols``  -- Again this is for sizing the text area, and again if not provided the directive will come up with a reasonable value.
+
 Assessments
 ~~~~~~~~~~~
 
@@ -268,7 +307,7 @@ The directives are as follows:
 **Example**
 
 ::
-   
+
     .. mchoicemf:: question1_1
        :answer_a: Python
        :answer_b: Java
@@ -281,7 +320,7 @@ The directives are as follows:
        :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
 
        What programming language does this site help you to learn?
-    
+
 **Description**
 
 .. mchoicemf:: question1_1
@@ -365,8 +404,8 @@ Here is how the fill in the blank question is formatted.
       :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
 
       Without using the activecode infixToPostfix function, convert the following expression to postfix <br> 10 + 3 * 5 / (16 - 4) ___
-      
-      
+
+
 **Optional Arguments**
 
 ``:iscode:``  Tells the processor that the question text is code.
@@ -387,7 +426,7 @@ And finally here is a way of giving your students some simple programming proble
 
 Here is a simple example:
 
-:: 
+::
 
     .. parsonsprob:: question1_100_4
 
@@ -397,7 +436,7 @@ Here is a simple example:
        for i in range(10)
           x = x + 1
 
-You can also group lines of code together using === to delimit the different blocks.          
+You can also group lines of code together using === to delimit the different blocks.
 ::
 
     .. parsonsprob:: question1_100_5
@@ -417,7 +456,7 @@ You can also group lines of code together using === to delimit the different blo
                 curmax = item
        =====
           return curmax
-          
+
 
 Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson's problem looks like:
 
@@ -438,7 +477,7 @@ Notice that you give the code correctly indented and in its correct form.  This 
             curmax = item
    =====
       return curmax
-          
+
 
 
 **Optional Arguments**
