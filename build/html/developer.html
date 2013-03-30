@@ -95,6 +95,8 @@ can build and use this eBook.</p>
 <p>First get Sphinx, Version 1.1.x is current as of this writing.</p>
 <p><a class="reference external" href="http://sphinx.pocoo.org">http://sphinx.pocoo.org</a></p>
 <p>Follow the instructions there to download and install Sphinx.</p>
+<p>Next install paver, version 1.2.0 is current as of this writing.  If you have <tt class="docutils literal"><span class="pre">pip</span></tt> installed its as easy as <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">paver</span></tt> if not, then follow the instructions <a class="reference external" href="http://paver.github.com/paver/#installation">On the paver github page</a></p>
+<p>Once paver is installed you will also need to install sphincontrib-paverutils, again the easiest route is to use <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinxcontrib-paverutils</span></tt></p>
 <p>If you want to run a full blown server &#8211; so you can save activecode assignments etc. then you will need to download and install web2py.  <a class="reference external" href="http://web2py.com">http://web2py.com</a></p>
 <p>After you install web2py go to the applications folder and check out this repository.  This will be installed as a web2py application automatically.</p>
 </div>
@@ -112,7 +114,7 @@ $ git submodule update</pre>
 </div>
 <div class="section" id="building-the-prexisting-books">
 <h3>Building the prexisting Books<a class="headerlink" href="#building-the-prexisting-books" title="Permalink to this headline">¶</a></h3>
-<p>Once you the above installed, you can type <tt class="docutils literal"><span class="pre">make</span> <span class="pre">all</span></tt> from the command
+<p>Once you the above installed, you can type <tt class="docutils literal"><span class="pre">paver</span> <span class="pre">allbooks</span></tt> from the command
 line and that will build the following targets:</p>
 <ul class="simple">
 <li>How to Think Like a Computer Scientist</li>
@@ -192,7 +194,9 @@ line and that will build the following targets:</p>
 <p>The activecode directive creates a runnable python listing.  It looks like this:</p>
 
 <div id="ac_example1" >
+
 <br/>
+<div id="ac_example1_code_div" style="display: block">
 <textarea cols="50" rows="12" id="ac_example1_code" class="active_code">
 import turtle
 t = turtle.Turtle()
@@ -201,17 +205,19 @@ for i in range(4):
     t.forward(100)
     t.left(90)
 </textarea>
+</div>
 <p class="ac_caption"><span class="ac_caption_text">This is my caption (ac_example1)</span> </p>
 
-<button onclick="runit('ac_example1',this, undefined);">Run</button>
+<button id="ac_example1_runb" onclick="runit('ac_example1',this, undefined);">Run</button>
 
 <div id="cont"></div>
 
 <button class="ac_opt" onclick="saveEditor('ac_example1');">Save</button>
 <button class="ac_opt" onclick="requestCode('ac_example1');">Load</button>
-<br />
 
-<canvas id="ac_example1_canvas" height="400" width="400" style="border-style: solid; display: none"></canvas>
+<div style="text-align: center">
+<canvas id="ac_example1_canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
 
 <pre id="ac_example1_pre" class="active_out">
 
@@ -474,27 +480,27 @@ correct number as well as the feedback for each.</p>
 
         Solve this problem.
         <div>
-        <div id="parsons-orig-463" style="display:none;">def findmax(alist):
+        <div id="parsons-orig-468" style="display:none;">def findmax(alist):
    if len(alist) == 0:\n   return None
    curmax = alist[0]\nfor item in alist:
       if item &gt; curmax:
          curmax = item
    return curmax</div>
-        <div id="parsons-sortableTrash-463" class="sortable-code"></div>
-        <div id="parsons-sortableCode-463" class="sortable-code"></div>
+        <div id="parsons-sortableTrash-468" class="sortable-code"></div>
+        <div id="parsons-sortableCode-468" class="sortable-code"></div>
 	<div style="clear:left;"></div>
-        <div id="parsons-message-463" style="background: pink; padding: 1em;"></div>
-        <a href="#" id="newInstanceLink-463">Reset</a>
-        <a href="#" id="feedbackLink-463">Get feedback</a>
+        <div id="parsons-message-468" style="background: pink; padding: 1em;"></div>
+        <a href="#" id="newInstanceLink-468">Reset</a>
+        <a href="#" id="feedbackLink-468">Get feedback</a>
         </div>
 
     <script>
         $pjQ(document).ready(function(){
-            var msgBox = $("#parsons-message-463");
+            var msgBox = $("#parsons-message-468");
             msgBox.hide();
 	    var displayErrors = function (fb) {
 	        if(fb.errors.length > 0) {
-                    var hash = pp_463.getHash("#ul-parsons-sortableCode-463");
+                    var hash = pp_468.getHash("#ul-parsons-sortableCode-468");
                     msgBox.fadeIn(500);
                     msgBox.css("background-color","pink");
                     msgBox.html(fb.errors[0]);
@@ -509,39 +515,39 @@ correct number as well as the feedback for each.</p>
 	    }
  
 
-        var pp_463 = new ParsonsWidget({
-                'sortableId': 'parsons-sortableCode-463',
-		'trashId': 'parsons-sortableTrash-463',
+        var pp_468 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-468',
+		'trashId': 'parsons-sortableTrash-468',
                 'max_wrong_lines': 1,
                 'feedback_cb' : displayErrors
         });
-        pp_463.init($pjQ("#parsons-orig-463").text());
-	pp_463.shuffleLines();
+        pp_468.init($pjQ("#parsons-orig-468").text());
+	pp_468.shuffleLines();
         if(localStorage.getItem('question1_100_5') && localStorage.getItem('question1_100_5-trash')) {
             try {
                 var solution = localStorage.getItem('question1_100_5');
                 var trash = localStorage.getItem('question1_100_5-trash');
-                pp_463.createHTMLFromHashes(solution,trash);
-                pp_463.getFeedback();
+                pp_468.createHTMLFromHashes(solution,trash);
+                pp_468.getFeedback();
             } catch(err) {
                 var text = "An error occured restoring old question1_100_5 state.  Error: ";
                 console.log(text + err.message);
             }
 
         }
-            $pjQ("#newInstanceLink-463").click(function(event){
+            $pjQ("#newInstanceLink-468").click(function(event){
                 event.preventDefault();
-                pp_463.shuffleLines();
+                pp_468.shuffleLines();
             });
-            $pjQ("#feedbackLink-463").click(function(event){
+            $pjQ("#feedbackLink-468").click(function(event){
                 event.preventDefault();
 
-                var hash = pp_463.getHash("#ul-parsons-sortableCode-463");
+                var hash = pp_468.getHash("#ul-parsons-sortableCode-468");
                 localStorage.setItem('question1_100_5',hash);
-                hash = pp_463.getHash("#ul-parsons-sortableTrash-463");
+                hash = pp_468.getHash("#ul-parsons-sortableTrash-468");
                 localStorage.setItem('question1_100_5-trash',hash);
 
-                pp_463.getFeedback();
+                pp_468.getFeedback();
 
             });
             
