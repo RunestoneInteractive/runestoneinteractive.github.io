@@ -97,6 +97,10 @@ can build and use this eBook.</p>
 <p>Follow the instructions there to download and install Sphinx.</p>
 <p>Next install paver, version 1.2.0 is current as of this writing.  If you have <tt class="docutils literal"><span class="pre">pip</span></tt> installed its as easy as <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">paver</span></tt> if not, then follow the instructions <a class="reference external" href="http://paver.github.com/paver/#installation">On the paver github page</a></p>
 <p>Once paver is installed you will also need to install sphincontrib-paverutils, again the easiest route is to use <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinxcontrib-paverutils</span></tt></p>
+<div class="admonition-warning admonition">
+<p class="first admonition-title">Warning</p>
+<p class="last">paver-1.2 introduced some backward incompatibilities.  These have not yet been fixed in the official paverutils repository but you can grab my fixed version and build it using the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> method. Download <a class="reference external" href="../_static/sphinxcontrib-paverutils-1.4.1.tar">my fixed version</a>  Untar the download file, change into the sphinxcontrib-paverutils-1.4 folder and run the setup command.</p>
+</div>
 <p>If you want to run a full blown server &#8211; so you can save activecode assignments etc. then you will need to download and install web2py.  <a class="reference external" href="http://web2py.com">http://web2py.com</a></p>
 <p>After you install web2py go to the applications folder and check out this repository.  This will be installed as a web2py application automatically.</p>
 </div>
@@ -480,27 +484,27 @@ correct number as well as the feedback for each.</p>
 
         Solve this problem.
         <div>
-        <div id="parsons-orig-468" style="display:none;">def findmax(alist):
+        <div id="parsons-orig-473" style="display:none;">def findmax(alist):
    if len(alist) == 0:\n   return None
    curmax = alist[0]\nfor item in alist:
       if item &gt; curmax:
          curmax = item
    return curmax</div>
-        <div id="parsons-sortableTrash-468" class="sortable-code"></div>
-        <div id="parsons-sortableCode-468" class="sortable-code"></div>
+        <div id="parsons-sortableTrash-473" class="sortable-code"></div>
+        <div id="parsons-sortableCode-473" class="sortable-code"></div>
 	<div style="clear:left;"></div>
-        <div id="parsons-message-468" style="background: pink; padding: 1em;"></div>
-        <a href="#" id="newInstanceLink-468">Reset</a>
-        <a href="#" id="feedbackLink-468">Get feedback</a>
+        <div id="parsons-message-473" style="background: pink; padding: 1em;"></div>
+        <a href="#" id="newInstanceLink-473">Reset</a>
+        <a href="#" id="feedbackLink-473">Get feedback</a>
         </div>
 
     <script>
         $pjQ(document).ready(function(){
-            var msgBox = $("#parsons-message-468");
+            var msgBox = $("#parsons-message-473");
             msgBox.hide();
 	    var displayErrors = function (fb) {
 	        if(fb.errors.length > 0) {
-                    var hash = pp_468.getHash("#ul-parsons-sortableCode-468");
+                    var hash = pp_473.getHash("#ul-parsons-sortableCode-473");
                     msgBox.fadeIn(500);
                     msgBox.css("background-color","pink");
                     msgBox.html(fb.errors[0]);
@@ -515,39 +519,39 @@ correct number as well as the feedback for each.</p>
 	    }
  
 
-        var pp_468 = new ParsonsWidget({
-                'sortableId': 'parsons-sortableCode-468',
-		'trashId': 'parsons-sortableTrash-468',
+        var pp_473 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-473',
+		'trashId': 'parsons-sortableTrash-473',
                 'max_wrong_lines': 1,
                 'feedback_cb' : displayErrors
         });
-        pp_468.init($pjQ("#parsons-orig-468").text());
-	pp_468.shuffleLines();
+        pp_473.init($pjQ("#parsons-orig-473").text());
+	pp_473.shuffleLines();
         if(localStorage.getItem('question1_100_5') && localStorage.getItem('question1_100_5-trash')) {
             try {
                 var solution = localStorage.getItem('question1_100_5');
                 var trash = localStorage.getItem('question1_100_5-trash');
-                pp_468.createHTMLFromHashes(solution,trash);
-                pp_468.getFeedback();
+                pp_473.createHTMLFromHashes(solution,trash);
+                pp_473.getFeedback();
             } catch(err) {
                 var text = "An error occured restoring old question1_100_5 state.  Error: ";
                 console.log(text + err.message);
             }
 
         }
-            $pjQ("#newInstanceLink-468").click(function(event){
+            $pjQ("#newInstanceLink-473").click(function(event){
                 event.preventDefault();
-                pp_468.shuffleLines();
+                pp_473.shuffleLines();
             });
-            $pjQ("#feedbackLink-468").click(function(event){
+            $pjQ("#feedbackLink-473").click(function(event){
                 event.preventDefault();
 
-                var hash = pp_468.getHash("#ul-parsons-sortableCode-468");
+                var hash = pp_473.getHash("#ul-parsons-sortableCode-473");
                 localStorage.setItem('question1_100_5',hash);
-                hash = pp_468.getHash("#ul-parsons-sortableTrash-468");
+                hash = pp_473.getHash("#ul-parsons-sortableTrash-473");
                 localStorage.setItem('question1_100_5-trash',hash);
 
-                pp_468.getFeedback();
+                pp_473.getFeedback();
 
             });
             
