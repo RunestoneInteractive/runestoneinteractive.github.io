@@ -496,6 +496,25 @@ There are no optional arguments for the parson's problem directive.
 
 
 
+Disqus Comment Box
+------------------
+
+**Example**
+
+Here is an example:
+
+::
+
+    .. disqus::
+        :shortname: interactivepython
+
+
+**Description**
+Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.
+
+**Arguments**
+There is one required argument, ``shortname``. This is the Disqus shortname that identifies this site. You can obtain your shortname during registration with
+Disqus.
 
 
 .. raw:: html
