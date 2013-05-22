@@ -99,7 +99,7 @@ can build and use this eBook.</p>
 <p>Once paver is installed you will also need to install sphincontrib-paverutils, again the easiest route is to use <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinxcontrib-paverutils</span></tt></p>
 <div class="admonition-warning admonition">
 <p class="first admonition-title">Warning</p>
-<p class="last">paver-1.2 introduced some backward incompatibilities.  These have not yet been fixed in the official paverutils repository but you can grab my fixed version and build it using the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> method. Download <a class="reference external" href="../_static/sphinxcontrib-paverutils-1.4.1.tar">my fixed version</a>  Untar the download file, change into the sphinxcontrib-paverutils-1.4 folder and run the setup command.</p>
+<p class="last">paver-1.2 introduced some backward incompatibilities.  These have not yet been fixed in the official paverutils repository but you can grab my fixed version and build it using the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> method. Download <a class="reference external" href="_static/sphinxcontrib-paverutils-1.4.1.tar">my fixed version</a>  Untar the download file, change into the sphinxcontrib-paverutils-1.4 folder and run the setup command.</p>
 </div>
 <p>If you want to run a full blown server &#8211; so you can save activecode assignments etc. then you will need to download and install web2py.  <a class="reference external" href="http://web2py.com">http://web2py.com</a></p>
 <p>After you install web2py go to the applications folder and check out this repository.  This will be installed as a web2py application automatically.</p>
@@ -560,10 +560,24 @@ correct number as well as the feedback for each.</p>
 
 <p><strong>Optional Arguments</strong></p>
 <p>There are no optional arguments for the parson&#8217;s problem directive.</p>
+</div>
+</div>
+<div class="section" id="disqus-comment-box">
+<h2>Disqus Comment Box<a class="headerlink" href="#disqus-comment-box" title="Permalink to this headline">¶</a></h2>
+<p><strong>Example</strong></p>
+<p>Here is an example:</p>
+<div class="highlight-python"><pre>.. disqus::
+    :shortname: interactivepython
+    :identifier: overview.html</pre>
+</div>
+<p><strong>Description</strong>
+Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.</p>
+<p><strong>Arguments</strong>
+There are 2 required arguments, <tt class="docutils literal"><span class="pre">shortname</span></tt> and <tt class="docutils literal"><span class="pre">identifier</span></tt>. The shortname is used to identify your site to
+Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.</p>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(createEditors);
 </script></div>
-</div>
 </div>
 
 
@@ -590,6 +604,7 @@ correct number as well as the feedback for each.</p>
 <li><a class="reference internal" href="#assessments">Assessments</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#disqus-comment-box">Disqus Comment Box</a></li>
 </ul>
 </li>
 </ul>
