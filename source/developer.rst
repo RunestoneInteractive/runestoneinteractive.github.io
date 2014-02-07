@@ -151,6 +151,7 @@ The activecode directive allows you to create executable example code.  Not only
     .. activecode:: ac_example1
        :nopre:
        :nocanvas:
+       :language: python
        :caption: This is my caption
        :include: activecode_id, [activecode_id,...]
 
@@ -190,6 +191,8 @@ The identifier after the ``:: `` must be unique.
 ``:nocanvas:``  -- This flag prevents a ``<canvas>`` element from getting created.
 
 ``:caption:``  The text argument to this parameter is formatted as a caption, underneath the activecode block
+
+``:language:`` The text argument to this parameter can be python, javascript, or html.  This allows the activecode directive to support multiple languages!
 
 ``:include:``  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.
 
@@ -409,6 +412,7 @@ Here is how the fill in the blank question is formatted.
 
    .. fillintheblank:: postfix1
       :casei:
+      :blankid: postfix1_blank
       :correct: \\b10\\s+3\\s+5\\s*\\*\\s*16\\s+4\\s*-\\s*/\\s*\\+
       :feedback1:  ('10.*3.*5.*16.*4', 'The numbers appear to be in the correct order check your operators')
       :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
