@@ -27,17 +27,18 @@ if (!window.console || !console.firebug) {
 }
  */
 
-/**
- * small helper function to urldecode strings
- */
-jQuery.urldecode = function(x) {
-  return decodeURIComponent(x).replace(/\+/g, ' ');
-}
+ /**
+  * small helper function to urldecode strings
+  */
+ jQuery.urldecode = function(x) {
+   return decodeURIComponent(x).replace(/\+/g, ' ');
+ }
 
-/**
- * small helper function to urlencode strings
- */
-jQuery.urlencode = encodeURIComponent;
+ /**
+  * small helper function to urlencode strings
+  */
+ jQuery.urlencode = encodeURIComponent;
+
 
 /**
  * This function returns the parsed url parameters of the
@@ -61,17 +62,6 @@ jQuery.getQueryParameters = function(s) {
   return result;
 };
 
-/**
- * small function to check if an array contains
- * a given item.
- */
-jQuery.contains = function(arr, item) {
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] == item)
-      return true;
-  }
-  return false;
-};
 
 /**
  * highlight a given string on a jquery object by wrapping it in
