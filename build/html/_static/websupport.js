@@ -4,7 +4,7 @@
  *
  * sphinx.websupport utilties for all documentation.
  *
- * :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
+ * :copyright: Copyright 2007-2013 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -662,19 +662,19 @@
   };
 
   var opts = {
-    processVoteURL: '/eds/ajax/process_vote',
-    addCommentURL: '/eds/ajax/add_comment.json',
-    getCommentsURL: '/eds/ajax/get_comments.json',
-    acceptCommentURL: '/eds/ajax/accept_comment',
-    deleteCommentURL: '/eds/ajax/delete_comment',
-    commentImage: '/eds/static/_static/comment.png',
-    closeCommentImage: '/eds/static/_static/comment-close.png',
-    loadingImage: '/eds/static/_static/ajax-loader.gif',
-    commentBrightImage: '/eds/static/_static/comment-bright.png',
-    upArrow: '/eds/static/_static/up.png',
-    downArrow: '/eds/static/_static/down.png',
-    upArrowPressed: '/eds/static/_static/up-pressed.png',
-    downArrowPressed: '/eds/static/_static/down-pressed.png',
+    processVoteURL: '/_process_vote',
+    addCommentURL: '/_add_comment',
+    getCommentsURL: '/_get_comments',
+    acceptCommentURL: '/_accept_comment',
+    deleteCommentURL: '/_delete_comment',
+    commentImage: '/static/_static/comment.png',
+    closeCommentImage: '/static/_static/comment-close.png',
+    loadingImage: '/static/_static/ajax-loader.gif',
+    commentBrightImage: '/static/_static/comment-bright.png',
+    upArrow: '/static/_static/up.png',
+    downArrow: '/static/_static/down.png',
+    upArrowPressed: '/static/_static/up-pressed.png',
+    downArrowPressed: '/static/_static/down-pressed.png',
     voting: false,
     moderator: false
   };
