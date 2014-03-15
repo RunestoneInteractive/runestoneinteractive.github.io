@@ -48,6 +48,11 @@ Once paver is installed you will also need to install sphinxcontrib-paverutils, 
 If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
 install `web2py <http://web2py.com>`_.
 
+::
+
+    # pip install diff_match_patch
+    
+
 The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
 `Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
 After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation").  I avoid the web2py.app installation on OS X as it messes with the Python path.  I assume the Windows web2py.exe is the same and I would avoid it as well if I used Windows.
