@@ -1,153 +1,173 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Brad Miller">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-Name       : Abrasive
-Description: A two-column, fixed-width design with dirty looks.
-Version    : 1.0
-Released   : 20081122
+    <title>Runestone Interactive</title>
 
--->
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Runestone Interactive Home</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-29883683-1']);
-  _gaq.push(['_trackPageview']);
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-</script>
-</head>
-<body>
-<div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<!-- <h1><a href="#">Runestone Interactive</a></h1> -->
-			<img src="images/logo.jpg">
-			
-		</div>
-		<!-- end #logo -->
-		<div id="menu">
-			<ul>
-				<li class="first"><a href="#">News</a></li>
-				<li><a href="http://groups.google.com/group/runestoneinteractive?lnk=gcimh">Group</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact Me</a></li>
-			</ul>
-		</div>
-		<!-- end #menu -->
-	</div>
-	<!-- end #header -->
-	<div id="page">
-		<div id="bgtop">
-			<div id="bgbottom">
-				<div id="content">
-					<div class="post">
-						<div class="title">
-							<h2><a href="#">Welcome</a></h2>
-						</div>
-						<div class="entry"><img src="images/runestone_alpha.gif" alt="" width="112" height="104" class="alignleft" />
-							<p>Runestone Interactive is the home for several projects that provide interactive textbooks for computer science.  We currently have two books in use for our Introductory Computer Science classes.  You can link to them from the library on the right.</p>
-							<p>In addition to the books we are also have a set of tools for creating interactive eBooks.  The tools as well as the book are open source and available for you to use.  If you do use the tools to create a book let us know and we'll add a link.</p>
-						</div>
-					</div>
-<div class="post">
-	<div class="title">
-		<h2><a href="#">Developer Docs</a></h2>
-	</div>
-<div class="entry">
-    <p>Whether you're an author or are interested in developing additional interactive book extensions you can find the <a href="http://runestoneinteractive.org/build/html/index.html">documentation here.</a>
-</div>    
-</div>                    
-					<div class="post">
-						<div class="title">
-							<h2><a href="#">Overview</a></h2>
-						</div>
-						<div class="entry">
-							<iframe width="560" height="315" src="http://www.youtube.com/embed/Us4fpoNht68" frameborder="0" allowfullscreen></iframe>
-							<p>After writing two textbooks for introductory computer science I became very interested in what could be done if a textbook was truly interactive.  During my sabbatical in 2010/2011 I started to experiement with programming on the iPad as well as a bunch of HTML5 features.  After stumbling on some great open source tools, and the open source text from How to Think Like a Computer Scientist this project was born.  The books in our library have the following unique features:
-							<ul>
-								<li>Activecode:  A Javscript implementation of Python right in the book.  Every example is runable and editable.</li>
-								<li>Codelens:  Like having a debugger in the textbook.   You can step forward and backward through the code and observe the value of the variables as they change.</li>
-								<li>Interactive Exercises for self assessment</li>
-								<li>Problem solving videos to help you understand important Python programming concepts</li>
-							</ul>
-							</p>
-							<p>You are welcome to use either of these books in your course, or you can even make a custom build of the book with just the chapters you want to use.</p>
-							<p>There is still tons of work to do in developing tools and improving the books.  Our hope is to create a resource where an instructor can create a custom book for their class.</p>
-						</div>
-					</div>
-					<div class="post">
-						<div class="title">
-							<h2><a href="#">Where's the Source?</a></h2>
-						</div>
-						<div class="entry">
-							<p>The source code for this project is hosted on github.  The eBook content is divided up into modules.  Modules are short lessons or you might think of them as the sections of a chapter in a book.  You are invited to fork the project and contribute back any updated modules, exercises, or new modules! <a href="http://github.com/bnmnetp/runestone">github/bnmnetp/runestone</a>  If you are interested in extending the runestone tool set you should check out the <a href="http://runestoneinteractive.org/build/html/index.html">developer docs</a>.
-							</p>
-						</div>
-					</div>
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
 
-				</div>
-				<!-- end #content -->
-				<div id="sidebar">
-					<ul>
-						<li>
-							<h2>Library</h2>
-							<ul>
-								<li><a href="http://interactivepython.org">How to Think Like a Computer Scientist</a></li>
-								<li><a href="http://interactivepython.org">Problem solving with algorithms and data structures using Python</a></li>
-								<li><a href="http://interactivepython.org/runestone/static/java4python/index.html">Java 4 Python Programmers</a></li>
-								<li><a href="http://interactivepython.org/runestone/static/JavaReview/index.html">Java Review for the AP CS A Exam</a></li>                                                                
-							</ul>
-						</li>
-						<li>
-							<h2>Tools</h2>
-							<ul>
-								<li><a href="#">eBook Tools</a></li>
-								<li><a href="http://sphinx.pocoo.org">Sphinx</a></li>
-								<li><a href="http://skulpt.org">Skulpt.org</a></li>
-								<li><a href="http://people.csail.mit.edu/pgbovine/python/">Python Tutor</a></li>
-							</ul>
-						</li>
-						<li>
-							<h2>Links</h2>
-							<ul>
-								<li><a href="http://reputablejournal.com">Brad's Blog</a></li>
-								<li><a href="#">David's Blog</a></li>
-								<li><a href="http://www.cs.luther.edu">Luther CS Department</a></li>
-								<li></li>
-								<li><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-							</ul>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Runestone Interactive</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="library.html">Library</a></li>          
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-						</li>
+      </div>
+    </div>
 
-					</ul>
-				</div>
-				<!-- end #sidebar -->
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<!-- end #page -->
-	<div id="footer">
-		<p>Copyright (c) 2012 RunestoneInteractive.org Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> Logo by Tanner Chambers</p>
-	</div>
-	<!-- end #footer -->
-</div>
-<!-- end #wrapper -->
-</body>
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>        
+      </ol>
+      <div class="carousel-inner">
+
+          <div class="item active">
+            <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>The Runestone Interactive Library</h1>
+                <p>We host a growing number of Open Source, Interactive Textbooks. Written by award winning authors. Used by some of the best schools.</p>
+                <p><a class="btn btn-lg btn-primary" href="http://interactivepython.org/runestone/static/thinkcspy/index.html" role="button">See the List</a></p>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>How to Think Like a Computer Scientist: Interactive Edition</h1>
+              <p>Based on the original open source book.  Learn Python, try examples, answer questions, interactively, right in the book!</p>
+              <p><a class="btn btn-lg btn-primary" href="http://interactivepython.org/runestone/static/thinkcspy/index.html" role="button">Try it Now</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Algorithms and Data Structures using Python</h1>
+              <p>Written by Brad Miller and David Ranum, this is a free and open source version of the book published by Franklin Beedle.</p>
+              <p><a class="btn btn-lg btn-primary" href="http://interactivepython.org/runestone/static/pythonds/index.html" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Java Review for the AP CS A Exam</h1>
+              <p>Not just for Python.  This great resource, written by Barbara Ericson, is loaded with review questions and clear explanations.</p>
+              <p><a class="btn btn-lg btn-primary" href="http://interactivepython.org/runestone/static/JavaReview/index.html" role="button">Get Started</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-md-4">
+          <img class="img-circle" src="assets/img/library.jpg" height="140px" alt="Library">
+          <h2>Library</h2>
+          <p>A growing number of authors have published open source interactive text books using the Runestone Tools.  These textbooks are used all over the world.</p>
+          <p><a class="btn btn-default" href="library.html" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        
+        <div class="col-md-4">
+          <img class="img-square" src="assets/img/RSI.png" height="140px" alt="Author">
+          <h2>Authors</h2>
+          <p>You don't have to be a textbook author to use the Runestone Tools.  Its quick and easy to make your own tutorials, labs, or publish class notes, for your students.</p>
+          <p><a class="btn btn-default" href="http://github.com/RunestoneInteractive/RunestoneTools" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+
+        <div class="col-md-4">
+          <img class="img-circle" src="http://octodex.github.com/images/original.png" height="140px" alt="Developer">
+          <h2>Developers</h2>
+          <p>This is an exciting time for the learning community.  Join us in shaping the future of interactive textbooks.  There are plenty of projects that will make Runestone Interactive even better.</p>
+          <p><a class="btn btn-default" href="#" role="button">Developer Docs &raquo;</a>
+          <a class="btn btn-default" href="#" role="button">Fork Us on Github &raquo;</a></p>          
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Runestone Interactive. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+  </body>
 </html>
