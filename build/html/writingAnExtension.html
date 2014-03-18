@@ -76,12 +76,12 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <script type="text/javascript">
   eBookConfig = {};
-  eBookConfig.host = '' ? '' : 'http://127.0.0.1:8000';
-  eBookConfig.app = eBookConfig.host+'/';
+  eBookConfig.host = 'http://interactivepython.org' ? 'http://interactivepython.org' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
   eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
-  eBookConfig.course = '';
-  eBookConfig.logLevel = ;
-  eBookConfig.loginRequired = 
+  eBookConfig.course = 'docs';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
   eBookConfig.build_info = "";
   eBookConfig.isLoggedIn = false;
 </script>
@@ -130,7 +130,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
       </button>
 
       <div>
-        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="//default/user/login">&nbsp; </a>
+        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
         <a class="navbar-brand" href="index.html">Runestone Interactive</a>
       </div>
     </div>
@@ -192,7 +192,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             
                 <li><a href='index.html'>Table of Contents</a></li>
             
-            <li><a href='//static//genindex.html'>Book Index</a></li>
+            <li><a href='/runestone/static/docs/genindex.html'>Book Index</a></li>
             <li class="divider"></li>
             <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
             <li class="divider"></li>
@@ -224,11 +224,11 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
-            <li><a href='//admin/index'>Instructor's Page</a></li>
+            <li><a href='http://interactivepython.org/runestone/admin/index'>Instructor's Page</a></li>
             <li class="divider"></li>
-            <li><a href="//default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="//default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="//default/user/register" id="registerlink">Register</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/register" id="registerlink">Register</a></li>
             <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
           </ul>
         </li>
@@ -242,8 +242,8 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
           </a>
           <ul class="dropdown-menu user-menu">
-            <li><a href='//static//navhelp.html'>Navigation Help</a></li>
-            <li><a href='//static/overview/instructor.html'>Help for Instructors</a></li>            
+            <li><a href='/runestone/static/docs/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>            
             <li class="divider"></li>
             <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
             <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
@@ -317,29 +317,32 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <p>In this section I will take you through an example of writing a new directive for the runestone interactive system.  In this case we will look at adding a <tt class="docutils literal"><span class="pre">datafile</span></tt> directive.</p>
 <p>The <tt class="docutils literal"><span class="pre">datafile</span></tt> directive is going to be used in conjunction with the skulpt file operations.  For skulpt to read a file we must provide some data that data can either be data that is part of a <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> element or if we want the data to be editable we can embed the data in a <tt class="docutils literal"><span class="pre">&lt;textarea&gt;</span></tt> element.   In the case of the <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> element the data might be visible or it might be hidden.  Our directive will look something like this:</p>
 <p>Indentation is important.  Following the directive line, you can have as many optional parameters as you want.  Followed by a blank line, followed by the main body of your directive.</p>
-<div class="highlight-python"><pre>.. datafile::  myid
+<div class="highlight-python"><div class="highlight"><pre>.. datafile::  myid
    :edit:
    :rows: 20
    :cols: 65
 
    line 1  some data
    line 2  some more data
-   line 3  this is the end</pre>
+   line 3  this is the end
+</pre></div>
 </div>
 <p>So the datafile takes one required parameter, a unique id that is used by the Skulpt <tt class="docutils literal"><span class="pre">open</span></tt> function as the file name.  The <tt class="docutils literal"><span class="pre">:edit:</span></tt> parameter tells us to make a textarea rather than a pre.  The <tt class="docutils literal"><span class="pre">:rows:</span></tt> and <tt class="docutils literal"><span class="pre">:cols:</span></tt> tell us how many rows and columns to add to the textarea.  If these are not present, then our directive should do its best to figure out a reasonable number of rows and columns.</p>
 <p>The html output of the directive above should be:</p>
-<div class="highlight-python"><pre>&lt;textarea id="myid" cols="65" rows="20"&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;textarea id=&quot;myid&quot; cols=&quot;65&quot; rows=&quot;20&quot;&gt;
 line 1  some data
 line 2  some more data
 line 3  this is the end
-&lt;/textarea&gt;</pre>
+&lt;/textarea&gt;
+</pre></div>
 </div>
 <p>We will also make this extension work if the user wants to generate a non-interactive paper or pdf version of some text using LaTeX.  In this case the output of our directive should simply be:</p>
-<div class="highlight-python"><pre>\begin{verbatim}
+<div class="highlight-python"><div class="highlight"><pre>\begin{verbatim}
 line 1  some data
 line 2  some more data
 line 3  this is the end
-\end{verbatim}</pre>
+\end{verbatim}
+</pre></div>
 </div>
 <p>Unless the <tt class="docutils literal"><span class="pre">:hide:</span></tt> flag is present in which case we won&#8217;t generate anything.</p>
 <div class="section" id="components-of-a-directive">
@@ -525,7 +528,7 @@ line 3  this is the end
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.
     </p>
   </div>
 </footer>
@@ -568,6 +571,18 @@ line 3  this is the end
 
 </script>
 
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 
 

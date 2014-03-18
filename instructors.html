@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/jumbotron.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,7 +33,7 @@
         <ul class="nav nav-pills pull-right">
           <li><a href="index.html">Home</a></li>
           <li><a href="library.html">Library</a></li>          
-          <li class="active"><a href="about.html">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <h3 class="text-muted">Runestone Interactive</h3>
@@ -41,50 +41,158 @@
 
       <div class="jumbotron">
         <h1>Instructors and Authors</h1>
-        <p class="lead">you don't have to write a whole book to use the Runestone tools.  Your task can be as simple as having a few examples ready to demonstrate to the class, or as complex as an entirely new book.</p>
+        <p class="lead">You don't have to write a whole book to use the Runestone tools.  Your task can be as simple as having a few examples ready to demonstrate to the class, or as complex as an entirely new book.</p><p><a class="btn btn-lg btn-primary" href="#getstarted" role="button">Get Started</a></p>
       </div>
 
       <div class="row marketing">
         <div class="col-md-6">
-          <h4>A Classroom Example</h4>
+          <h2>A Classroom Example</h2>
           <p>Suppose you wanted to have an example program that you could start class with, and then edit and change during the course of the class.  Here is how you would create a simple page for you and your class to load into the browser and experiment with.</p>
 
           <pre>
-          Approximating pi
-          ================
+Approximating pi
+================
 
-          .. activecode:: pi_example1
+.. activecode:: pi_example1
 
-             print "Hello World"
-          </pre>
+   terms=input("How many terms do you wish?")
+   pi = 0.0
+   den = 1
+   for counter in range(terms):
+       nextterm = (4.0/den)*(-1)**counter
+       pi = pi + nextterm
+       den = den + 2
+   print pi
+
+
+   def leibniz(terms):
+       acc = 0.0
+       num = 4.0
+       den = 1
+       for term in range(terms):
+           nextterm = num/den * (-1)**term
+           acc = acc + nextterm
+
+           den = den + 2
+
+       return acc
+       
+Try running the code above with different values for the 
+number of terms.  How many terms do you need in order to get 
+3.14159 for the value of pi?       
+        </pre>
 
            <p>After you install the RunestoneTools, as described below.  You can save the example above to a file. When you run the <code>paver build</code> command, you will get an html file that you can load into your browser.  It will look like this:
-           	
+           	<img src="images/pipage.png" width="100%">
            </p>
       </div>
 
       <div class="col-md-6">
-          <h4>An in Class Quiz</h4>
-          <img class="img-circle" src="http://www.luther.edu/reason/images/365879.jpg" height="150px">
-          <p>Professor, Computer Science, Luther College</p>
-          <p><a href="http://davidranum.blogspot.com">David's Blog</a></p>
+          <h2>An in Class Quiz</h2>
+Another Scenario might be that you want to have your students take a quick online quiz that looks like this:
+
+          <img src="images/quizpage.png" width="100%">
+
+You can create a quiz using the same simple markup language used in the previous example.  
+
+<pre>
+A Short Quiz
+============
+
+Answer the following two Questions
+
+.. mchoicemf:: question1_1
+   :answer_a: Python
+   :answer_b: Java
+   :answer_c: C
+   :answer_d: ML
+   :correct: a
+   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
+   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
+   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
+   :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
+
+   What programming language does this site help you to learn?
+
+
+
+.. mchoicema:: question1_2
+   :answer_a: red
+   :answer_b: yellow
+   :answer_c: black
+   :answer_d: green
+   :correct: a,b,d
+   :feedback_a: Red is a definitely on of the colors.
+   :feedback_b: Yes, yellow is correct.
+   :feedback_c: Remember the acronym...ROY G BIV.  B stands for blue.
+   :feedback_d: Yes, green is one of the colors.
+
+   Which colors might be found in a rainbow? (choose all that are correct)
+    
+    
+</pre>    
 
         </div>
 
-      
-
     </div>
+
+
+
       <hr class="featurette-divider">
-      <h2>Related Projects</h2>
-      <p>Runestone Interactive would not be what it is without the components from other open source projects</p>
+      <a name="getstarted"></a>
+      <h1>Getting Started</h1>
+      
+  	<style>
+  		.gstart {
+  			counter-reset: my-badass-counter;
+  		}
+  		.gstart dt {
+  			position: relative;
+  			font: bold 16px Georgia;
+  			padding: 4px 0 10px 0;
+  		}
+  		.gstart dt:before {
+  			content: counter(my-badass-counter);
+  			counter-increment: my-badass-counter;
+  			position: absolute;
+  			left: 0;
+  			top: 0;
+  			font: bold 50px/1 Sans-Serif;
+            color: #428bca;
+  		}
+  		.gstart dd {
+  			margin: 0 0 50px 0;
+  		}	
+  		.gstart dt, .gstart dd {
+  			padding-left: 50px;
+  		}
+  	</style>
+
+     <dl class="gstart">   
+      <dt>Get the Template Project</dt>
+      <dd>The quickest way to get up and running is to clone <a href="http://github.com/runestoneinteractive/runestonetools">this repository</a> on github. Or simply download and unzip this <a href="https://github.com/RunestoneInteractive/RunestoneTools/releases/tag/1.0b1">zip file</a>.</dd>
+          
+      <dt>Install the prerequisites</dt>
+        <dd>The <a href="http://github.com/runestoneinteractive/runestonetools"> README</a> File gives a full description of the things you will need to "pip install" to get up and running.  Its easy, and fast. </dd>
+      <dt>Edit</dt>
+          <dd>The template project has an rst file ready to edit.  You can simply start with file and build up from there.</dd>
+      <dt>Build</dt>
+          <dd>The <code>paver build</code> command will create a nice looking html file for you in the build directory under the template project.  Once you have built you can preview that file directly in your browser.</dd>
+      <dt>Deploy</dt>
+          <dd>The README file gives detailed instructions on two different ways to deploy your project.  1.  If you have access to your own web server you can simply drop the build folder in place and go.  2.  You can use Githubs awesome pages feature to host your site.  Once you set it up its as easy as <code>paver deploy</code> to publish your latest class materials.</dd>
+
+  </dl>
+
+
+      <hr class="featurette-divider">
+      <h1>More Information</h1>
       <ul>
-          <li><a href="http://skulpt.org">Skulpt.org</a> -- A Javascript implementation of the Python programming language.  This allows us to run Python examples right in the browser!</li>
-          <li><a href="http://pythontutor.com">Online Python Tutor</a>-- Philip Guo's excellent project for visualizing Python Programs</li>
-          <li><a href="http://sphinx-doc.org/index.html">Sphinx</a>-- Python Documentation Generator</li>
-          <li><a href="https://github.com/vkaravir/js-parsons">Parson's Problems</a>-- An open source library developed by Ville Karavirta</li>
-          <li><a href="https://code.google.com/p/blockly/">Blockly</a>-- An open source project for a blocks based language</li>
+          <li>We have a full set of developer docs <a href="build/html/index.html">here</a></li>
+        <li>For a quick reference <a href="build/html/qr.html">cheat sheet</a> on our directives look here.</li>
+        <li>Check out this <a href="http://interactivepython.org/runestone/static/overview/overview.html">Demo Site</a> to see the tools in action.</li>
       </ul>
 
+      <hr class="featurette-divider">
       <div class="footer">
         <p>&copy; Runestone Interactive 2014</p>
       </div>

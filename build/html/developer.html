@@ -76,12 +76,12 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <script type="text/javascript">
   eBookConfig = {};
-  eBookConfig.host = '' ? '' : 'http://127.0.0.1:8000';
-  eBookConfig.app = eBookConfig.host+'/';
+  eBookConfig.host = 'http://interactivepython.org' ? 'http://interactivepython.org' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
   eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
-  eBookConfig.course = '';
-  eBookConfig.logLevel = ;
-  eBookConfig.loginRequired = 
+  eBookConfig.course = 'docs';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
   eBookConfig.build_info = "";
   eBookConfig.isLoggedIn = false;
 </script>
@@ -130,7 +130,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
       </button>
 
       <div>
-        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="//default/user/login">&nbsp; </a>
+        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
         <a class="navbar-brand" href="index.html">Runestone Interactive</a>
       </div>
     </div>
@@ -192,7 +192,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             
                 <li><a href='index.html'>Table of Contents</a></li>
             
-            <li><a href='//static//genindex.html'>Book Index</a></li>
+            <li><a href='/runestone/static/docs/genindex.html'>Book Index</a></li>
             <li class="divider"></li>
             <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
             <li class="divider"></li>
@@ -224,11 +224,11 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
-            <li><a href='//admin/index'>Instructor's Page</a></li>
+            <li><a href='http://interactivepython.org/runestone/admin/index'>Instructor's Page</a></li>
             <li class="divider"></li>
-            <li><a href="//default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="//default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="//default/user/register" id="registerlink">Register</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/register" id="registerlink">Register</a></li>
             <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
           </ul>
         </li>
@@ -242,8 +242,8 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
           </a>
           <ul class="dropdown-menu user-menu">
-            <li><a href='//static//navhelp.html'>Navigation Help</a></li>
-            <li><a href='//static/overview/instructor.html'>Help for Instructors</a></li>            
+            <li><a href='/runestone/static/docs/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>            
             <li class="divider"></li>
             <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
             <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
@@ -262,9 +262,16 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">Developer Documentation for Runestone Interactive Tools</a><ul>
-<li><a class="reference internal" href="#content-authors">Content Authors</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#content-authors">Content Authors</a></li>
+<li><a class="reference internal" href="#important-notes">Important Notes</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
 <li><a class="reference internal" href="#cloning-the-runestone-project-and-its-submodules">Cloning The Runestone Project and its submodules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-the-book">Configure the Book</a></li>
+<li><a class="reference internal" href="#building-the-book">Building the Book</a></li>
+<li><a class="reference internal" href="#running-the-server">Running the Server</a></li>
+<li><a class="reference internal" href="#final-configuration">Final Configuration</a><ul>
 <li><a class="reference internal" href="#building-the-prexisting-books">Building the prexisting Books</a></li>
 <li><a class="reference internal" href="#starting-a-document">Starting a Document</a></li>
 </ul>
@@ -330,34 +337,156 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <h2>Content Authors<a class="headerlink" href="#content-authors" title="Permalink to this headline">¶</a></h2>
 <p>The runestone system uses restructuredText as its primary markup language.  restructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.</p>
 <p>Its probably easiest to get started by simply checking out the runestone repository, and then starting your project as a subdirectory.  Here are the relevant pieces from the README on github.</p>
+</div>
+<div class="section" id="important-notes">
+<h2>Important Notes<a class="headerlink" href="#important-notes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.  See Windows notes at the end for some additional tips.</li>
+<li>The latest version of web2py has moved some important files out of its root directory.  As of 10/1/13 I have not experimented with this release.  More information on these moved files (routes.py for example) can be found <a class="reference external" href="http://web2py.com/init/default/changelog">here</a></li>
+</ol>
+</div>
 <div class="section" id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
-<p>There are a couple of prerequisites you need to satisfy before you
-can build and use this eBook.</p>
-<p>First get Sphinx, Version 1.1.x is current as of this writing.</p>
-<p><a class="reference external" href="http://sphinx.pocoo.org">http://sphinx.pocoo.org</a></p>
-<p>Follow the instructions there to download and install Sphinx.</p>
-<p>Next install paver, version 1.2.0 is current as of this writing.  If you have <tt class="docutils literal"><span class="pre">pip</span></tt> installed its as easy as <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">paver</span></tt> if not, then follow the instructions <a class="reference external" href="http://paver.github.com/paver/#installation">On the paver github page</a></p>
-<p>Once paver is installed you will also need to install sphincontrib-paverutils, again the easiest route is to use <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinxcontrib-paverutils</span></tt></p>
-<div class="admonition-warning admonition">
-<p class="first admonition-title">Warning</p>
-<p class="last">paver-1.2 introduced some backward incompatibilities.  These have not yet been fixed in the official paverutils repository but you can grab my fixed version and build it using the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> method. Download <a class="reference external" href="_static/sphinxcontrib-paverutils-1.4.1.tar">my fixed version</a>  Untar the download file, change into the sphinxcontrib-paverutils-1.4 folder and run the setup command.</p>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don&#8217;t care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.</p>
+<p>There are a couple of prerequisites you need to satisfy before you can build and use this
+eBook. The easiest/recommended way is to use <a class="reference external" href="http://www.pip-installer.org/en/latest/">pip</a>.</p>
+<p>First get <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>, version 1.1.x is current as of this writing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install sphinx</span>
+</pre></div>
 </div>
-<p>If you want to run a full blown server &#8211; so you can save activecode assignments etc. then you will need to download and install web2py.  <a class="reference external" href="http://web2py.com">http://web2py.com</a></p>
-<p>After you install web2py go to the applications folder and check out this repository.  This will be installed as a web2py application automatically.</p>
+<p>Install <a class="reference external" href="http://paver.github.io/paver/">paver</a>, at least version 1.2.0:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install paver</span>
+</pre></div>
 </div>
+<p>Once paver is installed you will also need to install sphinxcontrib-paverutils, at least version 1.5:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install sphinxcontrib-paverutils</span>
+</pre></div>
+</div>
+<p>If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
+install <a class="reference external" href="http://web2py.com">web2py</a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install diff_match_patch</span>
+</pre></div>
+</div>
+<p>The easiest way to do so is to download the <strong>Source Code</strong> distribution from <a class="reference external" href="http://www.web2py.com/init/default/download">http://www.web2py.com/init/default/download</a>.
+<a class="reference external" href="http://www.web2py.com/examples/static/web2py_src.zip">Here</a> is a direct link to the zip archive.
+After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real &#8220;installation&#8221;).  I avoid the web2py.app installation on OS X as it messes with the Python path.  I assume the Windows web2py.exe is the same and I would avoid it as well if I used Windows.</p>
+<p>Within the <tt class="docutils literal"><span class="pre">web2py</span></tt> folder that was just extracted, go to the <tt class="docutils literal"><span class="pre">applications/</span></tt> folder and check out this repository
+(instructions below). This will install the Runestone Tools as a web2py application automatically.</p>
 <div class="section" id="cloning-the-runestone-project-and-its-submodules">
 <h3>Cloning The Runestone Project and its submodules<a class="headerlink" href="#cloning-the-runestone-project-and-its-submodules" title="Permalink to this headline">¶</a></h3>
 <p>This project consists of the main repository, plus <em>submodules</em> for codelens, parsons-problems, and skulpt.  In order to get all of the source you need you will need to do the following:</p>
-<div class="highlight-python"><pre>$ git clone https://github.com/bnmnetp/runestone.git
+<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/bnmnetp/runestone.git
 $ cd runestone
 $ git submodule init
-$ git submodule update</pre>
+$ git submodule update
+</pre></div>
 </div>
 <p>If you are using a GUI git client you may simply get prompted to update the submodules and all will be taken care of for you.  Newer versions of git also support:</p>
-<div class="highlight-python"><pre>$ git clone --recursive https://github.com/bnmnetp/runestone.git</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone --recursive https://github.com/bnmnetp/runestone.git
+</pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="configure-the-book">
+<h2>Configure the Book<a class="headerlink" href="#configure-the-book" title="Permalink to this headline">¶</a></h2>
+<p>Although the book looks like a static website, there are quite a few AJAX calls going on in the background.  The Javascript relies on a configuration object called eBookConfig.  To get the right values in the eBookConfig object you need to configure a couple of things prior to running the <tt class="docutils literal"><span class="pre">paver</span></tt> command to build the book.  We have provided a <tt class="docutils literal"><span class="pre">paverconfig.py.prototype</span></tt> file that you can simply copy to <tt class="docutils literal"><span class="pre">paverconfig.py</span></tt> and modify.  It contains the following two lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">master_url</span> <span class="o">=</span> <span class="s">&#39;http://127.0.0.1:8000&#39;</span>
+<span class="n">master_app</span> <span class="o">=</span> <span class="s">&#39;runestone&#39;</span>
+</pre></div>
+</div>
+<p>You can modify the master_url to be the hostname that you are running your app on, but if you are just doing local development you will probably want to leave it alone.  If you omit this step the books will build in the next step using the values above as default values, but you will get a warning message:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;NOTICE:  You are using default values for master_* Make your own paverconfig.py file&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-the-book">
+<h2>Building the Book<a class="headerlink" href="#building-the-book" title="Permalink to this headline">¶</a></h2>
+<p>Once you the above installed, you can type <tt class="docutils literal"><span class="pre">paver</span> <span class="pre">allbooks</span></tt> from the command
+line and that will build the following targets:</p>
+<ul class="simple">
+<li>How to Think Like a Computer Scientist</li>
+<li>Problem Solving with algorithms and Data Structures using Python</li>
+<li>An overview page that shows off all the cool features of the Runestone toolkit</li>
+</ul>
+<p>The books are built into <tt class="docutils literal"><span class="pre">runestone/static/thinkcspy</span></tt>, <tt class="docutils literal"><span class="pre">runestone/static/pythonds</span></tt> and <tt class="docutils literal"><span class="pre">runestone/static/overview</span></tt>  assuming that runestone is the name of the folder you cloned into.  When the build is done you can quickly check the build by opening the file <tt class="docutils literal"><span class="pre">static/thinkcspy/index.html</span></tt> in your browser.</p>
+<p>Now before you start web2py its convenient to make runestone the default application.  From web2py/examples, copy routes.patterns.example.py to web2py/routes.py and Modify the three lines that contain the word runestone to look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>default_application = &#39;runestone&#39;    # ordinarily set in base routes.py
+default_controller = &#39;default&#39;  # ordinarily set in app-specific routes.py
+default_function = &#39;index&#39;      # ordinarily set in app-specific routes.py
+
+# routes_app is a tuple of tuples.  The first item in each is a regexp that will
+# be used to match the incoming request URL. The second item in the tuple is
+# an applicationname.  This mechanism allows you to specify the use of an
+# app-specific routes.py. This entry is meaningful only in the base routes.py.
+#
+# Example: support welcome, admin, app and myapp, with myapp the default:
+
+
+    routes_app = ((r&#39;/(?P&lt;app&gt;welcome|admin|app)\b.*&#39;, r&#39;\g&lt;app&gt;&#39;),
+                  (r&#39;(.*)&#39;, r&#39;runestone&#39;),
+                  (r&#39;/?(.*)&#39;, r&#39;runestone&#39;))
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-server">
+<h2>Running the Server<a class="headerlink" href="#running-the-server" title="Permalink to this headline">¶</a></h2>
+<p>You will have to set a few configuration values in the file <tt class="docutils literal"><span class="pre">models/1.py</span></tt>. Copy <tt class="docutils literal"><span class="pre">models/1.py.prototype</span></tt> to
+<tt class="docutils literal"><span class="pre">models/1.py</span></tt> and open the newly created 1.py. If you don&#8217;t wish to use a local SQLite database, change the
+<tt class="docutils literal"><span class="pre">database_uri</span></tt> to match your actual credentials.</p>
+<p>If you wish to use Janrain Engage to provide social network authentication integration, you will also have to set your
+Janrain API key and domain in 1.py.</p>
+<p>Note: If you do <em>not</em> wish to use Janrain, you must comment out these lines in <tt class="docutils literal"><span class="pre">models/db.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">janrain_form</span> <span class="o">=</span> <span class="n">RPXAccount</span><span class="p">(</span><span class="n">request</span><span class="p">,</span>
+                          <span class="n">api_key</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">janrain_api_key</span><span class="p">,</span> <span class="c"># set in 1.py</span>
+                          <span class="n">domain</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">janrain_domain</span><span class="p">,</span> <span class="c"># set in 1.py</span>
+                          <span class="n">url</span><span class="o">=</span><span class="n">janrain_url</span><span class="p">)</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">login_form</span> <span class="o">=</span> <span class="n">ExtendedLoginForm</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">janrain_form</span><span class="p">)</span> <span class="c"># uncomment this to use both Janrain and web2py auth</span>
+<span class="n">request</span><span class="o">.</span><span class="n">janrain_form</span> <span class="o">=</span> <span class="n">janrain_form</span> <span class="c"># save the form so that it can be added to the user/register controller</span>
+</pre></div>
+</div>
+<p>and uncomment the line below. This will disable Janrain and only use Web2Py integrated authentication.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">auth</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">login_form</span> <span class="o">=</span> <span class="n">auth</span> <span class="c"># uncomment this to just use web2py integrated authentication</span>
+</pre></div>
+</div>
+<p>Once you&#8217;ve built the book using the steps above.  You can start the web2py development server by simply running</p>
+<div class="highlight-python"><div class="highlight"><pre>python web2py.py
+</pre></div>
+</div>
+<p>This will bring up a little GUI where you can make up an admin password and click &#8220;start server&#8221;.
+When the server is running your browser will open to the welcome application, unless you&#8217;ve changed
+the default application as described above.  To see this app simply use the url:  <a class="reference external" href="http://127.0.0.1/runestone">http://127.0.0.1/runestone</a>
+From there, you can click on the link for &#8220;How To Think Like A Computer Scientist&#8221; or &#8220;Problem Solving With
+Algorithms and Data Structures&#8221;. (See the section Final Configuration below for instructions on registering
+for one of the courses. Registering allows you to save your progress and work.)</p>
+<p>If you get an error at this point the most likely reason is that the settings file isn&#8217;t recognizing your host and is not setting the database correctly.  These lines in models/0.py are important:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="s">&#39;local&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;Darwin&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;sqlite://storage.sqlite&#39;</span>
+<span class="k">elif</span> <span class="s">&#39;webfaction&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]:</span>  <span class="c"># production is on webfaction</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;postgres://production_db:secret@production_server.com/production_db&#39;</span>
+<span class="k">elif</span> <span class="s">&#39;luther&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]:</span>   <span class="c"># this is my beta machine</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;sqlite://storage.sqlite&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;Host unknown, settings not configured&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For your own personal development, you want the first clause of the if statement to match. If you are on a Unix-like system,
+you can replace &#8216;Darwin&#8217; with the result of running <tt class="docutils literal"><span class="pre">uname</span></tt> at a terminal. Another option is to replace &#8216;local&#8217; with
+your computer&#8217;s hostname.</p>
+</div>
+<div class="section" id="final-configuration">
+<h2>Final Configuration<a class="headerlink" href="#final-configuration" title="Permalink to this headline">¶</a></h2>
+<p>To use the admin functionality you are going to want to do one more bit of configuration:</p>
+<ul class="simple">
+<li>Click the &#8220;Register&#8221; link in the user menu in the upper right corner of the browser window.</li>
+<li>Fill in the form to create a user account for yourself. You can register for either &#8220;How To Think...&#8221; (use the course name <tt class="docutils literal"><span class="pre">thinkcspy</span></tt>) or &#8220;Problem Solving With...&#8221; (use the course name <tt class="docutils literal"><span class="pre">pythonds</span></tt>).</li>
+</ul>
+<p>Now, add your new user account to the &#8216;instructors&#8217; group using the appadmin
+functionality of web2py:</p>
+<ul class="simple">
+<li>Open <tt class="docutils literal"><span class="pre">http://127.0.0.1:8000/runestone/appadmin</span></tt>. Login using the password you supplied when you ran web2py.</li>
+<li>Click on <tt class="docutils literal"><span class="pre">insert</span> <span class="pre">new</span> <span class="pre">auth_membership</span></tt>. Select your user account and the instructor group as the two values and click submit.  You are now an instructor.</li>
+</ul>
+<p>After you do that, once you&#8217;re logged into the site, you can visit <a class="reference external" href="http://127.0.0.1:8000/runestone/admin">http://127.0.0.1:8000/runestone/admin</a> to access instructor features</p>
 <div class="section" id="building-the-prexisting-books">
 <h3>Building the prexisting Books<a class="headerlink" href="#building-the-prexisting-books" title="Permalink to this headline">¶</a></h3>
 <p>Once you the above installed, you can type <tt class="docutils literal"><span class="pre">paver</span> <span class="pre">allbooks</span></tt> from the command
@@ -380,12 +509,13 @@ line and that will build the following targets:</p>
 <h3>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h3>
 <p>The video directive is perhaps the easiest, so I&#8217;ll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.</p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><pre>.. video:: list_unique
+<div class="highlight-python"><div class="highlight"><pre>.. video:: list_unique
    :controls:
    :thumb: ../_static/videothumb.png
 
    http://media.interactivepython.org/pythondsVideos/list_unique.mov
-   http://media.interactivepython.org/pythondsVideos/list_unique.webm</pre>
+   http://media.interactivepython.org/pythondsVideos/list_unique.webm
+</pre></div>
 </div>
 <p><strong>Description</strong></p>
 <p>All directives start out with <tt class="docutils literal"><span class="pre">..</span></tt> followed by the name of the directive, in this case <tt class="docutils literal"><span class="pre">video::</span></tt>  Any required arguments follow after the <tt class="docutils literal"><span class="pre">::</span></tt>.</p>
@@ -398,24 +528,25 @@ line and that will build the following targets:</p>
 <p><strong>Content</strong></p>
 <p>The content lines of the video directive let you specify as many video sources as you need.  Usually I specify two videos, one in mov format and the other in webm format.  This seems to cover all the browsers.</p>
 <p>To give you an idea of what happens when sphinx processes a video directive here is the html and javascript output:</p>
-<div class="highlight-python"><pre>&lt;a id="list_unique_thumb" &gt; &lt;img src="../_static/videothumb.png" /&gt;&lt;/a&gt;
-&lt;div id="list_unique" class="video_popup" &gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;a id=&quot;list_unique_thumb&quot; &gt; &lt;img src=&quot;../_static/videothumb.png&quot; /&gt;&lt;/a&gt;
+&lt;div id=&quot;list_unique&quot; class=&quot;video_popup&quot; &gt;
 &lt;video controls  &gt;
-    &lt;source src="http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.mov" type="video/mp4"&gt;&lt;/source&gt;
-    &lt;source src="http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.webm" type="video/webm"&gt;&lt;/source&gt;
+    &lt;source src=&quot;http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.mov&quot; type=&quot;video/mp4&quot;&gt;&lt;/source&gt;
+    &lt;source src=&quot;http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.webm&quot; type=&quot;video/webm&quot;&gt;&lt;/source&gt;
     No supported video types
 &lt;/video&gt;
 &lt;/div&gt;
 &lt;script&gt;
    jQuery(function($) {
-      $('#list_unique_thumb').click(function(e) {
-         $('#list_unique').show();
-         $('#list_unique_thumb').hide();
-         logBookEvent({'event':'video','act':'play','div_id': 'list_unique'});
+      $(&#39;#list_unique_thumb&#39;).click(function(e) {
+         $(&#39;#list_unique&#39;).show();
+         $(&#39;#list_unique_thumb&#39;).hide();
+         logBookEvent({&#39;event&#39;:&#39;video&#39;,&#39;act&#39;:&#39;play&#39;,&#39;div_id&#39;: &#39;list_unique&#39;});
          // Log the run event
       });
    });
-&lt;/script&gt;</pre>
+&lt;/script&gt;
+</pre></div>
 </div>
 <p><strong>TODO</strong></p>
 <ul class="simple">
@@ -427,7 +558,7 @@ line and that will build the following targets:</p>
 <h3>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
 <p>The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.</p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><pre>.. activecode:: ac_example1
+<div class="highlight-python"><div class="highlight"><pre>.. activecode:: ac_example1
    :nopre:
    :nocanvas:
    :language: python
@@ -435,7 +566,8 @@ line and that will build the following targets:</p>
    :include: activecode_id, [activecode_id,...]
 
    for i in range(10):
-       print('hello world %d\n' % i)</pre>
+       print(&#39;hello world %d\n&#39; % i)
+</pre></div>
 </div>
 <p><strong>Description</strong></p>
 <p>The activecode directive creates a runnable python listing.  It looks like this:</p>
@@ -487,7 +619,7 @@ if ('block' == 'none') {
 <p>The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python.</p>
 <p>Normally and output from a print statment is appended to a <tt class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></tt> element in the page.  Graphical output, such as the turtle graphics program in the example, is done on a <tt class="docutils literal"><span class="pre">&lt;canvas&gt;</span></tt>.</p>
 <p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id1"><span class="problematic" id="id2">``</span></a>:: `` must be unique.</p>
+<p>The identifier after the <a href="#id2"><span class="problematic" id="id3">``</span></a>:: `` must be unique.</p>
 <p><strong>Optional Arguments</strong></p>
 <p><tt class="docutils literal"><span class="pre">:nopre:</span></tt>  &#8211; This flag prevents a <tt class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></tt> element from getting created.</p>
 <p><tt class="docutils literal"><span class="pre">:nocanvas:</span></tt>  &#8211; This flag prevents a <tt class="docutils literal"><span class="pre">&lt;canvas&gt;</span></tt> element from getting created.</p>
@@ -502,15 +634,16 @@ if ('block' == 'none') {
 <p>In addition to stepping through the code you as an author can embed a question into the example.  You may ask the student to predict how the value of a variable will change, or you may ask the student to predict which line of code will be executed next.  This is an excellent way to help students develop a good mental model of how python works.</p>
 <p>It is worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go here:  <a class="reference external" href="http://www.pythontutor.com/">http://www.pythontutor.com/</a></p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><pre>.. codelens:: secondexample
+<div class="highlight-python"><div class="highlight"><pre>.. codelens:: secondexample
 
-    fruit = ["apple","orange","banana","cherry"]
+    fruit = [&quot;apple&quot;,&quot;orange&quot;,&quot;banana&quot;,&quot;cherry&quot;]
     numlist = [6,7]
     newlist = fruit + numlist
     zeros = [0] * 4
 
     zeros[1] = fruit
-    zeros[1][2] = numlist</pre>
+    zeros[1][2] = numlist
+</pre></div>
 </div>
 <p><strong>Description</strong></p>
 <p>Here is an example of codelens in action:</p>
@@ -549,7 +682,7 @@ $(window).resize(function() {
 });
 </script>
 <p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id3"><span class="problematic" id="id4">``</span></a>:: `` must be unique.</p>
+<p>The identifier after the <a href="#id4"><span class="problematic" id="id5">``</span></a>:: `` must be unique.</p>
 <p><strong>Optional Arguments</strong></p>
 <p><tt class="docutils literal"><span class="pre">:tracedata:</span></tt>  Normally this value is filled in automatically, but you can provide your own tracedata if you wish.</p>
 <p><tt class="docutils literal"><span class="pre">:caption:</span></tt>  The text provided for this option will be formatted as a caption on the bottom of the page.</p>
@@ -567,14 +700,15 @@ $(window).resize(function() {
 <li>We can put the data into a <tt class="docutils literal"><span class="pre">textarea</span></tt> element.  Again the id on the element serves as the file name.  However with a text area the file data can be modified.</li>
 </ol>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><pre>.. datafile:: mydata.dat
+<div class="highlight-python"><div class="highlight"><pre>.. datafile:: mydata.dat
    :edit:
    :rows: 20
    :cols: 60
 
    data line one
    data line two
-   data line three</pre>
+   data line three
+</pre></div>
 </div>
 <p>The example will produce a text area that is 20 rows long and 60 columns wide.  The <tt class="docutils literal"><span class="pre">:edit:</span></tt> flag tells the directive to produce a textarea rather than a pre element.</p>
 <p><strong>Arguments</strong></p>
@@ -590,14 +724,15 @@ $(window).resize(function() {
 <p><strong>Description</strong></p>
 <p>Assessment questions come in several forms.  Single answer multiple choice, multi-answer multiple choice, fill in the blank, parson&#8217;s problems for coding, and some code tracing prediction tasks.  For example, given some code, the student can step through the code line by line until the system asks them to predict the value of a variable, or to predict the next line that will be executed.</p>
 <p>The directives are as follows:</p>
-<div class="highlight-python"><pre>.. mchoicemf
+<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf
 .. mchoicema
 .. fillintheblank
-.. parsonsprob</pre>
+.. parsonsprob
+</pre></div>
 </div>
 <p><strong>Multiple Choice with Multiple Feedbacks</strong></p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><pre>.. mchoicemf:: question1_1
+<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf:: question1_1
    :answer_a: Python
    :answer_b: Java
    :answer_c: C
@@ -608,12 +743,13 @@ $(window).resize(function() {
    :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
    :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
 
-   What programming language does this site help you to learn?</pre>
+   What programming language does this site help you to learn?
+</pre></div>
 </div>
 <p><strong>Description</strong></p>
 
             <div id="question1_1" class="alert alert-warning">
-            Q-1: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
+            Q-5: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="question1_1_opt_a" />
             <label for= "question1_1_opt_a">  a) Python</label><br />
             
@@ -647,7 +783,7 @@ $(window).resize(function() {
 correct number as well as the feedback for each.</p>
 
             <div id="question1_2" class="alert alert-warning">
-            Q-2: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
+            Q-6: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
             <input type="checkbox" name="group1" value="a" id="question1_2_opt_a" />
             <label for= "question1_2_opt_a">  a) red</label><br />
             
@@ -676,20 +812,21 @@ correct number as well as the feedback for each.</p>
 <p><tt class="docutils literal"><span class="pre">:iscode:</span></tt>  Tells the directive processor that the question text should be treated as code.</p>
 <p><strong>Fill in the Blank, or Free form Answer</strong></p>
 <p>Another type of question allows you as the instructor to ask for a value.  You can test for the value using Javascript regular expressions.  For example:</p>
-<div class="highlight-python"><pre>.. fillintheblank:: postfix1
+<div class="highlight-python"><div class="highlight"><pre>.. fillintheblank:: postfix1
    :casei:
    :correct: \\b10\\s+3\\s+5\\s*\\*\\s*16\\s+4\\s*-\\s*/\\s*\\+
-   :feedback1:  ('10.*3.*5.*16.*4', 'The numbers appear to be in the correct order check your operators')
-   :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
+   :feedback1:  (&#39;10.*3.*5.*16.*4&#39;, &#39;The numbers appear to be in the correct order check your operators&#39;)
+   :feedback2: (&#39;.*&#39;, &#39;Remember the numbers will be in the same order as the original equation&#39;)
 
-   Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___</pre>
+   Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
+</pre></div>
 </div>
 <p><strong>Description</strong></p>
 <p>Here is how the fill in the blank question is formatted.</p>
 <blockquote>
 <div>
             <div id="postfix1" class="alert alert-warning">
-            Q-3: Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
+            Q-7: Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
             <script>
             $(document).ready(function(){checkPreviousFIB('postfix1');});
             </script>
@@ -711,16 +848,17 @@ correct number as well as the feedback for each.</p>
 <p>And finally here is a way of giving your students some simple programming problems where the code is already there for them but not indented or in the correct order.  Use drag-and-drop to get everthing right.</p>
 <p><strong>Example</strong></p>
 <p>Here is a simple example:</p>
-<div class="highlight-python"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
 
    Construct a block of code that correctly implements the accumulator pattern.
    -----
    x = 0
    for i in range(10)
-      x = x + 1</pre>
+      x = x + 1
+</pre></div>
 </div>
 <p>You can also group lines of code together using === to delimit the different blocks.</p>
-<div class="highlight-python"><pre>.. parsonsprob:: question1_100_5
+<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_5
 
    Solve this problem.
    -----
@@ -736,34 +874,35 @@ correct number as well as the feedback for each.</p>
    =====
             curmax = item
    =====
-      return curmax</pre>
+      return curmax
+</pre></div>
 </div>
 <p>Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson&#8217;s problem looks like:</p>
 
         <div class='parsons alert alert-warning'>
-        Q-4: Solve this problem.<br /><br />
+        Q-8: Solve this problem.<br /><br />
         <div style="clear:left;"></div>
-        <div id="parsons-orig-477" style="display:none;">def findmax(alist):
+        <div id="parsons-orig-616" style="display:none;">def findmax(alist):
    if len(alist) == 0:\n   return None
    curmax = alist[0]\nfor item in alist:
       if item &gt; curmax:
          curmax = item
    return curmax</div>
-        <div id="parsons-sortableTrash-477" class="sortable-code"></div>
-        <div id="parsons-sortableCode-477" class="sortable-code"></div>
+        <div id="parsons-sortableTrash-616" class="sortable-code"></div>
+        <div id="parsons-sortableCode-616" class="sortable-code"></div>
     	<div style="clear:left;"></div>
-        <input type="button" class='btn btn-success' id="checkMe477" value="Check Me"/>
-        <input type="button" class='btn btn-default' id="reset477" value="Reset"/>
-        <div id="parsons-message-477"></div>
+        <input type="button" class='btn btn-success' id="checkMe616" value="Check Me"/>
+        <input type="button" class='btn btn-default' id="reset616" value="Reset"/>
+        <div id="parsons-message-616"></div>
         </div>
 
     <script>
         $pjQ(document).ready(function(){
-            var msgBox = $("#parsons-message-477");
+            var msgBox = $("#parsons-message-616");
             msgBox.hide();
 	    var displayErrors = function (fb) {
 	        if(fb.errors.length > 0) {
-                    var hash = pp_477.getHash("#ul-parsons-sortableCode-477");
+                    var hash = pp_616.getHash("#ul-parsons-sortableCode-616");
                     msgBox.fadeIn(500);
                     msgBox.attr('class','alert alert-danger');
                     msgBox.html(fb.errors[0]);
@@ -780,8 +919,8 @@ correct number as well as the feedback for each.</p>
 
         $(window).load(function() {
             // set min width and height
-            var sortableul = $("#ul-parsons-sortableCode-477");
-            var trashul = $("#ul-parsons-sortableTrash-477");
+            var sortableul = $("#ul-parsons-sortableCode-616");
+            var trashul = $("#ul-parsons-sortableTrash-616");
             var sortableHeight = sortableul.height();
             var sortableWidth = sortableul.width();
             var trashWidth = trashul.width();
@@ -796,35 +935,35 @@ correct number as well as the feedback for each.</p>
         });
  
 
-        var pp_477 = new ParsonsWidget({
-                'sortableId': 'parsons-sortableCode-477',
-		'trashId': 'parsons-sortableTrash-477',
+        var pp_616 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-616',
+		'trashId': 'parsons-sortableTrash-616',
                 'max_wrong_lines': 1,
                 'solution_label': 'Drop blocks here',
                 'feedback_cb' : displayErrors
         });
-        pp_477.init($pjQ("#parsons-orig-477").text());
-	pp_477.shuffleLines();
+        pp_616.init($pjQ("#parsons-orig-616").text());
+	pp_616.shuffleLines();
             
         if(localStorage.getItem('question1_100_5') && localStorage.getItem('question1_100_5-trash')) {
             try {
                 var solution = localStorage.getItem('question1_100_5');
                 var trash = localStorage.getItem('question1_100_5-trash');
-                pp_477.createHTMLFromHashes(solution,trash);
-                pp_477.getFeedback();
+                pp_616.createHTMLFromHashes(solution,trash);
+                pp_616.getFeedback();
             } catch(err) {
                 var text = "An error occured restoring old question1_100_5 state.  Error: ";
                 console.log(text + err.message);
             }
 
         }
-            $pjQ("#reset477").click(function(event){
+            $pjQ("#reset616").click(function(event){
               event.preventDefault();
-              pp_477.shuffleLines();
+              pp_616.shuffleLines();
             
             // set min width and height
-            var sortableul = $("#ul-parsons-sortableCode-477");
-            var trashul = $("#ul-parsons-sortableTrash-477");
+            var sortableul = $("#ul-parsons-sortableCode-616");
+            var trashul = $("#ul-parsons-sortableTrash-616");
             var sortableHeight = sortableul.height();
             var sortableWidth = sortableul.width();
             var trashWidth = trashul.width();
@@ -838,14 +977,14 @@ correct number as well as the feedback for each.</p>
               msgBox.hide();
             });
             
-            $pjQ("#checkMe477").click(function(event){
+            $pjQ("#checkMe616").click(function(event){
               event.preventDefault();
-              var hash = pp_477.getHash("#ul-parsons-sortableCode-477");
+              var hash = pp_616.getHash("#ul-parsons-sortableCode-616");
               localStorage.setItem('question1_100_5',hash);
-              hash = pp_477.getHash("#ul-parsons-sortableTrash-477");
+              hash = pp_616.getHash("#ul-parsons-sortableTrash-616");
               localStorage.setItem('question1_100_5-trash',hash);
             
-            pp_477.getFeedback();
+            pp_616.getFeedback();
             msgBox.fadeIn(100);
             
             });
@@ -863,9 +1002,10 @@ correct number as well as the feedback for each.</p>
 <h2>Disqus Comment Box<a class="headerlink" href="#disqus-comment-box" title="Permalink to this headline">¶</a></h2>
 <p><strong>Example</strong></p>
 <p>Here is an example:</p>
-<div class="highlight-python"><pre>.. disqus::
+<div class="highlight-python"><div class="highlight"><pre>.. disqus::
     :shortname: interactivepython
-    :identifier: overview.html</pre>
+    :identifier: overview.html
+</pre></div>
 </div>
 <p><strong>Description</strong>
 Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.</p>
@@ -887,7 +1027,7 @@ Disqus. You can obtain a shortname by registering with Disqus. The identifier is
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.
     </p>
   </div>
 </footer>
@@ -930,6 +1070,18 @@ Disqus. You can obtain a shortname by registering with Disqus. The identifier is
 
 </script>
 
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 
 

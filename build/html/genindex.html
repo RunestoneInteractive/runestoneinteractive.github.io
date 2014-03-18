@@ -75,12 +75,12 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <script type="text/javascript">
   eBookConfig = {};
-  eBookConfig.host = '' ? '' : 'http://127.0.0.1:8000';
-  eBookConfig.app = eBookConfig.host+'/';
+  eBookConfig.host = 'http://interactivepython.org' ? 'http://interactivepython.org' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
   eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
-  eBookConfig.course = '';
-  eBookConfig.logLevel = ;
-  eBookConfig.loginRequired = 
+  eBookConfig.course = 'docs';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
   eBookConfig.build_info = "";
   eBookConfig.isLoggedIn = false;
 </script>
@@ -129,7 +129,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
       </button>
 
       <div>
-        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="//default/user/login">&nbsp; </a>
+        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
         <a class="navbar-brand" href="index.html">Runestone Interactive</a>
       </div>
     </div>
@@ -191,7 +191,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             
                 <li><a href='index.html'>Table of Contents</a></li>
             
-            <li><a href='//static//genindex.html'>Book Index</a></li>
+            <li><a href='/runestone/static/docs/genindex.html'>Book Index</a></li>
             <li class="divider"></li>
             <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
             <li class="divider"></li>
@@ -223,11 +223,11 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
-            <li><a href='//admin/index'>Instructor's Page</a></li>
+            <li><a href='http://interactivepython.org/runestone/admin/index'>Instructor's Page</a></li>
             <li class="divider"></li>
-            <li><a href="//default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="//default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="//default/user/register" id="registerlink">Register</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/register" id="registerlink">Register</a></li>
             <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
           </ul>
         </li>
@@ -241,8 +241,8 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
             <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
           </a>
           <ul class="dropdown-menu user-menu">
-            <li><a href='//static//navhelp.html'>Navigation Help</a></li>
-            <li><a href='//static/overview/instructor.html'>Help for Instructors</a></li>            
+            <li><a href='/runestone/static/docs/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>            
             <li class="divider"></li>
             <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
             <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
@@ -308,7 +308,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.
     </p>
   </div>
 </footer>
@@ -351,6 +351,18 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 
 </script>
 
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 
 
