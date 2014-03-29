@@ -32,7 +32,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li><a href="index.html">Home</a></li>
-          <li><a href="library.html">Library</a></li>          
+          <li><a href="library.html">Library</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -42,6 +42,11 @@
       <div class="jumbotron">
         <h1>Instructors and Authors</h1>
         <p class="lead">You don't have to write a whole book to use the Runestone tools.  Your task can be as simple as having a few examples ready to demonstrate to the class, or as complex as an entirely new book.</p><p><a class="btn btn-lg btn-primary" href="#getstarted" role="button">Get Started</a></p>
+        <p class="lead">
+            If you want to use one of our free and open source books for your class, you can do that too.  You can create a book for your own course, or simply use one of the books in our <a href="library.html">library</a>
+        </p><p>
+            <a class="btn btn-lg btn-primary"  href="customcourse.html">Learn More</a>
+        </p>
       </div>
 
       <div class="row marketing">
@@ -76,10 +81,10 @@ Approximating pi
            den = den + 2
 
        return acc
-       
-Try running the code above with different values for the 
-number of terms.  How many terms do you need in order to get 
-3.14159 for the value of pi?       
+
+Try running the code above with different values for the
+number of terms.  How many terms do you need in order to get
+3.14159 for the value of pi?
         </pre>
 
            <p>After you install the RunestoneTools, as described below.  You can save the example above to a file. When you run the <code>paver build</code> command, you will get an html file that you can load into your browser.  It will look like this:
@@ -93,7 +98,7 @@ Another Scenario might be that you want to have your students take a quick onlin
 
           <img src="images/quizpage.png" width="100%">
 
-You can create a quiz using the same simple markup language used in the previous example.  
+You can create a quiz using the same simple markup language used in the previous example.
 
 <pre>
 A Short Quiz
@@ -128,9 +133,9 @@ Answer the following two Questions
    :feedback_d: Yes, green is one of the colors.
 
    Which colors might be found in a rainbow? (choose all that are correct)
-    
-    
-</pre>    
+
+
+</pre>
 
         </div>
 
@@ -141,7 +146,7 @@ Answer the following two Questions
       <hr class="featurette-divider">
       <a name="getstarted"></a>
       <h1>Getting Started</h1>
-      
+
   	<style>
   		.gstart {
   			counter-reset: my-badass-counter;
@@ -162,16 +167,16 @@ Answer the following two Questions
   		}
   		.gstart dd {
   			margin: 0 0 50px 0;
-  		}	
+  		}
   		.gstart dt, .gstart dd {
   			padding-left: 50px;
   		}
   	</style>
 
-     <dl class="gstart">   
+     <dl class="gstart">
       <dt>Get the Template Project</dt>
       <dd>The quickest way to get up and running is to clone <a href="http://github.com/runestoneinteractive/runestonetools">this repository</a> on github. Or simply download and unzip this <a href="https://github.com/RunestoneInteractive/RunestoneTools/releases/tag/1.0b1">zip file</a>.</dd>
-          
+
       <dt>Install the prerequisites</dt>
         <dd>The <a href="http://github.com/runestoneinteractive/runestonetools"> README</a> File gives a full description of the things you will need to "pip install" to get up and running.  Its easy, and fast. </dd>
       <dt>Edit</dt>
@@ -216,6 +221,6 @@ Answer the following two Questions
       })();
 
     </script>
-    
+
   </body>
 </html>
