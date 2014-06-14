@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
@@ -55,6 +57,7 @@
     <script type="text/javascript" src="_static/lib/lis.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
     <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="_static/jquery-fix.js"></script>
@@ -332,27 +335,34 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 </pre></div>
 </div>
 
-<div id="codeexample1" lang="python" >
+<div id="cont"></div>
+<div id="codeexample1" lang="python" class="ac_section alert alert-warning" >
 
 <div style="text-align: center">
 <canvas id="codeexample1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 
+<div class="ac_actions">
+<button class='btn btn-success' id="codeexample1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="codeexample1_saveb" onclick="saveEditor('codeexample1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="codeexample1_loadb" onclick="requestCode('codeexample1');">Load</button>
+
+</div>
 <br/>
-<div id="codeexample1_code_div" style="display: block">
+<div id="codeexample1_code_div" style="display: block" class="ac_code_div">
 <textarea cols="50" rows="12" id="codeexample1_code" class="active_code", prefixcode="undefined" lang="python">
 print("My first program adds two numbers, 2 and 3:")
 print(2 + 3)
 </textarea>
 </div>
+<div class="ac_output"><pre id="codeexample1_suffix" style="display:none">
+</pre><pre id="codeexample1_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">This is a caption (codeexample1)</span> </p>
-
-<button class='btn btn-success' id="codeexample1_runb" onclick="runit('codeexample1',this, undefined);">Run</button>
-
-<div id="cont"></div>
-
-<button class="ac_opt btn btn-default" style="display: inline-block" id="codeexample1_saveb" onclick="saveEditor('codeexample1');">Save</button>
-<button class="ac_opt btn btn-default" style="display: inline-block" id="codeexample1_loadb" onclick="requestCode('codeexample1');">Load</button>
 
 <script>
 if ('block' == 'none') {
@@ -361,14 +371,44 @@ if ('block' == 'none') {
     $('#codeexample1_saveb').toggle();
     $('#codeexample1_loadb').toggle();
 }
+if ($("#codeexample1_code_div").parents(".admonition").length == 0 && $("#codeexample1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#codeexample1_code_div").offset({
+			left: $("#codeexample1 .clearfix").offset().left
+		});
+	}
+	$("#codeexample1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#codeexample1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#codeexample1_runb").parent().siblings(".ac_output").show();
+			runit('codeexample1',this, undefined);
+			$("#codeexample1_runb").on("click", function(){
+				runit('codeexample1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#codeexample1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#codeexample1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#codeexample1_runb").on("click", function(){
+		console.log("button clicked");
+		runit('codeexample1',this, undefined);
+	});
+}
 </script>
-
-<pre id="codeexample1_suffix" style="display:none">
-</pre>
-<pre id="codeexample1_pre" class="active_out">
-
-</pre>
-
 
 </div>
 
@@ -391,35 +431,24 @@ if ('block' == 'none') {
 </pre></div>
 </div>
 
-<div id="units1" lang="python" >
+<div id="cont"></div>
+<div id="units1" lang="python" class="ac_section alert alert-warning" >
 
+<div class="ac_actions">
+<button class='btn btn-success' id="units1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="units1_saveb" onclick="saveEditor('units1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="units1_loadb" onclick="requestCode('units1');">Load</button>
+
+</div>
 <br/>
-<div id="units1_code_div" style="display: block">
+<div id="units1_code_div" style="display: block" class="ac_code_div">
 <textarea cols="50" rows="12" id="units1_code" class="active_code", prefixcode="undefined" lang="python">
 def add(a,b):
    return 4
 
 </textarea>
 </div>
-<p class="ac_caption"><span class="ac_caption_text"> (units1)</span> </p>
-
-<button class='btn btn-success' id="units1_runb" onclick="runit('units1',this, undefined);">Run</button>
-
-<div id="cont"></div>
-
-<button class="ac_opt btn btn-default" style="display: inline-block" id="units1_saveb" onclick="saveEditor('units1');">Save</button>
-<button class="ac_opt btn btn-default" style="display: inline-block" id="units1_loadb" onclick="requestCode('units1');">Load</button>
-
-<script>
-if ('block' == 'none') {
-    // a hack to preserve the inline-block display style. Toggle() will use display: block
-    // (instead of inline-block) if the previous display style was 'none'
-    $('#units1_saveb').toggle();
-    $('#units1_loadb').toggle();
-}
-</script>
-
-
+<div class="ac_output">
 <div style="text-align: center">
 <canvas id="units1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
@@ -431,11 +460,59 @@ class myTests(unittestgui.unittest):
         self.assertEqual(add(2,2),4,"A feedback string when the test fails")
         self.assertAlmostEqual(add(2.0,3.0),5.0,"Your function failed on inputs of 2.0 and 3.0")
 
-myTests().main()</pre>
-<pre id="units1_pre" class="active_out">
+myTests().main()</pre><pre id="units1_pre" class="active_out">
 
 </pre>
 
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (units1)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#units1_saveb').toggle();
+    $('#units1_loadb').toggle();
+}
+if ($("#units1_code_div").parents(".admonition").length == 0 && $("#units1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#units1_code_div").offset({
+			left: $("#units1 .clearfix").offset().left
+		});
+	}
+	$("#units1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#units1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#units1_runb").parent().siblings(".ac_output").show();
+			runit('units1',this, undefined);
+			$("#units1_runb").on("click", function(){
+				runit('units1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#units1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#units1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#units1_runb").on("click", function(){
+		console.log("button clicked");
+		runit('units1',this, undefined);
+	});
+}
+</script>
 
 </div>
 
@@ -457,8 +534,10 @@ myTests().main()</pre>
 </pre></div>
 </div>
 
+<div class="alert alert-warning cd_section">
 <div id="codelens_question"></div>
 <p class="cl_caption"><span class="cl_caption_text"> (codelens_question)</span> </p>
+</div>
 <div id="codelens_question_modal" class="modal fade codelens-modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -489,7 +568,7 @@ var codelens_question_vis;
 $(document).ready(function() {
     codelens_question_vis = new ExecutionVisualizer('codelens_question',codelens_question_trace,
                                 {embeddedMode: true,
-                                verticalStack: true,
+                                verticalStack: false,
                                 heightChangeCallback: redrawAllVisualizerArrows,
                                 codeDivWidth: 500
                                 });
@@ -567,7 +646,7 @@ $(window).resize(function() {
 </div>
 
             <div id="question1_1" class="alert alert-warning">
-            Q-10: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
+            Q-31: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="question1_1_opt_a" />
             <label for= "question1_1_opt_a">  a) Python</label><br />
             
@@ -607,7 +686,7 @@ $(window).resize(function() {
 </div>
 
             <div id="question1_2" class="alert alert-warning">
-            Q-11: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
+            Q-32: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
             <input type="checkbox" name="group1" value="a" id="question1_2_opt_a" />
             <label for= "question1_2_opt_a">  a) red</label><br />
             
@@ -668,22 +747,34 @@ $(window).resize(function() {
 </pre></div>
 </div>
 
-        <div class='parsons alert alert-warning'>
-        Q-12: Construct a block of code that correctly implements the accumulator pattern.<br /><br />
+        <div class='parsons alert alert-warning' id="parsons-260">
+        <div class="parsons-text">Q-33: Construct a block of code that correctly implements the accumulator pattern.<br /><br /></div>
         <div style="clear:left;"></div>
         <div id="parsons-orig-260" style="display:none;">x = 0
 for i in range(10)\n   x = x + 1
 print(x)</div>
+        <div class="sortable-code-container">
         <div id="parsons-sortableTrash-260" class="sortable-code"></div>
         <div id="parsons-sortableCode-260" class="sortable-code"></div>
     	<div style="clear:left;"></div>
+        </div>
+        <div class="parsons-controls">
         <input type="button" class='btn btn-success' id="checkMe260" value="Check Me"/>
         <input type="button" class='btn btn-default' id="reset260" value="Reset"/>
         <div id="parsons-message-260"></div>
         </div>
+        </div>
 
     <script>
         $pjQ(document).ready(function(){
+		
+			$("#parsons-260").not(".sortable-code").not(".parsons-controls").on("click", function(){
+				 $('html, body').animate({
+					scrollTop: ($("#parsons-260").offset().top - 50)
+				}, 700);
+			}).find(".sortable-code, .parsons-controls").click(function(e) {
+				return false;
+				});	
             var msgBox = $("#parsons-message-260");
             msgBox.hide();
 	    var displayErrors = function (fb) {
@@ -810,6 +901,152 @@ print(x)</div>
             :identifier: helloworlddiscussion
 </pre></div>
 </div>
+<div id='exercise1' class='alert alert-warning'><ul class='nav nav-tabs' id='%(divid)s_tab'>
+<li>
+    <a data-toggle='tab' href='#exercise1-Question1'><span>Question 1</span></a>
+</li>
+
+<li>
+    <a data-toggle='tab' href='#exercise1-Discussion'><span>Discussion</span></a>
+</li>
+</ul><div class='tab-content'><div class='tab-pane' id='exercise1-Question1'><p>Write a program that prints &#8220;Hello, world&#8221;.</p>
+
+<div id="cont"></div>
+<div id="helloworld" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="helloworld_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="helloworld_saveb" onclick="saveEditor('helloworld');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="helloworld_loadb" onclick="requestCode('helloworld');">Load</button>
+
+</div>
+<br/>
+<div id="helloworld_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="helloworld_code" class="active_code", prefixcode="undefined" lang="python">
+print("Hello, world")
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="helloworld_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="helloworld_suffix" style="display:none">
+</pre><pre id="helloworld_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (helloworld)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#helloworld_saveb').toggle();
+    $('#helloworld_loadb').toggle();
+}
+if ($("#helloworld_code_div").parents(".admonition").length == 0 && $("#helloworld_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#helloworld_code_div").offset({
+			left: $("#helloworld .clearfix").offset().left
+		});
+	}
+	$("#helloworld_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#helloworld_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#helloworld_runb").parent().siblings(".ac_output").show();
+			runit('helloworld',this, undefined);
+			$("#helloworld_runb").on("click", function(){
+				runit('helloworld',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#helloworld_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#helloworld_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#helloworld_runb").on("click", function(){
+		console.log("button clicked");
+		runit('helloworld',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div><div class='tab-pane' id='exercise1-Discussion'><script type="text/javascript">
+    function helloworlddiscussion_disqus(source) { 
+        if (window.DISQUS) {
+
+            $('#disqus_thread').insertAfter(source); //put the DIV for the Disqus box after the link
+
+            //if Disqus exists, call it's reset method with new parameters
+            DISQUS.reset({
+                reload: true,
+                config: function () {
+                    this.page.identifier = 'helloworlddiscussion_' + eBookConfig.course;
+                    this.page.url = 'http://helloworlddiscussion_'+eBookConfig.course+'.interactivepython.com/#!';
+                }
+            });
+
+        } else {
+            //insert a wrapper in HTML after the relevant "show comments" link
+            $('<div id="disqus_thread"></div>').insertAfter(source);
+
+            // set Disqus required vars
+            disqus_shortname = 'interactivepython';    
+            disqus_identifier = 'helloworlddiscussion_' + eBookConfig.course;
+            disqus_url = 'http://helloworlddiscussion_'+eBookConfig.course+'.interactivepython.com/#!';
+
+            //append the Disqus embed script to HTML
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            $('head').append(dsq);
+
+        }
+    }
+</script>
+
+<a href="#disqus_thread" class='disqus_thread_link' data-disqus-identifier="helloworlddiscussion" onclick="helloworlddiscussion_disqus(this);">Show Comments</a>
+<script type='text/javascript'>
+    $("a[data-disqus-identifier='helloworlddiscussion']").attr('data-disqus-identifier', 'helloworlddiscussion_' + eBookConfig.course);
+</script>
+</div></div>
+    </div>
+    <script type='text/javascript'>
+        $('#exercise1 .nav-tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+
+        // activate the first tab
+        var el = $('#exercise1 .nav-tabs a')[0];
+        $(el).tab('show');
+
+        $('#exercise1 .nav-tabs a').on('shown.bs.tab', function (e) {
+            var content_div = $(e.target.attributes.href.value);
+            content_div.find('.disqus_thread_link').each(function() {
+                $(this).click();
+            });
+
+            content_div.find('.CodeMirror').each(function(i, el) {
+                el.CodeMirror.refresh();
+            });
+        })
+    </script>
 </div>
 <div class="section" id="polls">
 <h2>Polls<a class="headerlink" href="#polls" title="Permalink to this headline">¶</a></h2>
@@ -820,6 +1057,99 @@ print(x)</div>
 
     On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
 </pre></div>
+</div>
+ <div id='pollid1' class='poll alert alert-warning'> 
+    <form id='pollid1_poll' name='pollid1_poll' action="">
+        <fieldset>
+            <legend>Poll</legend>
+            <div class='poll-question'> On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?</div>
+            <div id='pollid1_poll_input'>
+                <div class='poll-options'>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_1' value='1'>
+    1
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_2' value='2'>
+    2
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_3' value='3'>
+    3
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_4' value='4'>
+    4
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_5' value='5'>
+    5
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_6' value='6'>
+    6
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_7' value='7'>
+    7
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_8' value='8'>
+    8
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_9' value='9'>
+    9
+</label>
+
+<label class='radio-inline'>
+    <input type='radio' name='pollid1_opt' id='pollid1_10' value='10'>
+    10
+</label>
+ </div> 
+<br />
+<input type='text' class='form-control' style='width:300px;' name='pollid1_comment' placeholder='Any comments?'>
+<br />
+
+            <button type='button' id='pollid1_submit' class='btn btn-success' onclick="submitPoll('pollid1');">Submit</button>
+        </div>
+
+        </fieldset>
+    </form>
+ <div id='pollid1_results'></div> 
+    <script type='text/javascript'>
+        // check if the user has already answered this poll
+        $(function() {
+            var len = localStorage.length;
+            if (len > 0) {
+                for (var i = 0; i < len; i++) {
+                    var key = localStorage.key(i);
+                    if (key === 'pollid1') {
+                        var ex = localStorage.getItem(key);
+                        if(ex === "true") {
+                            // hide the poll inputs
+                            $("#pollid1_poll_input").hide();
+
+                            // show the results of the poll
+                            var data = {};
+                            data.div_id = 'pollid1';
+                            data.course = eBookConfig.course;
+                            jQuery.get(eBookConfig.ajaxURL+'getpollresults', data, showPollResults);
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </div>
 </div>
 <div class="section" id="reveal">
@@ -838,6 +1168,93 @@ print(x)</div>
         print (&quot;Hello, world&quot;)
 </pre></div>
 </div>
+
+    <button type='button' id='revealid1_show' class='btn btn-default reveal_button' style='margin-bottom:10px;' onclick="$(this).hide();$('#revealid1').show();$('#revealid1_hide').show();$('#revealid1').find('.CodeMirror').each(function(i, el){el.CodeMirror.refresh();});">
+        Reveal Content
+    </button>
+    <button type='button' id='revealid1_hide' class='btn btn-default reveal_button' onclick="$(this).hide();$('#revealid1').hide();$('#revealid1_show').show();" style='display:none'>Hide Content</button>
+    <div id='revealid1' style='display:none'>
+<p>This content starts out hidden. It&#8217;s visibility can be toggled by using the Show/Hide button.</p>
+<p>The reveal block can also contain other directives (ActiveCode, Disqus block, etc):</p>
+
+<div id="cont"></div>
+<div id="ac11" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="ac11_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ac11_saveb" onclick="saveEditor('ac11');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ac11_loadb" onclick="requestCode('ac11');">Load</button>
+
+</div>
+<br/>
+<div id="ac11_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="ac11_code" class="active_code", prefixcode="undefined" lang="python">
+print ("Hello, world")
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="ac11_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="ac11_suffix" style="display:none">
+</pre><pre id="ac11_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (ac11)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#ac11_saveb').toggle();
+    $('#ac11_loadb').toggle();
+}
+if ($("#ac11_code_div").parents(".admonition").length == 0 && $("#ac11_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#ac11_code_div").offset({
+			left: $("#ac11 .clearfix").offset().left
+		});
+	}
+	$("#ac11_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#ac11_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#ac11_runb").parent().siblings(".ac_output").show();
+			runit('ac11',this, undefined);
+			$("#ac11_runb").on("click", function(){
+				runit('ac11',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#ac11_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#ac11_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#ac11_runb").on("click", function(){
+		console.log("button clicked");
+		runit('ac11',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+
+    </div>
 </div>
 </div>
 

@@ -652,8 +652,42 @@ Here is an example:
 Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.
 
 **Arguments**
-There are 2 required arguments, ``shortname`` and ``identifier``. The shortname is used to identify your site to 
+There are 2 required arguments, ``shortname`` and ``identifier``. The shortname is used to identify your site to
 Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.
+
+Tabbed Question
+---------------
+
+**Example**
+
+Here is an example:
+
+::
+
+    .. tabbed:: tab_div
+
+        .. tab:: Question_1
+
+            Write a program that prints "Hello, world".
+
+            .. activecode:: ac_example1
+
+                print("Hello, world")
+
+        .. tab:: Discussion
+
+            .. disqus::
+                :shortname: interactivepython
+                :identifier: question1discussion
+
+
+**Description**
+This directive creates a tabbed interface. Each tab can contain one or more of the other directives, question types, or other content. For example, an author could write a question, and provide a tab that has a possible solution as well as a Disqus block so that users could discuss the question.
+
+**Arguments**
+The tabbed directive takes 1 argument, the name of the div containing all the tabbed content. The directive also must be provided one or more tab directives, each taking an argument specifiying the name of the tab.
+
+
 
 .. raw:: html
 

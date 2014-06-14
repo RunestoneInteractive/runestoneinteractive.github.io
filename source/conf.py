@@ -27,7 +27,8 @@ sys.path.insert(0, os.path.abspath('/Users/bmiller/runestone/modules'))
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.mathjax', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
               'luther.sphinx.codelens','luther.sphinx.disqus','luther.sphinx.activecode', 'luther.sphinx.assess',
-              'luther.sphinx.animation','luther.sphinx.meta','gatech.parsons']
+              'luther.sphinx.animation','luther.sphinx.meta','gatech.parsons',
+              'luther.sphinx.tabbedStuff', 'luther.sphinx.reveal', 'luther.sphinx.poll']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
