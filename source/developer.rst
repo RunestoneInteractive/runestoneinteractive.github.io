@@ -34,10 +34,6 @@ You can simply install all dependencies by running the following command in main
 If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
 install `web2py <http://web2py.com>`_.
 
-::
-
-    # pip install diff_match_patch
-    
 
 The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
 `Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
