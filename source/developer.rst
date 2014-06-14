@@ -25,30 +25,10 @@ First, make sure you have Python 2.7 installed.  Web2py has not yet been ported 
 There are a couple of prerequisites you need to satisfy before you can build and use this
 eBook. The easiest/recommended way is to use `pip <http://www.pip-installer.org/en/latest/>`_.
 
-First get `Sphinx <http://sphinx.pocoo.org>`_, version 1.1.x is current as of this writing:
+You can simply install all dependencies by running the following command in main runestone directory:
 
 ::
-
-    # pip install sphinx
-
-Install `paver <http://paver.github.io/paver/>`_, at least version 1.2.0:
-
-::
-
-    # pip install paver
-
-
-Once paver is installed you will also need to install sphinxcontrib-paverutils, at least version 1.5:
-
-::
-
-    # pip install sphinxcontrib-paverutils
-
-Also install Cog:
-
-:: 
-
-    # pip install cogapp
+    # pip install -r requirements.txt
 
 
 If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
