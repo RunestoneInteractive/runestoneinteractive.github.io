@@ -25,33 +25,15 @@ First, make sure you have Python 2.7 installed.  Web2py has not yet been ported 
 There are a couple of prerequisites you need to satisfy before you can build and use this
 eBook. The easiest/recommended way is to use `pip <http://www.pip-installer.org/en/latest/>`_.
 
-First get `Sphinx <http://sphinx.pocoo.org>`_, version 1.1.x is current as of this writing:
+You can simply install all dependencies by running the following command in main runestone directory:
 
 ::
-
-    # pip install sphinx
-
-Install `paver <http://paver.github.io/paver/>`_, at least version 1.2.0:
-
-::
-
-    # pip install paver
-
-
-Once paver is installed you will also need to install sphinxcontrib-paverutils, at least version 1.5:
-
-::
-
-    # pip install sphinxcontrib-paverutils
+    # pip install -r requirements.txt
 
 
 If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
 install `web2py <http://web2py.com>`_.
 
-::
-
-    # pip install diff_match_patch
-    
 
 The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
 `Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
@@ -72,9 +54,22 @@ This project consists of the main repository, plus *submodules* for codelens, pa
     $ git submodule init
     $ git submodule update
 
+
+
 If you are using a GUI git client you may simply get prompted to update the submodules and all will be taken care of for you.  Newer versions of git also support::
 
     $ git clone --recursive https://github.com/bnmnetp/runestone.git
+
+You will also need to pull git tags in order to run Paver in the next few steps:
+
+::
+    $ git pull --tags
+
+If you have forked the master runestone repository (bnmnetp/runestone) and have cloned your fork instead of the master repository, you will still have to fetch the tags from the master repository:
+
+::
+    $ git pull upstream master --tags
+
 
 Configure the Book
 ------------------
@@ -659,7 +654,6 @@ Insert an interactive comment/discussion box, powered by Disqus. Requires regist
 **Arguments**
 There are 2 required arguments, ``shortname`` and ``identifier``. The shortname is used to identify your site to 
 Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.
-
 
 .. raw:: html
 
