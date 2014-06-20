@@ -330,6 +330,25 @@ The identifier after the ``:: `` must be unique.
 
 ``:include:``  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.
 
+``:hidecode:`` This will make the activecode editor initially hidden, and add a button to automatically show the editor.
+
+``:autorun`` This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.
+
+``:above:`` This positions the canvas above the editor.
+
+``:nocodelens:`` This activecode will not have a button to show the code in an codelens widget.
+
+``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is tour name; line: audio_file_for_line.  Here is an example:
+
+::
+
+
+    .. activecode:: tour_example
+       :tour_1: "Line by Line Tour"; 1: file_for_one; 2: file_for_two
+       
+       print "line one"
+       print "line two"
+
 
 Codelens
 ~~~~~~~~
@@ -391,7 +410,7 @@ The identifier after the ``:: `` must be unique.
 
 ``:feedback:``  If the student gives the wrong answer you can give them a few sentences of feedback.
 
-``:breakline:``  This is the line that you want the program to stop at and ask show the question.
+``:breakline:``  This is the line that you want the program to stop at and ask  the question.
 
 
 Datafile
