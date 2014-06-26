@@ -28,8 +28,10 @@ eBook. The easiest/recommended way is to use `pip <http://www.pip-installer.org/
 You can simply install all dependencies by running the following command in main runestone directory:
 
 ::
+
     # pip install -r requirements.txt
 
+Note, development works well with a Python ``virtualenv``  If  you don't have root privileges on your computer I strongly recommend you install ``virtualenv`` and install all of the dependencies there.
 
 If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
 install `web2py <http://web2py.com>`_.
@@ -53,12 +55,16 @@ Cloning The Runestone Project
 You will also need to pull the git tags in order to run Paver in the next few steps:
 
 ::
+
     $ git pull --tags
 
-If you have forked the master runestone repository (bnmnetp/runestone) and have cloned your fork instead of the master repository, you will still have to fetch the tags from the master repository:
+If you have forked the master runestone repository (bnmnetp/runestone) and have cloned your fork instead of the master repository, you will still have to fetch the tags from the master repository.
 
 ::
+
     $ git pull upstream master --tags
+
+If you haven't set up an upstream repository for pulling in changes see `here <https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes>`_
 
 
 Configure the Book
