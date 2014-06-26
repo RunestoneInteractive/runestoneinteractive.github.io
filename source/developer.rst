@@ -39,28 +39,18 @@ The easiest way to do so is to download the **Source Code** distribution from ht
 `Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
 After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation").  I avoid the web2py.app installation on OS X as it messes with the Python path.  I assume the Windows web2py.exe is the same and I would avoid it as well if I used Windows.
 
-Within the ``web2py`` folder that was just extracted, go to the ``applications/`` folder and check out this repository
+Within the ``web2py`` folder that was just extracted, go to the ``applications/`` folder and check out the runestone repository
 (instructions below). This will install the Runestone Tools as a web2py application automatically.
 
-Cloning The Runestone Project and its submodules
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cloning The Runestone Project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This project consists of the main repository, plus *submodules* for codelens, parsons-problems, and skulpt.  In order to get all of the source you need you will need to do the following:
-
-::
 
     $ git clone https://github.com/bnmnetp/runestone.git
     $ cd runestone
-    $ git submodule init
-    $ git submodule update
 
 
-
-If you are using a GUI git client you may simply get prompted to update the submodules and all will be taken care of for you.  Newer versions of git also support::
-
-    $ git clone --recursive https://github.com/bnmnetp/runestone.git
-
-You will also need to pull git tags in order to run Paver in the next few steps:
+You will also need to pull the git tags in order to run Paver in the next few steps:
 
 ::
     $ git pull --tags

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
@@ -35,11 +35,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="_static/bookfuncs.js"></script>
     <script type="text/javascript" src="_static/codemirror.js"></script>
@@ -315,7 +313,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
   <div class="section" id="activecode">
 <h1>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h1>
 <p>Activecode has Many options:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: codeexample1
+<div class="highlight-python"><pre>.. activecode:: codeexample1
    :nocanvas:  -- do not create a canvas element (optional)
    :nopre:     -- do not create a pre element (optional)
    :above:     -- position the canvas above the code (optional)
@@ -330,9 +328,8 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
    :tour_4:
    :tour_5:
 
-   print(&quot;My first program adds two numbers, 2 and 3:&quot;)
-   print(2 + 3)
-</pre></div>
+   print("My first program adds two numbers, 2 and 3:")
+   print(2 + 3)</pre>
 </div>
 
 <div id="cont"></div>
@@ -413,7 +410,7 @@ else{
 </div>
 
 <p>If you want to invisibly incorporate unittests into the code.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: units1
+<div class="highlight-python"><pre>.. activecode:: units1
 
    def add(a,b):
       return 4
@@ -424,11 +421,10 @@ else{
    class myTests(unittestgui.unittest):
 
        def testOne(self):
-           self.assertEqual(add(2,2),4,&quot;A feedback string when the test fails&quot;)
-           self.assertAlmostEqual(add(2.0,3.0),5.0,&quot;Your function failed on inputs of 2.0 and 3.0&quot;)
+           self.assertEqual(add(2,2),4,"A feedback string when the test fails")
+           self.assertAlmostEqual(add(2.0,3.0),5.0,"Your function failed on inputs of 2.0 and 3.0")
 
-   myTests().main()
-</pre></div>
+   myTests().main()</pre>
 </div>
 
 <div id="cont"></div>
@@ -520,7 +516,7 @@ else{
 </div>
 <div class="section" id="codelens">
 <h1>CodeLens<a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre>.. codelens:: codelens_question
+<div class="highlight-python"><pre>.. codelens:: codelens_question
     :breakline: line number, (optional) if present this will pause the trace and ask a question
     :question: question text
     :feedback: feedback text
@@ -530,8 +526,7 @@ else{
     prod = 1
     for i in range(10):
        tot = tot + i
-       prod = prod * i
-</pre></div>
+       prod = prod * i</pre>
 </div>
 
 <div class="alert alert-warning cd_section">
@@ -597,31 +592,28 @@ $(window).resize(function() {
 <h1>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="html-5">
 <h2>HTML 5<a class="headerlink" href="#html-5" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. video:: videoinfo
+<div class="highlight-python"><pre>.. video:: videoinfo
     :controls:   -- show the controls if present
     :thumb: _static/activecodethumb.png   -- thumbnail image
 
     http://media.interactivepython.org/thinkcsVideos/activecodelens.mov
-    http://media.interactivepython.org/thinkcsVideos/activecodelens.webm
-</pre></div>
+    http://media.interactivepython.org/thinkcsVideos/activecodelens.webm</pre>
 </div>
 </div>
 <div class="section" id="youtube">
 <h2>YouTube<a class="headerlink" href="#youtube" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. youtube:: anwy2MPT5RE
+<div class="highlight-python"><pre>.. youtube:: anwy2MPT5RE
     :height: 315
     :width: 560
-    :align: left
-</pre></div>
+    :align: left</pre>
 </div>
 </div>
 <div class="section" id="vimeo">
 <h2>Vimeo<a class="headerlink" href="#vimeo" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. vimeo:: anwy2MPT5RE
+<div class="highlight-python"><pre>.. vimeo:: anwy2MPT5RE
     :height: 315
     :width: 560
-    :align: left
-</pre></div>
+    :align: left</pre>
 </div>
 </div>
 </div>
@@ -630,7 +622,7 @@ $(window).resize(function() {
 <div class="section" id="multiple-choice">
 <h2>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
 <p>Multiple choice questions with feedback for each incorrect response.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf:: question1_1
+<div class="highlight-python"><pre>.. mchoicemf:: question1_1
    :answer_a: Python
    :answer_b: Java
    :answer_c: C
@@ -641,8 +633,7 @@ $(window).resize(function() {
    :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
    :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
 
-   What programming language does this site help you to learn?
-</pre></div>
+   What programming language does this site help you to learn?</pre>
 </div>
 
             <div id="question1_1" class="alert alert-warning">
@@ -670,7 +661,7 @@ $(window).resize(function() {
             </div>
             </div>
             <p>Multiple choice with multiple answers</p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicema:: question1_2
+<div class="highlight-python"><pre>.. mchoicema:: question1_2
    :answer_a: red
    :answer_b: yellow
    :answer_c: black
@@ -681,8 +672,7 @@ $(window).resize(function() {
    :feedback_c: Remember the acronym...ROY G BIV.  B stands for blue.
    :feedback_d: Yes, green is one of the colors.
 
-   Which colors might be found in a rainbow? (choose all that are correct)
-</pre></div>
+   Which colors might be found in a rainbow? (choose all that are correct)</pre>
 </div>
 
             <div id="question1_2" class="alert alert-warning">
@@ -712,29 +702,27 @@ $(window).resize(function() {
 <div class="section" id="fill-in-the-blank">
 <h2>Fill in the Blank<a class="headerlink" href="#fill-in-the-blank" title="Permalink to this headline">¶</a></h2>
 <p>Fill in the blank with regular expression matching for the answer</p>
-<div class="highlight-python"><div class="highlight"><pre>.. fillintheblank:: baseconvert1
+<div class="highlight-python"><pre>.. fillintheblank:: baseconvert1
    :correct: \\b31\\b
    :blankid: baseconvert1_ans1
 
-   What is value of 25 expressed as an octal number (base 8) :textfield:`baseconvert1_ans1::mini`
-</pre></div>
+   What is value of 25 expressed as an octal number (base 8) :textfield:`baseconvert1_ans1::mini`</pre>
 </div>
 </div>
 <div class="section" id="parson-s">
 <h2>Parson&#8217;s<a class="headerlink" href="#parson-s" title="Permalink to this headline">¶</a></h2>
 <p>Parson&#8217;s Problems:</p>
 <p>Question text comes first, then <tt class="docutils literal"><span class="pre">-----</span></tt> separates the question text from the code.  You provide the correct code, and the javascript takes care of mixing it up.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-python"><pre>.. parsonsprob:: question1_100_4
 
    Construct a block of code that correctly implements the accumulator pattern.
    -----
    x = 0
    for i in range(10)
-      x = x + 1
-</pre></div>
+      x = x + 1</pre>
 </div>
 <p>You can also group statements using <tt class="docutils literal"><span class="pre">=====</span></tt>  In the example below the for loop and its body will appear as one block to position in the problem.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-python"><pre>.. parsonsprob:: question1_100_4
 
    Construct a block of code that correctly implements the accumulator pattern.
    -----
@@ -743,8 +731,7 @@ $(window).resize(function() {
    for i in range(10)
       x = x + 1
    =====
-   print(x)
-</pre></div>
+   print(x)</pre>
 </div>
 
         <div class='parsons alert alert-warning' id="parsons-260">
@@ -875,31 +862,29 @@ print(x)</div>
 <div class="section" id="disqus">
 <h2>Disqus<a class="headerlink" href="#disqus" title="Permalink to this headline">¶</a></h2>
 <p>You can embed disqus discussions:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. disqus::
+<div class="highlight-python"><pre>.. disqus::
     :shortname: Your registered  shortname with disqus
-    :identifier: discussion1
-</pre></div>
+    :identifier: discussion1</pre>
 </div>
 </div>
 <div class="section" id="tabs-and-tab-groups">
 <h2>Tabs and Tab Groups<a class="headerlink" href="#tabs-and-tab-groups" title="Permalink to this headline">¶</a></h2>
 <p>You can create a section that contains several tabs.  This is useful for exercises, and in other situations where you may want to partially reveal content.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. tabbed:: exercise1
+<div class="highlight-python"><pre>.. tabbed:: exercise1
 
     .. tab:: Question 1
 
-        Write a program that prints &quot;Hello, world&quot;.
+        Write a program that prints "Hello, world".
 
         .. activecode:: helloworld
 
-            print(&quot;Hello, world&quot;)
+            print("Hello, world")
 
     .. tab:: Discussion
 
         .. disqus::
             :shortname: interactivepython
-            :identifier: helloworlddiscussion
-</pre></div>
+            :identifier: helloworlddiscussion</pre>
 </div>
 <div id='exercise1' class='alert alert-warning'><ul class='nav nav-tabs' id='%(divid)s_tab'>
 <li>
@@ -1051,12 +1036,11 @@ else{
 <div class="section" id="polls">
 <h2>Polls<a class="headerlink" href="#polls" title="Permalink to this headline">¶</a></h2>
 <p>Allow students to vote or rate things on a scale</p>
-<div class="highlight-python"><div class="highlight"><pre>.. poll:: pollid1
+<div class="highlight-python"><pre>.. poll:: pollid1
    :scale: 10
    :allowcomment:
 
-    On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
-</pre></div>
+    On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?</pre>
 </div>
  <div id='pollid1' class='poll alert alert-warning'> 
     <form id='pollid1_poll' name='pollid1_poll' action="">
@@ -1155,18 +1139,17 @@ else{
 <div class="section" id="reveal">
 <h2>Reveal<a class="headerlink" href="#reveal" title="Permalink to this headline">¶</a></h2>
 <p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. reveal:: revealid1
+<div class="highlight-python"><pre>.. reveal:: revealid1
     :showtitle: Reveal Content
     :hidetitle: Hide Content
 
-    This content starts out hidden. It&#39;s visibility can be toggled by using the Show/Hide button.
+    This content starts out hidden. It's visibility can be toggled by using the Show/Hide button.
 
     The reveal block can also contain other directives (ActiveCode, Disqus block, etc):
 
     .. activecode:: ac11
 
-        print (&quot;Hello, world&quot;)
-</pre></div>
+        print ("Hello, world")</pre>
 </div>
 
     <button type='button' id='revealid1_show' class='btn btn-default reveal_button' style='margin-bottom:10px;' onclick="$(this).hide();$('#revealid1').show();$('#revealid1_hide').show();$('#revealid1').find('.CodeMirror').each(function(i, el){el.CodeMirror.refresh();});">
@@ -1268,7 +1251,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b3.
     </p>
   </div>
 </footer>
