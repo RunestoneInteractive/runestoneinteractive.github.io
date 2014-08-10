@@ -36,6 +36,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
     <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
     <script type="text/javascript" src="_static/pytutor.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
@@ -441,6 +442,14 @@ Janrain API key and domain in 1.py.</p>
 <p>Once you&#8217;ve built the book using the steps above.  You can start the web2py development server by simply running</p>
 <div class="highlight-python"><pre>python web2py.py</pre>
 </div>
+<p>If you want to run a server in a mode where you can build custom books from the web
+interface you will want to use this command:</p>
+<blockquote>
+<div>python web2py.py —password=foo -K runestone –nogui -X</div></blockquote>
+<p>You may want to check the latest web2py docs on the password option.  Its not very
+secure to have the command show up in the process list.  There are ways around that.
+The important bit is the <tt class="docutils literal"><span class="pre">-K</span> <span class="pre">runestone</span></tt> which instructs web2py to start up a
+scheduler process to handle background tasks.</p>
 <p>This will bring up a little GUI where you can make up an admin password and click &#8220;start server&#8221;.
 When the server is running your browser will open to the welcome application, unless you&#8217;ve changed
 the default application as described above.  To see this app simply use the url:  <a class="reference external" href="http://127.0.0.1/runestone">http://127.0.0.1/runestone</a>
@@ -565,11 +574,12 @@ line and that will build the following targets:</p>
 <button class='btn btn-success' id="ac_example1_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="ac_example1_saveb" onclick="saveEditor('ac_example1');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="ac_example1_loadb" onclick="requestCode('ac_example1');">Load</button>
+<button class='btn btn-default' id="ac_example1_vizb" onclick="injectCodelens('ac_example1');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="ac_example1_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="ac_example1_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="ac_example1_code" class="active_code" prefixcode="undefined" lang="python">
 import turtle
 t = turtle.Turtle()
 
@@ -578,19 +588,18 @@ for i in range(4):
     t.left(90)
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="ac_example1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="ac_example1_suffix" style="display:none">
-</pre><pre id="ac_example1_pre" class="active_out">
+</pre><pre id="ac_example1_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">This is my caption (ac_example1)</span> </p>
-
+<div id="ac_example1_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -781,7 +790,7 @@ $(window).resize(function() {
 <p><strong>Description</strong></p>
 
             <div id="question1_1" class="alert alert-warning">
-            Q-46: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
+            Q-50: What programming language does this site help you to learn?<form name="question1_1_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="question1_1_opt_a" />
             <label for= "question1_1_opt_a">  a) Python</label><br />
             
@@ -815,7 +824,7 @@ $(window).resize(function() {
 correct number as well as the feedback for each.</p>
 
             <div id="question1_2" class="alert alert-warning">
-            Q-47: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
+            Q-51: Which colors might be found in a rainbow? (choose all that are correct)<form name="question1_2_form" method="get" action="" onsubmit="return false;">
             <input type="checkbox" name="group1" value="a" id="question1_2_opt_a" />
             <label for= "question1_2_opt_a">  a) red</label><br />
             
@@ -857,7 +866,7 @@ correct number as well as the feedback for each.</p>
 <blockquote>
 <div>
             <div id="postfix1" class="alert alert-warning">
-            Q-48: Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
+            Q-52: Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
             <script>
             $(document).ready(function(){checkPreviousFIB('postfix1');});
             </script>
@@ -908,42 +917,42 @@ correct number as well as the feedback for each.</p>
 </div>
 <p>Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson&#8217;s problem looks like:</p>
 
-        <div class='parsons alert alert-warning' id="parsons-626">
-        <div class="parsons-text">Q-49: Solve this problem.<br /><br /></div>
+        <div class='parsons alert alert-warning' id="parsons-637">
+        <div class="parsons-text">Q-53: Solve this problem.<br /><br /></div>
         <div style="clear:left;"></div>
-        <div id="parsons-orig-626" style="display:none;">def findmax(alist):
+        <div id="parsons-orig-637" style="display:none;">def findmax(alist):
    if len(alist) == 0:\n   return None
    curmax = alist[0]\nfor item in alist:
       if item &gt; curmax:
          curmax = item
    return curmax</div>
         <div class="sortable-code-container">
-        <div id="parsons-sortableTrash-626" class="sortable-code"></div>
-        <div id="parsons-sortableCode-626" class="sortable-code"></div>
+        <div id="parsons-sortableTrash-637" class="sortable-code"></div>
+        <div id="parsons-sortableCode-637" class="sortable-code"></div>
     	<div style="clear:left;"></div>
         </div>
         <div class="parsons-controls">
-        <input type="button" class='btn btn-success' id="checkMe626" value="Check Me"/>
-        <input type="button" class='btn btn-default' id="reset626" value="Reset"/>
-        <div id="parsons-message-626"></div>
+        <input type="button" class='btn btn-success' id="checkMe637" value="Check Me"/>
+        <input type="button" class='btn btn-default' id="reset637" value="Reset"/>
+        <div id="parsons-message-637"></div>
         </div>
         </div>
 
     <script>
         $pjQ(document).ready(function(){
 		
-			$("#parsons-626").not(".sortable-code").not(".parsons-controls").on("click", function(){
+			$("#parsons-637").not(".sortable-code").not(".parsons-controls").on("click", function(){
 				 $('html, body').animate({
-					scrollTop: ($("#parsons-626").offset().top - 50)
+					scrollTop: ($("#parsons-637").offset().top - 50)
 				}, 700);
 			}).find(".sortable-code, .parsons-controls").click(function(e) {
 				return false;
 				});	
-            var msgBox = $("#parsons-message-626");
+            var msgBox = $("#parsons-message-637");
             msgBox.hide();
 	    var displayErrors = function (fb) {
 	        if(fb.errors.length > 0) {
-                    var hash = pp_626.getHash("#ul-parsons-sortableCode-626");
+                    var hash = pp_637.getHash("#ul-parsons-sortableCode-637");
                     msgBox.fadeIn(500);
                     msgBox.attr('class','alert alert-danger');
                     msgBox.html(fb.errors[0]);
@@ -960,8 +969,8 @@ correct number as well as the feedback for each.</p>
 
         $(window).load(function() {
             // set min width and height
-            var sortableul = $("#ul-parsons-sortableCode-626");
-            var trashul = $("#ul-parsons-sortableTrash-626");
+            var sortableul = $("#ul-parsons-sortableCode-637");
+            var trashul = $("#ul-parsons-sortableTrash-637");
             var sortableHeight = sortableul.height();
             var sortableWidth = sortableul.width();
             var trashWidth = trashul.width();
@@ -976,35 +985,35 @@ correct number as well as the feedback for each.</p>
         });
  
 
-        var pp_626 = new ParsonsWidget({
-                'sortableId': 'parsons-sortableCode-626',
-		'trashId': 'parsons-sortableTrash-626',
+        var pp_637 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-637',
+		'trashId': 'parsons-sortableTrash-637',
                 'max_wrong_lines': 1,
                 'solution_label': 'Drop blocks here',
                 'feedback_cb' : displayErrors
         });
-        pp_626.init($pjQ("#parsons-orig-626").text());
-	pp_626.shuffleLines();
+        pp_637.init($pjQ("#parsons-orig-637").text());
+	pp_637.shuffleLines();
             
         if(localStorage.getItem('question1_100_5') && localStorage.getItem('question1_100_5-trash')) {
             try {
                 var solution = localStorage.getItem('question1_100_5');
                 var trash = localStorage.getItem('question1_100_5-trash');
-                pp_626.createHTMLFromHashes(solution,trash);
-                pp_626.getFeedback();
+                pp_637.createHTMLFromHashes(solution,trash);
+                pp_637.getFeedback();
             } catch(err) {
                 var text = "An error occured restoring old question1_100_5 state.  Error: ";
                 console.log(text + err.message);
             }
 
         }
-            $pjQ("#reset626").click(function(event){
+            $pjQ("#reset637").click(function(event){
               event.preventDefault();
-              pp_626.shuffleLines();
+              pp_637.shuffleLines();
             
             // set min width and height
-            var sortableul = $("#ul-parsons-sortableCode-626");
-            var trashul = $("#ul-parsons-sortableTrash-626");
+            var sortableul = $("#ul-parsons-sortableCode-637");
+            var trashul = $("#ul-parsons-sortableTrash-637");
             var sortableHeight = sortableul.height();
             var sortableWidth = sortableul.width();
             var trashWidth = trashul.width();
@@ -1018,14 +1027,14 @@ correct number as well as the feedback for each.</p>
               msgBox.hide();
             });
             
-            $pjQ("#checkMe626").click(function(event){
+            $pjQ("#checkMe637").click(function(event){
               event.preventDefault();
-              var hash = pp_626.getHash("#ul-parsons-sortableCode-626");
+              var hash = pp_637.getHash("#ul-parsons-sortableCode-637");
               localStorage.setItem('question1_100_5',hash);
-              hash = pp_626.getHash("#ul-parsons-sortableTrash-626");
+              hash = pp_637.getHash("#ul-parsons-sortableTrash-637");
               localStorage.setItem('question1_100_5-trash',hash);
             
-            pp_626.getFeedback();
+            pp_637.getFeedback();
             msgBox.fadeIn(100);
             
             });
