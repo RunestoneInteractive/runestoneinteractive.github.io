@@ -13,8 +13,6 @@ Important Notes
 
 1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.  See Windows notes at the end for some additional tips.
 
-2.  The latest version of web2py has moved some important files out of its root directory.  As of 10/1/13 I have not experimented with this release.  More information on these moved files (routes.py for example) can be found `here <http://web2py.com/init/default/changelog>`_
-
 
 Dependencies
 ------------

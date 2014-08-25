@@ -13,8 +13,6 @@ Important Notes
 
 1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.  See Windows notes at the end for some additional tips.
 
-2.  The latest version of web2py has moved some important files out of its root directory.  As of 10/1/13 I have not experimented with this release.  More information on these moved files (routes.py for example) can be found `here <http://web2py.com/init/default/changelog>`_
-
 
 Dependencies
 ------------
@@ -141,6 +139,17 @@ and uncomment the line below. This will disable Janrain and only use Web2Py inte
 Once you've built the book using the steps above.  You can start the web2py development server by simply running ::
 
     python web2py.py
+
+If you want to run a server in a mode where you can build custom books from the web
+interface you will want to use this command:
+
+    python web2py.py —password=foo -K runestone –nogui -X
+
+You may want to check the latest web2py docs on the password option.  Its not very
+secure to have the command show up in the process list.  There are ways around that.
+The important bit is the ``-K runestone`` which instructs web2py to start up a
+scheduler process to handle background tasks.
+
 
 This will bring up a little GUI where you can make up an admin password and click "start server".
 When the server is running your browser will open to the welcome application, unless you've changed
@@ -341,7 +350,7 @@ The identifier after the ``:: `` must be unique.
 
     .. activecode:: tour_example
        :tour_1: "Line by Line Tour"; 1: file_for_one; 2: file_for_two
-       
+
        print "line one"
        print "line two"
 
