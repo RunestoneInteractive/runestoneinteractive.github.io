@@ -175,17 +175,16 @@ Answer the following two Questions
 
      <dl class="gstart">
       <dt>Get the Template Project</dt>
-      <dd>The quickest way to get up and running is to clone <a href="http://github.com/runestoneinteractive/runestonetools">this repository</a> on github. Or simply download and unzip this <a href="https://github.com/RunestoneInteractive/RunestoneTools/releases/tag/1.0b1">zip file</a>.</dd>
+      <dd>The quickest way to get up and running is to install the runestone tools with pip:  <code>pip install runestone</code></dd>
 
-      <dt>Install the prerequisites</dt>
-        <dd>The <a href="http://github.com/runestoneinteractive/runestonetools"> README</a> File gives a full description of the things you will need to "pip install" to get up and running.  Its easy, and fast. </dd>
+      <dt>Create a Folder for your project</dt>
+        <dd><code>mkdir myproj</code> You can initialize a template project for yourself by running <code>runestone init</code> inside the project folder.  It will ask you some questions.  You can either take the defaults or customize your project for your own environment.</dd>
       <dt>Edit</dt>
-          <dd>The template project has an rst file ready to edit.  You can simply start with file and build up from there.</dd>
+          <dd>The template project has an index.rst file ready to edit.  You can simply start with the index or overview file and build up from there.</dd>
       <dt>Build</dt>
-          <dd>The <code>paver build</code> command will create a nice looking html file for you in the build directory under the template project.  Once you have built you can preview that file directly in your browser.</dd>
+          <dd>The <code>runestone build</code> command will create a nice looking html file for you in the build directory under the template project.  Once you have built you can preview that file directly in your browser.</dd>
       <dt>Deploy</dt>
-          <dd>The README file gives detailed instructions on two different ways to deploy your project.  1.  If you have access to your own web server you can simply drop the build folder in place and go.  2.  You can use Githubs awesome pages feature to host your site.  Once you set it up its as easy as <code>paver deploy</code> to publish your latest class materials.</dd>
-
+          <dd>You can serve your project right from your own computer by running <code>runestone serve</code>  Or you can copy the folder in the build subdirectory created by the build command anywhere that will serve a static website, including a site that supports github pages.</dd>
   </dl>
 
 
