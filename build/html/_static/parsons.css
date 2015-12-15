@@ -1,9 +1,12 @@
 /** Stylesheet for the puzzles */
 
 .sortable-code {
+    position: static;
     padding-left: 0px;
     margin-left: 2%;
-    float: left;
+    display:inline-block;
+	text-align: left;
+	vertical-align: top;
 }
 #sortableTrash { width: 38%; }
 #sortable { width: 56%; }
@@ -16,6 +19,12 @@
     padding-left: 0;
     margin-left: 0;
     border: 1px solid #efefff;;
+}
+.sortable-code ul:empty {
+  padding-bottom: 30px;
+}
+.sortable-code li, .sortable-code li:before, .sortable-code li:after {
+  box-sizing: content-box;
 }
 ul.output {
     background-color: #FFA;
@@ -56,26 +65,27 @@ li.correctIndent {
     border-left: 10px solid green;
 }
 
-li.incorrectPosition, .testcase.incorrect {
+li.incorrectPosition, .testcase.fail, .testcase.error {
     background-color: #FFBABA;
     border:1px solid red;
 }
 
-li.correctPosition, .testcase.correct {
+li.correctPosition, .testcase.pass {
     background-color: #DFF2BF;
     border:1px solid green;
 }
 
 .testcase { padding: 10px; margin-bottom: 10px;}
-.testcase .errormsg { color: red;}
-.testcase .msg { font-weight: bolder;}
-.testcase.incorrect .expected, .testcase.incorrect .actual { 
-    color: red; 
+.testcase .msg { font-weight: bold; }
+.testcase .error { color: red;}
+.testcase .feedback { font-weight: bolder;}
+.testcase .fail .expected, .testcase .fail .actual {
+    color: red;
     font-weight: bolder;
 }
-.testcase .output { 
-    display: block; 
-    white-space: pre; 
+.testcase .output {
+    display: block;
+    white-space: pre;
     background-color: #555555;
     color: white;
     font-size: 12px;
@@ -100,4 +110,28 @@ li.correctPosition, .testcase.correct {
     content: "??";
     display: block;
     color: red;
+}
+
+.parsons{
+	/*background-color: #fbfcfd;
+	border-color: #e6e6e6;
+	box-shadow: inset 0px 0px 6px -1px rgba(50, 50, 50, 0.75);*/
+	border-left:0;
+	border-right:0;
+	border-radius:0;
+	margin: 10px 0;
+}
+.parsons-text {
+	max-width: 500pt;
+	margin-left: auto;
+	margin-right: auto;
+}
+.sortable-code-container{
+	text-align:center;
+}
+.parsons-controls{
+	max-width: 500pt;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
 }

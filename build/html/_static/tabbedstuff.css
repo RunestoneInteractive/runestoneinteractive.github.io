@@ -1,5 +1,3 @@
-/* Styles for the Runestone tabbed exhibit directive */
-
 .tab-pane {
     padding: 20px 15px 10px 15px;
 }
@@ -30,3 +28,4 @@
 .nav.nav-tabs li.active > a {
     background-color: #faf7df;
 }
+
