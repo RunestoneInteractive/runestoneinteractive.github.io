@@ -3,22 +3,25 @@
 Frequently Asked Questions
 ==========================
 
+Updated:  December 16, 2015
 
 What is Runestone Interactive?
 ------------------------------
 
 Runestone is a project that has three main parts to it:
 
-1.  A set of tools for writing interactive textbooks in restructuredText and other markup langauges.
-2.  A open source server/API that supports the interactive textbooks
+.. admonition:: Runestone Parts
 
-    * Save and reload source code written in the book
-    * Retrieve results and answers from quizzes
-    * Grade homework problems right in the textbook
-    * Create Assignments by grouping exercises
+   1.  A set of tools for writing interactive textbooks in restructuredText and other markup langauges.
+   2.  A open source server/API that supports the interactive textbooks
 
-3.  A set of open source textbooks written using the tools that you are free to use and modify in your own classes.
-4.  A Textbook hosting service that allows you and your students to access any of the textbooks written using the tools.
+       * Save and reload source code written in the book
+       * Retrieve results and answers from quizzes
+       * Grade homework problems right in the textbook
+       * Create Assignments by grouping exercises
+
+   3.  A set of open source textbooks written using the tools that you are free to use and modify in your own classes.
+   4.  A Textbook hosting service that allows you and your students to access any of the textbooks written using the tools.
 
 The Runestone project was originally conceived as only parts 1 and 2.  But it became clear very quickly that few people want to write their own textbooks, so part 3 was born, especially with the encouragement of our publisher at Franklin Beedle who allowed us to put our paper textbook online in interactive form.  Part 4 was conceived when it became clear that part 2 was too hard to install and configure for most people who just want to teach CS and not spend their days and nights configuring server software. :-)
 
@@ -55,13 +58,15 @@ The best approach is to use our system to build your own textbook.  This gives y
 How do I build my own course?
 -----------------------------
 
-1.  First you should register yourself as a user on this site.  When you register you must pick a course.  Just use thinkcspy or pythonds, it doesn't matter as that will change when you build your own.
-2.  Then go to the `instructors page <http://interactivepython.org/runestone/admin/index>`_.
-3.  On this page you will see the links for listing and grading assignments and lots of other things.  Right now those won't show you anything, so move along to the `Create a Custom Course <http://interactivepython.org/runestone/designer>`_ link.
-4. Fill in the Project Name.  This should be a short one word description of your course like `luther150a.`  When your students register for the course this is the name they will have to type in to join your particular course.   No Spaces allwed in this name.
-5. The description can say a bit more about the course.
-6. The big choice is whether to use a ready-made book or to pick and choose sections from the repository of sections.  Most people just choose one of the pre-made books.
-7.  Its probably just fine to leave this at today's date.  If you set it into the future and then do some experimenting with assignments and quizzes today you won't be able to see your results because you are only shown things that come after the start date.
+.. admonition::  Steps to Build
+
+   1.  First you should register yourself as a user on this site.  When you register you must pick a course.  Just use thinkcspy or pythonds, it doesn't matter as that will change when you build your own.
+   2.  Then go to the `instructors page <http://interactivepython.org/runestone/admin/index>`_.
+   3.  On this page you will see the links for listing and grading assignments and lots of other things.  Right now those won't show you anything, so move along to the `Create a Custom Course <http://interactivepython.org/runestone/designer>`_ link.
+   4. Fill in the Project Name.  This should be a short one word description of your course like `luther150a.`  When your students register for the course this is the name they will have to type in to join your particular course.   No Spaces allwed in this name.
+   5. The description can say a bit more about the course.
+   6. The big choice is whether to use a ready-made book or to pick and choose sections from the repository of sections.  Most people just choose one of the pre-made books.
+   7.  Its probably just fine to leave this at today's date.  If you set it into the future and then do some experimenting with assignments and quizzes today you won't be able to see your results because you are only shown things that come after the start date.
 
 
 Is this site reliable enough to use in class?
@@ -75,9 +80,9 @@ Why doesn't List and Grade Assignments doesn't show anything?
 
 There could be two reasons.
 
-1.  You only see assignments or quiz questions that your students have attempted.  If you or your students haven't attempted any assignments yet then this report will be empty.
+*  You only see assignments or quiz questions that your students have attempted.  If you or your students haven't attempted any assignments yet then this report will be empty.
 
-2.  Check your course starting date.  If the starting date is in the future you won't see anything.  You can change your course start date `here <http://interactivepython.org/runestone/admin/startdate>`_.
+*  Check your course starting date.  If the starting date is in the future you won't see anything.  You can change your course start date `here <http://interactivepython.org/runestone/admin/startdate>`_.
 
 
 Where do the assignments I make in the instructors interface show up for the students?
@@ -133,7 +138,9 @@ Please let us know!  You can file bug reports on our `github issues page <http:/
 I have a question that is not covered here!
 -------------------------------------------
 
-1.  Tweet me @iRunestone  
-2.  Post the question on our google group
-3.  Send me a private email.  bmiller at luther dot edu
+.. admonition::  Contact
+
+   1.  Tweet me @iRunestone
+   2.  Post the question on our google group
+   3.  Send me a private email.  runestoneinteractive@gmail.com
 
