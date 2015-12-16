@@ -14,6 +14,7 @@ Contents:
    developer.rst
    writingAnExtension.rst
    gettinghelp.rst
+   instructor.rst
 
 Indices and tables
 ==================
