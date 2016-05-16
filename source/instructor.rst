@@ -42,6 +42,13 @@ Help!  I cannot log in.  Every time I try to log in, I have to reset my password
 
 In 99.99% of the cases, this is because you are confusing your email address with the username you were forced to enter when you register.  So, go through the password reset process and get yourself logged in again.  Then look in the upper right hand corner of the page and pull down the user menu (the one that looks like a person.)  Your username will be displayed at the top of that menu.  Yes, I get that most places just have you use your email address now, but my web development framework is old school.  This will change in the next major upgrade of the server (hopefully summer 2016)
 
+How do I add students to my course?
+-----------------------------------
+
+You invite them, either in class or with an email.  Tell them to register at interactivepython.org and then give them the name of the course you created.  During the regsitration process they type in the name you used, and they are registered.  I usually just do this the first day of class to make sure everyone gets registered and then give them a little tour of the book and all of the things they can do.
+
+In the future, we may look into importing a class from some LMS system like Moodle and others.
+
 
 Can I build my own course and host it here?
 -------------------------------------------
@@ -143,4 +150,3 @@ I have a question that is not covered here!
    1.  Tweet me @iRunestone
    2.  Post the question on our google group
    3.  Send me a private email.  runestoneinteractive@gmail.com
-
