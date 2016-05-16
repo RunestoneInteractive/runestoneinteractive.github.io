@@ -55,6 +55,7 @@
     <script type="text/javascript" src="_static/skulpt.min.js"></script>
     <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js"></script>
     <script type="text/javascript" src="_static/animationbase.js"></script>
     <script type="text/javascript" src="_static/mchoice.js"></script>
     <script type="text/javascript" src="_static/timedmc.js"></script>
@@ -84,9 +85,11 @@
     <script type="text/javascript" src="_static/parsons_setup.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
     <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="_static/timedparsons.js"></script>
     <script type="text/javascript" src="_static/poll.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/shortanswer.js"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
@@ -660,7 +663,7 @@ for i in range(4):
 <p class="cl_caption"><span class="cl_caption_text"> (secondexample)</span> </p>
 </div>
 <script type="text/javascript">
-var secondexample_trace = {"trace": [{"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {}, "line": 1, "stdout": "", "ordered_globals": [], "heap": {}}, {"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {"fruit": ["REF", 1]}, "line": 2, "stdout": "", "ordered_globals": ["fruit"], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}}, {"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1]}, "line": 3, "stdout": "", "ordered_globals": ["fruit", "numlist"], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}}, {"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1], "newlist": ["REF", 3]}, "line": 4, "stdout": "", "ordered_globals": ["fruit", "numlist", "newlist"], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}}, {"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1], "newlist": ["REF", 3], "zeros": ["REF", 4]}, "line": 6, "stdout": "", "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}}, {"stack_to_render": [], "func_name": "<module>", "event": "step_line", "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1], "newlist": ["REF", 3], "zeros": ["REF", 4]}, "line": 7, "stdout": "", "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}}, {"stack_to_render": [], "func_name": "<module>", "event": "return", "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1], "newlist": ["REF", 3], "zeros": ["REF", 4]}, "line": 7, "stdout": "", "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}}], "code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist"};
+var secondexample_trace = {"trace": [{"line": 1, "globals": {}, "ordered_globals": [], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 2, "globals": {"fruit": ["REF", 1]}, "ordered_globals": ["fruit"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "stdout": "", "func_name": "<module>"}, {"line": 6, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "stdout": "", "func_name": "<module>"}, {"line": 7, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "stdout": "", "func_name": "<module>"}, {"line": 7, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "return", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "stdout": "", "func_name": "<module>"}], "code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist"};
 var secondexample_vis;
 
 $(document).ready(function() {
@@ -767,7 +770,7 @@ $(window).resize(function() {
 <p><strong>Description</strong></p>
 
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-1: What programming language does this site help you to learn?
+            Q-7: What programming language does this site help you to learn?
             <li data-component="answer" data-correct id="question1_1_opt_a">Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
             
             <li data-component="answer"  id="question1_1_opt_b">Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
@@ -789,7 +792,7 @@ $(window).resize(function() {
 correct number as well as the feedback for each.</p>
 
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
-            Q-2: Which colors might be found in a rainbow? (choose all that are correct)
+            Q-8: Which colors might be found in a rainbow? (choose all that are correct)
             <li data-component="answer" data-correct id="question1_2_opt_a">red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
             
             <li data-component="answer" data-correct id="question1_2_opt_b">yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
@@ -861,8 +864,8 @@ correct number as well as the feedback for each.</p>
 </div>
 <p>Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson&#8217;s problem looks like:</p>
 
-    <pre data-component="parsons" id="question1_100_5">
-        <span data-question>Q-3: Solve this problem.</span>def findmax(alist):
+    <pre data-component="parsons" id="question1_100_5" data-maxdist=5>
+        <span data-question>Q-9: Solve this problem.</span>def findmax(alist):
 ---
    if len(alist) == 0:
       return None

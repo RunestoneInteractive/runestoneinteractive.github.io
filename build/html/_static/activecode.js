@@ -64,23 +64,27 @@ ActiveCode.prototype.init = function(opts) {
 };
 
 ActiveCode.prototype.createEditor = function (index) {
-    var newdiv = document.createElement('div');
+    this.containerDiv = document.createElement('div');
     var linkdiv = document.createElement('div')
     linkdiv.id = this.divid.replace(/_/g,'-').toLowerCase();  // :ref: changes _ to - so add this as a target
-    $(newdiv).addClass("ac_section alert alert-warning");
+    $(this.containerDiv).addClass("ac_section alert alert-warning");
     var codeDiv = document.createElement("div");
     $(codeDiv).addClass("ac_code_div col-md-12");
     this.codeDiv = codeDiv;
-    newdiv.id = this.divid;
-    newdiv.lang = this.language;
-    this.outerDiv = newdiv;
+    this.containerDiv.id = this.divid;
+    this.containerDiv.lang = this.language;
+    this.outerDiv = this.containerDiv;
 
-    $(this.origElem).replaceWith(newdiv);
+    $(this.origElem).replaceWith(this.containerDiv);
     if (linkdiv.id !== this.divid) {  // Don't want the 'extra' target if they match.
-        newdiv.appendChild(linkdiv);
+        this.containerDiv.appendChild(linkdiv);
     }
-    newdiv.appendChild(codeDiv);
-    var editor = CodeMirror(codeDiv, {value: this.code, lineNumbers: true, mode: newdiv.lang});
+    this.containerDiv.appendChild(codeDiv);
+    var editor = CodeMirror(codeDiv, {value: this.code, lineNumbers: true,
+        mode: this.containerDiv.lang, indentUnit: 4,
+        matchBrackets: true, autoMatchParens: true,
+        extraKeys: {"Tab": "indentMore", "Shift-Tab": "indentLess"}
+    });
 
     // Make the editor resizable
     $(editor.getWrapperElement()).resizable({
@@ -199,6 +203,7 @@ ActiveCode.prototype.createControls = function () {
         $(butt).click((function() {new AudioTour(this.divid, this.editor.getValue(), 1, $(this.origElem).data("audio"))}).bind(this));
     }
 
+
     $(this.outerDiv).prepend(ctrlDiv);
 
 };
@@ -208,7 +213,7 @@ ActiveCode.prototype.createOutput = function () {
     // to hold turtle graphics output.  We use a div in case the turtle changes from
     // using a canvas to using some other element like svg in the future.
     var outDiv = document.createElement("div");
-    $(outDiv).addClass("ac_output col-md-6");
+    $(outDiv).addClass("ac_output col-md-5");
     this.outDiv = outDiv;
     this.output = document.createElement('pre');
     $(this.output).css("visibility","hidden");
@@ -220,7 +225,7 @@ ActiveCode.prototype.createOutput = function () {
     // newly created div.  When a canvas child is added we add a new class so that the visible
     // canvas can be styled in CSS.  Which a the moment means just adding a border.
     $(this.graphics).on("DOMNodeInserted", 'canvas', (function(e) {
-        $(this.graphics).addClass("visible-ac-canvas")
+        $(this.graphics).addClass("visible-ac-canvas");
     }).bind(this));
 
     outDiv.appendChild(this.output);
@@ -237,6 +242,13 @@ ActiveCode.prototype.createOutput = function () {
     $(lensDiv).css("display","none");
     this.codelens = lensDiv;
     this.outerDiv.appendChild(lensDiv);
+
+    var coachDiv = document.createElement("div")
+    $(coachDiv).addClass("col-md-12");
+    $(coachDiv).css("display","none");
+    this.codecoach = coachDiv;
+    this.outerDiv.appendChild(coachDiv);
+
 
     clearDiv = document.createElement("div");
     $(clearDiv).css("clear","both");  // needed to make parent div resize properly
@@ -315,11 +327,9 @@ ActiveCode.prototype.saveEditor = function () {
 };
 
 ActiveCode.prototype.loadEditor = function () {
-
     var loadEditor = (function (data, status, whatever) {
         // function called when contents of database are returned successfully
         var res = eval(data)[0];
-
         if (res.source) {
             this.editor.setValue(res.source);
             setTimeout(function() {
@@ -345,8 +355,12 @@ ActiveCode.prototype.loadEditor = function () {
     if (this.sid !== undefined) {
         data['sid'] = this.sid;
     }
+    // This function needs to be chainable for when we want to do things like run the activecode
+    // immediately after loading the previous input (such as in a timed exam)
+    var dfd = jQuery.Deferred();
     this.logBookEvent({'event': 'activecode', 'act': 'load', 'div_id': this.divid}); // Log the run event
-    jQuery.get(eBookConfig.ajaxURL + 'getprog', data, loadEditor);
+    jQuery.get(eBookConfig.ajaxURL + 'getprog', data, loadEditor).done(function () {dfd.resolve();});
+    return dfd;
 
 };
 
@@ -448,10 +462,11 @@ ActiveCode.prototype.showCodelens = function () {
 // </iframe>
 
 
-ActiveCode.prototype.showCodeCoach = function (div_id) {
+ActiveCode.prototype.showCodeCoach = function () {
     var myIframe;
     var srcURL;
     var cl;
+    var div_id = this.divid;
     if (this.codecoach === null) {
         this.codecoach = document.createElement("div");
         this.codecoach.style.display = 'block'
@@ -472,7 +487,8 @@ ActiveCode.prototype.showCodeCoach = function (div_id) {
     myIframe.style.width = "100%";
     myIframe.src = srcURL;
     this.codecoach.appendChild(myIframe);
-    logBookEvent({
+    $(this.codecoach).show()
+    this.logBookEvent({
         'event': 'coach',
         'act': 'view',
         'div_id': this.divid
@@ -551,7 +567,7 @@ errorText.NotImplementedErrorFix = "For now the only way to fix this is to not u
 
 
 ActiveCode.prototype.setTimeLimit = function (timer) {
-    var timelimit = this.timeLimit;
+    var timelimit = this.timelimit;
     if (timer !== undefined ) {
         timelimit = timer
     }
@@ -645,7 +661,7 @@ ActiveCode.prototype.runProg = function() {
         (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = this.graphics;
         Sk.canvas = this.graphics.id; //todo: get rid of this here and in image
         $(this.runButton).attr('disabled', 'disabled');
-        $(this.codeDiv).switchClass("col-md-12","col-md-6",{duration:500,queue:false});
+        $(this.codeDiv).switchClass("col-md-12","col-md-7",{duration:500,queue:false});
         $(this.outDiv).show({duration:700,queue:false});
         var myPromise = Sk.misceval.asyncToPromise(function() {
 
@@ -658,6 +674,7 @@ ActiveCode.prototype.runProg = function() {
         }).bind(this),
             (function(err) {  // fail
             $(this.runButton).removeAttr('disabled');
+            this.logRunEvent({'div_id': this.divid, 'code': prog, 'errinfo': err.toString()}); // Log the run event
             this.addErrorMessage(err)
                 }).bind(this));
 
@@ -718,6 +735,7 @@ JSActiveCode.prototype.runProg = function() {
         _this.output.innerHTML += _this.outputfun(str)+"<br />";
             };
 
+    $(this.eContainer).remove();
     $(this.output).text('');
     $(this.codeDiv).switchClass("col-md-12","col-md-6",{duration:500,queue:false});
     $(this.outDiv).show({duration:700,queue:false});
@@ -768,7 +786,7 @@ HTMLActiveCode.prototype.createOutput = function () {
     if(this.alignVertical) {
         $(outDiv).addClass("col-md-12");
     } else {
-        $(outDiv).addClass("col-md-6");
+        $(outDiv).addClass("col-md-5");
     }
     this.outDiv = outDiv;
     this.output = document.createElement('iframe');
@@ -986,11 +1004,14 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
         // str+="<audio id="+akey+" preload='auto'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+
         // akey+".mp3' type='audio/mpeg'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+akey+
         // ".ogg' type='audio/ogg'>Your browser does not support the audio tag</audio>";
+
+        var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse + "/audio/"
+        //var dir = "../_static/audio/"
         str += "<audio id=" + akey + " preload='auto' >";
-        str += "<source src='../_static/audio/" + akey + ".wav' type='audio/wav'>";
-        str += "<source src='../_static/audio/" + akey + ".mp3' type='audio/mpeg'>";
-        str += "<source src='_static/audio/" + akey + ".wav' type='audio/wav'>";
-        str += "<source src='_static/audio/" + akey + ".mp3' type='audio/mpeg'>";
+        str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
+        str += "<source src='" + dir + akey + ".mp3' type='audio/mpeg'>";
+        str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
+        str += "<source src='" + dir + akey + ".mp3' type='audio/mpeg'>";
         str +=  "<br />Your browser does not support the audio tag</audio>";
         this.ahash[akey] = lnums;
         this.aname.push(akey);
@@ -1349,7 +1370,8 @@ LiveCode.prototype.runProg = function() {
         }
 
         if (this.datafile) {
-            runspec['file_list'] = [[this.div2id[datafile],datafile]];
+            this.pushDataFile(this.datafile);
+            runspec['file_list'] = [[this.div2id[this.datafile],this.datafile]];
         }
         data = JSON.stringify({'run_spec': runspec});
         host = this.JOBE_SERVER + this.resource;
@@ -1440,7 +1462,7 @@ LiveCode.prototype.pushDataFile = function (datadiv) {
         var contentsb64 = btoa(contents);
         var data = JSON.stringify({ 'file_contents' : contentsb64 });
         var resource = '/jobe/index.php/restapi/files/' + file_id;
-        var host = JOBE_SERVER + resource;
+        var host = this.JOBE_SERVER + resource;
         var xhr = new XMLHttpRequest();
 
         if (this.div2id[datadiv] === undefined ) {
@@ -1449,7 +1471,7 @@ LiveCode.prototype.pushDataFile = function (datadiv) {
             xhr.open("PUT", host, true);
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.setRequestHeader('Accept', 'text/plain');
-            xhr.setRequestHeader('X-API-KEY', API_KEY);
+            xhr.setRequestHeader('X-API-KEY', this.API_KEY);
 
             xhr.onload = function () {
                 console.log("successfully sent file " + xhr.responseText);
@@ -1577,7 +1599,9 @@ ACFactory.toggleScratchActivecode = function () {
 $(document).ready(function() {
     ACFactory.createScratchActivecode();
     $('[data-component=activecode]').each( function(index ) {
-        edList[this.id] = ACFactory.createActiveCode(this, $(this).data('lang'));
+        if ($(this.parentNode).data("component") !== "timedAssessment") {   // If this element exists within a timed component, don't render it here
+            edList[this.id] = ACFactory.createActiveCode(this, $(this).data('lang'));
+        }
     });
     if (loggedout) {
         for (k in edList) {
