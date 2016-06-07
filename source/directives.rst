@@ -17,7 +17,7 @@ All directives start out with ``..`` followed by the name of the directive (e.g.
 
 Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
 
-Further (often optional) additions generally occur below that first line, surrounded by single ``:``s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive **Example in reStructured Text**.
+Further (often optional) additions generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive **Example in reStructured Text**.
 
 
 Directives
@@ -103,7 +103,7 @@ The activecode directive allows you to create executable, editable example code.
 
 In an **activecode** window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they've edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)
 
-Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the **Arguments** section.)
+Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the optional arguments section.)
 
 TODO TODO note about most people's purposes, what audience is this aimed at, etc.
 
@@ -172,9 +172,9 @@ Here is an example with a canvas.
 
 **Required Arguments**
 
-Required: a unique identifier after the ``:: `` in the activecode directive. No spaces in this identifier.
+Required: a unique identifier after a space and the ``::`` in the activecode directive. No spaces may be included in this identifier.
 
-(This unique identifer will be the ``div`` id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.
+This unique identifer will be the ``div`` id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.
 
 **Optional Arguments**
 
@@ -216,7 +216,7 @@ Each activecode window is running in the browser.  There is no need to connect t
 
 Normally an output from a print statment is appended to a ``<pre></pre>`` element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
 
-** Logs & Grading **
+**Logs & Grading**
 
 Each version of code in an activecode block which is run is simultaneously saved, and therefore versioned. (Previously, you could save edits to an activecode block and load the most recently saved version on page load by pressing the **Load** button.)
 
