@@ -20,46 +20,45 @@ Directives may have **required arguments**. In many cases, an argument that is a
 Further (often optional) additions generally occur below that first line, surrounded by single ``:``s. Some of those require arguments of their own -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video.
 
 
-Video Directive
----------------
+Directives
+----------
 
-Purpose
-~~~~~~~
+Video
+~~~~~
 
-The video directive is perhaps the easiest, so I'll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.
+**Purpose**
 
-**Example**
+The video directive is perhaps the easiest, so I'll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product. 
+
+**Example in reStructured Text**
 
 ::
 
-    .. video:: list_unique
+    .. video:: interactive_python_vid_1
        :controls:
        :thumb: ../_static/videothumb.png
 
        http://media.interactivepython.org/pythondsVideos/list_unique.mov
        http://media.interactivepython.org/pythondsVideos/list_unique.webm
 
-**Description**
-
-All directives start out with ``..`` followed by the name of the directive, in this case ``video::``  Any required arguments follow after the ``::``.
-
 **Required Arguments**
 
-The video directive has one required argument which is a unique identifier for the video. This is for logging purposes, as well as a Javascript necessity for managing the thumbnail and controls.
+One required argument: a unique identifier for the video. (This is for logging purposes. It's also necessary for managing video thumbnails and other controls in your book.) This goes to the right of the ``.. video::`` term. In the example, the unique identifier chosen is ``interactive_python_vid_1``.
 
 **Optional Arguments**
 
 There are two optional arguments to the video directive.
 
-``:controls:``  The controls argument is a flag that if present tells sphinx to generate the usual set of video controls, play, pause, rewind, fast forward. If not present the video will automatically play when the page is loaded.
+``:controls:`` -  The controls argument is a flag that, if present, allows the library that runs these directives to generate the usual set of video controls: *play, pause, rewind, fast forward*. If ``:controls:`` is not present, the video will automatically play when the page is loaded.
 
-``:thumb:`` references an image that will serve as the thumbnail for this video. If this parameter is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail.  clicking on the thumbnail will cause the full video to appear at full size.   If the ``:thumb:`` directive is not present then the video will appear on the page in its full size.
+``:thumb:`` - The thumb argument references an image that will serve as the thumbnail for this video. It requires an additional parameter: the path to the image that should serve as the thumbnail (in the example, that path is ``../_static/videothumb.png`` (relative paths to the location of the ``.rst`` file you are currently working in are fine). If the ``:thumb`` argument is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail. Clicking on the thumbnail will cause the full video to appear at full size on the page.  If the ``:thumb:`` directive is not present, then the video will appear on the page in its full size.
 
 
 **Content**
 
-The content lines of the video directive let you specify as many video sources as you need.  Usually I specify two videos, one in mov format and the other in webm format.  This seems to cover all the browsers.
+The content lines of the video directive are the lines that follow the arguments, preceded by a blank line. You can specify as many video sources as you need.  (Usually I specify two videos, one in ``.mov`` format and the other in ``webm`` format.  This seems to cover all browsers.)
 
+**Output** 
 
 To give you an idea of what happens when sphinx processes a video directive here is the html and javascript output:
 
@@ -84,12 +83,11 @@ To give you an idea of what happens when sphinx processes a video directive here
        });
     </script>
 
-**TODO**
+**Logs & Grading**
 
-* embed Vimeo
-* embed youtube
+Video directives are not tied to the grading interface. Interactions logged: TODO ADD.
 
-
+ 
 Activecode
 ~~~~~~~~~~
 
