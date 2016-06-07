@@ -204,14 +204,14 @@ You can quickly check the build by opening the file static/devcourse/index.html 
 
 
 Starting a Document
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 You can start a new document using the sphinx-quickstart command.  Choose a folder other than the generic source folder to contain your own document. TODO EXPLAIN WHAT THIS MEANS.
 
 Using Special Runestone Extensions
 ----------------------------------
 
-Runestone includes all of the pre-existing `ReStructured Text 
+As noted above, Runestone includes all of the pre-existing `ReStructured Text 
 <TODO LINK>`_ formatting -- you can use the documentation at that link for writing up book content, to include formatting like **bold** or *italic* or hyperlinks, etc. Runestone also has several particular **directives**, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and `Parsons Problems 
 <TODO LINK>`_. The `Runestone directives documentation 
 <TODO LINK>`_ includes full documentation of all of the available Runestone directives, including:

@@ -1,5 +1,30 @@
-Video
-~~~~~
+Directives Documentation for Runestone .rst files
+=================================================
+
+Each Runestone directive has a particular purpose. Each is detailed below, including:
+
+* What each directive allows you to create
+* The syntax for using each directive
+* Examples, or links to examples, of how instructors have used these directives in interactive textbook work
+* If applicable, how exercises created by these directives can be graded
+* Available additional developer documentation that explains how interaction with these directives in an interactive textbook are logged
+
+
+General Syntax
+---------------
+
+All directives start out with ``..`` followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``.
+
+Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
+
+Further (often optional) additions generally occur below that first line, surrounded by single ``:``s. Some of those require arguments of their own -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video.
+
+
+Video Directive
+---------------
+
+Purpose
+~~~~~~~
 
 The video directive is perhaps the easiest, so I'll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.
 
