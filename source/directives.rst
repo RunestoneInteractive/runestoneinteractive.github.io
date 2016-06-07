@@ -17,7 +17,7 @@ All directives start out with ``..`` followed by the name of the directive (e.g.
 
 Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
 
-Further (often optional) additions generally occur below that first line, surrounded by single ``:``s. Some of those require arguments of their own -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video.
+Further (often optional) additions generally occur below that first line, surrounded by single ``:``s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive **Example in reStructured Text**.
 
 
 Directives
@@ -40,6 +40,10 @@ The video directive is perhaps the easiest, so I'll start by describing that one
 
        http://media.interactivepython.org/pythondsVideos/list_unique.mov
        http://media.interactivepython.org/pythondsVideos/list_unique.webm
+
+**Example**
+
+TODO PUT VIDEO DIRECTIVE HERE
 
 **Required Arguments**
 
@@ -85,36 +89,78 @@ To give you an idea of what happens when sphinx processes a video directive here
 
 **Logs & Grading**
 
-Video directives are not tied to the grading interface. Interactions logged: TODO ADD.
+Video directives are not tied to the grading interface. Interactions logged in the database: TODO ADD.
+
+**Uses**
+
+Teachers have used the video directive to include demonstrative video to accompany conceptual explanations, or to bring in video explanations from other openly licensed sources (e.g. Khan Academy, interactivepython.org).
 
  
 Activecode
 ~~~~~~~~~~
 
-The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.
+The activecode directive allows you to create executable, editable example code. This allows your students to experiment with your examples by changing them and running them over and over again. 
 
-**Example**
+In an **activecode** window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they've edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)
+
+Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the **Arguments** section.)
+
+TODO TODO note about most people's purposes, what audience is this aimed at, etc.
+
+**Examples in reStructured Text**
 
 ::
 
-    .. activecode:: ac_example1
-       :nopre:
+    .. activecode:: function_example1
+       :nocanvas:
+       :language: python
+
+       def example_func(inp):
+           return inp + "!!"
+
+
+    .. activecode:: loop_example3
        :nocanvas:
        :language: python
        :caption: This is my caption
-       :include: activecode_id, [activecode_id,...]
+       :include: function_example1, function_example2
 
-       for i in range(10):
-           print('hello world %d\n' % i)
+       for i in range(5):
+           print('hello world {}\n'.format(i))
+
+       # Here, you could use code from any included activecode block, like so
+       print example_func("hello again")
+
+::
+
+    .. activecode:: function2_3
+
+       def square(x):
+           y = x ** x
+           return y
+
+       result = square(5)
+       print result
 
 
+**Examples**
 
-**Description**
+Here is the second example above:
 
-The activecode directive creates a runnable python listing.  It looks like this:
+.. activecode:: function2_3
+
+       def square(x):
+           y = x ** x
+           return y
+
+       result = square(5)
+       print result
+
+
+Here is an example with a canvas.
 
 .. activecode:: ac_example1
-   :caption: This is my caption
+   :caption: A Turtle making a 90-degree left turn 
 
    import turtle
    t = turtle.Turtle()
@@ -124,36 +170,35 @@ The activecode directive creates a runnable python listing.  It looks like this:
        t.left(90)
 
 
-The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python.
+**Required Arguments**
 
-Normally and output from a print statment is appended to a ``<pre></pre>`` element in the page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
+Required: a unique identifier after the ``:: `` in the activecode directive. No spaces in this identifier.
 
-**Arguments**
-
-The identifier after the ``:: `` must be unique.
-
+(This unique identifer will be the ``div`` id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.
 
 **Optional Arguments**
 
-``:nopre:``  -- This flag prevents a ``<pre></pre>`` element from getting created.
+``:nopre:``  -- This flag prevents a ``<pre></pre>`` element from getting created in the page. (You might use this if you did not want to see the results of print statements from an included code segment but otherwise wanted it to be runnable.)
 
-``:nocanvas:``  -- This flag prevents a ``<canvas>`` element from getting created.
+``:nocanvas:``  -- This flag prevents a ``<canvas>`` element from getting created. A canvas element is generally created e.g. when a program using the ``turtle`` library is run (see above).
 
-``:caption:``  The text argument to this parameter is formatted as a caption, underneath the activecode block
+``:caption:`` If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is ``A Turtle making a 90-degree left turn``.
 
-``:language:`` The text argument to this parameter can be python, javascript, or html.  This allows the activecode directive to support multiple languages!
+``:language:`` The text argument to this parameter can be python, javascript, or html.  TODO TODO is this still true, and what is the default if you leave it off, is it Python?
 
-``:include:``  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.
+``:include:``  This option allows you to prepend other code blocks to this activecode block. It is useful because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content. For example, if you write a function definition in one activecode block, you can include that block in a later activecode block using the ``:include:`` argument, and thus can invoke that function in the current activecode block without redefining it. This argument requires at least one, and can take multiple, parameters: the unique identifiers of the activecode blocks that you want to include. (See the examples in reStructured text for an example of how you can use this.)
 
-``:hidecode:`` This will make the activecode editor initially hidden, and add a button to automatically show the editor.
+``:hidecode:`` This will make the activecode editor initially hidden, and add a button to automatically show the editor. You might use this if you want to put an activecode block in the page in order to include it in another activecode block, but you don't need or want students to see it right away.
 
-``:autorun`` This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.
+``:autorun:`` This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.
 
 ``:above:`` This positions the canvas above the editor.
 
-``:nocodelens:`` This activecode will not have a button to show the code in an codelens widget.
+``:nocodelens:`` This activecode will not have a button to show the code in an interactive codelens widget (more explanation of what this is follows in the **codelens directive** section).
 
-``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is tour name; line: audio_file_for_line.  Here is an example:
+``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is ``tour name; line: audio_file_for_line``. TODO TODO is this correct? 
+
+Here is an example of an activecode block using ``:tour_#`` argument(s):
 
 ::
 
@@ -165,9 +210,25 @@ The identifier after the ``:: `` must be unique.
        print "line two"
 
 
+**Developer Notes**
+
+Each activecode window is running in the browser.  There is no need to connect to a server, or to even be online, for these examples to work.  The activecode directive makes use of **Skulpt** (``www.skulpt.org``).  Skulpt is an open source javascript implementation of Python.
+
+Normally an output from a print statment is appended to a ``<pre></pre>`` element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
+
+** Logs & Grading **
+
+Each version of code in an activecode block which is run is simultaneously saved, and therefore versioned. (Previously, you could save edits to an activecode block and load the most recently saved version on page load by pressing the **Load** button.)
+
+Logged in to a book, the load history appears like so:
+
+TODO PUT SCREENSHOTS HERE
+
+See grading interface documentation [REFERENCE TBA] for explanation of how to associate activecode blocks with graded assignments.
+
+
 Codelens
 ~~~~~~~~
-
 
 The codelens directive creates an interactive environment for you to step through small code examples.  codelens displays the values of variables and shows the contents and links between your objects.  Unlinke a normal debugger, codelens lets you step forward and backward through the code.
 
