@@ -89,7 +89,7 @@ To give you an idea of what happens when sphinx processes a video directive here
 
 **Logs & Grading**
 
-Video directives are not tied to the grading interface. Interactions logged in the database: TODO ADD.
+Video directives are not tied to the grading interface. Interactions logged in the database: each time a video is played, it is logged (so if you have logged-in users, you can have a log of who has played it; regardless, you can have a log of how many times it has been played).
 
 **Uses**
 
@@ -196,7 +196,7 @@ This unique identifer will be the ``div`` id that contains this particular code 
 
 ``:nocodelens:`` This activecode will not have a button to show the code in an interactive codelens widget (more explanation of what this is follows in the **codelens directive** section).
 
-``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is ``tour name; line: audio_file_for_line``. TODO TODO is this correct? 
+``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is ``tour name; line: audio_file_for_line`` where ``audio_file_for_line`` is the path to the audio file. TODO TODO is this correct? 
 
 Here is an example of an activecode block using ``:tour_#`` argument(s):
 
@@ -230,20 +230,18 @@ See grading interface documentation [REFERENCE TBA] for explanation of how to as
 Codelens
 ~~~~~~~~
 
-The codelens directive creates an interactive environment for you to step through small code examples.  codelens displays the values of variables and shows the contents and links between your objects.  Unlinke a normal debugger, codelens lets you step forward and backward through the code.
+The codelens directive creates an interactive environment for you to step through small code examples. (With the ``:codelens:`` argument to an activecode window, it can be used for any activecode code block.)
 
-The way codelens works is that when the book is built, it takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.
+Codelens displays the values of variables and shows the contents and links between your objects.  Unlike a normal code debugger intended for solving bugs, codelens lets you step forward and backward through the code.
 
-In addition to stepping through the code you as an author can embed a question into the example.  You may ask the student to predict how the value of a variable will change, or you may ask the student to predict which line of code will be executed next.  This is an excellent way to help students develop a good mental model of how python works.
+In addition to stepping through the code you as an author can embed a single question into the codelens example.  You may ask the student to predict what the value of a variable will be after a line executes, what the value of an element on the heap is at the point you pause the code (if the term ``heap`` is unfamiliar to you, you need note only that you should be asking questions about values of variables, not e.g. an element of a Python list), or you may ask the student to predict which line of code will be executed next. (This is an excellent way to help students develop a good mental model of how python works.) The codelens directive shows a codelens window initially, which looks as shown below, rather than an activecode window with the option of running through the code using codelens.
 
-It is worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go here:  http://www.pythontutor.com/
+It's worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go to ``http://www.pythontutor.com/``.
 
-
-**Example**
+**Examples in reStructured Text**
 
 ::
-
-    .. codelens:: secondexample
+    .. codelens:: simpleexample
 
         fruit = ["apple","orange","banana","cherry"]
         numlist = [6,7]
@@ -253,11 +251,43 @@ It is worth noting that you can also make use of codelens in a live environment 
         zeros[1] = fruit
         zeros[1][2] = numlist
 
-**Description**
+::
 
-Here is an example of codelens in action:
+    .. codelens:: question_example
+       :question: What is the value in b after line 4 executes?
+       :feedback: When d is set to a copy of the value of b it doesn't change the value of b.
+       :breakline: 4
+       :correct: globals.b
 
-.. codelens:: secondexample
+       a = 1
+       b = 12.3
+       c = "Fred"
+       d = b
+
+::
+
+    .. codelens:: Ketchup_Speed
+       :question: What line will be executed after the current line executes?
+       :feedback: This code is executed one line at a time from top to bottom. (No loops.)
+       :breakline: 3
+       :correct: line
+
+       dripMPH = .028
+       FPM = 5280.0
+       dripFPH = dripMPH * FPM
+       MPH = 60
+       dripFPM = dripFPH / MPH
+       print("Ketchup speed in feet per minute:")
+       print(dripFPM)
+       print("Ketchup speed to move 4 feet in a minute:")
+       print(4 / dripFPM)
+
+
+**Examples**
+
+Here are the above examples of codelens in action:
+
+.. codelens:: simpleexample
 
     fruit = ["apple","orange","banana","cherry"]
     numlist = [6,7]
@@ -267,86 +297,157 @@ Here is an example of codelens in action:
     zeros[1] = fruit
     zeros[1][2] = numlist
 
+.. codelens:: question_example
+       :question: What is the value in b after line 4 executes?
+       :feedback: When d is set to a copy of the value of b it doesn't change the value of b.
+       :breakline: 4
+       :correct: globals.b
 
-**Arguments**
+       a = 1
+       b = 12.3
+       c = "Fred"
+       d = b
 
-The identifier after the ``:: `` must be unique.
+
+.. codelens:: Ketchup_Speed
+   :question: What line will be executed after the current line executes?
+   :feedback: This code is executed one line at a time from top to bottom. (No loops.)
+   :breakline: 3
+   :correct: line
+
+   dripMPH = .028
+   FPM = 5280.0
+   dripFPH = dripMPH * FPM
+   MPH = 60
+   dripFPM = dripFPH / MPH
+   print("Ketchup speed in feet per minute:")
+   print(dripFPM)
+   print("Ketchup speed to move 4 feet in a minute:")
+   print(4 / dripFPM)
+
+
+**Required Arguments**
+
+The identifier after the ``:: `` must be unique. No spaces.
+
+**Content**
+
+The content of a codelens directive is the same as an activecode directive block: lines of code.
+
+Note that if your code has any errors, it will definitely cause a problem when tracing through the codelens example, so make sure to test your code before deploying your book!
 
 **Optional Arguments**
 
-``:tracedata:``  Normally this value is filled in automatically, but you can provide your own tracedata if you wish.
+``:tracedata:``  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The **tracedata** is the object from which you access the value of the ``:correct:`` answer (see below) if you are including a question in the codelens directive. 
 
-``:caption:``  The text provided for this option will be formatted as a caption on the bottom of the page.
+**Developer notes for tracedata:** You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your ``.rst`` file, which you can find in the ``build`` folder, in the corresponding directory to the directory in ``_sources`` where you saved your current ``.rst`` file (e.g. if your current rst file is in ``_sources/Functions/introduction.rst``, you can see the tracedata for a codelens example in ``build/Functions/introduction.html``. You can index into that **tracedata** object with dot notation, but index into any list within it with ``[]``, as usual in Python.
 
-``:showoutput:``  Sometimes it is desireable to ignore any output from print statements.  Or sometimes you just want to save space and not show output.
+Here is an example of a set of tracedata.
 
-``:question:``  This is the question text that will be shown to the student.
+Note that ``globals`` are the variables in the global scope. ``locals`` is populated only if the codelens question refers to an inner, local scope within the program, and elements within lists, for example, are stored on the ``heap``.
 
-``:correct:`` This is the correct answer.  This should be specified as a value from the trace data.  for example in the example above you might ask the student for the value of numlist[0].  The correct answer would be specified as globals.numlist[0]
+``:caption:``  The text provided for this option will be formatted as a caption on the bottom of the codelens window.
 
-``:feedback:``  If the student gives the wrong answer you can give them a few sentences of feedback.
+``:showoutput:``  Sometimes it is desirable to ignore any output from print statements, in which case you would include this argument.  Or sometimes you just want to save space and not show console output, in which case you should not use this argument.
 
-``:breakline:``  This is the line that you want the program to stop at and ask  the question.
+``:question:``  This is the question text that will be shown to the student. (Only one question per codelens for now.)
+
+``:correct:`` This is the correct answer to the question.  This should be specified as a value from the trace data (see above).  For example in the first example above, where you want to know the value of variable ``b``, the correct answer parameter is ``globals.b``. Note also that if you are asking a question about what line will be next executed, you can use the variable ``line`` (see example above), which refers to the line number that will be *next* executed (which may be a complex question if the code includes a loop or a conditional statement).
+
+``:feedback:``  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it's a good idea to make the feedback generic reminders or hints.
+
+``:breakline:``  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.
+
+**Further Developer Notes**
+
+The way codelens works is that when a Runestone book is built, codelens takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.
+
+**Logs & Grading**
+
+Clicks are logged. Answers to questions are also logged, but are currently not plugged into the grading interface and are used solely as a tool for checking understanding.
 
 
 Datafile
 ~~~~~~~~
 
-The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the users local hard drive we can fake files in two different ways.
+The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user's local hard drive, we can fake files' existence in two different ways.
 
 1.  We can put the data into ``pre`` element.  The id on the element serves as the filename.
 
-2.  We can put the data into a ``textarea`` element.  Again the id on the element serves as the file name.  However with a text area the file data can be modified.
+2.  We can put the data into a ``textarea`` element.  Again the id on the element serves as the file name.  However, with a text area, the file data can be modified.
 
-**Example**
+Both of these options can be achieved with the ``datafile`` directive.
+
+**Examples in reStructured Text**
 
 ::
 
-    .. datafile:: mydata.dat
+    .. datafile:: mydata.txt
        :edit:
        :rows: 20
        :cols: 60
 
-       data line one
-       data line two
-       data line three
-
-The example will produce a text area that is 20 rows long and 60 columns wide.  The ``:edit:`` flag tells the directive to produce a textarea rather than a pre element.
-
-**Arguments**
-
-The required argument is the 'filename'  In the example it is mydata.dat  This must be unique within the document as it does become the id of the element.
-
-**Optional Arguments**
-
-``:hide:``  -- This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where its not important that the student see all the data.
-
-``:edit:``  -- This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program.
-
-``rows``  -- This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided the directive will do its best to guess the number of rows within a reasonable number.
-
-``cols``  -- Again this is for sizing the text area, and again if not provided the directive will come up with a reasonable value.
-
-Assessments
-~~~~~~~~~~~
-
-**Description**
-
-Assessment questions come in several forms.  Single answer multiple choice, multi-answer multiple choice, fill in the blank, parson's problems for coding, and some code tracing prediction tasks.  For example, given some code, the student can step through the code line by line until the system asks them to predict the value of a variable, or to predict the next line that will be executed.
-
-The directives are as follows:
+       here is the first line in the data file
+       also, this is the second line in the data file
+       and this is the third line
 
 ::
 
-    .. mchoicemf
-    .. mchoicema
-    .. fillintheblank
-    .. parsonsprob
+    .. datafile:: mydata2.txt
+       :rows: 20
+       :cols: 60
+
+       here is the first line in the data file
+       also, this is the second line in the data file
+       and this is the third line
 
 
-**Multiple Choice with Multiple Feedbacks**
+This example will produce a text area that is 20 rows long and 60 columns wide.  The ``:edit:`` flag tells the directive to produce a textarea rather than a pre element.
 
-**Example**
+**Examples**
+
+.. datafile:: mydata.txt
+   :edit:
+   :rows: 20
+   :cols: 60
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+
+.. datafile:: mydata2.txt
+   :rows: 20
+   :cols: 60
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+
+
+
+**Arguments**
+
+The required argument is the 'filename' (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is ``mydata.txt`` and ``mydata2.txt``. This must be unique within the document as it does become the id of the element.
+
+**Optional Arguments**
+
+``:hide:``  -- This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).
+
+``:edit:``  -- This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??
+
+``rows``  -- This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.
+
+``cols``  -- Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.
+
+Multiple Choice
+~~~~~~~~~~~~~~~
+
+There are two types of multiple choice question directives available in Runestone: single option multiple choice questions, the ``.. mchoicemf::`` directive, where only one selection is correct, and the ``.. mchoicema::`` directive, where multiple answers may be selected (and multiple answers may be correct), respectively. 
+
+
+**Examples in reStructured Text**
+
+Multiple Choice with One Correct Answer
 
 ::
 
@@ -356,12 +457,18 @@ The directives are as follows:
        :answer_c: C
        :answer_d: ML
        :correct: a
-       :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
+       :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.
        :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
        :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
-       :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
+       :feedback_d: No, ML is a functional programming language.  (You can use Python to write functional programs as well!)
 
        What programming language does this site help you to learn?
+
+:: 
+
+  
+
+
 
 **Description**
 
@@ -372,11 +479,13 @@ The directives are as follows:
    :answer_d: ML
    :correct: a
    :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
-   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
+   :feedback_b: Java is a good object oriented language but it has some details that make it hard for a beginner.
    :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
    :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
 
-   What programming language does this site help you to learn?
+   What programming language does this book help you to learn?
+
+
 
 **Arguments**
 
