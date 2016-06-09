@@ -7,17 +7,23 @@ Each Runestone directive has a particular purpose. Each is detailed below, inclu
 * The syntax for using each directive
 * Examples, or links to examples, of how instructors have used these directives in interactive textbook work
 * If applicable, how exercises created by these directives can be graded
-* Available additional developer documentation that explains how interaction with these directives in an interactive textbook are logged
+* Available additional developer documentation/notes 
 
 
 General Syntax
 ---------------
 
-All directives start out with ``..`` followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``.
+All directives start out with ``..`` followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``, followed by a single space.
+
+Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It's also necessary for managing any controls or 
+
+Spacing, including indentation consistency, is very important in implementing directives inside ``.rst`` files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it's worth checking your final product before releasing content to students.
 
 Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
 
 Further (often optional) additions generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive **Example in reStructured Text**.
+
+When reStructured Text files are *built* into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.
 
 
 Directives
@@ -28,7 +34,7 @@ Video
 
 **Purpose**
 
-The video directive is perhaps the easiest, so I'll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product. 
+As you may imagine, the job of the video directive is to embed a video in a page. 
 
 **Example in reStructured Text**
 
@@ -43,11 +49,16 @@ The video directive is perhaps the easiest, so I'll start by describing that one
 
 **Example**
 
-TODO PUT VIDEO DIRECTIVE HERE
+.. video:: interactive_python_vid_1
+   :controls:
+   :thumb: ../_static/videothumb.png
+
+   http://media.interactivepython.org/pythondsVideos/list_unique.mov
+   http://media.interactivepython.org/pythondsVideos/list_unique.webm
 
 **Required Arguments**
 
-One required argument: a unique identifier for the video. (This is for logging purposes. It's also necessary for managing video thumbnails and other controls in your book.) This goes to the right of the ``.. video::`` term. In the example, the unique identifier chosen is ``interactive_python_vid_1``.
+A unique identifier for the video. No spaces. This goes to the right of the ``.. video::`` term. In the example, the unique identifier chosen is ``interactive_python_vid_1``.
 
 **Optional Arguments**
 
@@ -61,31 +72,6 @@ There are two optional arguments to the video directive.
 **Content**
 
 The content lines of the video directive are the lines that follow the arguments, preceded by a blank line. You can specify as many video sources as you need.  (Usually I specify two videos, one in ``.mov`` format and the other in ``webm`` format.  This seems to cover all browsers.)
-
-**Output** 
-
-To give you an idea of what happens when sphinx processes a video directive here is the html and javascript output:
-
-::
-
-    <a id="list_unique_thumb" > <img src="../_static/videothumb.png" /></a>
-    <div id="list_unique" class="video_popup" >
-    <video controls  >
-        <source src="http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.mov" type="video/mp4"></source>
-        <source src="http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.webm" type="video/webm"></source>
-        No supported video types
-    </video>
-    </div>
-    <script>
-       jQuery(function($) {
-          $('#list_unique_thumb').click(function(e) {
-             $('#list_unique').show();
-             $('#list_unique_thumb').hide();
-             logBookEvent({'event':'video','act':'play','div_id': 'list_unique'});
-             // Log the run event
-          });
-       });
-    </script>
 
 **Logs & Grading**
 
