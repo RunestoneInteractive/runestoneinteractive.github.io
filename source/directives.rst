@@ -91,7 +91,7 @@ In an **activecode** window, if logged in to a Runestone project with an account
 
 Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the optional arguments section.)
 
-TODO TODO note about most people's purposes, what audience is this aimed at, etc.
+One of the great things about activecode is that you can experiment with the code in the windows as much as you want. This can be very helpful as you are learning to program.
 
 **Examples in reStructured Text**
 
@@ -128,6 +128,18 @@ TODO TODO note about most people's purposes, what audience is this aimed at, etc
        result = square(5)
        print result
 
+::
+    
+    .. activecode:: ac_example1
+       :caption: A Turtle making a 90-degree left turn 
+
+       import turtle
+       t = turtle.Turtle()
+
+       for i in range(4):
+           t.forward(100)
+           t.left(90)
+
 
 **Examples**
 
@@ -143,7 +155,7 @@ Here is the second example above:
        print result
 
 
-Here is an example with a canvas.
+The turtle example with a canvas.
 
 .. activecode:: ac_example1
    :caption: A Turtle making a 90-degree left turn 
@@ -158,7 +170,7 @@ Here is an example with a canvas.
 
 **Required Arguments**
 
-Required: a unique identifier after a space and the ``::`` in the activecode directive. No spaces may be included in this identifier.
+A unique identifier after a space and the ``::`` in the activecode directive. No spaces may be included in this identifier.
 
 This unique identifer will be the ``div`` id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.
 
@@ -182,7 +194,7 @@ This unique identifer will be the ``div`` id that contains this particular code 
 
 ``:nocodelens:`` This activecode will not have a button to show the code in an interactive codelens widget (more explanation of what this is follows in the **codelens directive** section).
 
-``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is ``tour name; line: audio_file_for_line`` where ``audio_file_for_line`` is the path to the audio file. TODO TODO is this correct? 
+``:tour_{1,2,3,4,5}``  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is ``tour name; line: audio_file_for_line`` where ``audio_file_for_line`` is the path to the audio file. See `this tool <https://github.com/CSLearning4U/AudioTourTool>`_ for easy creation of activecode blocks with audiotours.
 
 Here is an example of an activecode block using ``:tour_#`` argument(s):
 
@@ -190,15 +202,17 @@ Here is an example of an activecode block using ``:tour_#`` argument(s):
 
 
     .. activecode:: tour_example
-       :tour_1: "Line by Line Tour"; 1: file_for_one; 2: file_for_two
+       :tour_1: "Line by Line Tour"; 1: file_name_for_one; 2: file_name_for_two
 
        print "line one"
        print "line two"
 
 
+A tool has been developed to easily record and create the directive syntax for an audiotour of an active code window. You can find it `here <https://github.com/CSLearning4U/AudioTourTool>`_.
+
 **Developer Notes**
 
-Each activecode window is running in the browser.  There is no need to connect to a server, or to even be online, for these examples to work.  The activecode directive makes use of **Skulpt** (``www.skulpt.org``).  Skulpt is an open source javascript implementation of Python.
+Each activecode window is running in the browser.  There is no need to connect to a server, or to even be online, for these examples to work.  The activecode directive makes use of **Skulpt** (``www.skulpt.org``), which is an open source javascript implementation of Python.
 
 Normally an output from a print statment is appended to a ``<pre></pre>`` element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
 
@@ -208,9 +222,17 @@ Each version of code in an activecode block which is run is simultaneously saved
 
 Logged in to a book, the load history appears like so:
 
-TODO PUT SCREENSHOTS HERE
+.. image:: scrubber2.png
+   :scale: 50 %
+   :alt: image of a code window, below a bar with save and run on the left and a bar showing a timestamp of last save
+   :align: center
 
-See grading interface documentation [REFERENCE TBA] for explanation of how to associate activecode blocks with graded assignments.
+.. image:: scrubber3.png
+   :scale: 50 %
+   :alt: image of a bar with save and run on the left and a bar showing a timestamp of last save, later than the last, with different code
+   :align: center
+
+See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.
 
 
 Codelens
