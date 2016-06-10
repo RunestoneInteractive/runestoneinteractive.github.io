@@ -149,7 +149,7 @@ Here is the second example above:
 .. activecode:: function2_3
 
     def square(x):
-        y = x ** x
+        y = x * x
         return y
 
     result = square(5)
