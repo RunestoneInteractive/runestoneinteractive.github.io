@@ -9,7 +9,6 @@ Each Runestone directive has a particular purpose. Each is detailed below, inclu
 * If applicable, how exercises created by these directives can be graded
 * Available additional developer documentation/notes 
 
-
 General Syntax
 ---------------
 
@@ -24,6 +23,8 @@ Directives may have **required arguments**. In many cases, an argument that is a
 Further (often optional) arguments for a directive generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive example.
 
 When reStructured Text files are *built* into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.
+
+We are in the process of creating a full set of documentation for the HTML and JavaScript created by our special Runestone directives.
 
 
 Directives
@@ -539,7 +540,8 @@ correct number as well as the feedback for each.
 ``:iscode:``  Tells the directive processor that the question text should be treated as code.
 
 
-**Fill in the Blank, or Free form Answer**
+Fill in the Blank
+~~~~~~~~~~~~~~~~~
 
 Another type of question allows you as the instructor to ask for a value.  You can test for the value using Javascript regular expressions.  For example:
 
@@ -577,7 +579,8 @@ Here is how the fill in the blank question is formatted.
 ``:casei:``  Tells the regular expression match to match using a case insensitive match.
 
 
-**Parson's Problems**
+Parson's Problems
+~~~~~~~~~~~~~~~~~
 
 And finally here is a way of giving your students some simple programming problems where the code is already there for them but not indented or in the correct order.  Use drag-and-drop to get everthing right.
 
@@ -648,7 +651,7 @@ There are no optional arguments for the parson's problem directive.
 
 
 Disqus Comment Box
-------------------
+~~~~~~~~~~~~~~~~~~
 
 **Example**
 
@@ -669,7 +672,7 @@ There are 2 required arguments, ``shortname`` and ``identifier``. The shortname 
 Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.
 
 Tabbed Question
----------------
+~~~~~~~~~~~~~~~
 
 **Example**
 
