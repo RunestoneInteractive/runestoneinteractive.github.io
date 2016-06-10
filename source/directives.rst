@@ -1,5 +1,5 @@
-Directives Documentation for Runestone .rst files
-=================================================
+Runestone Directives Documentation
+==================================
 
 Each Runestone directive has a particular purpose. Each is detailed below, including:
 
@@ -13,7 +13,7 @@ Each Runestone directive has a particular purpose. Each is detailed below, inclu
 General Syntax
 ---------------
 
-All directives start out with ``..`` followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``, followed by a single space.
+All directives start out with ``..``, then a single space, followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``, followed by a single space.
 
 Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It's also necessary for managing any controls or 
 
@@ -21,7 +21,7 @@ Spacing, including indentation consistency, is very important in implementing di
 
 Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
 
-Further (often optional) additions generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive **Example in reStructured Text**.
+Further (often optional) arguments for a directive generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive example.
 
 When reStructured Text files are *built* into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.
 
@@ -46,6 +46,7 @@ As you may imagine, the job of the video directive is to embed a video in a page
 
        http://media.interactivepython.org/pythondsVideos/list_unique.mov
        http://media.interactivepython.org/pythondsVideos/list_unique.webm
+
 
 **Example**
 
@@ -131,7 +132,7 @@ One of the great things about activecode is that you can experiment with the cod
 ::
     
     .. activecode:: ac_example1
-       :caption: A Turtle making a 90-degree left turn 
+       :caption: A Turtle making a square 
 
        import turtle
        t = turtle.Turtle()
@@ -147,12 +148,12 @@ Here is the second example above:
 
 .. activecode:: function2_3
 
-       def square(x):
-           y = x ** x
-           return y
+    def square(x):
+        y = x ** x
+        return y
 
-       result = square(5)
-       print result
+    result = square(5)
+    print result
 
 
 The turtle example with a canvas.
@@ -249,6 +250,7 @@ It's worth noting that you can also make use of codelens in a live environment w
 **Examples in reStructured Text**
 
 ::
+
     .. codelens:: simpleexample
 
         fruit = ["apple","orange","banana","cherry"]

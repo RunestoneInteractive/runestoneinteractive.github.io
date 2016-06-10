@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 4
 
    developer.rst
+   directives.rst
    writingAnExtension.rst
    gettinghelp.rst
    instructor.rst
