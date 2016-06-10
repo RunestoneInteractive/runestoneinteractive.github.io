@@ -223,15 +223,14 @@ Each version of code in an activecode block which is run is simultaneously saved
 
 Logged in to a book, the load history appears like so:
 
-.. image:: scrubber2.png
-   :scale: 50 %
+.. image:: images/scrubber2.png
    :alt: image of a code window, below a bar with save and run on the left and a bar showing a timestamp of last save
    :align: center
 
-.. image:: scrubber3.png
-   :scale: 50 %
+.. image:: images/scrubber3.png
    :alt: image of a bar with save and run on the left and a bar showing a timestamp of last save, later than the last, with different code
    :align: center
+
 
 See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.
 
@@ -474,7 +473,7 @@ Multiple Choice with One Correct Answer
 
        What programming language does this site help you to learn?
 
-:: 
+
 
   
 
