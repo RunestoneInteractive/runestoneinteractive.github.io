@@ -159,7 +159,7 @@ Here is the second example above:
 The turtle example with a canvas.
 
 .. activecode:: ac_example1
-   :caption: A Turtle making a 90-degree left turn 
+   :caption: A Turtle making a square
 
    import turtle
    t = turtle.Turtle()
@@ -181,7 +181,7 @@ This unique identifer will be the ``div`` id that contains this particular code 
 
 ``:nocanvas:``  -- This flag prevents a ``<canvas>`` element from getting created. A canvas element is generally created e.g. when a program using the ``turtle`` library is run (see above).
 
-``:caption:`` If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is ``A Turtle making a 90-degree left turn``.
+``:caption:`` If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is ``A Turtle making a square``.
 
 ``:language:`` The text argument to this parameter can be python, javascript, or html.  TODO TODO is this still true, and what is the default if you leave it off, is it Python?
 
@@ -337,7 +337,7 @@ Here are the above examples of codelens in action:
 
 **Required Arguments**
 
-The identifier after the ``:: `` must be unique. No spaces.
+The identifier after the ``::`` must be unique. No spaces.
 
 **Content**
 
@@ -346,14 +346,6 @@ The content of a codelens directive is the same as an activecode directive block
 Note that if your code has any errors, it will definitely cause a problem when tracing through the codelens example, so make sure to test your code before deploying your book!
 
 **Optional Arguments**
-
-``:tracedata:``  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The **tracedata** is the object from which you access the value of the ``:correct:`` answer (see below) if you are including a question in the codelens directive. 
-
-**Developer notes for tracedata:** You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your ``.rst`` file, which you can find in the ``build`` folder, in the corresponding directory to the directory in ``_sources`` where you saved your current ``.rst`` file (e.g. if your current rst file is in ``_sources/Functions/introduction.rst``, you can see the tracedata for a codelens example in ``build/Functions/introduction.html``. You can index into that **tracedata** object with dot notation, but index into any list within it with ``[]``, as usual in Python.
-
-Here is an example of a set of tracedata.
-
-Note that ``globals`` are the variables in the global scope. ``locals`` is populated only if the codelens question refers to an inner, local scope within the program, and elements within lists, for example, are stored on the ``heap``.
 
 ``:caption:``  The text provided for this option will be formatted as a caption on the bottom of the codelens window.
 
@@ -366,6 +358,14 @@ Note that ``globals`` are the variables in the global scope. ``locals`` is popul
 ``:feedback:``  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it's a good idea to make the feedback generic reminders or hints.
 
 ``:breakline:``  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.
+
+``:tracedata:``  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The **tracedata** is the object from which you access the value of the ``:correct:`` answer (see below) if you are including a question in the codelens directive. 
+
+**Developer notes for tracedata:** You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your ``.rst`` file, which you can find in the ``build`` folder, in the corresponding directory to the directory in ``_sources`` where you saved your current ``.rst`` file (e.g. if your current rst file is in ``_sources/Functions/introduction.rst``, you can see the tracedata for a codelens example in ``build/Functions/introduction.html``. You can index into that **tracedata** object with dot notation, but index into any list within it with ``[]``, as usual in Python.
+
+Here is an example of a set of tracedata.
+
+Note that ``globals`` are the variables in the global scope. ``locals`` is populated only if the codelens question refers to an inner, local scope within the program, and elements within lists, for example, are stored on the ``heap``.
 
 **Further Developer Notes**
 
