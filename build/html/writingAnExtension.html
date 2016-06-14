@@ -352,31 +352,31 @@
 <p>In this section I will take you through an example of writing a new directive for the runestone interactive system.  In this case we will look at adding a <code class="docutils literal"><span class="pre">datafile</span></code> directive.</p>
 <p>The <code class="docutils literal"><span class="pre">datafile</span></code> directive is going to be used in conjunction with the skulpt file operations.  For skulpt to read a file we must provide some data that data can either be data that is part of a <code class="docutils literal"><span class="pre">&lt;pre&gt;</span></code> element or if we want the data to be editable we can embed the data in a <code class="docutils literal"><span class="pre">&lt;textarea&gt;</span></code> element.   In the case of the <code class="docutils literal"><span class="pre">&lt;pre&gt;</span></code> element the data might be visible or it might be hidden.  Our directive will look something like this:</p>
 <p>Indentation is important.  Following the directive line, you can have as many optional parameters as you want.  Followed by a blank line, followed by the main body of your directive.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. datafile::  myid
-   :edit:
-   :rows: 20
-   :cols: 65
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span>  <span class="n">myid</span>
+   <span class="p">:</span><span class="n">edit</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
+   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">65</span>
 
-   line 1  some data
-   line 2  some more data
-   line 3  this is the end
+   <span class="n">line</span> <span class="mi">1</span>  <span class="n">some</span> <span class="n">data</span>
+   <span class="n">line</span> <span class="mi">2</span>  <span class="n">some</span> <span class="n">more</span> <span class="n">data</span>
+   <span class="n">line</span> <span class="mi">3</span>  <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">end</span>
 </pre></div>
 </div>
 <p>So the datafile takes one required parameter, a unique id that is used by the Skulpt <code class="docutils literal"><span class="pre">open</span></code> function as the file name.  The <code class="docutils literal"><span class="pre">:edit:</span></code> parameter tells us to make a textarea rather than a pre.  The <code class="docutils literal"><span class="pre">:rows:</span></code> and <code class="docutils literal"><span class="pre">:cols:</span></code> tell us how many rows and columns to add to the textarea.  If these are not present, then our directive should do its best to figure out a reasonable number of rows and columns.</p>
 <p>The html output of the directive above should be:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;textarea id=&quot;myid&quot; cols=&quot;65&quot; rows=&quot;20&quot;&gt;
-line 1  some data
-line 2  some more data
-line 3  this is the end
-&lt;/textarea&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">textarea</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;myid&quot;</span> <span class="n">cols</span><span class="o">=</span><span class="s2">&quot;65&quot;</span> <span class="n">rows</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="o">&gt;</span>
+<span class="n">line</span> <span class="mi">1</span>  <span class="n">some</span> <span class="n">data</span>
+<span class="n">line</span> <span class="mi">2</span>  <span class="n">some</span> <span class="n">more</span> <span class="n">data</span>
+<span class="n">line</span> <span class="mi">3</span>  <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">end</span>
+<span class="o">&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>We will also make this extension work if the user wants to generate a non-interactive paper or pdf version of some text using LaTeX.  In this case the output of our directive should simply be:</p>
-<div class="highlight-python"><div class="highlight"><pre>\begin{verbatim}
-line 1  some data
-line 2  some more data
-line 3  this is the end
-\end{verbatim}
+<div class="highlight-default"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">verbatim</span><span class="p">}</span>
+<span class="n">line</span> <span class="mi">1</span>  <span class="n">some</span> <span class="n">data</span>
+<span class="n">line</span> <span class="mi">2</span>  <span class="n">some</span> <span class="n">more</span> <span class="n">data</span>
+<span class="n">line</span> <span class="mi">3</span>  <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">end</span>
+\<span class="n">end</span><span class="p">{</span><span class="n">verbatim</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Unless the <code class="docutils literal"><span class="pre">:hide:</span></code> flag is present in which case we won&#8217;t generate anything.</p>
@@ -395,21 +395,21 @@ line 3  this is the end
 <h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
 <p>For the initialization phase we need to provide a setup function.  The setup function connects the directive name with a class, and tells skulpt about any css or javscript files that will be needed to support any html output.</p>
 <p>The initialization code for the datafile directive looks like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
-<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">directives</span>
-<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docutils</span> <span class="k">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="k">import</span> <span class="n">directives</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="k">import</span> <span class="n">Directive</span>
 
 
 <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s">&#39;datafile&#39;</span><span class="p">,</span><span class="n">DataFile</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;bookfuncs.js&#39;</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;skulpt/dist/skulpt.js&#39;</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s">&#39;skulpt/dist/builtin.js&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s1">&#39;datafile&#39;</span><span class="p">,</span><span class="n">DataFile</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s1">&#39;bookfuncs.js&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s1">&#39;skulpt/dist/skulpt.js&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_javascript</span><span class="p">(</span><span class="s1">&#39;skulpt/dist/builtin.js&#39;</span><span class="p">)</span>
 
     <span class="n">app</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">DataFileNode</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="p">(</span><span class="n">visit_df_node</span><span class="p">,</span> <span class="n">depart_df_node</span><span class="p">))</span>
 
-    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;doctree-resolved&#39;</span><span class="p">,</span><span class="n">process_datafile_nodes</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;env-purge-doc&#39;</span><span class="p">,</span> <span class="n">purge_datafiles</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;doctree-resolved&#39;</span><span class="p">,</span><span class="n">process_datafile_nodes</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;env-purge-doc&#39;</span><span class="p">,</span> <span class="n">purge_datafiles</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The key function here is the setup function.   The <code class="docutils literal"><span class="pre">add_directive</span></code> method maps the <code class="docutils literal"><span class="pre">datafile</span></code> directive to the <code class="docutils literal"><span class="pre">DataFile</span></code> class.  Then we add three javascript files we want to include along with a new node type called <code class="docutils literal"><span class="pre">DataFileNode</span></code>  This is the node that will get added to the document object model.</p>
@@ -418,57 +418,57 @@ line 3  this is the end
 <div class="section" id="parsing">
 <h2>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h2>
 <p>During the parse phase there is one class for every directive.  This class must supply a run method that returns a list of nodes.  If you know that your directive is only ever going to create output for a particular rendering, e.g. html you can finish your run method by returning a <code class="docutils literal"><span class="pre">raw</span></code> node that is simply a string.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">mystring</span> <span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;html&#39;</span><span class="p">)]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mystring</span> <span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>In this case mystring could be as long and complicated an html string as you might like to make.  A minimal hello world type example might be:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;h1&gt;Hello World&lt;/h1&gt;&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;html&#39;</span><span class="p">)]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;h1&gt;Hello World&lt;/h1&gt;&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>In other cases you will defer the rendering of the node until later, having built a structure that can support multiple output styles.  In our example you will see that we return:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">return</span> <span class="p">[</span><span class="n">DataFileNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span><span class="n">DataFileNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>Where the DataFileNode just maintains a dictionary of data items we will use when we want to render any of the possible output formats.</p>
 <p>If you return a <code class="docutils literal"><span class="pre">raw</span></code> node then you can ignore the <code class="docutils literal"><span class="pre">app.add_node(DataFileNode,</span> <span class="pre">html=(visit_df_node,</span> <span class="pre">depart_df_node))</span></code> line in the <code class="docutils literal"><span class="pre">setup</span></code> method.</p>
 <p>Here is the DataFile class along with its run method.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DataFile</span><span class="p">(</span><span class="n">Directive</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataFile</span><span class="p">(</span><span class="n">Directive</span><span class="p">):</span>
     <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">optional_arguments</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">has_content</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">&#39;hide&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
-        <span class="s">&#39;edit&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
-        <span class="s">&#39;rows&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span><span class="p">,</span>
-        <span class="s">&#39;cols&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span>
+        <span class="s1">&#39;hide&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+        <span class="s1">&#39;edit&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+        <span class="s1">&#39;rows&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span><span class="p">,</span>
+        <span class="s1">&#39;cols&#39;</span><span class="p">:</span><span class="n">directives</span><span class="o">.</span><span class="n">positive_int</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">env</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="s">&#39;datafilecounter&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="s1">&#39;datafilecounter&#39;</span><span class="p">):</span>
             <span class="n">env</span><span class="o">.</span><span class="n">datafilecounter</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">env</span><span class="o">.</span><span class="n">datafilecounter</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">if</span> <span class="s">&#39;cols&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;cols&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span><span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">]))</span>
-        <span class="k">if</span> <span class="s">&#39;rows&#39;</span><span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;rows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="k">if</span> <span class="s1">&#39;cols&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;cols&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span><span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s1">&#39;rows&#39;</span><span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;divid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;divid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
-            <span class="n">source</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">source</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;filecontent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;filecontent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
 
-        <span class="k">if</span> <span class="s">&#39;hide&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;block&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;hide&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;block&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;hide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
 
-        <span class="k">if</span> <span class="s">&#39;edit&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;edit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="s1">&#39;edit&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;edit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
 
         <span class="k">return</span> <span class="p">[</span><span class="n">DataFileNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)]</span>
 </pre></div>
@@ -497,7 +497,7 @@ line 3  this is the end
 </ul>
 <p>The <code class="docutils literal"><span class="pre">self.options</span></code> instance variable is a dictionary that will be used later to fill in a template for our output.  So, most of the processing in the <code class="docutils literal"><span class="pre">run</span></code> method is checking to see if the author provided values for these options and providing some default values for them if they have not.</p>
 <p>The last line of <code class="docutils literal"><span class="pre">run</span></code> creates an instance of our DataFileNode.  This object doesn&#8217;t do much other than act as a container to hold our data until it is time to render the output.  Nevertheless here is the code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DataFileNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">General</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataFileNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">General</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">content</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Arguments:</span>
@@ -514,29 +514,29 @@ line 3  this is the end
 <p>In the final stage of processing we render the document in whatever format the author is requesting.  In this stage we take the data stored away in our <code class="docutils literal"><span class="pre">DataFileNode</span></code> and turn it into html or latex or whatever.</p>
 <p>Each output format is handled by their own function that is registered back in the setup phase.  recall that we used the following line to connect our html output with a couple of functions:  <code class="docutils literal"><span class="pre">app.add_node(DataFileNode,</span> <span class="pre">html=(visit_df_node,</span> <span class="pre">depart_df_node))</span></code>.</p>
 <p>We will use Python triple quoted strings to create a couple of templates to fill in.  In the code below these templates are <code class="docutils literal"><span class="pre">PRE</span></code> and <code class="docutils literal"><span class="pre">TEXTA</span></code></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">PRE</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">&lt;pre id=&quot;</span><span class="si">%(divid)s</span><span class="s">&quot; style=&quot;display: </span><span class="si">%(hide)s</span><span class="s">;&quot;&gt;</span>
-<span class="si">%(filecontent)s</span><span class="s"></span>
-<span class="s">&lt;/pre&gt;</span>
-<span class="s">&#39;&#39;&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PRE</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">&lt;pre id=&quot;</span><span class="si">%(divid)s</span><span class="s1">&quot; style=&quot;display: </span><span class="si">%(hide)s</span><span class="s1">;&quot;&gt;</span>
+<span class="si">%(filecontent)s</span><span class="s1"></span>
+<span class="s1">&lt;/pre&gt;</span>
+<span class="s1">&#39;&#39;&#39;</span>
 
-<span class="n">TEXTA</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">&lt;textarea id=&quot;</span><span class="si">%(divid)s</span><span class="s">&quot; rows=&quot;</span><span class="si">%(rows)d</span><span class="s">&quot; cols=&quot;</span><span class="si">%(cols)d</span><span class="s">&quot;&gt;</span>
-<span class="si">%(filecontent)s</span><span class="s"></span>
-<span class="s">&lt;/textarea&gt;</span>
-<span class="s">&#39;&#39;&#39;</span>
+<span class="n">TEXTA</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">&lt;textarea id=&quot;</span><span class="si">%(divid)s</span><span class="s1">&quot; rows=&quot;</span><span class="si">%(rows)d</span><span class="s1">&quot; cols=&quot;</span><span class="si">%(cols)d</span><span class="s1">&quot;&gt;</span>
+<span class="si">%(filecontent)s</span><span class="s1"></span>
+<span class="s1">&lt;/textarea&gt;</span>
+<span class="s1">&#39;&#39;&#39;</span>
 
-<span class="c"># self for these functions is an instance of the writer class.  For example</span>
-<span class="c"># in html, self is sphinx.writers.html.SmartyPantsHTMLTranslator</span>
-<span class="c"># The node that is passed as a parameter is an instance of our node class.</span>
+<span class="c1"># self for these functions is an instance of the writer class.  For example</span>
+<span class="c1"># in html, self is sphinx.writers.html.SmartyPantsHTMLTranslator</span>
+<span class="c1"># The node that is passed as a parameter is an instance of our node class.</span>
 <span class="k">def</span> <span class="nf">visit_df_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">df_content</span><span class="p">[</span><span class="s">&#39;edit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">df_content</span><span class="p">[</span><span class="s1">&#39;edit&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">TEXTA</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">PRE</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">%</span> <span class="n">node</span><span class="o">.</span><span class="n">df_content</span>
 
-    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;u&#39;&quot;</span><span class="p">,</span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>  <span class="c"># hack:  there must be a better way to include the list and avoid unicode strings</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;u&#39;&quot;</span><span class="p">,</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>  <span class="c1"># hack:  there must be a better way to include the list and avoid unicode strings</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 
@@ -589,7 +589,7 @@ line 3  this is the end
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.2.
     </p>
   </div>
 </footer>

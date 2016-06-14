@@ -297,19 +297,11 @@
 <li><a class="reference internal" href="#">Developer Documentation for Runestone Interactive Tools</a><ul>
 <li><a class="reference internal" href="#content-authors">Content Authors</a></li>
 <li><a class="reference internal" href="#important-notes">Important Notes</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
-<li><a class="reference internal" href="#cloning-the-runestone-project">Cloning The Runestone Project</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#configure-the-book">Configure the Book</a></li>
-<li><a class="reference internal" href="#building-the-book">Building the Book</a></li>
-<li><a class="reference internal" href="#running-the-server">Running the Server</a></li>
-<li><a class="reference internal" href="#final-configuration">Final Configuration</a><ul>
-<li><a class="reference internal" href="#building-the-prexisting-books">Building the prexisting Books</a></li>
+<li><a class="reference internal" href="#what-is-runestone">What is Runestone?</a><ul>
 <li><a class="reference internal" href="#starting-a-document">Starting a Document</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-runestone-extensions">Using Runestone Extensions</a><ul>
+<li><a class="reference internal" href="#using-runestone-extensions-of-restructuredtext-markup">Using Runestone Extensions of reStructuredText markup</a><ul>
 <li><a class="reference internal" href="#video">Video</a></li>
 <li><a class="reference internal" href="#activecode">Activecode</a></li>
 <li><a class="reference internal" href="#codelens">Codelens</a></li>
@@ -371,184 +363,42 @@
 <h1>Developer Documentation for Runestone Interactive Tools<a class="headerlink" href="#developer-documentation-for-runestone-interactive-tools" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="content-authors">
 <h2>Content Authors<a class="headerlink" href="#content-authors" title="Permalink to this headline">¶</a></h2>
-<p>The runestone system uses restructuredText as its primary markup language.  restructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.</p>
-<p>Its probably easiest to get started by simply checking out the runestone repository, and then starting your project as a subdirectory.  Here are the relevant pieces from the README on github.</p>
+<p>The Runestone system uses reStructuredText (.rst) as its primary markup language.  reStructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.</p>
 </div>
 <div class="section" id="important-notes">
 <h2>Important Notes<a class="headerlink" href="#important-notes" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.  See Windows notes at the end for some additional tips.</li>
+<li>We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.</li>
 </ol>
 </div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don&#8217;t care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.</p>
-<p>There are a couple of prerequisites you need to satisfy before you can build and use this
-eBook. The easiest/recommended way is to use <a class="reference external" href="http://www.pip-installer.org/en/latest/">pip</a>.</p>
-<p>You can simply install all dependencies by running the following command in main runestone directory:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install -r requirements.txt</span>
-</pre></div>
-</div>
-<p>Note, development works well with a Python <code class="docutils literal"><span class="pre">virtualenv</span></code>  If  you don&#8217;t have root privileges on your computer I strongly recommend you install <code class="docutils literal"><span class="pre">virtualenv</span></code> and install all of the dependencies there.</p>
-<p>If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
-install <a class="reference external" href="http://web2py.com">web2py</a>.</p>
-<p>The easiest way to do so is to download the <strong>Source Code</strong> distribution from <a class="reference external" href="http://www.web2py.com/init/default/download">http://www.web2py.com/init/default/download</a>.
-<a class="reference external" href="http://www.web2py.com/examples/static/web2py_src.zip">Here</a> is a direct link to the zip archive.
-After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real &#8220;installation&#8221;).  I avoid the web2py.app installation on OS X as it messes with the Python path.  I assume the Windows web2py.exe is the same and I would avoid it as well if I used Windows.</p>
-<p>Within the <code class="docutils literal"><span class="pre">web2py</span></code> folder that was just extracted, go to the <code class="docutils literal"><span class="pre">applications/</span></code> folder and check out the runestone repository
-(instructions below). This will install the Runestone Tools as a web2py application automatically.</p>
-<div class="section" id="cloning-the-runestone-project">
-<h3>Cloning The Runestone Project<a class="headerlink" href="#cloning-the-runestone-project" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>$ git clone <a class="reference external" href="https://github.com/bnmnetp/runestone.git">https://github.com/bnmnetp/runestone.git</a>
-$ cd runestone</div></blockquote>
-<p>You will also need to pull the git tags in order to run Paver in the next few steps:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git pull --tags
-</pre></div>
-</div>
-<p>If you have forked the master runestone repository (bnmnetp/runestone) and have cloned your fork instead of the master repository, you will still have to fetch the tags from the master repository.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git pull upstream master --tags
-</pre></div>
-</div>
-<p>If you haven&#8217;t set up an upstream repository for pulling in changes see <a class="reference external" href="https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes">here</a></p>
-</div>
-</div>
-<div class="section" id="configure-the-book">
-<h2>Configure the Book<a class="headerlink" href="#configure-the-book" title="Permalink to this headline">¶</a></h2>
-<p>Although the book looks like a static website, there are quite a few AJAX calls going on in the background.  The Javascript relies on a configuration object called eBookConfig.  To get the right values in the eBookConfig object you need to configure a couple of things prior to running the <code class="docutils literal"><span class="pre">paver</span></code> command to build the book.  We have provided a <code class="docutils literal"><span class="pre">paverconfig.py.prototype</span></code> file that you can simply copy to <code class="docutils literal"><span class="pre">paverconfig.py</span></code> and modify.  It contains the following two lines:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">master_url</span> <span class="o">=</span> <span class="s">&#39;http://127.0.0.1:8000&#39;</span>
-<span class="n">master_app</span> <span class="o">=</span> <span class="s">&#39;runestone&#39;</span>
-</pre></div>
-</div>
-<p>You can modify the master_url to be the hostname that you are running your app on, but if you are just doing local development you will probably want to leave it alone.  If you omit this step the books will build in the next step using the values above as default values, but you will get a warning message:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;NOTICE:  You are using default values for master_* Make your own paverconfig.py file&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="building-the-book">
-<h2>Building the Book<a class="headerlink" href="#building-the-book" title="Permalink to this headline">¶</a></h2>
-<p>Once you the above installed, you can type <code class="docutils literal"><span class="pre">paver</span> <span class="pre">allbooks</span></code> from the command
-line and that will build the following targets:</p>
-<ul class="simple">
-<li>How to Think Like a Computer Scientist</li>
-<li>Problem Solving with algorithms and Data Structures using Python</li>
-<li>An overview page that shows off all the cool features of the Runestone toolkit</li>
-</ul>
-<p>The books are built into <code class="docutils literal"><span class="pre">runestone/static/thinkcspy</span></code>, <code class="docutils literal"><span class="pre">runestone/static/pythonds</span></code> and <code class="docutils literal"><span class="pre">runestone/static/overview</span></code>  assuming that runestone is the name of the folder you cloned into.  When the build is done you can quickly check the build by opening the file <code class="docutils literal"><span class="pre">static/thinkcspy/index.html</span></code> in your browser.</p>
-<p>Now before you start web2py its convenient to make runestone the default application.  From web2py/examples, copy routes.patterns.example.py to web2py/routes.py and Modify the three lines that contain the word runestone to look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>default_application = &#39;runestone&#39;    # ordinarily set in base routes.py
-default_controller = &#39;default&#39;  # ordinarily set in app-specific routes.py
-default_function = &#39;index&#39;      # ordinarily set in app-specific routes.py
-
-# routes_app is a tuple of tuples.  The first item in each is a regexp that will
-# be used to match the incoming request URL. The second item in the tuple is
-# an applicationname.  This mechanism allows you to specify the use of an
-# app-specific routes.py. This entry is meaningful only in the base routes.py.
-#
-# Example: support welcome, admin, app and myapp, with myapp the default:
-
-
-    routes_app = ((r&#39;/(?P&lt;app&gt;welcome|admin|app)\b.*&#39;, r&#39;\g&lt;app&gt;&#39;),
-                  (r&#39;(.*)&#39;, r&#39;runestone&#39;),
-                  (r&#39;/?(.*)&#39;, r&#39;runestone&#39;))
-</pre></div>
-</div>
-</div>
-<div class="section" id="running-the-server">
-<h2>Running the Server<a class="headerlink" href="#running-the-server" title="Permalink to this headline">¶</a></h2>
-<p>You will have to set a few configuration values in the file <code class="docutils literal"><span class="pre">models/1.py</span></code>. Copy <code class="docutils literal"><span class="pre">models/1.py.prototype</span></code> to
-<code class="docutils literal"><span class="pre">models/1.py</span></code> and open the newly created 1.py. If you don&#8217;t wish to use a local SQLite database, change the
-<code class="docutils literal"><span class="pre">database_uri</span></code> to match your actual credentials.</p>
-<p>If you wish to use Janrain Engage to provide social network authentication integration, you will also have to set your
-Janrain API key and domain in 1.py.</p>
-<p>Note: If you do <em>not</em> wish to use Janrain, you must comment out these lines in <code class="docutils literal"><span class="pre">models/db.py</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">janrain_form</span> <span class="o">=</span> <span class="n">RPXAccount</span><span class="p">(</span><span class="n">request</span><span class="p">,</span>
-                          <span class="n">api_key</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">janrain_api_key</span><span class="p">,</span> <span class="c"># set in 1.py</span>
-                          <span class="n">domain</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">janrain_domain</span><span class="p">,</span> <span class="c"># set in 1.py</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">janrain_url</span><span class="p">)</span>
-<span class="n">auth</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">login_form</span> <span class="o">=</span> <span class="n">ExtendedLoginForm</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">janrain_form</span><span class="p">)</span> <span class="c"># uncomment this to use both Janrain and web2py auth</span>
-<span class="n">request</span><span class="o">.</span><span class="n">janrain_form</span> <span class="o">=</span> <span class="n">janrain_form</span> <span class="c"># save the form so that it can be added to the user/register controller</span>
-</pre></div>
-</div>
-<p>and uncomment the line below. This will disable Janrain and only use Web2Py integrated authentication.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">auth</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">login_form</span> <span class="o">=</span> <span class="n">auth</span> <span class="c"># uncomment this to just use web2py integrated authentication</span>
-</pre></div>
-</div>
-<p>Once you&#8217;ve built the book using the steps above.  You can start the web2py development server by simply running</p>
-<div class="highlight-python"><div class="highlight"><pre>python web2py.py
-</pre></div>
-</div>
-<p>If you want to run a server in a mode where you can build custom books from the web
-interface you will want to use this command:</p>
-<blockquote>
-<div>python web2py.py —password=foo -K runestone –nogui -X</div></blockquote>
-<p>You may want to check the latest web2py docs on the password option.  Its not very
-secure to have the command show up in the process list.  There are ways around that.
-The important bit is the <code class="docutils literal"><span class="pre">-K</span> <span class="pre">runestone</span></code> which instructs web2py to start up a
-scheduler process to handle background tasks.</p>
-<p>This will bring up a little GUI where you can make up an admin password and click &#8220;start server&#8221;.
-When the server is running your browser will open to the welcome application, unless you&#8217;ve changed
-the default application as described above.  To see this app simply use the url:  <a class="reference external" href="http://127.0.0.1/runestone">http://127.0.0.1/runestone</a>
-From there, you can click on the link for &#8220;How To Think Like A Computer Scientist&#8221; or &#8220;Problem Solving With
-Algorithms and Data Structures&#8221;. (See the section Final Configuration below for instructions on registering
-for one of the courses. Registering allows you to save your progress and work.)</p>
-<p>If you get an error at this point the most likely reason is that the settings file isn&#8217;t recognizing your host and is not setting the database correctly.  These lines in models/0.py are important:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="s">&#39;local&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;Darwin&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;sqlite://storage.sqlite&#39;</span>
-<span class="k">elif</span> <span class="s">&#39;webfaction&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]:</span>  <span class="c"># production is on webfaction</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;postgres://production_db:secret@production_server.com/production_db&#39;</span>
-<span class="k">elif</span> <span class="s">&#39;luther&#39;</span> <span class="ow">in</span> <span class="n">uname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]:</span>   <span class="c"># this is my beta machine</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">database_uri</span> <span class="o">=</span> <span class="s">&#39;sqlite://storage.sqlite&#39;</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;Host unknown, settings not configured&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For your own personal development, you want the first clause of the if statement to match. If you are on a Unix-like system,
-you can replace &#8216;Darwin&#8217; with the result of running <code class="docutils literal"><span class="pre">uname</span></code> at a terminal. Another option is to replace &#8216;local&#8217; with
-your computer&#8217;s hostname.</p>
-</div>
-<div class="section" id="final-configuration">
-<h2>Final Configuration<a class="headerlink" href="#final-configuration" title="Permalink to this headline">¶</a></h2>
-<p>To use the admin functionality you are going to want to do one more bit of configuration:</p>
-<ul class="simple">
-<li>Click the &#8220;Register&#8221; link in the user menu in the upper right corner of the browser window.</li>
-<li>Fill in the form to create a user account for yourself. You can register for either &#8220;How To Think...&#8221; (use the course name <code class="docutils literal"><span class="pre">thinkcspy</span></code>) or &#8220;Problem Solving With...&#8221; (use the course name <code class="docutils literal"><span class="pre">pythonds</span></code>).</li>
-</ul>
-<p>Now, add your new user account to the &#8216;instructors&#8217; group using the appadmin
-functionality of web2py:</p>
-<ul class="simple">
-<li>Open <code class="docutils literal"><span class="pre">http://127.0.0.1:8000/runestone/appadmin</span></code>. Login using the password you supplied when you ran web2py.</li>
-<li>Click on <code class="docutils literal"><span class="pre">insert</span> <span class="pre">new</span> <span class="pre">auth_membership</span></code>. Select your user account and the instructor group as the two values and click submit.  You are now an instructor.</li>
-</ul>
-<p>After you do that, once you&#8217;re logged into the site, you can visit <a class="reference external" href="http://127.0.0.1:8000/runestone/admin">http://127.0.0.1:8000/runestone/admin</a> to access instructor features</p>
-<div class="section" id="building-the-prexisting-books">
-<h3>Building the prexisting Books<a class="headerlink" href="#building-the-prexisting-books" title="Permalink to this headline">¶</a></h3>
-<p>Once you the above installed, you can type <code class="docutils literal"><span class="pre">paver</span> <span class="pre">allbooks</span></code> from the command
-line and that will build the following targets:</p>
-<ul class="simple">
-<li>How to Think Like a Computer Scientist</li>
-<li>Problem Solving with algorithms and Data Structures using Python</li>
-<li>A development version of everything combined (devcourse)</li>
-</ul>
-<p>You can quickly check the build by opening the file static/devcourse/index.html in your browser.</p>
-</div>
+<div class="section" id="what-is-runestone">
+<h2>What is Runestone?<a class="headerlink" href="#what-is-runestone" title="Permalink to this headline">¶</a></h2>
+<p>If you plan to develop on the Runestone project, you should know that there are now <strong>three pieces</strong> of a <strong>local Runestone development environment.</strong></p>
+<ol class="arabic simple">
+<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Components</a> - this is the development version of the library you get when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">runestone</span></code>. <em>You should examine this first.</em> See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">HERE</a>, where the README is approximately up to date. If you are <em>only</em> interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit &#8211; see #3. You can skip #2.)</li>
+<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Server</a> - this is the application that goes inside a <strong>web2py</strong> server. If you plan to run your own server for an interactive textbook, or develop on the Runestone server, you should install this. See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date.</li>
+<li><strong>A book</strong> written for the runestone environment to build, deploy, and then serve on your local server. Typically, a book repository will be cloned (and potentially edited) to the appropriate place inside the  Runestone Server application, and can be built using the tools provided by RunestoneComponents. You can see an example of a book created for the Runestone environment on GitHub <a class="reference external" href="https://github.com/RunestoneInteractive/thinkcspy">HERE</a>. See the Runestone Components README for how to build and serve the book content locally.</li>
+</ol>
+<p>Note that if you intend <em>solely</em> to be a content author and <em>not</em> to do any code development for the Runestone project, you should look at the RunestoneComponents repository only.</p>
+<p><a class="reference external" href="https://github.com/RunestoneInteractive">HERE</a> you can see every GitHub repository managed by RunestoneInteractive.</p>
+<hr class="docutils" />
 <div class="section" id="starting-a-document">
 <h3>Starting a Document<a class="headerlink" href="#starting-a-document" title="Permalink to this headline">¶</a></h3>
-<p>You can start a new document using the sphinx-quickstart command.  Choose a folder other than the generic source folder to contain your own document.</p>
+<p><strong>NOTE: This documentation is currently undergoing significant updates. If you wish to develop on the Runestone project, please see the above links.</strong></p>
 </div>
 </div>
-<div class="section" id="using-runestone-extensions">
-<h2>Using Runestone Extensions<a class="headerlink" href="#using-runestone-extensions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-runestone-extensions-of-restructuredtext-markup">
+<h2>Using Runestone Extensions of reStructuredText markup<a class="headerlink" href="#using-runestone-extensions-of-restructuredtext-markup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="video">
 <h3>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h3>
 <p>The video directive is perhaps the easiest, so I&#8217;ll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.</p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>.. video:: list_unique
-   :controls:
-   :thumb: ../_static/videothumb.png
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">list_unique</span>
+   <span class="p">:</span><span class="n">controls</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
 
-   http://media.interactivepython.org/pythondsVideos/list_unique.mov
-   http://media.interactivepython.org/pythondsVideos/list_unique.webm
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">mov</span>
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">webm</span>
 </pre></div>
 </div>
 <p><strong>Description</strong></p>
@@ -562,7 +412,7 @@ line and that will build the following targets:</p>
 <p><strong>Content</strong></p>
 <p>The content lines of the video directive let you specify as many video sources as you need.  Usually I specify two videos, one in mov format and the other in webm format.  This seems to cover all the browsers.</p>
 <p>To give you an idea of what happens when sphinx processes a video directive here is the html and javascript output:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;a id=&quot;list_unique_thumb&quot; &gt; &lt;img src=&quot;../_static/videothumb.png&quot; /&gt;&lt;/a&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;a id=&quot;list_unique_thumb&quot; &gt; &lt;img src=&quot;../_static/videothumb.png&quot; /&gt;&lt;/a&gt;
 &lt;div id=&quot;list_unique&quot; class=&quot;video_popup&quot; &gt;
 &lt;video controls  &gt;
     &lt;source src=&quot;http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.mov&quot; type=&quot;video/mp4&quot;&gt;&lt;/source&gt;
@@ -592,15 +442,15 @@ line and that will build the following targets:</p>
 <h3>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
 <p>The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.</p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: ac_example1
-   :nopre:
-   :nocanvas:
-   :language: python
-   :caption: This is my caption
-   :include: activecode_id, [activecode_id,...]
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac_example1</span>
+   <span class="p">:</span><span class="n">nopre</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">nocanvas</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">caption</span>
+   <span class="p">:</span><span class="n">include</span><span class="p">:</span> <span class="n">activecode_id</span><span class="p">,</span> <span class="p">[</span><span class="n">activecode_id</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
 
-   for i in range(10):
-       print(&#39;hello world %d\n&#39; % i)
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world </span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Description</strong></p>
@@ -617,7 +467,7 @@ for i in range(4):
 <p>The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python.</p>
 <p>Normally and output from a print statment is appended to a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element in the page.  Graphical output, such as the turtle graphics program in the example, is done on a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code>.</p>
 <p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id2"><span class="problematic" id="id3">``</span></a>:: `` must be unique.</p>
+<p>The identifier after the <a href="#id4"><span class="problematic" id="id5">``</span></a>:: `` must be unique.</p>
 <p><strong>Optional Arguments</strong></p>
 <p><code class="docutils literal"><span class="pre">:nopre:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created.</p>
 <p><code class="docutils literal"><span class="pre">:nocanvas:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created.</p>
@@ -629,11 +479,11 @@ for i in range(4):
 <p><code class="docutils literal"><span class="pre">:above:</span></code> This positions the canvas above the editor.</p>
 <p><code class="docutils literal"><span class="pre">:nocodelens:</span></code> This activecode will not have a button to show the code in an codelens widget.</p>
 <p><code class="docutils literal"><span class="pre">:tour_{1,2,3,4,5}</span></code>  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is tour name; line: audio_file_for_line.  Here is an example:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: tour_example
-   :tour_1: &quot;Line by Line Tour&quot;; 1: file_for_one; 2: file_for_two
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">tour_example</span>
+   <span class="p">:</span><span class="n">tour_1</span><span class="p">:</span> <span class="s2">&quot;Line by Line Tour&quot;</span><span class="p">;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">file_for_one</span><span class="p">;</span> <span class="mi">2</span><span class="p">:</span> <span class="n">file_for_two</span>
 
-   print &quot;line one&quot;
-   print &quot;line two&quot;
+   <span class="nb">print</span> <span class="s2">&quot;line one&quot;</span>
+   <span class="nb">print</span> <span class="s2">&quot;line two&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -644,15 +494,15 @@ for i in range(4):
 <p>In addition to stepping through the code you as an author can embed a question into the example.  You may ask the student to predict how the value of a variable will change, or you may ask the student to predict which line of code will be executed next.  This is an excellent way to help students develop a good mental model of how python works.</p>
 <p>It is worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go here:  <a class="reference external" href="http://www.pythontutor.com/">http://www.pythontutor.com/</a></p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>.. codelens:: secondexample
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">secondexample</span>
 
-    fruit = [&quot;apple&quot;,&quot;orange&quot;,&quot;banana&quot;,&quot;cherry&quot;]
-    numlist = [6,7]
-    newlist = fruit + numlist
-    zeros = [0] * 4
+    <span class="n">fruit</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span><span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+    <span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">newlist</span> <span class="o">=</span> <span class="n">fruit</span> <span class="o">+</span> <span class="n">numlist</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
 
-    zeros[1] = fruit
-    zeros[1][2] = numlist
+    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fruit</span>
+    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span>
 </pre></div>
 </div>
 <p><strong>Description</strong></p>
@@ -663,7 +513,7 @@ for i in range(4):
 <p class="cl_caption"><span class="cl_caption_text"> (secondexample)</span> </p>
 </div>
 <script type="text/javascript">
-var secondexample_trace = {"trace": [{"line": 1, "globals": {}, "ordered_globals": [], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 2, "globals": {"fruit": ["REF", 1]}, "ordered_globals": ["fruit"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"numlist": ["REF", 2], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "stdout": "", "func_name": "<module>"}, {"line": 6, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "stdout": "", "func_name": "<module>"}, {"line": 7, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "step_line", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "stdout": "", "func_name": "<module>"}, {"line": 7, "globals": {"newlist": ["REF", 3], "numlist": ["REF", 2], "zeros": ["REF", 4], "fruit": ["REF", 1]}, "ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "event": "return", "stack_to_render": [], "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "stdout": "", "func_name": "<module>"}], "code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist"};
+var secondexample_trace = {"code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["fruit"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "return"}]};
 var secondexample_vis;
 
 $(document).ready(function() {
@@ -673,7 +523,7 @@ $(document).ready(function() {
                                     verticalStack: false,
                                     heightChangeCallback: redrawAllVisualizerArrows,
                                     codeDivWidth: 500,
-                                    lang : 'py3'
+                                    lang : 'py2'
                                     });
         attachLoggers(secondexample_vis,'secondexample');
         styleButtons('secondexample');
@@ -703,7 +553,7 @@ $(window).resize(function() {
 });
 </script>
 <p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id4"><span class="problematic" id="id5">``</span></a>:: `` must be unique.</p>
+<p>The identifier after the <a href="#id6"><span class="problematic" id="id7">``</span></a>:: `` must be unique.</p>
 <p><strong>Optional Arguments</strong></p>
 <p><code class="docutils literal"><span class="pre">:tracedata:</span></code>  Normally this value is filled in automatically, but you can provide your own tracedata if you wish.</p>
 <p><code class="docutils literal"><span class="pre">:caption:</span></code>  The text provided for this option will be formatted as a caption on the bottom of the page.</p>
@@ -721,14 +571,14 @@ $(window).resize(function() {
 <li>We can put the data into a <code class="docutils literal"><span class="pre">textarea</span></code> element.  Again the id on the element serves as the file name.  However with a text area the file data can be modified.</li>
 </ol>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>.. datafile:: mydata.dat
-   :edit:
-   :rows: 20
-   :cols: 60
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata</span><span class="o">.</span><span class="n">dat</span>
+   <span class="p">:</span><span class="n">edit</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
+   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
 
-   data line one
-   data line two
-   data line three
+   <span class="n">data</span> <span class="n">line</span> <span class="n">one</span>
+   <span class="n">data</span> <span class="n">line</span> <span class="n">two</span>
+   <span class="n">data</span> <span class="n">line</span> <span class="n">three</span>
 </pre></div>
 </div>
 <p>The example will produce a text area that is 20 rows long and 60 columns wide.  The <code class="docutils literal"><span class="pre">:edit:</span></code> flag tells the directive to produce a textarea rather than a pre element.</p>
@@ -745,15 +595,15 @@ $(window).resize(function() {
 <p><strong>Description</strong></p>
 <p>Assessment questions come in several forms.  Single answer multiple choice, multi-answer multiple choice, fill in the blank, parson&#8217;s problems for coding, and some code tracing prediction tasks.  For example, given some code, the student can step through the code line by line until the system asks them to predict the value of a variable, or to predict the next line that will be executed.</p>
 <p>The directives are as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf
-.. mchoicema
-.. fillintheblank
-.. parsonsprob
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">mchoicemf</span>
+<span class="o">..</span> <span class="n">mchoicema</span>
+<span class="o">..</span> <span class="n">fillintheblank</span>
+<span class="o">..</span> <span class="n">parsonsprob</span>
 </pre></div>
 </div>
 <p><strong>Multiple Choice with Multiple Feedbacks</strong></p>
 <p><strong>Example</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf:: question1_1
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoicemf:: question1_1
    :answer_a: Python
    :answer_b: Java
    :answer_c: C
@@ -770,14 +620,14 @@ $(window).resize(function() {
 <p><strong>Description</strong></p>
 
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-7: What programming language does this site help you to learn?
-            <li data-component="answer" data-correct id="question1_1_opt_a">Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
+            Q-1: What programming language does this site help you to learn?
+            <li data-component="answer" data-correct id="question1_1_opt_a">(A) Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
             
-            <li data-component="answer"  id="question1_1_opt_b">Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
+            <li data-component="answer"  id="question1_1_opt_b">(B) Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
             
-            <li data-component="answer"  id="question1_1_opt_c">C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
+            <li data-component="answer"  id="question1_1_opt_c">(C) C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
             
-            <li data-component="answer"  id="question1_1_opt_d">ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  You can use Python to write functional programs as well.</li>
+            <li data-component="answer"  id="question1_1_opt_d">(D) ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  You can use Python to write functional programs as well.</li>
             
 
             </ul>
@@ -792,14 +642,14 @@ $(window).resize(function() {
 correct number as well as the feedback for each.</p>
 
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
-            Q-8: Which colors might be found in a rainbow? (choose all that are correct)
-            <li data-component="answer" data-correct id="question1_2_opt_a">red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
+            Q-2: Which colors might be found in a rainbow? (choose all that are correct)
+            <li data-component="answer" data-correct id="question1_2_opt_a">(A) red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
             
-            <li data-component="answer" data-correct id="question1_2_opt_b">yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
+            <li data-component="answer" data-correct id="question1_2_opt_b">(B) yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
             
-            <li data-component="answer"  id="question1_2_opt_c">black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
+            <li data-component="answer"  id="question1_2_opt_c">(C) black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
             
-            <li data-component="answer" data-correct id="question1_2_opt_d">green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
+            <li data-component="answer" data-correct id="question1_2_opt_d">(D) green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
             
 
             </ul>
@@ -810,13 +660,13 @@ correct number as well as the feedback for each.</p>
 <p><code class="docutils literal"><span class="pre">:iscode:</span></code>  Tells the directive processor that the question text should be treated as code.</p>
 <p><strong>Fill in the Blank, or Free form Answer</strong></p>
 <p>Another type of question allows you as the instructor to ask for a value.  You can test for the value using Javascript regular expressions.  For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. fillintheblank:: postfix1
-   :casei:
-   :correct: \\b10\\s+3\\s+5\\s*\\*\\s*16\\s+4\\s*-\\s*/\\s*\\+
-   :feedback1:  (&#39;10.*3.*5.*16.*4&#39;, &#39;The numbers appear to be in the correct order check your operators&#39;)
-   :feedback2: (&#39;.*&#39;, &#39;Remember the numbers will be in the same order as the original equation&#39;)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">fillintheblank</span><span class="p">::</span> <span class="n">postfix1</span>
+   <span class="p">:</span><span class="n">casei</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">correct</span><span class="p">:</span> \\<span class="n">b10</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">3</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">5</span>\\<span class="n">s</span><span class="o">*</span>\\<span class="o">*</span>\\<span class="n">s</span><span class="o">*</span><span class="mi">16</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">4</span>\\<span class="n">s</span><span class="o">*-</span>\\<span class="n">s</span><span class="o">*/</span>\\<span class="n">s</span><span class="o">*</span>\\<span class="o">+</span>
+   <span class="p">:</span><span class="n">feedback1</span><span class="p">:</span>  <span class="p">(</span><span class="s1">&#39;10.*3.*5.*16.*4&#39;</span><span class="p">,</span> <span class="s1">&#39;The numbers appear to be in the correct order check your operators&#39;</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">feedback2</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="s1">&#39;Remember the numbers will be in the same order as the original equation&#39;</span><span class="p">)</span>
 
-   Without using the activecode infixToPostfix function, convert the following expression to postfix &lt;br&gt; 10 + 3 * 5 / (16 - 4) ___
+   <span class="n">Without</span> <span class="n">using</span> <span class="n">the</span> <span class="n">activecode</span> <span class="n">infixToPostfix</span> <span class="n">function</span><span class="p">,</span> <span class="n">convert</span> <span class="n">the</span> <span class="n">following</span> <span class="n">expression</span> <span class="n">to</span> <span class="n">postfix</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="n">___</span>
 </pre></div>
 </div>
 <p><strong>Description</strong></p>
@@ -833,39 +683,39 @@ correct number as well as the feedback for each.</p>
 <p>And finally here is a way of giving your students some simple programming problems where the code is already there for them but not indented or in the correct order.  Use drag-and-drop to get everthing right.</p>
 <p><strong>Example</strong></p>
 <p>Here is a simple example:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
 
-   Construct a block of code that correctly implements the accumulator pattern.
-   -----
-   x = 0
-   for i in range(10)
-      x = x + 1
+   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>You can also group lines of code together using === to delimit the different blocks.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_5
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_5</span>
 
-   Solve this problem.
-   -----
-   def findmax(alist):
-   =====
-      if len(alist) == 0:
-         return None
-   =====
-      curmax = alist[0]
-      for item in alist:
-   =====
-         if item &amp;gt; curmax:
-   =====
-            curmax = item
-   =====
-      return curmax
+   <span class="n">Solve</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="k">def</span> <span class="nf">findmax</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+   <span class="o">=====</span>
+      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+         <span class="k">return</span> <span class="kc">None</span>
+   <span class="o">=====</span>
+      <span class="n">curmax</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alist</span><span class="p">:</span>
+   <span class="o">=====</span>
+         <span class="k">if</span> <span class="n">item</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">curmax</span><span class="p">:</span>
+   <span class="o">=====</span>
+            <span class="n">curmax</span> <span class="o">=</span> <span class="n">item</span>
+   <span class="o">=====</span>
+      <span class="k">return</span> <span class="n">curmax</span>
 </pre></div>
 </div>
 <p>Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson&#8217;s problem looks like:</p>
 
-    <pre data-component="parsons" id="question1_100_5" data-maxdist=5>
-        <span data-question>Q-9: Solve this problem.</span>def findmax(alist):
+    <pre data-component="parsons" id="question1_100_5">
+        <span data-question>Q-3: Solve this problem.</span>def findmax(alist):
 ---
    if len(alist) == 0:
       return None
@@ -886,9 +736,9 @@ correct number as well as the feedback for each.</p>
 <h2>Disqus Comment Box<a class="headerlink" href="#disqus-comment-box" title="Permalink to this headline">¶</a></h2>
 <p><strong>Example</strong></p>
 <p>Here is an example:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. disqus::
-    :shortname: interactivepython
-    :identifier: overview.html
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+    <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
+    <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">overview</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
 <p><strong>Description</strong>
@@ -901,21 +751,21 @@ Disqus. You can obtain a shortname by registering with Disqus. The identifier is
 <h2>Tabbed Question<a class="headerlink" href="#tabbed-question" title="Permalink to this headline">¶</a></h2>
 <p><strong>Example</strong></p>
 <p>Here is an example:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. tabbed:: tab_div
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">tabbed</span><span class="p">::</span> <span class="n">tab_div</span>
 
-    .. tab:: Question_1
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Question_1</span>
 
-        Write a program that prints &quot;Hello, world&quot;.
+        <span class="n">Write</span> <span class="n">a</span> <span class="n">program</span> <span class="n">that</span> <span class="n">prints</span> <span class="s2">&quot;Hello, world&quot;</span><span class="o">.</span>
 
-        .. activecode:: ac_example1
+        <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac_example1</span>
 
-            print(&quot;Hello, world&quot;)
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
 
-    .. tab:: Discussion
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Discussion</span>
 
-        .. disqus::
-            :shortname: interactivepython
-            :identifier: question1discussion
+        <span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+            <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
+            <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">question1discussion</span>
 </pre></div>
 </div>
 <p><strong>Description</strong>
@@ -963,7 +813,7 @@ The tabbed directive takes 1 argument, the name of the div containing all the ta
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.2.
     </p>
   </div>
 </footer>
