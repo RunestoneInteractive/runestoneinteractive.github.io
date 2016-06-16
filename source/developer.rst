@@ -1,223 +1,38 @@
 Developer Documentation for Runestone Interactive Tools
 =======================================================
 
-Content Authors
----------------
+The Runestone system uses reStructuredText (.rst) as its primary markup language.  reStructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.
 
-The runestone system uses restructuredText as its primary markup language.  restructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.
-
-Its probably easiest to get started by simply checking out the runestone repository, and then starting your project as a subdirectory.  Here are the relevant pieces from the README on github.
-
-Important Notes
----------------
-
-1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.  See Windows notes at the end for some additional tips.
+We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment. 
 
 
-Dependencies
-------------
-
-
-First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don't care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.
-
-There are a couple of prerequisites you need to satisfy before you can build and use this
-eBook. The easiest/recommended way is to use `pip <http://www.pip-installer.org/en/latest/>`_.
-
-You can simply install all dependencies by running the following command in main runestone directory:
-
-::
-
-    # pip install -r requirements.txt
-
-Note, development works well with a Python ``virtualenv``  If  you don't have root privileges on your computer I strongly recommend you install ``virtualenv`` and install all of the dependencies there.
-
-If you want to run a full blown server, so you can save ActiveCode assignments, etc. you will need to download and
-install `web2py <http://web2py.com>`_.
-
-
-The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
-`Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
-After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation").  I avoid the web2py.app installation on OS X as it messes with the Python path.  I assume the Windows web2py.exe is the same and I would avoid it as well if I used Windows.
-
-Within the ``web2py`` folder that was just extracted, go to the ``applications/`` folder and check out the runestone repository
-(instructions below). This will install the Runestone Tools as a web2py application automatically.
-
-Cloning The Runestone Project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-    $ git clone https://github.com/bnmnetp/runestone.git
-    $ cd runestone
-
-
-You will also need to pull the git tags in order to run Paver in the next few steps:
-
-::
-
-    $ git pull --tags
-
-If you have forked the master runestone repository (bnmnetp/runestone) and have cloned your fork instead of the master repository, you will still have to fetch the tags from the master repository.
-
-::
-
-    $ git pull upstream master --tags
-
-If you haven't set up an upstream repository for pulling in changes see `here <https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes>`_
-
-
-Configure the Book
+What is Runestone?
 ------------------
 
-Although the book looks like a static website, there are quite a few AJAX calls going on in the background.  The Javascript relies on a configuration object called eBookConfig.  To get the right values in the eBookConfig object you need to configure a couple of things prior to running the ``paver`` command to build the book.  We have provided a ``paverconfig.py.prototype`` file that you can simply copy to ``paverconfig.py`` and modify.  It contains the following two lines:
+If you plan to develop on the Runestone project, you should know that there are now **three pieces** of a **local Runestone development environment.**
 
-::
+1. The `Runestone Components <https://github.com/RunestoneInteractive/RunestoneServer>`_ - this is the development version of the library you get when you ``pip install runestone``. *You should examine this first.* See the GitHub repository `HERE <https://github.com/RunestoneInteractive/RunestoneServer>`_, where the README is approximately up to date. If you are *only* interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit -- see #3. You can skip #2.)
 
-    master_url = 'http://127.0.0.1:8000'
-    master_app = 'runestone'
+2. The `Runestone Server <https://github.com/RunestoneInteractive/RunestoneComponents>`_ - this is the application that goes inside a **web2py** server. If you plan to run your own server for an interactive textbook, or develop on the Runestone server, you should install this. See the GitHub repository `HERE <https://github.com/RunestoneInteractive/RunestoneComponents>`_, where the README is approximately up to date.
 
-You can modify the master_url to be the hostname that you are running your app on, but if you are just doing local development you will probably want to leave it alone.  If you omit this step the books will build in the next step using the values above as default values, but you will get a warning message:
+3. **A book** written for the runestone environment to build, deploy, and then serve on your local server. Typically, a book repository will be cloned (and potentially edited) to the appropriate place inside the  Runestone Server application, and can be built using the tools provided by RunestoneComponents. You can see an example of a book created for the Runestone environment on GitHub `HERE <https://github.com/RunestoneInteractive/thinkcspy>`_. See the Runestone Components README for how to build and serve the book content locally.
 
-::
+Note that if you intend *solely* to be a content author and *not* to do any code development for the Runestone project, you should look at the RunestoneComponents repository only.
 
-    'NOTICE:  You are using default values for master_* Make your own paverconfig.py file'
+`HERE <https://github.com/RunestoneInteractive>`_ you can see every GitHub repository managed by RunestoneInteractive.
 
+========
 
-Building the Book
------------------
+**NOTE: This documentation is currently undergoing significant updates. If you wish to develop on the Runestone project, please see the above links.**
 
-Once you the above installed, you can type ``paver allbooks`` from the command
-line and that will build the following targets:
-
-* How to Think Like a Computer Scientist
-* Problem Solving with algorithms and Data Structures using Python
-* An overview page that shows off all the cool features of the Runestone toolkit
-
-The books are built into ``runestone/static/thinkcspy``, ``runestone/static/pythonds`` and ``runestone/static/overview``  assuming that runestone is the name of the folder you cloned into.  When the build is done you can quickly check the build by opening the file ``static/thinkcspy/index.html`` in your browser.
-
-Now before you start web2py its convenient to make runestone the default application.  From web2py/examples, copy routes.patterns.example.py to web2py/routes.py and Modify the three lines that contain the word runestone to look like this::
-
-    default_application = 'runestone'    # ordinarily set in base routes.py
-    default_controller = 'default'  # ordinarily set in app-specific routes.py
-    default_function = 'index'      # ordinarily set in app-specific routes.py
-
-    # routes_app is a tuple of tuples.  The first item in each is a regexp that will
-    # be used to match the incoming request URL. The second item in the tuple is
-    # an applicationname.  This mechanism allows you to specify the use of an
-    # app-specific routes.py. This entry is meaningful only in the base routes.py.
-    #
-    # Example: support welcome, admin, app and myapp, with myapp the default:
-
-
-	routes_app = ((r'/(?P<app>welcome|admin|app)\b.*', r'\g<app>'),
-	              (r'(.*)', r'runestone'),
-	              (r'/?(.*)', r'runestone'))
-
-
-Running the Server
-------------------
-
-You will have to set a few configuration values in the file ``models/1.py``. Copy ``models/1.py.prototype`` to
-``models/1.py`` and open the newly created 1.py. If you don't wish to use a local SQLite database, change the
-``database_uri`` to match your actual credentials.
-
-If you wish to use Janrain Engage to provide social network authentication integration, you will also have to set your
-Janrain API key and domain in 1.py.
-
-Note: If you do *not* wish to use Janrain, you must comment out these lines in ``models/db.py``::
-
-    janrain_form = RPXAccount(request,
-                              api_key=settings.janrain_api_key, # set in 1.py
-                              domain=settings.janrain_domain, # set in 1.py
-                              url=janrain_url)
-    auth.settings.login_form = ExtendedLoginForm(auth, janrain_form) # uncomment this to use both Janrain and web2py auth
-    request.janrain_form = janrain_form # save the form so that it can be added to the user/register controller
-
-and uncomment the line below. This will disable Janrain and only use Web2Py integrated authentication. ::
-
-    auth.settings.login_form = auth # uncomment this to just use web2py integrated authentication
-
-Once you've built the book using the steps above.  You can start the web2py development server by simply running ::
-
-    python web2py.py
-
-If you want to run a server in a mode where you can build custom books from the web
-interface you will want to use this command:
-
-    python web2py.py —password=foo -K runestone –nogui -X
-
-You may want to check the latest web2py docs on the password option.  Its not very
-secure to have the command show up in the process list.  There are ways around that.
-The important bit is the ``-K runestone`` which instructs web2py to start up a
-scheduler process to handle background tasks.
-
-
-This will bring up a little GUI where you can make up an admin password and click "start server".
-When the server is running your browser will open to the welcome application, unless you've changed
-the default application as described above.  To see this app simply use the url:  http://127.0.0.1/runestone
-From there, you can click on the link for "How To Think Like A Computer Scientist" or "Problem Solving With
-Algorithms and Data Structures". (See the section Final Configuration below for instructions on registering
-for one of the courses. Registering allows you to save your progress and work.)
-
-If you get an error at this point the most likely reason is that the settings file isn't recognizing your host and is not setting the database correctly.  These lines in models/0.py are important::
-
-    if 'local' in uname()[1] or 'Darwin' in uname()[0]:
-        settings.database_uri = 'sqlite://storage.sqlite'
-    elif 'webfaction' in uname()[1]:  # production is on webfaction
-        settings.database_uri = 'postgres://production_db:secret@production_server.com/production_db'
-    elif 'luther' in uname()[1]:   # this is my beta machine
-        settings.database_uri = 'sqlite://storage.sqlite'
-    else:
-        raise RuntimeError('Host unknown, settings not configured')
-
-For your own personal development, you want the first clause of the if statement to match. If you are on a Unix-like system,
-you can replace 'Darwin' with the result of running ``uname`` at a terminal. Another option is to replace 'local' with
-your computer's hostname.
-
-Final Configuration
--------------------
-To use the admin functionality you are going to want to do one more bit of configuration:
-
-* Click the "Register" link in the user menu in the upper right corner of the browser window.
-* Fill in the form to create a user account for yourself. You can register for either "How To Think..." (use the course name ``thinkcspy``) or "Problem Solving With..." (use the course name ``pythonds``).
-
-Now, add your new user account to the 'instructors' group using the appadmin
-functionality of web2py:
-
-* Open ``http://127.0.0.1:8000/runestone/appadmin``. Login using the password you supplied when you ran web2py.
-* Click on ``insert new auth_membership``. Select your user account and the instructor group as the two values and click submit.  You are now an instructor.
-
-After you do that, once you're logged into the site, you can visit http://127.0.0.1:8000/runestone/admin to access instructor features
-
-
-Building the prexisting Books
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Once you the above installed, you can type ``paver allbooks`` from the command
-line and that will build the following targets:
-
-* How to Think Like a Computer Scientist
-* Problem Solving with algorithms and Data Structures using Python
-* A development version of everything combined (devcourse)
-
-
-You can quickly check the build by opening the file static/devcourse/index.html in your browser.
-
-
-Starting a Document
--------------------
-
-You can start a new document using the sphinx-quickstart command.  Choose a folder other than the generic source folder to contain your own document. TODO EXPLAIN WHAT THIS MEANS.
 
 Using Special Runestone Extensions
 ----------------------------------
 
-As noted above, Runestone includes all of the pre-existing `ReStructured Text 
-<TODO LINK>`_ formatting -- you can use the documentation at that link for writing up book content, to include formatting like **bold** or *italic* or hyperlinks, etc. Runestone also has several particular **directives**, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and `Parsons Problems 
-<TODO LINK>`_. The `Runestone directives documentation 
-<TODO LINK>`_ includes full documentation of all of the available Runestone directives, including:
+Runestone includes all of the pre-existing `ReStructured Text <http://docutils.sourceforge.net/rst.html>`_ formatting -- you can use the documentation at that link for writing up book content, to include formatting like **bold** or *italic* or hyperlinks, etc. Runestone also has several particular **directives**, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and fill in the blank questions. The Runestone directives documentation includes full documentation of all of the available Runestone directives, including:
 
 * What each directive allows you to create
 * The syntax for using each directive
 * Examples, or links to examples, of how instructors have used these directives in interactive textbook work
 * If applicable, how exercises created by these directives can be graded
-* Available additional developer documentation that explains how interaction with these directives in an interactive textbook are logged
+* Available additional developer documentation as necessary/useful
