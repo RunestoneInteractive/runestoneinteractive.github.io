@@ -347,23 +347,23 @@
   <div class="section" id="activecode">
 <h1>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h1>
 <p>Activecode has Many options:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: codeexample1
-   :nocanvas:  -- do not create a canvas element (optional)
-   :nopre:     -- do not create a pre element (optional)
-   :above:     -- position the canvas above the code (optional)
-   :autorun:   -- run the example as soon as the page is loaded (optional)
-   :caption:   -- add a caption below (optional)
-   :include:   -- include code from another activecode use div_id as the parameter (optional)
-   :hidecode:  -- Initally hide the editing window (optional)
-   :language:  -- Is python by default, but could also be javascript or html
-   :tour_1:
-   :tour_2:
-   :tour_3:
-   :tour_4:
-   :tour_5:
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">codeexample1</span>
+   <span class="p">:</span><span class="n">nocanvas</span><span class="p">:</span>  <span class="o">--</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">create</span> <span class="n">a</span> <span class="n">canvas</span> <span class="n">element</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">nopre</span><span class="p">:</span>     <span class="o">--</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">create</span> <span class="n">a</span> <span class="n">pre</span> <span class="n">element</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">above</span><span class="p">:</span>     <span class="o">--</span> <span class="n">position</span> <span class="n">the</span> <span class="n">canvas</span> <span class="n">above</span> <span class="n">the</span> <span class="n">code</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">autorun</span><span class="p">:</span>   <span class="o">--</span> <span class="n">run</span> <span class="n">the</span> <span class="n">example</span> <span class="k">as</span> <span class="n">soon</span> <span class="k">as</span> <span class="n">the</span> <span class="n">page</span> <span class="ow">is</span> <span class="n">loaded</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span>   <span class="o">--</span> <span class="n">add</span> <span class="n">a</span> <span class="n">caption</span> <span class="n">below</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">include</span><span class="p">:</span>   <span class="o">--</span> <span class="n">include</span> <span class="n">code</span> <span class="kn">from</span> <span class="nn">another</span> <span class="n">activecode</span> <span class="n">use</span> <span class="n">div_id</span> <span class="k">as</span> <span class="n">the</span> <span class="n">parameter</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">hidecode</span><span class="p">:</span>  <span class="o">--</span> <span class="n">Initally</span> <span class="n">hide</span> <span class="n">the</span> <span class="n">editing</span> <span class="n">window</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+   <span class="p">:</span><span class="n">language</span><span class="p">:</span>  <span class="o">--</span> <span class="n">Is</span> <span class="n">python</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="n">but</span> <span class="n">could</span> <span class="n">also</span> <span class="n">be</span> <span class="n">javascript</span> <span class="ow">or</span> <span class="n">html</span>
+   <span class="p">:</span><span class="n">tour_1</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">tour_2</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">tour_3</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">tour_4</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">tour_5</span><span class="p">:</span>
 
-   print(&quot;My first program adds two numbers, 2 and 3:&quot;)
-   print(2 + 3)
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My first program adds two numbers, 2 and 3:&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 
@@ -372,21 +372,21 @@ print("My first program adds two numbers, 2 and 3:")
 print(2 + 3)
 </textarea>
 <p>If you want to invisibly incorporate unittests into the code.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. activecode:: units1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">units1</span>
 
-   def add(a,b):
-      return 4
+   <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+      <span class="k">return</span> <span class="mi">4</span>
 
-   ====
-   import unittestgui
+   <span class="o">====</span>
+   <span class="kn">import</span> <span class="nn">unittestgui</span>
 
-   class myTests(unittestgui.unittest):
+   <span class="k">class</span> <span class="nc">myTests</span><span class="p">(</span><span class="n">unittestgui</span><span class="o">.</span><span class="n">unittest</span><span class="p">):</span>
 
-       def testOne(self):
-           self.assertEqual(add(2,2),4,&quot;A feedback string when the test fails&quot;)
-           self.assertAlmostEqual(add(2.0,3.0),5.0,&quot;Your function failed on inputs of 2.0 and 3.0&quot;)
+       <span class="k">def</span> <span class="nf">testOne</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;A feedback string when the test fails&quot;</span><span class="p">)</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">),</span><span class="mf">5.0</span><span class="p">,</span><span class="s2">&quot;Your function failed on inputs of 2.0 and 3.0&quot;</span><span class="p">)</span>
 
-   myTests().main()
+   <span class="n">myTests</span><span class="p">()</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
 
@@ -409,17 +409,17 @@ myTests().main()
 </div>
 <div class="section" id="codelens">
 <h1>CodeLens<a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre>.. codelens:: codelens_question
-    :breakline: line number, (optional) if present this will pause the trace and ask a question
-    :question: question text
-    :feedback: feedback text
-    :correct: globals.tot    This can refer to any key in the stack trace locals.xxx or even line
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">codelens_question</span>
+    <span class="p">:</span><span class="n">breakline</span><span class="p">:</span> <span class="n">line</span> <span class="n">number</span><span class="p">,</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span> <span class="k">if</span> <span class="n">present</span> <span class="n">this</span> <span class="n">will</span> <span class="n">pause</span> <span class="n">the</span> <span class="n">trace</span> <span class="ow">and</span> <span class="n">ask</span> <span class="n">a</span> <span class="n">question</span>
+    <span class="p">:</span><span class="n">question</span><span class="p">:</span> <span class="n">question</span> <span class="n">text</span>
+    <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">feedback</span> <span class="n">text</span>
+    <span class="p">:</span><span class="n">correct</span><span class="p">:</span> <span class="nb">globals</span><span class="o">.</span><span class="n">tot</span>    <span class="n">This</span> <span class="n">can</span> <span class="n">refer</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">stack</span> <span class="n">trace</span> <span class="nb">locals</span><span class="o">.</span><span class="n">xxx</span> <span class="ow">or</span> <span class="n">even</span> <span class="n">line</span>
 
-    tot = 0
-    prod = 1
-    for i in range(10):
-       tot = tot + i
-       prod = prod * i
+    <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+       <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">+</span> <span class="n">i</span>
+       <span class="n">prod</span> <span class="o">=</span> <span class="n">prod</span> <span class="o">*</span> <span class="n">i</span>
 </pre></div>
 </div>
 
@@ -451,7 +451,7 @@ myTests().main()
 
 
 <script type="text/javascript">
-var codelens_question_trace = {"trace": [{"line": 1, "globals": {}, "ordered_globals": [], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 2, "globals": {"tot": 0}, "ordered_globals": ["tot"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"tot": 0, "prod": 1}, "ordered_globals": ["tot", "prod"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 0, "tot": 0, "prod": 1}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 0, "tot": 0, "prod": 1}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 0, "tot": 0, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 1, "tot": 0, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 1, "tot": 1, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 1, "tot": 1, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 2, "tot": 1, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 2, "tot": 3, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 2, "tot": 3, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 3, "tot": 3, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 3, "tot": 6, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 3, "tot": 6, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 4, "tot": 6, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 4, "tot": 10, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 4, "tot": 10, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 5, "tot": 10, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 5, "tot": 15, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 5, "tot": 15, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 6, "tot": 15, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 6, "tot": 21, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 6, "tot": 21, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 7, "tot": 21, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 7, "tot": 28, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 7, "tot": 28, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 8, "tot": 28, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 8, "tot": 36, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 8, "tot": 36, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 4, "globals": {"i": 9, "tot": 36, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>", "question": {"feedback": "Use the global variables box to look at the current values of tot and i.", "div": "codelens_question_modal", "correct": "globals.tot", "text": "What is the value of tot after the line with the red arrow executes?"}}, {"line": 5, "globals": {"i": 9, "tot": 45, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 9, "tot": 45, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "step_line", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}, {"line": 3, "globals": {"i": 9, "tot": 45, "prod": 0}, "ordered_globals": ["tot", "prod", "i"], "event": "return", "stack_to_render": [], "heap": {}, "stdout": "", "func_name": "<module>"}], "code": "tot = 0\nprod = 1\nfor i in range(10):\n   tot = tot + i\n   prod = prod * i"};
+var codelens_question_trace = {"code": "tot = 0\nprod = 1\nfor i in range(10):\n   tot = tot + i\n   prod = prod * i", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["tot"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"tot": 0}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["tot", "prod"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"prod": 1, "tot": 0}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 0, "prod": 1, "tot": 0}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 0, "prod": 1, "tot": 0}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 0, "prod": 0, "tot": 0}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 1, "prod": 0, "tot": 0}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 1, "prod": 0, "tot": 1}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 1, "prod": 0, "tot": 1}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 2, "prod": 0, "tot": 1}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 2, "prod": 0, "tot": 3}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 2, "prod": 0, "tot": 3}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 3, "prod": 0, "tot": 3}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 3, "prod": 0, "tot": 6}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 3, "prod": 0, "tot": 6}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 4, "prod": 0, "tot": 6}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 4, "prod": 0, "tot": 10}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 4, "prod": 0, "tot": 10}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 5, "prod": 0, "tot": 10}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 5, "prod": 0, "tot": 15}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 5, "prod": 0, "tot": 15}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 6, "prod": 0, "tot": 15}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 6, "prod": 0, "tot": 21}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 6, "prod": 0, "tot": 21}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 7, "prod": 0, "tot": 21}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 7, "prod": 0, "tot": 28}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 7, "prod": 0, "tot": 28}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 8, "prod": 0, "tot": 28}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 8, "prod": 0, "tot": 36}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 8, "prod": 0, "tot": 36}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "question": {"text": "What is the value of tot after the line with the red arrow executes?", "div": "codelens_question_modal", "feedback": "Use the global variables box to look at the current values of tot and i.", "correct": "globals.tot"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 9, "prod": 0, "tot": 36}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 9, "prod": 0, "tot": 45}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 9, "prod": 0, "tot": 45}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["tot", "prod", "i"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"i": 9, "prod": 0, "tot": 45}, "heap": {}, "line": 3, "event": "return"}]};
 var codelens_question_vis;
 
 $(document).ready(function() {
@@ -461,7 +461,7 @@ $(document).ready(function() {
                                     verticalStack: false,
                                     heightChangeCallback: redrawAllVisualizerArrows,
                                     codeDivWidth: 500,
-                                    lang : 'py3'
+                                    lang : 'py2'
                                     });
         attachLoggers(codelens_question_vis,'codelens_question');
         styleButtons('codelens_question');
@@ -495,30 +495,30 @@ $(window).resize(function() {
 <h1>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="html-5">
 <h2>HTML 5<a class="headerlink" href="#html-5" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. video:: videoinfo
-    :controls:   -- show the controls if present
-    :thumb: _static/activecodethumb.png   -- thumbnail image
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">videoinfo</span>
+    <span class="p">:</span><span class="n">controls</span><span class="p">:</span>   <span class="o">--</span> <span class="n">show</span> <span class="n">the</span> <span class="n">controls</span> <span class="k">if</span> <span class="n">present</span>
+    <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="n">_static</span><span class="o">/</span><span class="n">activecodethumb</span><span class="o">.</span><span class="n">png</span>   <span class="o">--</span> <span class="n">thumbnail</span> <span class="n">image</span>
 
-    http://media.interactivepython.org/thinkcsVideos/activecodelens.mov
-    http://media.interactivepython.org/thinkcsVideos/activecodelens.webm
+    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">thinkcsVideos</span><span class="o">/</span><span class="n">activecodelens</span><span class="o">.</span><span class="n">mov</span>
+    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">thinkcsVideos</span><span class="o">/</span><span class="n">activecodelens</span><span class="o">.</span><span class="n">webm</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="youtube">
 <h2>YouTube<a class="headerlink" href="#youtube" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. youtube:: anwy2MPT5RE
-    :height: 315
-    :width: 560
-    :align: left
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">youtube</span><span class="p">::</span> <span class="n">anwy2MPT5RE</span>
+    <span class="p">:</span><span class="n">height</span><span class="p">:</span> <span class="mi">315</span>
+    <span class="p">:</span><span class="n">width</span><span class="p">:</span> <span class="mi">560</span>
+    <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">left</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="vimeo">
 <h2>Vimeo<a class="headerlink" href="#vimeo" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>.. vimeo:: anwy2MPT5RE
-    :height: 315
-    :width: 560
-    :align: left
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">vimeo</span><span class="p">::</span> <span class="n">anwy2MPT5RE</span>
+    <span class="p">:</span><span class="n">height</span><span class="p">:</span> <span class="mi">315</span>
+    <span class="p">:</span><span class="n">width</span><span class="p">:</span> <span class="mi">560</span>
+    <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">left</span>
 </pre></div>
 </div>
 </div>
@@ -528,7 +528,7 @@ $(window).resize(function() {
 <div class="section" id="multiple-choice">
 <h2>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
 <p>Multiple choice questions with feedback for each incorrect response.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicemf:: question1_1
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoicemf:: question1_1
    :answer_a: Python
    :answer_b: Java
    :answer_c: C
@@ -544,19 +544,19 @@ $(window).resize(function() {
 </div>
 
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-10: What programming language does this site help you to learn?
-            <li data-component="answer" data-correct id="question1_1_opt_a">Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
+            Q-4: What programming language does this site help you to learn?
+            <li data-component="answer" data-correct id="question1_1_opt_a">(A) Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
             
-            <li data-component="answer"  id="question1_1_opt_b">Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
+            <li data-component="answer"  id="question1_1_opt_b">(B) Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
             
-            <li data-component="answer"  id="question1_1_opt_c">C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
+            <li data-component="answer"  id="question1_1_opt_c">(C) C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
             
-            <li data-component="answer"  id="question1_1_opt_d">ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  You can use Python to write functional programs as well.</li>
+            <li data-component="answer"  id="question1_1_opt_d">(D) ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  You can use Python to write functional programs as well.</li>
             
 
             </ul>
             <p>Multiple choice with multiple answers</p>
-<div class="highlight-python"><div class="highlight"><pre>.. mchoicema:: question1_2
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoicema:: question1_2
    :answer_a: red
    :answer_b: yellow
    :answer_c: black
@@ -572,14 +572,14 @@ $(window).resize(function() {
 </div>
 
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
-            Q-11: Which colors might be found in a rainbow? (choose all that are correct)
-            <li data-component="answer" data-correct id="question1_2_opt_a">red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
+            Q-5: Which colors might be found in a rainbow? (choose all that are correct)
+            <li data-component="answer" data-correct id="question1_2_opt_a">(A) red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
             
-            <li data-component="answer" data-correct id="question1_2_opt_b">yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
+            <li data-component="answer" data-correct id="question1_2_opt_b">(B) yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
             
-            <li data-component="answer"  id="question1_2_opt_c">black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
+            <li data-component="answer"  id="question1_2_opt_c">(C) black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
             
-            <li data-component="answer" data-correct id="question1_2_opt_d">green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
+            <li data-component="answer" data-correct id="question1_2_opt_d">(D) green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
             
 
             </ul>
@@ -587,7 +587,7 @@ $(window).resize(function() {
 <div class="section" id="fill-in-the-blank">
 <h2>Fill in the Blank<a class="headerlink" href="#fill-in-the-blank" title="Permalink to this headline">¶</a></h2>
 <p>Fill in the blank with regular expression matching for the answer</p>
-<div class="highlight-python"><div class="highlight"><pre>.. fillintheblank:: baseconvert1
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. fillintheblank:: baseconvert1
    :correct: \\b31\\b
    :blankid: baseconvert1_ans1
 
@@ -599,31 +599,31 @@ $(window).resize(function() {
 <h2>Parson&#8217;s<a class="headerlink" href="#parson-s" title="Permalink to this headline">¶</a></h2>
 <p>Parson&#8217;s Problems:</p>
 <p>Question text comes first, then <code class="docutils literal"><span class="pre">-----</span></code> separates the question text from the code.  You provide the correct code, and the javascript takes care of mixing it up.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
 
-   Construct a block of code that correctly implements the accumulator pattern.
-   -----
-   x = 0
-   for i in range(10)
-      x = x + 1
+   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>You can also group statements using <code class="docutils literal"><span class="pre">=====</span></code>  In the example below the for loop and its body will appear as one block to position in the problem.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. parsonsprob:: question1_100_4
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
 
-   Construct a block of code that correctly implements the accumulator pattern.
-   -----
-   x = 0
-   =====
-   for i in range(10)
-      x = x + 1
-   =====
-   print(x)
+   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="o">=====</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+   <span class="o">=====</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 
-    <pre data-component="parsons" id="question1_100_4" data-maxdist=5>
-        <span data-question>Q-12: Construct a block of code that correctly implements the accumulator pattern.</span>x = 0
+    <pre data-component="parsons" id="question1_100_4">
+        <span data-question>Q-6: Construct a block of code that correctly implements the accumulator pattern.</span>x = 0
 ---
 for i in range(10)
    x = x + 1
@@ -633,30 +633,30 @@ print(x)</pre>
 <div class="section" id="disqus">
 <h2>Disqus<a class="headerlink" href="#disqus" title="Permalink to this headline">¶</a></h2>
 <p>You can embed disqus discussions:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. disqus::
-    :shortname: Your registered  shortname with disqus
-    :identifier: discussion1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+    <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">Your</span> <span class="n">registered</span>  <span class="n">shortname</span> <span class="k">with</span> <span class="n">disqus</span>
+    <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">discussion1</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="tabs-and-tab-groups">
 <h2>Tabs and Tab Groups<a class="headerlink" href="#tabs-and-tab-groups" title="Permalink to this headline">¶</a></h2>
 <p>You can create a section that contains several tabs.  This is useful for exercises, and in other situations where you may want to partially reveal content.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. tabbed:: exercise1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">tabbed</span><span class="p">::</span> <span class="n">exercise1</span>
 
-    .. tab:: Question 1
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Question</span> <span class="mi">1</span>
 
-        Write a program that prints &quot;Hello, world&quot;.
+        <span class="n">Write</span> <span class="n">a</span> <span class="n">program</span> <span class="n">that</span> <span class="n">prints</span> <span class="s2">&quot;Hello, world&quot;</span><span class="o">.</span>
 
-        .. activecode:: helloworld
+        <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">helloworld</span>
 
-            print(&quot;Hello, world&quot;)
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
 
-    .. tab:: Discussion
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Discussion</span>
 
-        .. disqus::
-            :shortname: interactivepython
-            :identifier: helloworlddiscussion
+        <span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+            <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
+            <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">helloworlddiscussion</span>
 </pre></div>
 </div>
 <div id='exercise1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Question 1" >
@@ -710,7 +710,7 @@ print("Hello, world")
 <div class="section" id="polls">
 <h2>Polls<a class="headerlink" href="#polls" title="Permalink to this headline">¶</a></h2>
 <p>Allow students to vote or rate things on a scale</p>
-<div class="highlight-python"><div class="highlight"><pre>.. poll:: pollid1
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. poll:: pollid1
    :scale: 10
    :allowcomment:
 
@@ -743,17 +743,17 @@ print("Hello, world")
 <div class="section" id="reveal">
 <h2>Reveal<a class="headerlink" href="#reveal" title="Permalink to this headline">¶</a></h2>
 <p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.</p>
-<div class="highlight-python"><div class="highlight"><pre>.. reveal:: revealid1
-    :showtitle: Reveal Content
-    :hidetitle: Hide Content
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">reveal</span><span class="p">::</span> <span class="n">revealid1</span>
+    <span class="p">:</span><span class="n">showtitle</span><span class="p">:</span> <span class="n">Reveal</span> <span class="n">Content</span>
+    <span class="p">:</span><span class="n">hidetitle</span><span class="p">:</span> <span class="n">Hide</span> <span class="n">Content</span>
 
-    This content starts out hidden. It&#39;s visibility can be toggled by using the Show/Hide button.
+    <span class="n">This</span> <span class="n">content</span> <span class="n">starts</span> <span class="n">out</span> <span class="n">hidden</span><span class="o">.</span> <span class="n">It</span><span class="s1">&#39;s visibility can be toggled by using the Show/Hide button.</span>
 
-    The reveal block can also contain other directives (ActiveCode, Disqus block, etc):
+    <span class="n">The</span> <span class="n">reveal</span> <span class="n">block</span> <span class="n">can</span> <span class="n">also</span> <span class="n">contain</span> <span class="n">other</span> <span class="n">directives</span> <span class="p">(</span><span class="n">ActiveCode</span><span class="p">,</span> <span class="n">Disqus</span> <span class="n">block</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
 
-    .. activecode:: ac11
+    <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac11</span>
 
-        print (&quot;Hello, world&quot;)
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 
@@ -792,7 +792,7 @@ print ("Hello, world")
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.2.
     </p>
   </div>
 </footer>

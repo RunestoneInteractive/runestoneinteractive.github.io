@@ -6,6 +6,11 @@ The Runestone system uses reStructuredText (.rst) as its primary markup language
 We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment. 
 
 
+Important Notes
+---------------
+
+1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment. 
+
 What is Runestone?
 ------------------
 
@@ -21,7 +26,6 @@ Note that if you intend *solely* to be a content author and *not* to do any code
 
 `HERE <https://github.com/RunestoneInteractive>`_ you can see every GitHub repository managed by RunestoneInteractive.
 
-========
 
 **NOTE: This documentation is currently undergoing significant updates. If you wish to develop on the Runestone project, please see the above links.**
 
@@ -35,4 +39,4 @@ Runestone includes all of the pre-existing `ReStructured Text <http://docutils.s
 * The syntax for using each directive
 * Examples, or links to examples, of how instructors have used these directives in interactive textbook work
 * If applicable, how exercises created by these directives can be graded
-* Available additional developer documentation as necessary/useful
+* Available additional developer documentation for each directive
