@@ -551,6 +551,8 @@ The fill in the blank Runestone directive, ``.. fillintheblank::``, allows you t
 
 The basic format is like so:
 
+UNFINISHED FROM THIS POINT
+
 ::
 
   .. fillintheblank:: unique_identifier_string_no_spaces
@@ -591,5 +593,5 @@ The basic format is like so:
 
 
 
-UNFINISHED FROM THIS POINT
+
 
