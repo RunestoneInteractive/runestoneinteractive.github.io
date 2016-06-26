@@ -449,10 +449,11 @@ The required argument is the 'filename' (this is not reliant on any actual filen
 
 ``cols``  -- Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.
 
+
 Multiple Choice
 ~~~~~~~~~~~~~~~
 
-There are two types of multiple choice question directives available in Runestone: single option multiple choice questions, the ``.. mchoicemf::`` directive, where only one selection is correct, and the ``.. mchoicema::`` directive, where multiple answers may be selected (and multiple answers may be correct), respectively. 
+There are two types of multiple choice question directives available in Runestone: single option multiple choice questions, the ``.. mchoice::`` directive, where only one selection is correct, and the ``.. mchoicema::`` directive, where multiple answers may be selected (and multiple answers may be correct), respectively. (Previously, what is now ``mchoice`` required a directive name ``mchoicemf``. For now, this works, but it is deprecated -- you should use ``mchoice`` if you are writing new questions.)
 
 
 **Examples in reStructured Text**
@@ -461,7 +462,7 @@ Multiple Choice with One Correct Answer
 
 ::
 
-    .. mchoicemf:: question1_1
+    .. mchoice:: question1_1
        :answer_a: Python
        :answer_b: Java
        :answer_c: C
@@ -474,239 +475,121 @@ Multiple Choice with One Correct Answer
 
        What programming language does this site help you to learn?
 
+Multiple Choice with Multiple Answer(s)
 
+::
 
-  
-**UNFINISHED FROM THIS POINT**
+    .. mchoicema:: question1_2
+       :answer_a: xyZ
+       :answer_b: new_var_3
+       :answer_c: 3things
+       :answer_d: hello-there
+       :correct: a,b
+       :feedback_a: Any combination of letters is a valid variable name in Python.
+       :feedback_b: Underscores are acceptable to include in Python variable names, as long as they are not the first character in the variable name.
+       :feedback_c: Variable names can't begin with digits in Python.
+       :feedback_d: Hyphens and dashes are not acceptable characters to include in variable names in Python.
 
+       Which of these are valid variable names in Python? (Choose all that are correct)
 
-**Description**
+**Examples**
 
-.. mchoicemf:: question1_1
-   :answer_a: Python
-   :answer_b: Java
-   :answer_c: C
-   :answer_d: ML
-   :correct: a
-   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
-   :feedback_b: Java is a good object oriented language but it has some details that make it hard for a beginner.
-   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
-   :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
+.. mchoice:: question1_1
+    :answer_a: Python
+    :answer_b: Java
+    :answer_c: C
+    :answer_d: ML
+    :correct: a
+    :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.
+    :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
+    :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
+    :feedback_d: No, ML is a functional programming language.  (You can use Python to write functional programs as well!)
 
-   What programming language does this book help you to learn?
-
-
-
-**Arguments**
-
-**Optional Arguments**
-
-``:answer_a:``, ``:answer_b:``, ``:answer_c:``, ``:answer_d:``, ``:answer_e:``  You can provide up to five different possible correct answers.
-
-``:correct:``  The single correct answer
-
-``:feedback_a:``, ``:feedback_b:``, ``:feedback_c:``, ``:feedback_d:``, ``:feedback_e:``  Each answer can have its own feedback.
-
-``:iscode:``  Tells the directive processor that the question text should be treated as code.
-
-
-**Multiple Choice Multiple Answer**
-
-This next type of question allows more than one correct answer to be required.  The feedback will tell you whether you have the
-correct number as well as the feedback for each.
-
+    What programming language does this site help you to learn?
 
 .. mchoicema:: question1_2
-   :answer_a: red
-   :answer_b: yellow
-   :answer_c: black
-   :answer_d: green
-   :correct: a,b,d
-   :feedback_a: Red is a definitely on of the colors.
-   :feedback_b: Yes, yellow is correct.
-   :feedback_c: Remember the acronym...ROY G BIV.  B stands for blue.
-   :feedback_d: Yes, green is one of the colors.
+    :answer_a: xyZ
+    :answer_b: new_var_3
+    :answer_c: 3things
+    :answer_d: hello-there
+    :correct: a,b
+    :feedback_a: Any combination of letters is a valid variable name in Python.
+    :feedback_b: Underscores are acceptable to include in Python variable names, as long as they are not the first character in the variable name.
+    :feedback_c: Variable names can't begin with digits in Python.
+    :feedback_d: Hyphens and dashes are not acceptable characters to include in variable names in Python.
 
-   Which colors might be found in a rainbow? (choose all that are correct)
+    Which of these are valid variable names in Python? (Choose all that are correct)
+
+**Required Arguments**
+
+Unique identifier for the question, e.g. ``question1_2``. You also must have at least ``answer_a``, and the ``correct`` argument. 
+
+The value for the ``correct`` argument must correspond to an answer you've included, e.g. if you have included ``:answer_a:`` and ``:answer_b:`` only, you cannot use ``:correct: c``.
+
+For *Multiple Choice Multiple Answer*, you may have more than one correct answer, comma-separated, as seen in the raw RST examples above. For *Multiple Choice Single Answer*, you must have only one correct answer.
 
 **Optional Arguments**
 
-``:answer_a:``, ``:answer_b:``, ``:answer_c:``, ``:answer_d:``, ``:answer_e:``  You can provide up to five different possible correct answers.
+*Multiple Choice Single Answer*
 
-``:correct:``  a comma separated list of the correct answers
+``:answer_a:``, ``:answer_b:``, ``:answer_c:``, ``:answer_d:``, ``:answer_e:``  You can provide up to five different possible correct answers, like so. (See **required arguments** above.)
 
-``:feedback_a:``, ``:feedback_b:``, ``:feedback_c:``, ``:feedback_d:``, ``:feedback_e:``  Each answer can have its own feedback.
+``:feedback_a:``, ``:feedback_b:``, ``:feedback_c:``, ``:feedback_d:``, ``:feedback_e:``  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question.
 
-``:iscode:``  Tells the directive processor that the question text should be treated as code.
+
+*Multiple Choice Multiple Answer*
+
+``:answer_a:``, ``:answer_b:``, ``:answer_c:``, ``:answer_d:``, ``:answer_e:``  You can provide up to five different possible correct answers. (See **required arguments** above.)
+
+``:feedback_a:``, ``:feedback_b:``, ``:feedback_c:``, ``:feedback_d:``, ``:feedback_e:``  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question, and that question writers consider how feedback may be useful for questions which have multiple correct answers!
 
 
 Fill in the Blank
 ~~~~~~~~~~~~~~~~~
 
-Another type of question allows you as the instructor to ask for a value.  You can test for the value using Javascript regular expressions.  For example:
+The fill in the blank Runestone directive, ``.. fillintheblank::``, allows you to ask for a value to fill in the rest of a statement (in English or code).  You can test for the value submitted using JavaScript regular expressions. 
+
+The basic format is like so:
 
 ::
 
-    .. fillintheblank:: postfix1
-       :casei:
-       :correct: \\b10\\s+3\\s+5\\s*\\*\\s*16\\s+4\\s*-\\s*/\\s*\\+
-       :feedback1:  ('10.*3.*5.*16.*4', 'The numbers appear to be in the correct order check your operators')
-       :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
+  .. fillintheblank:: unique_identifier_string_no_spaces
+     :iscode: boolean
+     :correct: somestring in js regexp format
+     :feedback: this string will always be displayed if wrong
+     :feedback: ('regexp2 here', 'this message appears if that regexp2 matches submission')
+     [note that you can have up to 3 extra specific feedbacks]
+     Question text goes here.
 
-       Without using the activecode infixToPostfix function, convert the following expression to postfix <br> 10 + 3 * 5 / (16 - 4) ___
 
-**Description**
+**Example in reStructured Text**
 
-Here is how the fill in the blank question is formatted.
+::
 
-   .. fillintheblank:: postfix1
-      :casei:
-      :blankid: postfix1_blank
-      :correct: \\b10\\s+3\\s+5\\s*\\*\\s*16\\s+4\\s*-\\s*/\\s*\\+
-      :feedback1:  ('10.*3.*5.*16.*4', 'The numbers appear to be in the correct order check your operators')
-      :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
+  .. fillintheblank:: baseconvert1
 
-      Without using the activecode infixToPostfix function, convert the following expression to postfix <br> 10 + 3 * 5 / (16 - 4) ___
+     :correct: \\b31\\b
+     :blankid: baseconvert1_ans1
 
+     What is value of 25 expressed as an octal number (base 8) :textfield:`baseconvert1_ans1::mini`
+
+
+
+**Example**
+
+.. fillintheblank:: baseconvert1
+
+     :correct: \\b31\\b
+     :blankid: baseconvert1_ans1
+
+     What is value of 25 expressed as an octal number (base 8) :textfield:`baseconvert1_ans1::mini`
+
+**Required Arguments**
 
 **Optional Arguments**
 
-``:iscode:``  Tells the processor that the question text is code.
-
-``:correct:``  A regular expression matching the correct answer
-``:feedback1:`` (re,text)  a regular expression matching an incorrect answer with feedback specific to that answer.
-``:feedback2:``
-``:casei:``  Tells the regular expression match to match using a case insensitive match.
-
-
-Parson's Problems
-~~~~~~~~~~~~~~~~~
-
-And finally here is a way of giving your students some simple programming problems where the code is already there for them but not indented or in the correct order.  Use drag-and-drop to get everthing right.
 
 
 
-**Example**
+UNFINISHED FROM THIS POINT
 
-Here is a simple example:
-
-::
-
-    .. parsonsprob:: question1_100_4
-
-       Construct a block of code that correctly implements the accumulator pattern.
-       -----
-       x = 0
-       for i in range(10)
-          x = x + 1
-
-You can also group lines of code together using === to delimit the different blocks.
-::
-
-    .. parsonsprob:: question1_100_5
-
-       Solve this problem.
-       -----
-       def findmax(alist):
-       =====
-          if len(alist) == 0:
-             return None
-       =====
-          curmax = alist[0]
-          for item in alist:
-       =====
-             if item &gt; curmax:
-       =====
-                curmax = item
-       =====
-          return curmax
-
-
-Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson's problem looks like:
-
-.. parsonsprob:: question1_100_5
-
-   Solve this problem.
-   -----
-   def findmax(alist):
-   =====
-      if len(alist) == 0:
-         return None
-   =====
-      curmax = alist[0]
-      for item in alist:
-   =====
-         if item &gt; curmax:
-   =====
-            curmax = item
-   =====
-      return curmax
-
-
-
-**Optional Arguments**
-
-There are no optional arguments for the parson's problem directive.
-
-
-
-Disqus Comment Box
-~~~~~~~~~~~~~~~~~~
-
-**Example**
-
-Here is an example:
-
-::
-
-    .. disqus::
-        :shortname: interactivepython
-        :identifier: overview.html
-
-
-**Description**
-Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.
-
-**Arguments**
-There are 2 required arguments, ``shortname`` and ``identifier``. The shortname is used to identify your site to
-Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.
-
-Tabbed Question
-~~~~~~~~~~~~~~~
-
-**Example**
-
-Here is an example:
-
-::
-
-    .. tabbed:: tab_div
-
-        .. tab:: Question_1
-
-            Write a program that prints "Hello, world".
-
-            .. activecode:: ac_example1
-
-                print("Hello, world")
-
-        .. tab:: Discussion
-
-            .. disqus::
-                :shortname: interactivepython
-                :identifier: question1discussion
-
-
-**Description**
-This directive creates a tabbed interface. Each tab can contain one or more of the other directives, question types, or other content. For example, an author could write a question, and provide a tab that has a possible solution as well as a Disqus block so that users could discuss the question.
-
-**Arguments**
-The tabbed directive takes 1 argument, the name of the div containing all the tabbed content. The directive also must be provided one or more tab directives, each taking an argument specifiying the name of the tab.
-
-
-
-.. raw:: html
-
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(createEditors);
-    </script>
