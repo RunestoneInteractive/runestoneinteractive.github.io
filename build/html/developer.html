@@ -76,15 +76,9 @@
     <script type="text/javascript" src="_static/timeddnd.js"></script>
     <script type="text/javascript" src="_static/livecode.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
-    <script type="text/javascript" src="_static/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="_static/lib/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="_static/lib/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="_static/lib/underscore-min.js"></script>
-    <script type="text/javascript" src="_static/lib/lis.js"></script>
-    <script type="text/javascript" src="_static/parsons_setup.js"></script>
+    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
-    <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
     <script type="text/javascript" src="_static/timedparsons.js"></script>
     <script type="text/javascript" src="_static/poll.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
@@ -106,8 +100,8 @@
     <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
-    <link rel="next" title="Extension Authors" href="writingAnExtension.html" />
-    <link rel="prev" title="Welcome to Runestone Interactive’s documentation!" href="index.html" />
+    <link rel="next" title="Runestone Directives Documentation" href="directives.html" />
+    <link rel="prev" title="User Guide for Instructors" href="instructor_users.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -295,22 +289,9 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">Developer Documentation for Runestone Interactive Tools</a><ul>
-<li><a class="reference internal" href="#content-authors">Content Authors</a></li>
 <li><a class="reference internal" href="#important-notes">Important Notes</a></li>
-<li><a class="reference internal" href="#what-is-runestone">What is Runestone?</a><ul>
-<li><a class="reference internal" href="#starting-a-document">Starting a Document</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#using-runestone-extensions-of-restructuredtext-markup">Using Runestone Extensions of reStructuredText markup</a><ul>
-<li><a class="reference internal" href="#video">Video</a></li>
-<li><a class="reference internal" href="#activecode">Activecode</a></li>
-<li><a class="reference internal" href="#codelens">Codelens</a></li>
-<li><a class="reference internal" href="#datafile">Datafile</a></li>
-<li><a class="reference internal" href="#assessments">Assessments</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#disqus-comment-box">Disqus Comment Box</a></li>
-<li><a class="reference internal" href="#tabbed-question">Tabbed Question</a></li>
+<li><a class="reference internal" href="#development-parts">Development Parts</a></li>
+<li><a class="reference internal" href="#using-special-runestone-extensions">Using Special Runestone Extensions</a></li>
 </ul>
 </li>
 </ul>
@@ -320,14 +301,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Welcome to Runestone Interactive&#8217;s documentation!" data-toggle="tooltip">
-    <a href="index.html" >
+  <li id="relations-prev" title="Previous Chapter - User Guide for Instructors" data-toggle="tooltip">
+    <a href="instructor_users.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - Extension Authors' data-toggle="tooltip" >
-    <a href="writingAnExtension.html" >
+  <li id="relations-next" title='Next Chapter - Runestone Directives Documentation' data-toggle="tooltip" >
+    <a href="directives.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -361,438 +342,55 @@
   
   <div class="section" id="developer-documentation-for-runestone-interactive-tools">
 <h1>Developer Documentation for Runestone Interactive Tools<a class="headerlink" href="#developer-documentation-for-runestone-interactive-tools" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="content-authors">
-<h2>Content Authors<a class="headerlink" href="#content-authors" title="Permalink to this headline">¶</a></h2>
 <p>The Runestone system uses reStructuredText (.rst) as its primary markup language.  reStructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.</p>
-</div>
+<p>We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.</p>
 <div class="section" id="important-notes">
 <h2>Important Notes<a class="headerlink" href="#important-notes" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.</li>
 </ol>
 </div>
-<div class="section" id="what-is-runestone">
-<h2>What is Runestone?<a class="headerlink" href="#what-is-runestone" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="development-parts">
+<h2>Development Parts<a class="headerlink" href="#development-parts" title="Permalink to this headline">¶</a></h2>
 <p>If you plan to develop on the Runestone project, you should know that there are now <strong>three pieces</strong> of a <strong>local Runestone development environment.</strong></p>
 <ol class="arabic simple">
-<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Components</a> - this is the development version of the library you get when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">runestone</span></code>. <em>You should examine this first.</em> See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">HERE</a>, where the README is approximately up to date. If you are <em>only</em> interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit &#8211; see #3. You can skip #2.)</li>
+<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Components</a> - this is the development version of the library you get when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">runestone</span></code>. <em>You should examine this first.</em> See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date. If you are <em>only</em> interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit &#8211; see #3. You can skip #2.)</li>
 <li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Server</a> - this is the application that goes inside a <strong>web2py</strong> server. If you plan to run your own server for an interactive textbook, or develop on the Runestone server, you should install this. See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date.</li>
 <li><strong>A book</strong> written for the runestone environment to build, deploy, and then serve on your local server. Typically, a book repository will be cloned (and potentially edited) to the appropriate place inside the  Runestone Server application, and can be built using the tools provided by RunestoneComponents. You can see an example of a book created for the Runestone environment on GitHub <a class="reference external" href="https://github.com/RunestoneInteractive/thinkcspy">HERE</a>. See the Runestone Components README for how to build and serve the book content locally.</li>
 </ol>
 <p>Note that if you intend <em>solely</em> to be a content author and <em>not</em> to do any code development for the Runestone project, you should look at the RunestoneComponents repository only.</p>
 <p><a class="reference external" href="https://github.com/RunestoneInteractive">HERE</a> you can see every GitHub repository managed by RunestoneInteractive.</p>
-<hr class="docutils" />
-<div class="section" id="starting-a-document">
-<h3>Starting a Document<a class="headerlink" href="#starting-a-document" title="Permalink to this headline">¶</a></h3>
 <p><strong>NOTE: This documentation is currently undergoing significant updates. If you wish to develop on the Runestone project, please see the above links.</strong></p>
 </div>
-</div>
-<div class="section" id="using-runestone-extensions-of-restructuredtext-markup">
-<h2>Using Runestone Extensions of reStructuredText markup<a class="headerlink" href="#using-runestone-extensions-of-restructuredtext-markup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="video">
-<h3>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h3>
-<p>The video directive is perhaps the easiest, so I&#8217;ll start by describing that one.  As you may imagine, the job of the video directive is to include a video in the final product.  Here is what it looks like in restructuredText.</p>
-<p><strong>Example</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">list_unique</span>
-   <span class="p">:</span><span class="n">controls</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
-
-   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">mov</span>
-   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">webm</span>
-</pre></div>
-</div>
-<p><strong>Description</strong></p>
-<p>All directives start out with <code class="docutils literal"><span class="pre">..</span></code> followed by the name of the directive, in this case <code class="docutils literal"><span class="pre">video::</span></code>  Any required arguments follow after the <code class="docutils literal"><span class="pre">::</span></code>.</p>
-<p><strong>Required Arguments</strong></p>
-<p>The video directive has one required argument which is a unique identifier for the video. This is for logging purposes, as well as a Javascript necessity for managing the thumbnail and controls.</p>
-<p><strong>Optional Arguments</strong></p>
-<p>There are two optional arguments to the video directive.</p>
-<p><code class="docutils literal"><span class="pre">:controls:</span></code>  The controls argument is a flag that if present tells sphinx to generate the usual set of video controls, play, pause, rewind, fast forward. If not present the video will automatically play when the page is loaded.</p>
-<p><code class="docutils literal"><span class="pre">:thumb:</span></code> references an image that will serve as the thumbnail for this video. If this parameter is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail.  clicking on the thumbnail will cause the full video to appear at full size.   If the <code class="docutils literal"><span class="pre">:thumb:</span></code> directive is not present then the video will appear on the page in its full size.</p>
-<p><strong>Content</strong></p>
-<p>The content lines of the video directive let you specify as many video sources as you need.  Usually I specify two videos, one in mov format and the other in webm format.  This seems to cover all the browsers.</p>
-<p>To give you an idea of what happens when sphinx processes a video directive here is the html and javascript output:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;a id=&quot;list_unique_thumb&quot; &gt; &lt;img src=&quot;../_static/videothumb.png&quot; /&gt;&lt;/a&gt;
-&lt;div id=&quot;list_unique&quot; class=&quot;video_popup&quot; &gt;
-&lt;video controls  &gt;
-    &lt;source src=&quot;http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.mov&quot; type=&quot;video/mp4&quot;&gt;&lt;/source&gt;
-    &lt;source src=&quot;http://knuth.luther.edu/~pythonworks/pythondsVideos/list_unique.webm&quot; type=&quot;video/webm&quot;&gt;&lt;/source&gt;
-    No supported video types
-&lt;/video&gt;
-&lt;/div&gt;
-&lt;script&gt;
-   jQuery(function($) {
-      $(&#39;#list_unique_thumb&#39;).click(function(e) {
-         $(&#39;#list_unique&#39;).show();
-         $(&#39;#list_unique_thumb&#39;).hide();
-         logBookEvent({&#39;event&#39;:&#39;video&#39;,&#39;act&#39;:&#39;play&#39;,&#39;div_id&#39;: &#39;list_unique&#39;});
-         // Log the run event
-      });
-   });
-&lt;/script&gt;
-</pre></div>
-</div>
-<p><strong>TODO</strong></p>
+<div class="section" id="using-special-runestone-extensions">
+<h2>Using Special Runestone Extensions<a class="headerlink" href="#using-special-runestone-extensions" title="Permalink to this headline">¶</a></h2>
+<p>Runestone includes all of the pre-existing <a class="reference external" href="http://docutils.sourceforge.net/rst.html">ReStructured Text</a> formatting &#8211; you can use the documentation at that link for writing up book content, to include formatting like <strong>bold</strong> or <em>italic</em> or hyperlinks, etc. Runestone also has several particular <strong>directives</strong>, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and fill in the blank questions. The Runestone directives documentation includes full documentation of all of the available Runestone directives, including:</p>
 <ul class="simple">
-<li>embed Vimeo</li>
-<li>embed youtube</li>
+<li>What each directive allows you to create</li>
+<li>The syntax for using each directive</li>
+<li>Examples, or links to examples, of how instructors have used these directives in interactive textbook work</li>
+<li>If applicable, how exercises created by these directives can be graded</li>
+<li>Available additional developer documentation for each directive</li>
 </ul>
 </div>
-<div class="section" id="activecode">
-<h3>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
-<p>The activecode directive allows you to create executable example code.  Not only is the code executable, so you know your examples will be syntactically correct, but it is also editable which allows your students to experiment with your examples by changing them and running them over and over again.</p>
-<p><strong>Example</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac_example1</span>
-   <span class="p">:</span><span class="n">nopre</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">nocanvas</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
-   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">caption</span>
-   <span class="p">:</span><span class="n">include</span><span class="p">:</span> <span class="n">activecode_id</span><span class="p">,</span> <span class="p">[</span><span class="n">activecode_id</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
-
-   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world </span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Description</strong></p>
-<p>The activecode directive creates a runnable python listing.  It looks like this:</p>
-
-<textarea data-component="activecode" id=ac_example1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='This is my caption'>
-import turtle
-t = turtle.Turtle()
-
-for i in range(4):
-    t.forward(100)
-    t.left(90)
-</textarea>
-<p>The most important thing to remember about an activecode example is that it is running in the browser.  There is no need to connect to a server to even be online for these examples to work.  The activecode directive makes use of a Skulpt (www.skulpt.org).  Skulpt is an open source javascript implementation of Python.</p>
-<p>Normally and output from a print statment is appended to a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element in the page.  Graphical output, such as the turtle graphics program in the example, is done on a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code>.</p>
-<p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id4"><span class="problematic" id="id5">``</span></a>:: `` must be unique.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:nopre:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created.</p>
-<p><code class="docutils literal"><span class="pre">:nocanvas:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created.</p>
-<p><code class="docutils literal"><span class="pre">:caption:</span></code>  The text argument to this parameter is formatted as a caption, underneath the activecode block</p>
-<p><code class="docutils literal"><span class="pre">:language:</span></code> The text argument to this parameter can be python, javascript, or html.  This allows the activecode directive to support multiple languages!</p>
-<p><code class="docutils literal"><span class="pre">:include:</span></code>  This option allows you to pre-prend other clode blocks.  It is nice because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content.</p>
-<p><code class="docutils literal"><span class="pre">:hidecode:</span></code> This will make the activecode editor initially hidden, and add a button to automatically show the editor.</p>
-<p><code class="docutils literal"><span class="pre">:autorun</span></code> This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.</p>
-<p><code class="docutils literal"><span class="pre">:above:</span></code> This positions the canvas above the editor.</p>
-<p><code class="docutils literal"><span class="pre">:nocodelens:</span></code> This activecode will not have a button to show the code in an codelens widget.</p>
-<p><code class="docutils literal"><span class="pre">:tour_{1,2,3,4,5}</span></code>  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is tour name; line: audio_file_for_line.  Here is an example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">tour_example</span>
-   <span class="p">:</span><span class="n">tour_1</span><span class="p">:</span> <span class="s2">&quot;Line by Line Tour&quot;</span><span class="p">;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">file_for_one</span><span class="p">;</span> <span class="mi">2</span><span class="p">:</span> <span class="n">file_for_two</span>
-
-   <span class="nb">print</span> <span class="s2">&quot;line one&quot;</span>
-   <span class="nb">print</span> <span class="s2">&quot;line two&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="codelens">
-<h3>Codelens<a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h3>
-<p>The codelens directive creates an interactive environment for you to step through small code examples.  codelens displays the values of variables and shows the contents and links between your objects.  Unlinke a normal debugger, codelens lets you step forward and backward through the code.</p>
-<p>The way codelens works is that when the book is built, it takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.</p>
-<p>In addition to stepping through the code you as an author can embed a question into the example.  You may ask the student to predict how the value of a variable will change, or you may ask the student to predict which line of code will be executed next.  This is an excellent way to help students develop a good mental model of how python works.</p>
-<p>It is worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go here:  <a class="reference external" href="http://www.pythontutor.com/">http://www.pythontutor.com/</a></p>
-<p><strong>Example</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">secondexample</span>
-
-    <span class="n">fruit</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span><span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
-    <span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
-    <span class="n">newlist</span> <span class="o">=</span> <span class="n">fruit</span> <span class="o">+</span> <span class="n">numlist</span>
-    <span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
-
-    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fruit</span>
-    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span>
-</pre></div>
-</div>
-<p><strong>Description</strong></p>
-<p>Here is an example of codelens in action:</p>
-
-<div class="alert alert-warning cd_section">
-<div id="secondexample"></div>
-<p class="cl_caption"><span class="cl_caption_text"> (secondexample)</span> </p>
-</div>
-<script type="text/javascript">
-var secondexample_trace = {"code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["fruit"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "return"}]};
-var secondexample_vis;
-
-$(document).ready(function() {
-    try {
-        secondexample_vis = new ExecutionVisualizer('secondexample',secondexample_trace,
-                                    {embeddedMode: true,
-                                    verticalStack: false,
-                                    heightChangeCallback: redrawAllVisualizerArrows,
-                                    codeDivWidth: 500,
-                                    lang : 'py2'
-                                    });
-        attachLoggers(secondexample_vis,'secondexample');
-        styleButtons('secondexample');
-        allVisualizers.push(secondexample_vis);
-    } catch (e) {
-        console.log("Failed to Initialize CodeLens component secondexample_vis" );
-        console.log(e.toString());
-    }
-
-});
-
-$(document).ready(function() {
-    $("#secondexample_tracecheck").click(function() {
-        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'secondexample'});
-    });
-});
-
-if (allVisualizers === undefined) {
-   var allVisualizers = [];
-}
-
-
-$(window).resize(function() {
-    if (secondexample_vis) {
-        secondexample_vis.redrawConnectors();
-    }
-});
-</script>
-<p><strong>Arguments</strong></p>
-<p>The identifier after the <a href="#id6"><span class="problematic" id="id7">``</span></a>:: `` must be unique.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:tracedata:</span></code>  Normally this value is filled in automatically, but you can provide your own tracedata if you wish.</p>
-<p><code class="docutils literal"><span class="pre">:caption:</span></code>  The text provided for this option will be formatted as a caption on the bottom of the page.</p>
-<p><code class="docutils literal"><span class="pre">:showoutput:</span></code>  Sometimes it is desireable to ignore any output from print statements.  Or sometimes you just want to save space and not show output.</p>
-<p><code class="docutils literal"><span class="pre">:question:</span></code>  This is the question text that will be shown to the student.</p>
-<p><code class="docutils literal"><span class="pre">:correct:</span></code> This is the correct answer.  This should be specified as a value from the trace data.  for example in the example above you might ask the student for the value of numlist[0].  The correct answer would be specified as globals.numlist[0]</p>
-<p><code class="docutils literal"><span class="pre">:feedback:</span></code>  If the student gives the wrong answer you can give them a few sentences of feedback.</p>
-<p><code class="docutils literal"><span class="pre">:breakline:</span></code>  This is the line that you want the program to stop at and ask  the question.</p>
-</div>
-<div class="section" id="datafile">
-<h3>Datafile<a class="headerlink" href="#datafile" title="Permalink to this headline">¶</a></h3>
-<p>The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the users local hard drive we can fake files in two different ways.</p>
-<ol class="arabic simple">
-<li>We can put the data into <code class="docutils literal"><span class="pre">pre</span></code> element.  The id on the element serves as the filename.</li>
-<li>We can put the data into a <code class="docutils literal"><span class="pre">textarea</span></code> element.  Again the id on the element serves as the file name.  However with a text area the file data can be modified.</li>
-</ol>
-<p><strong>Example</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata</span><span class="o">.</span><span class="n">dat</span>
-   <span class="p">:</span><span class="n">edit</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
-   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
-
-   <span class="n">data</span> <span class="n">line</span> <span class="n">one</span>
-   <span class="n">data</span> <span class="n">line</span> <span class="n">two</span>
-   <span class="n">data</span> <span class="n">line</span> <span class="n">three</span>
-</pre></div>
-</div>
-<p>The example will produce a text area that is 20 rows long and 60 columns wide.  The <code class="docutils literal"><span class="pre">:edit:</span></code> flag tells the directive to produce a textarea rather than a pre element.</p>
-<p><strong>Arguments</strong></p>
-<p>The required argument is the &#8216;filename&#8217;  In the example it is mydata.dat  This must be unique within the document as it does become the id of the element.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:hide:</span></code>  &#8211; This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where its not important that the student see all the data.</p>
-<p><code class="docutils literal"><span class="pre">:edit:</span></code>  &#8211; This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program.</p>
-<p><code class="docutils literal"><span class="pre">rows</span></code>  &#8211; This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided the directive will do its best to guess the number of rows within a reasonable number.</p>
-<p><code class="docutils literal"><span class="pre">cols</span></code>  &#8211; Again this is for sizing the text area, and again if not provided the directive will come up with a reasonable value.</p>
-</div>
-<div class="section" id="assessments">
-<h3>Assessments<a class="headerlink" href="#assessments" title="Permalink to this headline">¶</a></h3>
-<p><strong>Description</strong></p>
-<p>Assessment questions come in several forms.  Single answer multiple choice, multi-answer multiple choice, fill in the blank, parson&#8217;s problems for coding, and some code tracing prediction tasks.  For example, given some code, the student can step through the code line by line until the system asks them to predict the value of a variable, or to predict the next line that will be executed.</p>
-<p>The directives are as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">mchoicemf</span>
-<span class="o">..</span> <span class="n">mchoicema</span>
-<span class="o">..</span> <span class="n">fillintheblank</span>
-<span class="o">..</span> <span class="n">parsonsprob</span>
-</pre></div>
-</div>
-<p><strong>Multiple Choice with Multiple Feedbacks</strong></p>
-<p><strong>Example</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoicemf:: question1_1
-   :answer_a: Python
-   :answer_b: Java
-   :answer_c: C
-   :answer_d: ML
-   :correct: a
-   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
-   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
-   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
-   :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
-
-   What programming language does this site help you to learn?
-</pre></div>
-</div>
-<p><strong>Description</strong></p>
-
-            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-1: What programming language does this site help you to learn?
-            <li data-component="answer" data-correct id="question1_1_opt_a">(A) Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_b">(B) Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_c">(C) C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_d">(D) ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  You can use Python to write functional programs as well.</li>
-            
-
-            </ul>
-            <p><strong>Arguments</strong></p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers.</p>
-<p><code class="docutils literal"><span class="pre">:correct:</span></code>  The single correct answer</p>
-<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback.</p>
-<p><code class="docutils literal"><span class="pre">:iscode:</span></code>  Tells the directive processor that the question text should be treated as code.</p>
-<p><strong>Multiple Choice Multiple Answer</strong></p>
-<p>This next type of question allows more than one correct answer to be required.  The feedback will tell you whether you have the
-correct number as well as the feedback for each.</p>
-
-            <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
-            Q-2: Which colors might be found in a rainbow? (choose all that are correct)
-            <li data-component="answer" data-correct id="question1_2_opt_a">(A) red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
-            
-            <li data-component="answer" data-correct id="question1_2_opt_b">(B) yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
-            
-            <li data-component="answer"  id="question1_2_opt_c">(C) black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
-            
-            <li data-component="answer" data-correct id="question1_2_opt_d">(D) green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
-            
-
-            </ul>
-            <p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers.</p>
-<p><code class="docutils literal"><span class="pre">:correct:</span></code>  a comma separated list of the correct answers</p>
-<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback.</p>
-<p><code class="docutils literal"><span class="pre">:iscode:</span></code>  Tells the directive processor that the question text should be treated as code.</p>
-<p><strong>Fill in the Blank, or Free form Answer</strong></p>
-<p>Another type of question allows you as the instructor to ask for a value.  You can test for the value using Javascript regular expressions.  For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">fillintheblank</span><span class="p">::</span> <span class="n">postfix1</span>
-   <span class="p">:</span><span class="n">casei</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">correct</span><span class="p">:</span> \\<span class="n">b10</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">3</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">5</span>\\<span class="n">s</span><span class="o">*</span>\\<span class="o">*</span>\\<span class="n">s</span><span class="o">*</span><span class="mi">16</span>\\<span class="n">s</span><span class="o">+</span><span class="mi">4</span>\\<span class="n">s</span><span class="o">*-</span>\\<span class="n">s</span><span class="o">*/</span>\\<span class="n">s</span><span class="o">*</span>\\<span class="o">+</span>
-   <span class="p">:</span><span class="n">feedback1</span><span class="p">:</span>  <span class="p">(</span><span class="s1">&#39;10.*3.*5.*16.*4&#39;</span><span class="p">,</span> <span class="s1">&#39;The numbers appear to be in the correct order check your operators&#39;</span><span class="p">)</span>
-   <span class="p">:</span><span class="n">feedback2</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="s1">&#39;Remember the numbers will be in the same order as the original equation&#39;</span><span class="p">)</span>
-
-   <span class="n">Without</span> <span class="n">using</span> <span class="n">the</span> <span class="n">activecode</span> <span class="n">infixToPostfix</span> <span class="n">function</span><span class="p">,</span> <span class="n">convert</span> <span class="n">the</span> <span class="n">following</span> <span class="n">expression</span> <span class="n">to</span> <span class="n">postfix</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="n">___</span>
-</pre></div>
-</div>
-<p><strong>Description</strong></p>
-<p>Here is how the fill in the blank question is formatted.</p>
-<blockquote>
-<div></div></blockquote>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:iscode:</span></code>  Tells the processor that the question text is code.</p>
-<p><code class="docutils literal"><span class="pre">:correct:</span></code>  A regular expression matching the correct answer
-<code class="docutils literal"><span class="pre">:feedback1:</span></code> (re,text)  a regular expression matching an incorrect answer with feedback specific to that answer.
-<code class="docutils literal"><span class="pre">:feedback2:</span></code>
-<code class="docutils literal"><span class="pre">:casei:</span></code>  Tells the regular expression match to match using a case insensitive match.</p>
-<p><strong>Parson&#8217;s Problems</strong></p>
-<p>And finally here is a way of giving your students some simple programming problems where the code is already there for them but not indented or in the correct order.  Use drag-and-drop to get everthing right.</p>
-<p><strong>Example</strong></p>
-<p>Here is a simple example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
-
-   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
-   <span class="o">-----</span>
-   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
-</pre></div>
-</div>
-<p>You can also group lines of code together using === to delimit the different blocks.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_5</span>
-
-   <span class="n">Solve</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
-   <span class="o">-----</span>
-   <span class="k">def</span> <span class="nf">findmax</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
-   <span class="o">=====</span>
-      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-         <span class="k">return</span> <span class="kc">None</span>
-   <span class="o">=====</span>
-      <span class="n">curmax</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alist</span><span class="p">:</span>
-   <span class="o">=====</span>
-         <span class="k">if</span> <span class="n">item</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">curmax</span><span class="p">:</span>
-   <span class="o">=====</span>
-            <span class="n">curmax</span> <span class="o">=</span> <span class="n">item</span>
-   <span class="o">=====</span>
-      <span class="k">return</span> <span class="n">curmax</span>
-</pre></div>
-</div>
-<p>Notice that you give the code correctly indented and in its correct form.  This is how the processor knows what the correct answer is.  The processor will scramble the code for you each time the page is loaded.  Here is what the parson&#8217;s problem looks like:</p>
-
-    <pre data-component="parsons" id="question1_100_5">
-        <span data-question>Q-3: Solve this problem.</span>def findmax(alist):
----
-   if len(alist) == 0:
-      return None
----
-   curmax = alist[0]
-   for item in alist:
----
-      if item &gt; curmax:
----
-         curmax = item
----
-   return curmax</pre>
-    <p><strong>Optional Arguments</strong></p>
-<p>There are no optional arguments for the parson&#8217;s problem directive.</p>
-</div>
-</div>
-<div class="section" id="disqus-comment-box">
-<h2>Disqus Comment Box<a class="headerlink" href="#disqus-comment-box" title="Permalink to this headline">¶</a></h2>
-<p><strong>Example</strong></p>
-<p>Here is an example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
-    <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
-    <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">overview</span><span class="o">.</span><span class="n">html</span>
-</pre></div>
-</div>
-<p><strong>Description</strong>
-Insert an interactive comment/discussion box, powered by Disqus. Requires registration with Disqus.</p>
-<p><strong>Arguments</strong>
-There are 2 required arguments, <code class="docutils literal"><span class="pre">shortname</span></code> and <code class="docutils literal"><span class="pre">identifier</span></code>. The shortname is used to identify your site to
-Disqus. You can obtain a shortname by registering with Disqus. The identifier is used to identify the specific pageon your site you want users to be able to comment on.</p>
-</div>
-<div class="section" id="tabbed-question">
-<h2>Tabbed Question<a class="headerlink" href="#tabbed-question" title="Permalink to this headline">¶</a></h2>
-<p><strong>Example</strong></p>
-<p>Here is an example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">tabbed</span><span class="p">::</span> <span class="n">tab_div</span>
-
-    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Question_1</span>
-
-        <span class="n">Write</span> <span class="n">a</span> <span class="n">program</span> <span class="n">that</span> <span class="n">prints</span> <span class="s2">&quot;Hello, world&quot;</span><span class="o">.</span>
-
-        <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac_example1</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
-
-    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Discussion</span>
-
-        <span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
-            <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
-            <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">question1discussion</span>
-</pre></div>
-</div>
-<p><strong>Description</strong>
-This directive creates a tabbed interface. Each tab can contain one or more of the other directives, question types, or other content. For example, an author could write a question, and provide a tab that has a possible solution as well as a Disqus block so that users could discuss the question.</p>
-<p><strong>Arguments</strong>
-The tabbed directive takes 1 argument, the name of the div containing all the tabbed content. The directive also must be provided one or more tab directives, each taking an argument specifiying the name of the tab.</p>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(createEditors);
-</script></div>
 </div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Welcome to Runestone Interactive&#8217;s documentation!' data-toggle="tooltip">
-    <a href="index.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - User Guide for Instructors' data-toggle="tooltip">
+    <a href="instructor_users.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="index.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="instructor_users.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - Extension Authors' data-toggle="tooltip" >
-    <a href="writingAnExtension.html" >
+  <li id="relations-next" class="navLink" title='Next Section - Runestone Directives Documentation' data-toggle="tooltip" >
+    <a href="directives.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="writingAnExtension.html" >Next Section - Extension Authors</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="directives.html" >Next Section - Runestone Directives Documentation</a>
 
 <script type="text/javascript">
 

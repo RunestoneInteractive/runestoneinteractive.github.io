@@ -3,20 +3,20 @@ Developer Documentation for Runestone Interactive Tools
 
 The Runestone system uses reStructuredText (.rst) as its primary markup language.  reStructuredText is easy to read in plain text form, and can be transformed into html, latex, epub, or our own interactive book format.
 
-We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment. 
+We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.
 
 
 Important Notes
 ---------------
 
-1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment. 
+1.  We do our development on Linux and OS X.  We use standard Unix commands that may not exist on Windows.  If you want to install on Windows, you may need to install the Cygwin tools and do your work in that environment.
 
-What is Runestone?
-------------------
+Development Parts
+-----------------
 
 If you plan to develop on the Runestone project, you should know that there are now **three pieces** of a **local Runestone development environment.**
 
-1. The `Runestone Components <https://github.com/RunestoneInteractive/RunestoneServer>`_ - this is the development version of the library you get when you ``pip install runestone``. *You should examine this first.* See the GitHub repository `HERE <https://github.com/RunestoneInteractive/RunestoneServer>`_, where the README is approximately up to date. If you are *only* interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit -- see #3. You can skip #2.)
+1. The `Runestone Components <https://github.com/RunestoneInteractive/RunestoneComponents>`_ - this is the development version of the library you get when you ``pip install runestone``. *You should examine this first.* See the GitHub repository `HERE <https://github.com/RunestoneInteractive/RunestoneComponents>`_, where the README is approximately up to date. If you are *only* interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit -- see #3. You can skip #2.)
 
 2. The `Runestone Server <https://github.com/RunestoneInteractive/RunestoneComponents>`_ - this is the application that goes inside a **web2py** server. If you plan to run your own server for an interactive textbook, or develop on the Runestone server, you should install this. See the GitHub repository `HERE <https://github.com/RunestoneInteractive/RunestoneComponents>`_, where the README is approximately up to date.
 

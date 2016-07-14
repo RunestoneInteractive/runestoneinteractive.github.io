@@ -1,3 +1,4 @@
 *.pyc
-build
-build/*
+build/docopt
+build/doctrees
+build/livereload
