@@ -3,23 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Runestone Interactive's documentation!
-=================================================
+Runestone Interactive Documentation
+===================================
 
-Contents:
+Table of Contents
+-----------------
 
 .. toctree::
    :maxdepth: 4
 
+   intro.rst
+   instructor_users.rst
    developer.rst
+   directives.rst
    writingAnExtension.rst
+   server_hackers.rst
+   qr.rst
    gettinghelp.rst
-   instructor.rst
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

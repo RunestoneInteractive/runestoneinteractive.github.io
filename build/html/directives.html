@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Runestone Directives Documentation &mdash; Runestone Interactive 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/livecode.css" type="text/css" />
+    <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/runestonebase.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/mchoice.js"></script>
+    <script type="text/javascript" src="_static/timedmc.js"></script>
+    <script type="text/javascript" src="_static/fitb.js"></script>
+    <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/timed.js"></script>
+    <script type="text/javascript" src="_static/clickable.js"></script>
+    <script type="text/javascript" src="_static/timedclickable.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
+    <script type="text/javascript" src="_static/codelens.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/datafile.js"></script>
+    <script type="text/javascript" src="_static/dragndrop.js"></script>
+    <script type="text/javascript" src="_static/timeddnd.js"></script>
+    <script type="text/javascript" src="_static/livecode.js"></script>
+    <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/timedparsons.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/reveal.js"></script>
+    <script type="text/javascript" src="_static/shortanswer.js"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
+    <link rel="next" title="Extension Authors" href="writingAnExtension.html" />
+    <link rel="prev" title="Developer Documentation for Runestone Interactive Tools" href="developer.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'html';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = true;
+  eBookConfig.python3 = true;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body role="document">
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="index.html">Runestone Interactive</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/html/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/html/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Runestone Directives Documentation</a><ul>
+<li><a class="reference internal" href="#general-syntax">General Syntax</a></li>
+<li><a class="reference internal" href="#directives">Directives</a><ul>
+<li><a class="reference internal" href="#video">Video</a></li>
+<li><a class="reference internal" href="#activecode">Activecode</a></li>
+<li><a class="reference internal" href="#codelens">Codelens</a></li>
+<li><a class="reference internal" href="#datafile">Datafile</a></li>
+<li><a class="reference internal" href="#multiple-choice">Multiple Choice</a></li>
+<li><a class="reference internal" href="#fill-in-the-blank">Fill in the Blank</a></li>
+<li><a class="reference internal" href="#parson-s-problems">Parson&#8217;s Problems</a></li>
+<li><a class="reference internal" href="#disqus">Disqus</a></li>
+<li><a class="reference internal" href="#tabs-and-tab-groups">Tabs and Tab Groups</a></li>
+<li><a class="reference internal" href="#polls">Polls</a></li>
+<li><a class="reference internal" href="#reveal">Reveal</a></li>
+<li><a class="reference internal" href="#drag-and-drop">Drag and Drop</a></li>
+<li><a class="reference internal" href="#clickable-areas">Clickable Areas</a></li>
+<li><a class="reference internal" href="#short-answer">Short Answer</a></li>
+<li><a class="reference internal" href="#usage-assignment">Usage Assignment</a></li>
+<li><a class="reference internal" href="#controlling-question-numbering">Controlling Question Numbering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Developer Documentation for Runestone Interactive Tools" data-toggle="tooltip">
+    <a href="developer.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Extension Authors' data-toggle="tooltip" >
+    <a href="writingAnExtension.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li>
+  <a href="_sources/directives.txt"
+     rel="nofollow">Source</a></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="runestone-directives-documentation">
+<h1><a class="toc-backref" href="#id1">Runestone Directives Documentation</a><a class="headerlink" href="#runestone-directives-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Each Runestone directive has a particular purpose. Each is detailed below, including:</p>
+<ul class="simple">
+<li>What each directive allows you to create</li>
+<li>The syntax for using each directive</li>
+<li>Examples, or links to examples, of how instructors have used these directives in interactive textbook work</li>
+<li>If applicable, how exercises created by these directives can be graded</li>
+<li>Available additional developer documentation/notes</li>
+</ul>
+<div class="section" id="general-syntax">
+<h2><a class="toc-backref" href="#id2">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Quick Navigation</p>
+<div class="contents last topic" id="topic-outline">
+<p class="topic-title first">Topic Outline</p>
+<ul class="simple">
+<li><a class="reference internal" href="#runestone-directives-documentation" id="id1">Runestone Directives Documentation</a><ul>
+<li><a class="reference internal" href="#general-syntax" id="id2">General Syntax</a></li>
+<li><a class="reference internal" href="#directives" id="id3">Directives</a><ul>
+<li><a class="reference internal" href="#video" id="id4">Video</a></li>
+<li><a class="reference internal" href="#activecode" id="id5">Activecode</a></li>
+<li><a class="reference internal" href="#codelens" id="id6">Codelens</a></li>
+<li><a class="reference internal" href="#datafile" id="id7">Datafile</a></li>
+<li><a class="reference internal" href="#multiple-choice" id="id8">Multiple Choice</a></li>
+<li><a class="reference internal" href="#fill-in-the-blank" id="id9">Fill in the Blank</a></li>
+<li><a class="reference internal" href="#parson-s-problems" id="id10">Parson&#8217;s Problems</a></li>
+<li><a class="reference internal" href="#disqus" id="id11">Disqus</a></li>
+<li><a class="reference internal" href="#tabs-and-tab-groups" id="id12">Tabs and Tab Groups</a></li>
+<li><a class="reference internal" href="#polls" id="id13">Polls</a></li>
+<li><a class="reference internal" href="#reveal" id="id14">Reveal</a></li>
+<li><a class="reference internal" href="#drag-and-drop" id="id15">Drag and Drop</a></li>
+<li><a class="reference internal" href="#clickable-areas" id="id16">Clickable Areas</a></li>
+<li><a class="reference internal" href="#short-answer" id="id17">Short Answer</a></li>
+<li><a class="reference internal" href="#usage-assignment" id="id18">Usage Assignment</a></li>
+<li><a class="reference internal" href="#controlling-question-numbering" id="id19">Controlling Question Numbering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>All directives start out with <code class="docutils literal"><span class="pre">..</span></code>, then a single space, followed by the name of the directive (e.g. <code class="docutils literal"><span class="pre">video</span></code>, as seen below), and then <code class="docutils literal"><span class="pre">::</span></code>, followed by a single space.</p>
+<p>Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It&#8217;s also necessary for managing any controls or</p>
+<p>Spacing, including indentation consistency, is very important in implementing directives inside <code class="docutils literal"><span class="pre">.rst</span></code> files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it&#8217;s worth checking your final product before releasing content to students.</p>
+<p>Directives may have <strong>required arguments</strong>. In many cases, an argument that is a unique identifier for that particular directive&#8217;s <code class="docutils literal"><span class="pre">div</span></code> id, will follow the <code class="docutils literal"><span class="pre">::</span></code> in the directive (example below).</p>
+<p>Further (often optional) arguments for a directive generally occur below that first line, surrounded by single <code class="docutils literal"><span class="pre">:</span></code> s. Some of those require parameters &#8211; for example, the <code class="docutils literal"><span class="pre">:thumb:</span></code> addition for the <code class="docutils literal"><span class="pre">video</span></code> directive  requires a path to a <code class="docutils literal"><span class="pre">.png</span></code> image for the thumbnail image that should appear for the video, which you can see in the video directive example.</p>
+<p>When reStructured Text files are <em>built</em> into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.</p>
+<p>We are in the process of creating a full set of documentation for the HTML and JavaScript created by our special Runestone directives.</p>
+</div>
+<div class="section" id="directives">
+<h2><a class="toc-backref" href="#id3">Directives</a><a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="video">
+<h3><a class="toc-backref" href="#id4">Video</a><a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h3>
+<p><strong>Purpose</strong></p>
+<p>As you may imagine, the job of the video directive is to embed a video in a page.</p>
+<p><strong>Example in reStructured Text</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">interactive_python_vid_1</span>
+   <span class="p">:</span><span class="n">controls</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
+
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">mov</span>
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">webm</span>
+</pre></div>
+</div>
+<p><strong>Example</strong></p>
+<div id="interactive_python_vid_1" class="video_popup" >
+<video controls preload="none"  poster="../_static/videothumb.png">
+    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.mov" type="video/mp4"></source>
+    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.webm" type="video/webm"></source>
+    No supported video types
+</video>
+</div>
+<script>
+   jQuery(function($) {
+      var rb = new RunestoneBase();
+      $('#interactive_python_vid_1_thumb').click(function(e) {
+         $('#interactive_python_vid_1').show();
+         $('#interactive_python_vid_1_thumb').hide();
+         rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
+         // Log the run event
+      });
+      $('#interactive_python_vid_1 video').one("click", function(){
+        this.play();
+      });
+      $('#interactive_python_vid_1 video').one("play", function(){
+        rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
+      });
+   });
+</script>
+<p><strong>Required Arguments</strong></p>
+<p>A unique identifier for the video. No spaces. This goes to the right of the <code class="docutils literal"><span class="pre">..</span> <span class="pre">video::</span></code> term. In the example, the unique identifier chosen is <code class="docutils literal"><span class="pre">interactive_python_vid_1</span></code>.</p>
+<p><strong>Optional Arguments</strong></p>
+<p>There are two optional arguments to the video directive.</p>
+<p><code class="docutils literal"><span class="pre">:controls:</span></code> -  The controls argument is a flag that, if present, allows the library that runs these directives to generate the usual set of video controls: <em>play, pause, rewind, fast forward</em>. If <code class="docutils literal"><span class="pre">:controls:</span></code> is not present, the video will automatically play when the page is loaded.</p>
+<p><code class="docutils literal"><span class="pre">:thumb:</span></code> - The thumb argument references an image that will serve as the thumbnail for this video. It requires an additional parameter: the path to the image that should serve as the thumbnail (in the example, that path is <code class="docutils literal"><span class="pre">../_static/videothumb.png</span></code> (relative paths to the location of the <code class="docutils literal"><span class="pre">.rst</span></code> file you are currently working in are fine). If the <code class="docutils literal"><span class="pre">:thumb</span></code> argument is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail. Clicking on the thumbnail will cause the full video to appear at full size on the page.  If the <code class="docutils literal"><span class="pre">:thumb:</span></code> directive is not present, then the video will appear on the page in its full size.</p>
+<p><strong>Content</strong></p>
+<p>The content lines of the video directive are the lines that follow the arguments, preceded by a blank line. You can specify as many video sources as you need.  (Usually I specify two videos, one in <code class="docutils literal"><span class="pre">.mov</span></code> format and the other in <code class="docutils literal"><span class="pre">webm</span></code> format.  This seems to cover all browsers.)</p>
+<p><strong>Logs &amp; Grading</strong></p>
+<p>Video directives are not tied to the grading interface. Interactions logged in the database: each time a video is played, it is logged (so if you have logged-in users, you can have a log of who has played it; regardless, you can have a log of how many times it has been played).</p>
+<p><strong>Uses</strong></p>
+<p>Teachers have used the video directive to include demonstrative video to accompany conceptual explanations, or to bring in video explanations from other openly licensed sources (e.g. Khan Academy, interactivepython.org).</p>
+</div>
+<div class="section" id="activecode">
+<h3><a class="toc-backref" href="#id5">Activecode</a><a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
+<p>The activecode directive allows you to create executable, editable example code. This allows your students to experiment with your examples by changing them and running them over and over again.</p>
+<p>In an <strong>activecode</strong> window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they&#8217;ve edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)</p>
+<p>Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the optional arguments section.)</p>
+<p>One of the great things about activecode is that you can experiment with the code in the windows as much as you want. This can be very helpful as you are learning to program.</p>
+<p><strong>Examples in reStructured Text</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">function_example1</span>
+   <span class="p">:</span><span class="n">nocanvas</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+
+   <span class="k">def</span> <span class="nf">example_func</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span>
+       <span class="k">return</span> <span class="n">inp</span> <span class="o">+</span> <span class="s2">&quot;!!&quot;</span>
+
+
+<span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">loop_example3</span>
+   <span class="p">:</span><span class="n">nocanvas</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">caption</span>
+   <span class="p">:</span><span class="n">include</span><span class="p">:</span> <span class="n">function_example1</span><span class="p">,</span> <span class="n">function_example2</span>
+
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+   <span class="c1"># Here, you could use code from any included activecode block, like so</span>
+   <span class="nb">print</span> <span class="n">example_func</span><span class="p">(</span><span class="s2">&quot;hello again&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">function2_3</span>
+
+   <span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+       <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">x</span>
+       <span class="k">return</span> <span class="n">y</span>
+
+   <span class="n">result</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+   <span class="nb">print</span> <span class="n">result</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac_example1</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">A</span> <span class="n">Turtle</span> <span class="n">making</span> <span class="n">a</span> <span class="n">square</span>
+
+   <span class="kn">import</span> <span class="nn">turtle</span>
+   <span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+       <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+       <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Examples</strong></p>
+<p>Here is the second example above:</p>
+
+<textarea data-component="activecode" id=function2_3 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
+def square(x):
+    y = x * x
+    return y
+
+result = square(5)
+print result
+</textarea>
+<p>The turtle example with a canvas.</p>
+
+<textarea data-component="activecode" id=ac_example1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='A Turtle making a square'>
+import turtle
+t = turtle.Turtle()
+
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+</textarea>
+<p><strong>Required Arguments</strong></p>
+<p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive. No spaces may be included in this identifier.</p>
+<p>This unique identifer will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.</p>
+<p><strong>Optional Arguments</strong></p>
+<p><code class="docutils literal"><span class="pre">:nopre:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page. (You might use this if you did not want to see the results of print statements from an included code segment but otherwise wanted it to be runnable.)</p>
+<p><code class="docutils literal"><span class="pre">:nocanvas:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created. A canvas element is generally created e.g. when a program using the <code class="docutils literal"><span class="pre">turtle</span></code> library is run (see above).</p>
+<p><code class="docutils literal"><span class="pre">:caption:</span></code> If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is <code class="docutils literal"><span class="pre">A</span> <span class="pre">Turtle</span> <span class="pre">making</span> <span class="pre">a</span> <span class="pre">square</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">:language:</span></code> The text argument to this parameter can be python, javascript, or html.  TODO TODO is this still true, and what is the default if you leave it off, is it Python?</p>
+<p><code class="docutils literal"><span class="pre">:include:</span></code>  This option allows you to prepend other code blocks to this activecode block. It is useful because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content. For example, if you write a function definition in one activecode block, you can include that block in a later activecode block using the <code class="docutils literal"><span class="pre">:include:</span></code> argument, and thus can invoke that function in the current activecode block without redefining it. This argument requires at least one, and can take multiple, parameters: the unique identifiers of the activecode blocks that you want to include. (See the examples in reStructured text for an example of how you can use this.)</p>
+<p><code class="docutils literal"><span class="pre">:hidecode:</span></code> This will make the activecode editor initially hidden, and add a button to automatically show the editor. You might use this if you want to put an activecode block in the page in order to include it in another activecode block, but you don&#8217;t need or want students to see it right away.</p>
+<p><code class="docutils literal"><span class="pre">:autorun:</span></code> This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.</p>
+<p><code class="docutils literal"><span class="pre">:above:</span></code> This positions the canvas above the editor.</p>
+<p><code class="docutils literal"><span class="pre">:nocodelens:</span></code> This activecode will not have a button to show the code in an interactive codelens widget (more explanation of what this is follows in the <strong>codelens directive</strong> section).</p>
+<p><code class="docutils literal"><span class="pre">:tour_{1,2,3,4,5}</span></code>  Used for audio tours of the code.  You can have up to five different audio tours of the same code.  The format of a tour directive is <code class="docutils literal"><span class="pre">tour</span> <span class="pre">name;</span> <span class="pre">line:</span> <span class="pre">audio_file_for_line</span></code> where <code class="docutils literal"><span class="pre">audio_file_for_line</span></code> is the path to the audio file. See <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">this tool</a> for easy creation of activecode blocks with audiotours.</p>
+<p>Here is an example of an activecode block using <code class="docutils literal"><span class="pre">:tour_#</span></code> argument(s):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">tour_example</span>
+   <span class="p">:</span><span class="n">tour_1</span><span class="p">:</span> <span class="s2">&quot;Line by Line Tour&quot;</span><span class="p">;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">file_name_for_one</span><span class="p">;</span> <span class="mi">2</span><span class="p">:</span> <span class="n">file_name_for_two</span>
+
+   <span class="nb">print</span> <span class="s2">&quot;line one&quot;</span>
+   <span class="nb">print</span> <span class="s2">&quot;line two&quot;</span>
+</pre></div>
+</div>
+<p>A tool has been developed to easily record and create the directive syntax for an audiotour of an active code window. You can find it <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">here</a>.</p>
+<p><strong>Developer Notes</strong></p>
+<p>Each activecode window is running in the browser.  There is no need to connect to a server, or to even be online, for these examples to work.  The activecode directive makes use of <strong>Skulpt</strong> (<code class="docutils literal"><span class="pre">www.skulpt.org</span></code>), which is an open source javascript implementation of Python.</p>
+<p>Normally an output from a print statment is appended to a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code>.</p>
+<p><strong>Logs &amp; Grading</strong></p>
+<p>Each version of code in an activecode block which is run is simultaneously saved, and therefore versioned. (Previously, you could save edits to an activecode block and load the most recently saved version on page load by pressing the <strong>Load</strong> button.)</p>
+<p>Logged in to a book, the load history appears like so:</p>
+<img alt="image of a code window, below a bar with save and run on the left and a bar showing a timestamp of last save" class="align-center" src="_images/scrubber2.png" />
+<img alt="image of a bar with save and run on the left and a bar showing a timestamp of last save, later than the last, with different code" class="align-center" src="_images/scrubber3.png" />
+<p>See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.</p>
+</div>
+<div class="section" id="codelens">
+<h3><a class="toc-backref" href="#id6">Codelens</a><a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h3>
+<p>The codelens directive creates an interactive environment for you to step through small code examples. (With the <code class="docutils literal"><span class="pre">:codelens:</span></code> argument to an activecode window, it can be used for any activecode code block.)</p>
+<p>Codelens displays the values of variables and shows the contents and links between your objects.  Unlike a normal code debugger intended for solving bugs, codelens lets you step forward and backward through the code.</p>
+<p>In addition to stepping through the code you as an author can embed a single question into the codelens example.  You may ask the student to predict what the value of a variable will be after a line executes, what the value of an element on the heap is at the point you pause the code (if the term <code class="docutils literal"><span class="pre">heap</span></code> is unfamiliar to you, you need note only that you should be asking questions about values of variables, not e.g. an element of a Python list), or you may ask the student to predict which line of code will be executed next. (This is an excellent way to help students develop a good mental model of how python works.) The codelens directive shows a codelens window initially, which looks as shown below, rather than an activecode window with the option of running through the code using codelens.</p>
+<p>It&#8217;s worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go to <code class="docutils literal"><span class="pre">http://www.pythontutor.com/</span></code>.</p>
+<p><strong>Examples in reStructured Text</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">simpleexample</span>
+
+    <span class="n">fruit</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span><span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+    <span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">newlist</span> <span class="o">=</span> <span class="n">fruit</span> <span class="o">+</span> <span class="n">numlist</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+
+    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fruit</span>
+    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. codelens:: question_example
+   :question: What is the value in b after line 4 executes?
+   :feedback: When d is set to a copy of the value of b it doesn&#39;t change the value of b.
+   :breakline: 4
+   :correct: globals.b
+
+   a = 1
+   b = 12.3
+   c = &quot;Fred&quot;
+   d = b
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. codelens:: Ketchup_Speed
+   :question: What line will be executed after the current line executes?
+   :feedback: This code is executed one line at a time from top to bottom. (No loops.)
+   :breakline: 3
+   :correct: line
+
+   dripMPH = .028
+   FPM = 5280.0
+   dripFPH = dripMPH * FPM
+   MPH = 60
+   dripFPM = dripFPH / MPH
+   print(&quot;Ketchup speed in feet per minute:&quot;)
+   print(dripFPM)
+   print(&quot;Ketchup speed to move 4 feet in a minute:&quot;)
+   print(4 / dripFPM)
+</pre></div>
+</div>
+<p><strong>Examples</strong></p>
+<p>Here are the above examples of codelens in action:</p>
+
+<div class="alert alert-warning cd_section">
+<div id="simpleexample"></div>
+<p class="cl_caption"><span class="cl_caption_text"> (simpleexample)</span> </p>
+</div>
+<script type="text/javascript">
+var simpleexample_trace = {"code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["fruit"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "return"}]};
+var simpleexample_vis;
+
+$(document).ready(function() {
+    try {
+        simpleexample_vis = new ExecutionVisualizer('simpleexample',simpleexample_trace,
+                                    {embeddedMode: true,
+                                    verticalStack: false,
+                                    heightChangeCallback: redrawAllVisualizerArrows,
+                                    codeDivWidth: 500,
+                                    lang : 'py2'
+                                    });
+        attachLoggers(simpleexample_vis,'simpleexample');
+        styleButtons('simpleexample');
+        allVisualizers.push(simpleexample_vis);
+    } catch (e) {
+        console.log("Failed to Initialize CodeLens component simpleexample_vis" );
+        console.log(e.toString());
+    }
+
+});
+
+$(document).ready(function() {
+    $("#simpleexample_tracecheck").click(function() {
+        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'simpleexample'});
+    });
+});
+
+if (allVisualizers === undefined) {
+   var allVisualizers = [];
+}
+
+
+$(window).resize(function() {
+    if (simpleexample_vis) {
+        simpleexample_vis.redrawConnectors();
+    }
+});
+</script>
+
+<div class="alert alert-warning cd_section">
+<div id="question_example"></div>
+<p class="cl_caption"><span class="cl_caption_text"> (question_example)</span> </p>
+</div>
+<div id="question_example_modal" class="modal fade codelens-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Check your understanding</h4>
+      </div>
+      <div class="modal-body">
+        <p>What is the value in b after line 4 executes?</p>
+        <input id="question_example_textbox" type="textbox" class="form-control" style="width:200px;" />
+        <br />
+        <button id="question_example_tracecheck" class='btn btn-default tracecheck' onclick="traceQCheckMe('question_example_textbox','question_example','globals.b')">
+          Check Me
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+        <br />
+        <p id="question_example_feedbacktext" class="feedbacktext alert alert-warning"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+var question_example_trace = {"code": "a = 1\nb = 12.3\nc = \"Fred\"\nd = b", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["a"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["a", "b"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "b": 12.3}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["a", "b", "c"], "question": {"text": "What is the value in b after line 4 executes?", "div": "question_example_modal", "feedback": "When d is set to a copy of the value of b it doesn't change the value of b.", "correct": "globals.b"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "c": "Fred", "b": 12.3}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["a", "b", "c", "d"], "question": {"text": "What is the value in b after line 4 executes?", "div": "question_example_modal", "feedback": "When d is set to a copy of the value of b it doesn't change the value of b.", "correct": "globals.b"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "c": "Fred", "b": 12.3, "d": 12.3}, "heap": {}, "line": 4, "event": "return"}]};
+var question_example_vis;
+
+$(document).ready(function() {
+    try {
+        question_example_vis = new ExecutionVisualizer('question_example',question_example_trace,
+                                    {embeddedMode: true,
+                                    verticalStack: false,
+                                    heightChangeCallback: redrawAllVisualizerArrows,
+                                    codeDivWidth: 500,
+                                    lang : 'py2'
+                                    });
+        attachLoggers(question_example_vis,'question_example');
+        styleButtons('question_example');
+        allVisualizers.push(question_example_vis);
+    } catch (e) {
+        console.log("Failed to Initialize CodeLens component question_example_vis" );
+        console.log(e.toString());
+    }
+
+});
+
+$(document).ready(function() {
+    $("#question_example_tracecheck").click(function() {
+        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'question_example'});
+    });
+});
+
+if (allVisualizers === undefined) {
+   var allVisualizers = [];
+}
+
+
+$(window).resize(function() {
+    if (question_example_vis) {
+        question_example_vis.redrawConnectors();
+    }
+});
+</script>
+
+<div class="alert alert-warning cd_section">
+<div id="Ketchup_Speed"></div>
+<p class="cl_caption"><span class="cl_caption_text"> (Ketchup_Speed)</span> </p>
+</div>
+<div id="Ketchup_Speed_modal" class="modal fade codelens-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Check your understanding</h4>
+      </div>
+      <div class="modal-body">
+        <p>What line will be executed after the current line executes?</p>
+        <input id="Ketchup_Speed_textbox" type="textbox" class="form-control" style="width:200px;" />
+        <br />
+        <button id="Ketchup_Speed_tracecheck" class='btn btn-default tracecheck' onclick="traceQCheckMe('Ketchup_Speed_textbox','Ketchup_Speed','line')">
+          Check Me
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+        <br />
+        <p id="Ketchup_Speed_feedbacktext" class="feedbacktext alert alert-warning"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+var Ketchup_Speed_trace = {"code": "dripMPH = .028\nFPM = 5280.0\ndripFPH = dripMPH * FPM\nMPH = 60\ndripFPM = dripFPH / MPH\nprint(\"Ketchup speed in feet per minute:\")\nprint(dripFPM)\nprint(\"Ketchup speed to move 4 feet in a minute:\")\nprint(4 / dripFPM)", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["dripMPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"dripMPH": 0.028}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM"], "question": {"text": "What line will be executed after the current line executes?", "div": "Ketchup_Speed_modal", "feedback": "This code is executed one line at a time from top to bottom. (No loops.)", "correct": "line"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 6, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 7, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 8, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\nKetchup speed to move 4 feet in a minute:\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 9, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\nKetchup speed to move 4 feet in a minute:\n1.62337662338\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 9, "event": "return"}]};
+var Ketchup_Speed_vis;
+
+$(document).ready(function() {
+    try {
+        Ketchup_Speed_vis = new ExecutionVisualizer('Ketchup_Speed',Ketchup_Speed_trace,
+                                    {embeddedMode: true,
+                                    verticalStack: false,
+                                    heightChangeCallback: redrawAllVisualizerArrows,
+                                    codeDivWidth: 500,
+                                    lang : 'py2'
+                                    });
+        attachLoggers(Ketchup_Speed_vis,'Ketchup_Speed');
+        styleButtons('Ketchup_Speed');
+        allVisualizers.push(Ketchup_Speed_vis);
+    } catch (e) {
+        console.log("Failed to Initialize CodeLens component Ketchup_Speed_vis" );
+        console.log(e.toString());
+    }
+
+});
+
+$(document).ready(function() {
+    $("#Ketchup_Speed_tracecheck").click(function() {
+        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'Ketchup_Speed'});
+    });
+});
+
+if (allVisualizers === undefined) {
+   var allVisualizers = [];
+}
+
+
+$(window).resize(function() {
+    if (Ketchup_Speed_vis) {
+        Ketchup_Speed_vis.redrawConnectors();
+    }
+});
+</script>
+<p><strong>Required Arguments</strong></p>
+<p>The identifier after the <code class="docutils literal"><span class="pre">::</span></code> must be unique. No spaces.</p>
+<p><strong>Content</strong></p>
+<p>The content of a codelens directive is the same as an activecode directive block: lines of code.</p>
+<p>Note that if your code has any errors, it will definitely cause a problem when tracing through the codelens example, so make sure to test your code before deploying your book!</p>
+<p><strong>Optional Arguments</strong></p>
+<p><code class="docutils literal"><span class="pre">:caption:</span></code>  The text provided for this option will be formatted as a caption on the bottom of the codelens window.</p>
+<p><code class="docutils literal"><span class="pre">:showoutput:</span></code>  Sometimes it is desirable to ignore any output from print statements, in which case you would include this argument.  Or sometimes you just want to save space and not show console output, in which case you should not use this argument.</p>
+<p><code class="docutils literal"><span class="pre">:question:</span></code>  This is the question text that will be shown to the student. (Only one question per codelens for now.)</p>
+<p><code class="docutils literal"><span class="pre">:correct:</span></code> This is the correct answer to the question.  This should be specified as a value from the trace data (see above).  For example in the first example above, where you want to know the value of variable <code class="docutils literal"><span class="pre">b</span></code>, the correct answer parameter is <code class="docutils literal"><span class="pre">globals.b</span></code>. Note also that if you are asking a question about what line will be next executed, you can use the variable <code class="docutils literal"><span class="pre">line</span></code> (see example above), which refers to the line number that will be <em>next</em> executed (which may be a complex question if the code includes a loop or a conditional statement).</p>
+<p><code class="docutils literal"><span class="pre">:feedback:</span></code>  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it&#8217;s a good idea to make the feedback generic reminders or hints.</p>
+<p><code class="docutils literal"><span class="pre">:breakline:</span></code>  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.</p>
+<p><code class="docutils literal"><span class="pre">:tracedata:</span></code>  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The <strong>tracedata</strong> is the object from which you access the value of the <code class="docutils literal"><span class="pre">:correct:</span></code> answer (see below) if you are including a question in the codelens directive.</p>
+<p><strong>Developer notes for tracedata:</strong> You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your <code class="docutils literal"><span class="pre">.rst</span></code> file, which you can find in the <code class="docutils literal"><span class="pre">build</span></code> folder, in the corresponding directory to the directory in <code class="docutils literal"><span class="pre">_sources</span></code> where you saved your current <code class="docutils literal"><span class="pre">.rst</span></code> file (e.g. if your current rst file is in <code class="docutils literal"><span class="pre">_sources/Functions/introduction.rst</span></code>, you can see the tracedata for a codelens example in <code class="docutils literal"><span class="pre">build/Functions/introduction.html</span></code>. You can index into that <strong>tracedata</strong> object with dot notation, but index into any list within it with <code class="docutils literal"><span class="pre">[]</span></code>, as usual in Python.</p>
+<p>Here is an example of a set of tracedata.</p>
+<p>Note that <code class="docutils literal"><span class="pre">globals</span></code> are the variables in the global scope. <code class="docutils literal"><span class="pre">locals</span></code> is populated only if the codelens question refers to an inner, local scope within the program, and elements within lists, for example, are stored on the <code class="docutils literal"><span class="pre">heap</span></code>.</p>
+<p><strong>Further Developer Notes</strong></p>
+<p>The way codelens works is that when a Runestone book is built, codelens takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.</p>
+<p><strong>Logs &amp; Grading</strong></p>
+<p>Clicks are logged. Answers to questions are also logged, but are currently not plugged into the grading interface and are used solely as a tool for checking understanding.</p>
+</div>
+<div class="section" id="datafile">
+<h3><a class="toc-backref" href="#id7">Datafile</a><a class="headerlink" href="#datafile" title="Permalink to this headline">¶</a></h3>
+<p>The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user&#8217;s local hard drive, we can fake files&#8217; existence in two different ways.</p>
+<ol class="arabic simple">
+<li>We can put the data into <code class="docutils literal"><span class="pre">pre</span></code> element.  The id on the element serves as the filename.</li>
+<li>We can put the data into a <code class="docutils literal"><span class="pre">textarea</span></code> element.  Again the id on the element serves as the file name.  However, with a text area, the file data can be modified.</li>
+</ol>
+<p>Both of these options can be achieved with the <code class="docutils literal"><span class="pre">datafile</span></code> directive.</p>
+<p><strong>Examples in reStructured Text</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata</span><span class="o">.</span><span class="n">txt</span>
+   <span class="p">:</span><span class="n">edit</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
+   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
+
+   <span class="n">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
+   <span class="n">also</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
+   <span class="ow">and</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">third</span> <span class="n">line</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata2</span><span class="o">.</span><span class="n">txt</span>
+   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
+   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
+
+   <span class="n">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
+   <span class="n">also</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
+   <span class="ow">and</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">third</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>This example will produce a text area that is 20 rows long and 60 columns wide.  The <code class="docutils literal"><span class="pre">:edit:</span></code> flag tells the directive to produce a textarea rather than a pre element.</p>
+<p><strong>Examples</strong></p>
+
+<pre data-component="datafile" id=mydata.txt  data-edit="true" data-rows="20" data-cols="60">
+here is the first line in the data file
+also, this is the second line in the data file
+and this is the third line
+</pre>
+
+<pre data-component="datafile" id=mydata2.txt  data-edit="false" data-rows="20" data-cols="60">
+here is the first line in the data file
+also, this is the second line in the data file
+and this is the third line
+</pre>
+<p><strong>Arguments</strong></p>
+<p>The required argument is the &#8216;filename&#8217; (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is <code class="docutils literal"><span class="pre">mydata.txt</span></code> and <code class="docutils literal"><span class="pre">mydata2.txt</span></code>. This must be unique within the document as it does become the id of the element.</p>
+<p><strong>Optional Arguments</strong></p>
+<p><code class="docutils literal"><span class="pre">:hide:</span></code>  &#8211; This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).</p>
+<p><code class="docutils literal"><span class="pre">:edit:</span></code>  &#8211; This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??</p>
+<p><code class="docutils literal"><span class="pre">rows</span></code>  &#8211; This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.</p>
+<p><code class="docutils literal"><span class="pre">cols</span></code>  &#8211; Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.</p>
+</div>
+<div class="section" id="multiple-choice">
+<h3><a class="toc-backref" href="#id8">Multiple Choice</a><a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h3>
+<p>The multiple choice directive, <code class="docutils literal"><span class="pre">..mchoice::</span></code>, allows for insertion of multiple choice questions, either with a single correct option or a checkbox question with multiple correct answers (there must be at least one correct answer for a multiple choice question).</p>
+<p>(Previously, these directive options were in two different directives:  <code class="docutils literal"><span class="pre">mchoicemf</span></code> and <code class="docutils literal"><span class="pre">mchoicema</span></code>. For now, these work, but they are deprecated &#8211; you should use <code class="docutils literal"><span class="pre">mchoice</span></code> if you are writing new questions.)</p>
+<p><strong>Examples in reStructured Text</strong></p>
+<p>Multiple Choice with One Correct Answer</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoice:: question1_1
+   :answer_a: Python
+   :answer_b: Java
+   :answer_c: C
+   :answer_d: ML
+   :correct: a
+   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.
+   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
+   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
+   :feedback_d: No, ML is a functional programming language.  (You can use Python to write functional programs as well!)
+
+   What programming language does this site help you to learn?
+</pre></div>
+</div>
+<p>Multiple Choice with Multiple Answer(s)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoice:: question1_2
+   :multiple_answer:
+   :answer_a: xyZ
+   :answer_b: new_var_3
+   :answer_c: 3things
+   :answer_d: hello-there
+   :correct: a,b
+   :feedback_a: Any combination of letters is a valid variable name in Python.
+   :feedback_b: Underscores are acceptable to include in Python variable names, as long as they are not the first character in the variable name.
+   :feedback_c: Variable names can&#39;t begin with digits in Python.
+   :feedback_d: Hyphens and dashes are not acceptable characters to include in variable names in Python.
+
+   Which of these are valid variable names in Python? (Choose all that are correct)
+</pre></div>
+</div>
+<p><strong>Examples</strong></p>
+
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
+            Q-6: What programming language does this site help you to learn?
+            <li data-component="answer" data-correct id="question1_1_opt_a">(A) Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.</li>
+            
+            <li data-component="answer"  id="question1_1_opt_b">(B) Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
+            
+            <li data-component="answer"  id="question1_1_opt_c">(C) C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
+            
+            <li data-component="answer"  id="question1_1_opt_d">(D) ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  (You can use Python to write functional programs as well!)</li>
+            
+
+            </ul>
+            <p><strong>Required Arguments</strong></p>
+<p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">question1_2</span></code>. You also must have at least <code class="docutils literal"><span class="pre">answer_a</span></code>, and the <code class="docutils literal"><span class="pre">correct</span></code> argument.</p>
+<p>The value for the <code class="docutils literal"><span class="pre">correct</span></code> argument must correspond to an answer you&#8217;ve included, e.g. if you have included <code class="docutils literal"><span class="pre">:answer_a:</span></code> and <code class="docutils literal"><span class="pre">:answer_b:</span></code> only, you cannot use <code class="docutils literal"><span class="pre">:correct:</span> <span class="pre">c</span></code>.</p>
+<p>For <em>Multiple Choice Multiple Answer</em>, you may have more than one correct answer, comma-separated, as seen in the raw RST examples above. For <em>Multiple Choice Single Answer</em>, you must have only one correct answer.</p>
+<p><strong>Optional Arguments</strong></p>
+<p><code class="docutils literal"><span class="pre">:multiple_answer:</span></code> - This argument determines whether the question may have multiple correct answers with checkboxes, as above (including this option means you get the multiple answers format).</p>
+<p><em>Multiple Choice Single Answer</em></p>
+<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers, like so. (See <strong>required arguments</strong> above.)</p>
+<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question.</p>
+<p><em>Multiple Choice Multiple Answer</em></p>
+<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers. (See <strong>required arguments</strong> above.)</p>
+<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question, and that question writers consider how feedback may be useful for questions which have multiple correct answers!</p>
+</div>
+<div class="section" id="fill-in-the-blank">
+<h3><a class="toc-backref" href="#id9">Fill in the Blank</a><a class="headerlink" href="#fill-in-the-blank" title="Permalink to this headline">¶</a></h3>
+<p>The fill in the blank Runestone directive, <code class="docutils literal"><span class="pre">..</span> <span class="pre">fillintheblank::</span></code>, allows you to ask for a value to fill in the rest of a statement (in English or code).  You can test for the value submitted using JavaScript regular expressions.</p>
+<p>The basic format is like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">fillintheblank</span><span class="p">::</span> <span class="n">unique_identifier_string_no_spaces</span>
+   <span class="p">:</span><span class="n">iscode</span><span class="p">:</span> <span class="n">boolean</span>
+   <span class="p">:</span><span class="n">correct</span><span class="p">:</span> <span class="n">somestring</span> <span class="ow">in</span> <span class="n">js</span> <span class="n">regexp</span> <span class="nb">format</span>
+   <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">this</span> <span class="n">string</span> <span class="n">will</span> <span class="n">always</span> <span class="n">be</span> <span class="n">displayed</span> <span class="k">if</span> <span class="n">wrong</span>
+   <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;regexp2 here&#39;</span><span class="p">,</span> <span class="s1">&#39;this message appears if that regexp2 matches submission&#39;</span><span class="p">)</span>
+   <span class="p">[</span><span class="n">note</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">have</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">3</span> <span class="n">extra</span> <span class="n">specific</span> <span class="n">feedbacks</span><span class="p">]</span>
+   <span class="n">Question</span> <span class="n">text</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Example in reStructured Text</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">fillintheblank</span><span class="p">::</span> <span class="n">fill1412</span>
+
+    <span class="o">..</span> <span class="n">blank</span><span class="p">::</span> <span class="n">blank1345</span>
+        <span class="p">:</span><span class="n">correct</span><span class="p">:</span> \\<span class="n">bred</span>\\<span class="n">b</span>
+        <span class="p">:</span><span class="n">feedback1</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;.*&quot;</span><span class="p">,</span> <span class="s2">&quot;Try &#39;red&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">Fill</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">blanks</span> <span class="n">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sentence</span><span class="p">:</span> <span class="s2">&quot;The red car drove away&quot;</span> <span class="n">The</span>
+
+    <span class="o">..</span> <span class="n">blank</span><span class="p">::</span> <span class="n">blank52532</span>
+        <span class="p">:</span><span class="n">correct</span><span class="p">:</span> \\<span class="n">baway</span>\\<span class="n">b</span>
+        <span class="p">:</span><span class="n">feedback1</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;.*&quot;</span><span class="p">,</span> <span class="s2">&quot;Try &#39;away&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">car</span> <span class="n">drove</span>
+</pre></div>
+</div>
+<p><strong>Warning</strong>  We are looking at ways to simplify the syntax of fillintheblank so the syntax of this one may change.</p>
+
+        <p data-component="fillintheblank" data-casei="false" id="fill1412">
+            
+        <span data-blank>
+            Fill in the blanks to make the following sentence: &#8220;The red car drove away&#8221; The
+        <span data-feedback="regex" style="display: none" id="blank1345_feedback1">.*</span>
+        <span data-feedback="text" style="display: none" for="blank1345_feedback1">Try 'red'</span>
+            
+        <span data-answer style="display: none" id="blank1345_answer">\\bred\\b</span>
+        </span>
+        
+        <span data-blank>
+            car drove
+        <span data-feedback="regex" style="display: none" id="blank52532_feedback1">.*</span>
+        <span data-feedback="text" style="display: none" for="blank52532_feedback1">Try 'away'</span>
+            
+        <span data-answer style="display: none" id="blank52532_answer">\\baway\\b</span>
+        </span>
+        
+        </p>
+            <p><strong>Required Arguments</strong></p>
+<p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">baseconvert1</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">:correct:</span></code> - The regular expression for the correct answer/answer set.</p>
+<p><code class="docutils literal"><span class="pre">:blankid:</span></code> - The id of the blank, any string.</p>
+<p>Note the need for a <code class="docutils literal"><span class="pre">:textfield:</span></code> in the question with the <code class="docutils literal"><span class="pre">:blankid</span></code> id.</p>
+<p><strong>Optional Arguments</strong></p>
+</div>
+<div class="section" id="parson-s-problems">
+<h3><a class="toc-backref" href="#id10">Parson&#8217;s Problems</a><a class="headerlink" href="#parson-s-problems" title="Permalink to this headline">¶</a></h3>
+<p>Parson&#8217;s Problems:</p>
+<p>Question text comes first, then <code class="docutils literal"><span class="pre">-----</span></code> separates the question text from the code.  You provide the correct code, and the javascript takes care of mixing it up.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
+
+   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>You can also group statements using <code class="docutils literal"><span class="pre">=====</span></code>  In the example below the for loop and its body will appear as one block to position in the problem.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
+
+   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
+   <span class="o">-----</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="o">=====</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+   <span class="o">=====</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+
+    <pre data-component="parsons" id="question1_100_4">
+        <span data-question>Q-7: Construct a block of code that correctly implements the accumulator pattern.</span>x = 0
+---
+for i in range(10)
+   x = x + 1
+---
+print(x)</pre>
+    </div>
+<div class="section" id="disqus">
+<h3><a class="toc-backref" href="#id11">Disqus</a><a class="headerlink" href="#disqus" title="Permalink to this headline">¶</a></h3>
+<p>You can embed disqus discussions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+    <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">Your</span> <span class="n">registered</span>  <span class="n">shortname</span> <span class="k">with</span> <span class="n">disqus</span>
+    <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">discussion1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tabs-and-tab-groups">
+<h3><a class="toc-backref" href="#id12">Tabs and Tab Groups</a><a class="headerlink" href="#tabs-and-tab-groups" title="Permalink to this headline">¶</a></h3>
+<p>You can create a section that contains several tabs.  This is useful for exercises, and in other situations where you may want to partially reveal content.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">tabbed</span><span class="p">::</span> <span class="n">exercise1</span>
+
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Question</span> <span class="mi">1</span>
+
+        <span class="n">Write</span> <span class="n">a</span> <span class="n">program</span> <span class="n">that</span> <span class="n">prints</span> <span class="s2">&quot;Hello, world&quot;</span><span class="o">.</span>
+
+        <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">helloworld</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
+
+    <span class="o">..</span> <span class="n">tab</span><span class="p">::</span> <span class="n">Discussion</span>
+
+        <span class="o">..</span> <span class="n">disqus</span><span class="p">::</span>
+            <span class="p">:</span><span class="n">shortname</span><span class="p">:</span> <span class="n">interactivepython</span>
+            <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">helloworlddiscussion</span>
+</pre></div>
+</div>
+<div id='exercise1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Question 1" >
+<p>Write a program that prints &#8220;Hello, world&#8221;.</p>
+
+<textarea data-component="activecode" id=helloworld data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
+print("Hello, world")
+</textarea>
+</div><div data-component="tab" data-tabname="Discussion" >
+<script type="text/javascript">
+    function helloworlddiscussion_disqus(source) { 
+        if (window.DISQUS) {
+
+            $('#disqus_thread').insertAfter(source); //put the DIV for the Disqus box after the link
+
+            //if Disqus exists, call it's reset method with new parameters
+            DISQUS.reset({
+                reload: true,
+                config: function () {
+                    this.page.identifier = 'helloworlddiscussion_' + eBookConfig.course;
+                    this.page.url = 'http://helloworlddiscussion_'+eBookConfig.course+'.interactivepython.com/#!';
+                }
+            });
+
+        } else {
+            //insert a wrapper in HTML after the relevant "show comments" link
+            $('<div id="disqus_thread"></div>').insertAfter(source);
+
+            // set Disqus required vars
+            disqus_shortname = 'interactivepython';    
+            disqus_identifier = 'helloworlddiscussion_' + eBookConfig.course;
+            disqus_url = 'http://helloworlddiscussion_'+eBookConfig.course+'.interactivepython.com/#!';
+
+            //append the Disqus embed script to HTML
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            $('head').append(dsq);
+
+        }
+    }
+</script>
+
+<a href="#disqus_thread" class='disqus_thread_link' data-disqus-identifier="helloworlddiscussion" onclick="helloworlddiscussion_disqus(this);">Show Comments</a>
+<script type='text/javascript'>
+    $("a[data-disqus-identifier='helloworlddiscussion']").attr('data-disqus-identifier', 'helloworlddiscussion_' + eBookConfig.course);
+</script>
+</div>
+    </div>
+
+</div>
+<div class="section" id="polls">
+<h3><a class="toc-backref" href="#id13">Polls</a><a class="headerlink" href="#polls" title="Permalink to this headline">¶</a></h3>
+<p>Allow students to vote or rate things on a scale</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.. poll:: pollid1
+   :scale: 10
+   :allowcomment:
+
+    On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+</pre></div>
+</div>
+
+<ul data-component="poll" id=pollid1 data-comment> On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+
+<li>1</li>
+
+<li>2</li>
+
+<li>3</li>
+
+<li>4</li>
+
+<li>5</li>
+
+<li>6</li>
+
+<li>7</li>
+
+<li>8</li>
+
+<li>9</li>
+
+<li>10</li>
+</ul></div>
+<div class="section" id="reveal">
+<h3><a class="toc-backref" href="#id14">Reveal</a><a class="headerlink" href="#reveal" title="Permalink to this headline">¶</a></h3>
+<p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">reveal</span><span class="p">::</span> <span class="n">revealid1</span>
+    <span class="p">:</span><span class="n">showtitle</span><span class="p">:</span> <span class="n">Reveal</span> <span class="n">Content</span>
+    <span class="p">:</span><span class="n">hidetitle</span><span class="p">:</span> <span class="n">Hide</span> <span class="n">Content</span>
+
+    <span class="n">This</span> <span class="n">content</span> <span class="n">starts</span> <span class="n">out</span> <span class="n">hidden</span><span class="o">.</span> <span class="n">It</span><span class="s1">&#39;s visibility can be toggled by using the Show/Hide button.</span>
+
+    <span class="n">The</span> <span class="n">reveal</span> <span class="n">block</span> <span class="n">can</span> <span class="n">also</span> <span class="n">contain</span> <span class="n">other</span> <span class="n">directives</span> <span class="p">(</span><span class="n">ActiveCode</span><span class="p">,</span> <span class="n">Disqus</span> <span class="n">block</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
+
+    <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac11</span>
+
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hello, world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+    <div data-component="reveal" id="revealid1"   data-showtitle="Reveal Content" data-hidetitle="Hide Content">
+    <p>This content starts out hidden. It&#8217;s visibility can be toggled by using the Show/Hide button.</p>
+<p>The reveal block can also contain other directives (ActiveCode, Disqus block, etc):</p>
+
+<textarea data-component="activecode" id=ac11 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
+print ("Hello, world")
+</textarea>
+
+    </div>
+    </div>
+<div class="section" id="drag-and-drop">
+<h3><a class="toc-backref" href="#id15">Drag and Drop</a><a class="headerlink" href="#drag-and-drop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">dragndrop</span><span class="p">::</span> <span class="n">identifier</span>
+    <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">displayed</span> <span class="k">if</span> <span class="n">things</span> <span class="n">are</span> <span class="n">incorrectly</span> <span class="n">matched</span><span class="o">--</span><span class="ow">is</span> <span class="n">optional</span>
+    <span class="p">:</span><span class="n">match_1</span><span class="p">:</span> <span class="n">Draggable</span> <span class="n">element</span> <span class="n">text</span><span class="o">|||</span><span class="n">Dropzone</span> <span class="n">to</span> <span class="n">be</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">text</span>
+    <span class="p">:</span><span class="n">match_2</span><span class="p">:</span> <span class="n">Drag</span> <span class="n">to</span> <span class="n">Answer</span> <span class="n">B</span><span class="o">|||</span><span class="n">Answer</span> <span class="n">B</span>
+    <span class="p">:</span><span class="n">match_3</span><span class="p">:</span> <span class="n">Draggable</span> <span class="n">text</span><span class="o">|||</span><span class="n">Text</span> <span class="n">of</span> <span class="n">dropzone</span>
+    <span class="o">...</span><span class="n">etc</span><span class="o">...</span><span class="p">(</span><span class="n">up</span> <span class="n">to</span> <span class="mi">20</span> <span class="n">matches</span><span class="p">)</span>
+
+    <span class="n">The</span> <span class="n">question</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clickable-areas">
+<h3><a class="toc-backref" href="#id16">Clickable Areas</a><a class="headerlink" href="#clickable-areas" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">clickablearea</span><span class="p">::</span> <span class="n">identifier</span>
+    <span class="p">:</span><span class="n">question</span><span class="p">:</span> <span class="n">Question</span> <span class="n">text</span>
+    <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Optional</span> <span class="n">feedback</span> <span class="k">for</span> <span class="n">incorrect</span> <span class="n">answer</span>
+    <span class="p">:</span><span class="n">iscode</span><span class="p">:</span> <span class="n">Boolean</span> <span class="n">that</span> <span class="k">if</span> <span class="n">present</span> <span class="n">will</span> <span class="n">put</span> <span class="n">the</span> <span class="n">content</span> <span class="n">into</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;</span>
+    <span class="p">:</span><span class="n">table</span><span class="p">:</span> <span class="n">Boolean</span> <span class="n">that</span> <span class="n">indicates</span> <span class="n">that</span> <span class="n">the</span> <span class="n">content</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">table</span><span class="o">.</span>
+    <span class="p">:</span><span class="n">correct</span><span class="p">:</span> <span class="n">An</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">indices</span> <span class="n">of</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">elements</span><span class="p">,</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">semicolons</span><span class="o">--</span><span class="k">if</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">table</span><span class="p">,</span> <span class="n">each</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">tuple</span>
+    <span class="k">with</span> <span class="n">the</span> <span class="n">first</span> <span class="n">number</span> <span class="n">being</span> <span class="n">the</span> <span class="n">row</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">second</span> <span class="n">number</span> <span class="n">being</span> <span class="n">the</span> <span class="n">column</span><span class="o">--</span><span class="n">use</span> <span class="n">a</span> <span class="n">column</span> <span class="n">number</span> <span class="n">of</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">row</span> <span class="n">correct</span> <span class="p">(</span><span class="n">ex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span> <span class="n">makes</span> <span class="n">the</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">data</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">correct</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span> <span class="n">the</span> <span class="n">entire</span> <span class="mi">3</span><span class="n">rd</span> <span class="n">row</span><span class="p">)</span>
+    <span class="p">:</span><span class="n">incorrect</span><span class="p">:</span> <span class="n">An</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">indices</span> <span class="n">of</span> <span class="n">the</span> <span class="n">incorrect</span> <span class="n">elements</span><span class="o">--</span><span class="n">same</span> <span class="nb">format</span> <span class="k">as</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">elements</span><span class="o">.</span>
+
+    <span class="o">--</span><span class="n">Content</span><span class="o">--</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="short-answer">
+<h3><a class="toc-backref" href="#id17">Short Answer</a><a class="headerlink" href="#short-answer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">shortanswer</span><span class="p">::</span> <span class="n">uniqueid</span>
+   <span class="p">:</span><span class="n">optional</span><span class="p">:</span>
+
+   <span class="n">text</span> <span class="n">of</span> <span class="n">the</span> <span class="n">question</span> <span class="n">goes</span> <span class="n">here</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-assignment">
+<h3><a class="toc-backref" href="#id18">Usage Assignment</a><a class="headerlink" href="#usage-assignment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">usageassignment</span><span class="p">::</span> <span class="n">prep_1</span>
+   <span class="p">:</span><span class="n">chapters</span><span class="p">:</span> <span class="n">chap_name1</span><span class="p">[,</span> <span class="n">chapname2</span><span class="p">]</span><span class="o">*</span>
+   <span class="p">:</span><span class="n">subchapters</span><span class="p">:</span> <span class="n">subchapter_name</span><span class="p">[,</span> <span class="n">subchaptername2</span><span class="p">]</span><span class="o">*</span>
+   <span class="p">:</span><span class="n">assignment_name</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">str</span><span class="o">&gt;</span>
+   <span class="p">:</span><span class="n">assignment_type</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">int</span> <span class="nb">id</span> <span class="n">of</span> <span class="n">the</span> <span class="n">assignment</span> <span class="nb">type</span> <span class="nb">object</span><span class="p">;</span> <span class="n">kind</span> <span class="n">of</span> <span class="n">a</span> <span class="n">hack</span><span class="o">&gt;</span>
+   <span class="p">:</span><span class="n">deadline</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">str</span><span class="o">&gt;</span>
+   <span class="p">:</span><span class="n">sections</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">comma</span> <span class="n">separated</span> <span class="nb">int</span> <span class="n">ids</span> <span class="n">of</span> <span class="n">the</span> <span class="n">section</span> <span class="n">objects</span><span class="p">;</span> <span class="n">kind</span> <span class="n">of</span> <span class="n">a</span> <span class="n">hack</span><span class="o">&gt;</span>
+   <span class="p">:</span><span class="n">pct_required</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span>   <span class="p">:</span><span class="n">points</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="controlling-question-numbering">
+<h3><a class="toc-backref" href="#id19">Controlling Question Numbering</a><a class="headerlink" href="#controlling-question-numbering" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">qnum</span><span class="p">::</span>
+   <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="n">character</span> <span class="n">prefix</span> <span class="n">before</span> <span class="n">the</span> <span class="n">number</span>
+   <span class="s1">&#39;suffix&#39;</span><span class="p">:</span> <span class="n">character</span> <span class="n">prefix</span> <span class="n">after</span> <span class="n">the</span> <span class="n">number</span>
+   <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start</span> <span class="n">numbering</span> <span class="k">with</span> <span class="n">this</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">qnum</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">prefix</span><span class="p">:</span> <span class="n">turtle</span><span class="o">-</span>
+   <span class="p">:</span><span class="n">start</span><span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Will cause the questions in this section to be displayed as turtle-10, turtle-11, and so on.</p>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Developer Documentation for Runestone Interactive Tools' data-toggle="tooltip">
+    <a href="developer.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="developer.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Extension Authors' data-toggle="tooltip" >
+    <a href="writingAnExtension.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="writingAnExtension.html" >Next Section - Extension Authors</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Brad Miller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.2.
+    </p>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
