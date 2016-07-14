@@ -7,18 +7,18 @@ Each Runestone directive has a particular purpose. Each is detailed below, inclu
 * The syntax for using each directive
 * Examples, or links to examples, of how instructors have used these directives in interactive textbook work
 * If applicable, how exercises created by these directives can be graded
-* Available additional developer documentation/notes 
+* Available additional developer documentation/notes
 
 General Syntax
 ---------------
 
 All directives start out with ``..``, then a single space, followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``, followed by a single space.
 
-Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It's also necessary for managing any controls or 
+Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It's also necessary for managing any controls or
 
 Spacing, including indentation consistency, is very important in implementing directives inside ``.rst`` files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it's worth checking your final product before releasing content to students.
 
-Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below). 
+Directives may have **required arguments**. In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, will follow the ``::`` in the directive (example below).
 
 Further (often optional) arguments for a directive generally occur below that first line, surrounded by single ``:`` s. Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive  requires a path to a ``.png`` image for the thumbnail image that should appear for the video, which you can see in the video directive example.
 
@@ -35,7 +35,7 @@ Video
 
 **Purpose**
 
-As you may imagine, the job of the video directive is to embed a video in a page. 
+As you may imagine, the job of the video directive is to embed a video in a page.
 
 **Example in reStructured Text**
 
@@ -83,11 +83,11 @@ Video directives are not tied to the grading interface. Interactions logged in t
 
 Teachers have used the video directive to include demonstrative video to accompany conceptual explanations, or to bring in video explanations from other openly licensed sources (e.g. Khan Academy, interactivepython.org).
 
- 
+
 Activecode
 ~~~~~~~~~~
 
-The activecode directive allows you to create executable, editable example code. This allows your students to experiment with your examples by changing them and running them over and over again. 
+The activecode directive allows you to create executable, editable example code. This allows your students to experiment with your examples by changing them and running them over and over again.
 
 In an **activecode** window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they've edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)
 
@@ -131,9 +131,9 @@ One of the great things about activecode is that you can experiment with the cod
        print result
 
 ::
-    
+
     .. activecode:: ac_example1
-       :caption: A Turtle making a square 
+       :caption: A Turtle making a square
 
        import turtle
        t = turtle.Turtle()
@@ -360,7 +360,7 @@ Note that if your code has any errors, it will definitely cause a problem when t
 
 ``:breakline:``  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.
 
-``:tracedata:``  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The **tracedata** is the object from which you access the value of the ``:correct:`` answer (see below) if you are including a question in the codelens directive. 
+``:tracedata:``  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The **tracedata** is the object from which you access the value of the ``:correct:`` answer (see below) if you are including a question in the codelens directive.
 
 **Developer notes for tracedata:** You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your ``.rst`` file, which you can find in the ``build`` folder, in the corresponding directory to the directory in ``_sources`` where you saved your current ``.rst`` file (e.g. if your current rst file is in ``_sources/Functions/introduction.rst``, you can see the tracedata for a codelens example in ``build/Functions/introduction.html``. You can index into that **tracedata** object with dot notation, but index into any list within it with ``[]``, as usual in Python.
 
@@ -522,7 +522,7 @@ Multiple Choice with Multiple Answer(s)
 
 **Required Arguments**
 
-Unique identifier for the question, e.g. ``question1_2``. You also must have at least ``answer_a``, and the ``correct`` argument. 
+Unique identifier for the question, e.g. ``question1_2``. You also must have at least ``answer_a``, and the ``correct`` argument.
 
 The value for the ``correct`` argument must correspond to an answer you've included, e.g. if you have included ``:answer_a:`` and ``:answer_b:`` only, you cannot use ``:correct: c``.
 
@@ -547,7 +547,7 @@ For *Multiple Choice Multiple Answer*, you may have more than one correct answer
 Fill in the Blank
 ~~~~~~~~~~~~~~~~~
 
-The fill in the blank Runestone directive, ``.. fillintheblank::``, allows you to ask for a value to fill in the rest of a statement (in English or code).  You can test for the value submitted using JavaScript regular expressions. 
+The fill in the blank Runestone directive, ``.. fillintheblank::``, allows you to ask for a value to fill in the rest of a statement (in English or code).  You can test for the value submitted using JavaScript regular expressions.
 
 The basic format is like so:
 
@@ -591,7 +591,166 @@ UNFINISHED FROM THIS POINT
 **Optional Arguments**
 
 
+Parson's Problems
+~~~~~~~~~~~~~~~~~
+
+Parson's Problems:
+
+Question text comes first, then ``-----`` separates the question text from the code.  You provide the correct code, and the javascript takes care of mixing it up.
+::
+
+    .. parsonsprob:: question1_100_4
+
+       Construct a block of code that correctly implements the accumulator pattern.
+       -----
+       x = 0
+       for i in range(10)
+          x = x + 1
+
+
+You can also group statements using ``=====``  In the example below the for loop and its body will appear as one block to position in the problem.
+
+::
+
+    .. parsonsprob:: question1_100_4
+
+       Construct a block of code that correctly implements the accumulator pattern.
+       -----
+       x = 0
+       =====
+       for i in range(10)
+          x = x + 1
+       =====
+       print(x)
+
+
+.. parsonsprob:: question1_100_4
+
+   Construct a block of code that correctly implements the accumulator pattern.
+   -----
+   x = 0
+   =====
+   for i in range(10)
+      x = x + 1
+   =====
+   print(x)
+
+
+Disqus
+~~~~~~
+
+
+You can embed disqus discussions:
+
+::
+
+    .. disqus::
+        :shortname: Your registered  shortname with disqus
+        :identifier: discussion1
+
+
+Tabs and Tab Groups
+~~~~~~~~~~~~~~~~~~~
+
+You can create a section that contains several tabs.  This is useful for exercises, and in other situations where you may want to partially reveal content.
+
+::
+
+    .. tabbed:: exercise1
+
+        .. tab:: Question 1
+
+            Write a program that prints "Hello, world".
+
+            .. activecode:: helloworld
+
+                print("Hello, world")
+
+        .. tab:: Discussion
+
+            .. disqus::
+                :shortname: interactivepython
+                :identifier: helloworlddiscussion
+
+
+.. tabbed:: exercise1
+
+    .. tab:: Question 1
+
+        Write a program that prints "Hello, world".
+
+        .. activecode:: helloworld
+
+            print("Hello, world")
+
+    .. tab:: Discussion
+
+        .. disqus::
+            :shortname: interactivepython
+            :identifier: helloworlddiscussion
+
+
+Polls
+~~~~~
+
+Allow students to vote or rate things on a scale
+
+::
+
+    .. poll:: pollid1
+       :scale: 10
+       :allowcomment:
+
+        On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+
+.. poll:: pollid1
+   :scale: 10
+   :allowcomment:
+
+    On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+
+Reveal
+~~~~~~
+
+Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.
+
+::
+
+    .. reveal:: revealid1
+        :showtitle: Reveal Content
+        :hidetitle: Hide Content
+
+        This content starts out hidden. It's visibility can be toggled by using the Show/Hide button.
+
+        The reveal block can also contain other directives (ActiveCode, Disqus block, etc):
+
+        .. activecode:: ac11
+
+            print ("Hello, world")
 
 
 
+.. reveal:: revealid1
+    :showtitle: Reveal Content
+    :hidetitle: Hide Content
 
+    This content starts out hidden. It's visibility can be toggled by using the Show/Hide button.
+
+    The reveal block can also contain other directives (ActiveCode, Disqus block, etc):
+
+    .. activecode:: ac11
+
+        print ("Hello, world")
+
+
+Drag and Drop
+~~~~~~~~~~~~~
+
+Clickable Areas
+~~~~~~~~~~~~~~~
+
+Short Answer
+~~~~~~~~~~~~
+
+Usage Assignment
+~~~~~~~~~~~~~~~~
