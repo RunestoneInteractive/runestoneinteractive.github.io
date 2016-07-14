@@ -453,7 +453,9 @@ The required argument is the 'filename' (this is not reliant on any actual filen
 Multiple Choice
 ~~~~~~~~~~~~~~~
 
-There are two types of multiple choice question directives available in Runestone: single option multiple choice questions, the ``.. mchoice::`` directive, where only one selection is correct, and the ``.. mchoicema::`` directive, where multiple answers may be selected (and multiple answers may be correct), respectively. (Previously, what is now ``mchoice`` required a directive name ``mchoicemf``. For now, this works, but it is deprecated -- you should use ``mchoice`` if you are writing new questions.)
+The multiple choice directive, ``..mchoice::``, allows for insertion of multiple choice questions, either with a single correct option or a checkbox question with multiple correct answers (there must be at least one correct answer for a multiple choice question).
+
+(Previously, these directive options were in two different directives:  ``mchoicemf`` and ``mchoicema``. For now, these work, but they are deprecated -- you should use ``mchoice`` if you are writing new questions.)
 
 
 **Examples in reStructured Text**
@@ -479,7 +481,8 @@ Multiple Choice with Multiple Answer(s)
 
 ::
 
-    .. mchoicema:: question1_2
+    .. mchoice:: question1_2
+       :multiple_answer:
        :answer_a: xyZ
        :answer_b: new_var_3
        :answer_c: 3things
@@ -507,7 +510,8 @@ Multiple Choice with Multiple Answer(s)
 
     What programming language does this site help you to learn?
 
-.. mchoicema:: question1_2
+.. mchoice:: question1_2
+    :multiple_answer:
     :answer_a: xyZ
     :answer_b: new_var_3
     :answer_c: 3things
@@ -530,6 +534,8 @@ For *Multiple Choice Multiple Answer*, you may have more than one correct answer
 
 **Optional Arguments**
 
+``:multiple_answer:`` - This argument determines whether the question may have multiple correct answers with checkboxes, as above (including this option means you get the multiple answers format).
+
 *Multiple Choice Single Answer*
 
 ``:answer_a:``, ``:answer_b:``, ``:answer_c:``, ``:answer_d:``, ``:answer_e:``  You can provide up to five different possible correct answers, like so. (See **required arguments** above.)
@@ -550,8 +556,6 @@ Fill in the Blank
 The fill in the blank Runestone directive, ``.. fillintheblank::``, allows you to ask for a value to fill in the rest of a statement (in English or code).  You can test for the value submitted using JavaScript regular expressions.
 
 The basic format is like so:
-
-UNFINISHED FROM THIS POINT
 
 ::
 
@@ -587,6 +591,14 @@ UNFINISHED FROM THIS POINT
      What is value of 25 expressed as an octal number (base 8) :textfield:`baseconvert1_ans1::mini`
 
 **Required Arguments**
+
+Unique identifier for the question, e.g. ``baseconvert1``.
+
+``:correct:`` - The regular expression for the correct answer/answer set.
+
+``:blankid:`` - The id of the blank, any string.
+
+Note the need for a ``:textfield:`` in the question with the ``:blankid`` id.
 
 **Optional Arguments**
 
