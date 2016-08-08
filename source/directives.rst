@@ -621,10 +621,10 @@ Note the need for a ``:textfield:`` in the question with the ``:blankid`` id.
 **Optional Arguments**
 
 
-Parson's Problems
+Parsons Problems
 ~~~~~~~~~~~~~~~~~
 
-The Parson's Problem directive, ``..parsonsprob::``, allows for insertion of a 2D Parson's problem. In a Parson's problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
+The Parsons Problem directive, ``..parsonsprob::``, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
 
 ::
 
