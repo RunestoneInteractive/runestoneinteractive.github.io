@@ -244,10 +244,12 @@ DragNDrop.prototype.setEventListeners = function (dgSpan, dpSpan) {
     }.bind(this));
 };
 DragNDrop.prototype.renderFeedbackDiv = function () {
-    this.feedBackDiv = document.createElement("div");
-    this.feedBackDiv.id = this.divid + "_feedback";
-    this.containerDiv.appendChild(document.createElement("br"));
-    this.containerDiv.appendChild(this.feedBackDiv);
+    if (!this.feedBackDiv) {
+        this.feedBackDiv = document.createElement("div");
+        this.feedBackDiv.id = this.divid + "_feedback";
+        this.containerDiv.appendChild(document.createElement("br"));
+        this.containerDiv.appendChild(this.feedBackDiv);
+    }
 };
 /*=======================
 == Auxiliary functions ==
@@ -342,6 +344,9 @@ DragNDrop.prototype.dragEval = function (logFlag) {
 };
 
 DragNDrop.prototype.renderFeedback = function () {
+    if (!this.feedBackDiv) {
+        this.renderFeedbackDiv();
+    }
     this.feedBackDiv.style.display = "block";
     if (this.correct) {
         $(this.feedBackDiv).html("You are correct!");
@@ -370,8 +375,17 @@ DragNDrop.prototype.checkLocalStorage = function () {
         var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
         if (ex !== null) {
             this.hasStoredDropzones = true;
-            var storedObj = JSON.parse(ex);
-            this.minheight = storedObj.minHeight;
+            try {
+                var storedObj = JSON.parse(ex);
+                this.minheight = storedObj.minHeight;
+            } catch (err) {
+                // error while parsing; likely due to bad value stored in storage
+                console.log(err.message);
+                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
+                this.hasStoredDropzones = false;
+                this.finishSettingUp();
+                return;
+            }
             this.pregnantIndexArray = storedObj.answer.split(";");
             if (this.useRunestoneServices) {
                 // store answer in database

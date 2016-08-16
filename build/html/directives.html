@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
-    <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/livecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
@@ -59,8 +59,6 @@
     <script type="text/javascript" src="_static/animationbase.js"></script>
     <script type="text/javascript" src="_static/mchoice.js"></script>
     <script type="text/javascript" src="_static/timedmc.js"></script>
-    <script type="text/javascript" src="_static/fitb.js"></script>
-    <script type="text/javascript" src="_static/timedfitb.js"></script>
     <script type="text/javascript" src="_static/timed.js"></script>
     <script type="text/javascript" src="_static/clickable.js"></script>
     <script type="text/javascript" src="_static/timedclickable.js"></script>
@@ -74,6 +72,8 @@
     <script type="text/javascript" src="_static/datafile.js"></script>
     <script type="text/javascript" src="_static/dragndrop.js"></script>
     <script type="text/javascript" src="_static/timeddnd.js"></script>
+    <script type="text/javascript" src="_static/fitb.js"></script>
+    <script type="text/javascript" src="_static/timedfitb.js"></script>
     <script type="text/javascript" src="_static/livecode.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
     <script type="text/javascript" src="_static/lib/prettify.js"></script>
@@ -107,7 +107,7 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <script type="text/javascript">
   eBookConfig = {};
-  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.host = 'http://interactivepython.org' ? 'http://interactivepython.org' : 'http://127.0.0.1:8000';
   eBookConfig.app = eBookConfig.host+'/runestone';
   eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
   eBookConfig.course = 'html';
@@ -245,17 +245,17 @@
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
-            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
-            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
-            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
-            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+            <li><a href='http://interactivepython.org/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://interactivepython.org/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://interactivepython.org/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://interactivepython.org/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
 			<li class="divider"></li>
-            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
-            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li><a href='http://interactivepython.org/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://interactivepython.org/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
-            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://interactivepython.org/runestone/default/user/register" id="registerlink">Register</a></li>
             <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
           </ul>
         </li>
@@ -424,30 +424,6 @@
 </pre></div>
 </div>
 <p><strong>Example</strong></p>
-<div id="interactive_python_vid_1" class="video_popup" >
-<video controls preload="none"  poster="../_static/videothumb.png">
-    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.mov" type="video/mp4"></source>
-    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.webm" type="video/webm"></source>
-    No supported video types
-</video>
-</div>
-<script>
-   jQuery(function($) {
-      var rb = new RunestoneBase();
-      $('#interactive_python_vid_1_thumb').click(function(e) {
-         $('#interactive_python_vid_1').show();
-         $('#interactive_python_vid_1_thumb').hide();
-         rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
-         // Log the run event
-      });
-      $('#interactive_python_vid_1 video').one("click", function(){
-        this.play();
-      });
-      $('#interactive_python_vid_1 video').one("play", function(){
-        rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
-      });
-   });
-</script>
 <p><strong>Required Arguments</strong></p>
 <p>A unique identifier for the video. No spaces. This goes to the right of the <code class="docutils literal"><span class="pre">..</span> <span class="pre">video::</span></code> term. In the example, the unique identifier chosen is <code class="docutils literal"><span class="pre">interactive_python_vid_1</span></code>.</p>
 <p><strong>Optional Arguments</strong></p>
@@ -512,25 +488,7 @@
 </div>
 <p><strong>Examples</strong></p>
 <p>Here is the second example above:</p>
-
-<textarea data-component="activecode" id=function2_3 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
-def square(x):
-    y = x * x
-    return y
-
-result = square(5)
-print result
-</textarea>
 <p>The turtle example with a canvas.</p>
-
-<textarea data-component="activecode" id=ac_example1 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     data-caption='A Turtle making a square'>
-import turtle
-t = turtle.Turtle()
-
-for i in range(4):
-    t.forward(100)
-    t.left(90)
-</textarea>
 <p><strong>Required Arguments</strong></p>
 <p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive. No spaces may be included in this identifier.</p>
 <p>This unique identifer will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.</p>
@@ -613,187 +571,6 @@ for i in range(4):
 </div>
 <p><strong>Examples</strong></p>
 <p>Here are the above examples of codelens in action:</p>
-
-<div class="alert alert-warning cd_section">
-<div id="simpleexample"></div>
-<p class="cl_caption"><span class="cl_caption_text"> (simpleexample)</span> </p>
-</div>
-<script type="text/javascript">
-var simpleexample_trace = {"code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["fruit"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "return"}]};
-var simpleexample_vis;
-
-$(document).ready(function() {
-    try {
-        simpleexample_vis = new ExecutionVisualizer('simpleexample',simpleexample_trace,
-                                    {embeddedMode: true,
-                                    verticalStack: false,
-                                    heightChangeCallback: redrawAllVisualizerArrows,
-                                    codeDivWidth: 500,
-                                    lang : 'py2'
-                                    });
-        attachLoggers(simpleexample_vis,'simpleexample');
-        styleButtons('simpleexample');
-        allVisualizers.push(simpleexample_vis);
-    } catch (e) {
-        console.log("Failed to Initialize CodeLens component simpleexample_vis" );
-        console.log(e.toString());
-    }
-
-});
-
-$(document).ready(function() {
-    $("#simpleexample_tracecheck").click(function() {
-        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'simpleexample'});
-    });
-});
-
-if (allVisualizers === undefined) {
-   var allVisualizers = [];
-}
-
-
-$(window).resize(function() {
-    if (simpleexample_vis) {
-        simpleexample_vis.redrawConnectors();
-    }
-});
-</script>
-
-<div class="alert alert-warning cd_section">
-<div id="question_example"></div>
-<p class="cl_caption"><span class="cl_caption_text"> (question_example)</span> </p>
-</div>
-<div id="question_example_modal" class="modal fade codelens-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Check your understanding</h4>
-      </div>
-      <div class="modal-body">
-        <p>What is the value in b after line 4 executes?</p>
-        <input id="question_example_textbox" type="textbox" class="form-control" style="width:200px;" />
-        <br />
-        <button id="question_example_tracecheck" class='btn btn-default tracecheck' onclick="traceQCheckMe('question_example_textbox','question_example','globals.b')">
-          Check Me
-        </button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
-        <br />
-        <p id="question_example_feedbacktext" class="feedbacktext alert alert-warning"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-var question_example_trace = {"code": "a = 1\nb = 12.3\nc = \"Fred\"\nd = b", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["a"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["a", "b"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "b": 12.3}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["a", "b", "c"], "question": {"text": "What is the value in b after line 4 executes?", "div": "question_example_modal", "feedback": "When d is set to a copy of the value of b it doesn't change the value of b.", "correct": "globals.b"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "c": "Fred", "b": 12.3}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["a", "b", "c", "d"], "question": {"text": "What is the value in b after line 4 executes?", "div": "question_example_modal", "feedback": "When d is set to a copy of the value of b it doesn't change the value of b.", "correct": "globals.b"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"a": 1, "c": "Fred", "b": 12.3, "d": 12.3}, "heap": {}, "line": 4, "event": "return"}]};
-var question_example_vis;
-
-$(document).ready(function() {
-    try {
-        question_example_vis = new ExecutionVisualizer('question_example',question_example_trace,
-                                    {embeddedMode: true,
-                                    verticalStack: false,
-                                    heightChangeCallback: redrawAllVisualizerArrows,
-                                    codeDivWidth: 500,
-                                    lang : 'py2'
-                                    });
-        attachLoggers(question_example_vis,'question_example');
-        styleButtons('question_example');
-        allVisualizers.push(question_example_vis);
-    } catch (e) {
-        console.log("Failed to Initialize CodeLens component question_example_vis" );
-        console.log(e.toString());
-    }
-
-});
-
-$(document).ready(function() {
-    $("#question_example_tracecheck").click(function() {
-        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'question_example'});
-    });
-});
-
-if (allVisualizers === undefined) {
-   var allVisualizers = [];
-}
-
-
-$(window).resize(function() {
-    if (question_example_vis) {
-        question_example_vis.redrawConnectors();
-    }
-});
-</script>
-
-<div class="alert alert-warning cd_section">
-<div id="Ketchup_Speed"></div>
-<p class="cl_caption"><span class="cl_caption_text"> (Ketchup_Speed)</span> </p>
-</div>
-<div id="Ketchup_Speed_modal" class="modal fade codelens-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Check your understanding</h4>
-      </div>
-      <div class="modal-body">
-        <p>What line will be executed after the current line executes?</p>
-        <input id="Ketchup_Speed_textbox" type="textbox" class="form-control" style="width:200px;" />
-        <br />
-        <button id="Ketchup_Speed_tracecheck" class='btn btn-default tracecheck' onclick="traceQCheckMe('Ketchup_Speed_textbox','Ketchup_Speed','line')">
-          Check Me
-        </button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
-        <br />
-        <p id="Ketchup_Speed_feedbacktext" class="feedbacktext alert alert-warning"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-var Ketchup_Speed_trace = {"code": "dripMPH = .028\nFPM = 5280.0\ndripFPH = dripMPH * FPM\nMPH = 60\ndripFPM = dripFPH / MPH\nprint(\"Ketchup speed in feet per minute:\")\nprint(dripFPM)\nprint(\"Ketchup speed to move 4 feet in a minute:\")\nprint(4 / dripFPM)", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["dripMPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"dripMPH": 0.028}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM"], "question": {"text": "What line will be executed after the current line executes?", "div": "Ketchup_Speed_modal", "feedback": "This code is executed one line at a time from top to bottom. (No loops.)", "correct": "line"}, "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84}, "heap": {}, "line": 4, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 6, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 7, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 8, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\nKetchup speed to move 4 feet in a minute:\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 9, "event": "step_line"}, {"ordered_globals": ["dripMPH", "FPM", "dripFPH", "MPH", "dripFPM"], "stdout": "Ketchup speed in feet per minute:\n2.464\nKetchup speed to move 4 feet in a minute:\n1.62337662338\n", "func_name": "<module>", "stack_to_render": [], "globals": {"FPM": ["SPECIAL_FLOAT", "5280.0"], "dripMPH": 0.028, "dripFPH": 147.84, "MPH": 60, "dripFPM": 2.464}, "heap": {}, "line": 9, "event": "return"}]};
-var Ketchup_Speed_vis;
-
-$(document).ready(function() {
-    try {
-        Ketchup_Speed_vis = new ExecutionVisualizer('Ketchup_Speed',Ketchup_Speed_trace,
-                                    {embeddedMode: true,
-                                    verticalStack: false,
-                                    heightChangeCallback: redrawAllVisualizerArrows,
-                                    codeDivWidth: 500,
-                                    lang : 'py2'
-                                    });
-        attachLoggers(Ketchup_Speed_vis,'Ketchup_Speed');
-        styleButtons('Ketchup_Speed');
-        allVisualizers.push(Ketchup_Speed_vis);
-    } catch (e) {
-        console.log("Failed to Initialize CodeLens component Ketchup_Speed_vis" );
-        console.log(e.toString());
-    }
-
-});
-
-$(document).ready(function() {
-    $("#Ketchup_Speed_tracecheck").click(function() {
-        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'Ketchup_Speed'});
-    });
-});
-
-if (allVisualizers === undefined) {
-   var allVisualizers = [];
-}
-
-
-$(window).resize(function() {
-    if (Ketchup_Speed_vis) {
-        Ketchup_Speed_vis.redrawConnectors();
-    }
-});
-</script>
 <p><strong>Required Arguments</strong></p>
 <p>The identifier after the <code class="docutils literal"><span class="pre">::</span></code> must be unique. No spaces.</p>
 <p><strong>Content</strong></p>
@@ -887,7 +664,7 @@ and this is the third line
 </div>
 <p>Multiple Choice with Multiple Answer(s)</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoice:: question1_2
-   :multiple_answer:
+   :multiple_answers:
    :answer_a: xyZ
    :answer_b: new_var_3
    :answer_c: 3things
@@ -902,20 +679,7 @@ and this is the third line
 </pre></div>
 </div>
 <p><strong>Examples</strong></p>
-
-            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-6: What programming language does this site help you to learn?
-            <li data-component="answer" data-correct id="question1_1_opt_a">(A) Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_b">(B) Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_c">(C) C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
-            
-            <li data-component="answer"  id="question1_1_opt_d">(D) ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  (You can use Python to write functional programs as well!)</li>
-            
-
-            </ul>
-            <p><strong>Required Arguments</strong></p>
+<p><strong>Required Arguments</strong></p>
 <p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">question1_2</span></code>. You also must have at least <code class="docutils literal"><span class="pre">answer_a</span></code>, and the <code class="docutils literal"><span class="pre">correct</span></code> argument.</p>
 <p>The value for the <code class="docutils literal"><span class="pre">correct</span></code> argument must correspond to an answer you&#8217;ve included, e.g. if you have included <code class="docutils literal"><span class="pre">:answer_a:</span></code> and <code class="docutils literal"><span class="pre">:answer_b:</span></code> only, you cannot use <code class="docutils literal"><span class="pre">:correct:</span> <span class="pre">c</span></code>.</p>
 <p>For <em>Multiple Choice Multiple Answer</em>, you may have more than one correct answer, comma-separated, as seen in the raw RST examples above. For <em>Multiple Choice Single Answer</em>, you must have only one correct answer.</p>
@@ -958,27 +722,7 @@ and this is the third line
 </pre></div>
 </div>
 <p><strong>Warning</strong>  We are looking at ways to simplify the syntax of fillintheblank so the syntax of this one may change.</p>
-
-        <p data-component="fillintheblank" data-casei="false" id="fill1412">
-            
-        <span data-blank>
-            Fill in the blanks to make the following sentence: &#8220;The red car drove away&#8221; The
-        <span data-feedback="regex" style="display: none" id="blank1345_feedback1">.*</span>
-        <span data-feedback="text" style="display: none" for="blank1345_feedback1">Try 'red'</span>
-            
-        <span data-answer style="display: none" id="blank1345_answer">\\bred\\b</span>
-        </span>
-        
-        <span data-blank>
-            car drove
-        <span data-feedback="regex" style="display: none" id="blank52532_feedback1">.*</span>
-        <span data-feedback="text" style="display: none" for="blank52532_feedback1">Try 'away'</span>
-            
-        <span data-answer style="display: none" id="blank52532_answer">\\baway\\b</span>
-        </span>
-        
-        </p>
-            <p><strong>Required Arguments</strong></p>
+<p><strong>Required Arguments</strong></p>
 <p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">baseconvert1</span></code>.</p>
 <p><code class="docutils literal"><span class="pre">:correct:</span></code> - The regular expression for the correct answer/answer set.</p>
 <p><code class="docutils literal"><span class="pre">:blankid:</span></code> - The id of the blank, any string.</p>
@@ -1011,15 +755,7 @@ and this is the third line
    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-
-    <pre data-component="parsons" id="question1_100_4">
-        <span data-question>Q-7: Construct a block of code that correctly implements the accumulator pattern.</span>x = 0
----
-for i in range(10)
-   x = x + 1
----
-print(x)</pre>
-    </div>
+</div>
 <div class="section" id="disqus">
 <h3><a class="toc-backref" href="#id11">Disqus</a><a class="headerlink" href="#disqus" title="Permalink to this headline">¶</a></h3>
 <p>You can embed disqus discussions:</p>
@@ -1050,12 +786,7 @@ print(x)</pre>
 </pre></div>
 </div>
 <div id='exercise1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Question 1" >
-<p>Write a program that prints &#8220;Hello, world&#8221;.</p>
-
-<textarea data-component="activecode" id=helloworld data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
-print("Hello, world")
-</textarea>
-</div><div data-component="tab" data-tabname="Discussion" >
+Write a program that prints &#8220;Hello, world&#8221;.</div><div data-component="tab" data-tabname="Discussion" >
 <script type="text/javascript">
     function helloworlddiscussion_disqus(source) { 
         if (window.DISQUS) {
@@ -1107,29 +838,7 @@ print("Hello, world")
     On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
 </pre></div>
 </div>
-
-<ul data-component="poll" id=pollid1 data-comment> On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
-
-<li>1</li>
-
-<li>2</li>
-
-<li>3</li>
-
-<li>4</li>
-
-<li>5</li>
-
-<li>6</li>
-
-<li>7</li>
-
-<li>8</li>
-
-<li>9</li>
-
-<li>10</li>
-</ul></div>
+</div>
 <div class="section" id="reveal">
 <h3><a class="toc-backref" href="#id14">Reveal</a><a class="headerlink" href="#reveal" title="Permalink to this headline">¶</a></h3>
 <p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.</p>
@@ -1150,10 +859,6 @@ print("Hello, world")
     <div data-component="reveal" id="revealid1"   data-showtitle="Reveal Content" data-hidetitle="Hide Content">
     <p>This content starts out hidden. It&#8217;s visibility can be toggled by using the Show/Hide button.</p>
 <p>The reveal block can also contain other directives (ActiveCode, Disqus block, etc):</p>
-
-<textarea data-component="activecode" id=ac11 data-lang="python"    data-timelimit=25000  data-codelens="true" data-audio=''     >
-print ("Hello, world")
-</textarea>
 
     </div>
     </div>
@@ -1262,7 +967,7 @@ print ("Hello, world")
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
     </p>
   </div>
 </footer>

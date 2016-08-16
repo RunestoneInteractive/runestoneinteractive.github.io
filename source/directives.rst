@@ -486,7 +486,7 @@ Multiple Choice with Multiple Answer(s)
 ::
 
     .. mchoice:: question1_2
-       :multiple_answer:
+       :multiple_answers:
        :answer_a: xyZ
        :answer_b: new_var_3
        :answer_c: 3things
@@ -515,7 +515,7 @@ Multiple Choice with Multiple Answer(s)
     What programming language does this site help you to learn?
 
 .. mchoice:: question1_2
-    :multiple_answer:
+    :multiple_answers:
     :answer_a: xyZ
     :answer_b: new_var_3
     :answer_c: 3things

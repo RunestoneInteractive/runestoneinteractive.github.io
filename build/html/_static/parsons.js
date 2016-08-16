@@ -102,13 +102,16 @@ LineBasedGrader.prototype.grade = function() {
 		}
 		if (isCorrectOrder) {
 			// Determine whether it is the correct indention
-			var incorrectIndention = [];
+			var indentLeft = [];
+			var indentRight = [];
 			for (i = 0; i < solutionLines.length; i++) {
-				if (answerLines[i].viewIndent() !== solutionLines[i].indent) {
-					incorrectIndention.push(answerLines[i]);
+				if (answerLines[i].viewIndent() < solutionLines[i].indent) {
+					indentRight.push(answerLines[i]);
+				} else if (answerLines[i].viewIndent() > solutionLines[i].indent) {
+					indentLeft.push(answerLines[i]);
 				}
 			}
-			if (incorrectIndention.length == 0) {
+			if (indentLeft.length + indentRight.length == 0) {
 				// Perfect
 				state = "correct";
 				answerArea.addClass("correct");
@@ -118,16 +121,22 @@ LineBasedGrader.prototype.grade = function() {
 				correct = true;
 			} else {
 				// Incorrect Indention
-				state = "incorrectIndentation";
+				state = "incorrectIndent";
 				var incorrectBlocks = [];
-				for (i = 0; i < incorrectIndention.length; i++) {
-					block = incorrectIndention[i].block();
+				for (i = 0; i < indentLeft.length; i++) {
+					block = indentLeft[i].block();
 					if (incorrectBlocks.indexOf(block) == -1) {
 						incorrectBlocks.push(block);
-						$(block.view).addClass("incorrectIndent");
+						$(block.view).addClass("indentLeft");
 					}
 				}
-				answerArea.addClass("incorrect");
+				for (i = 0; i < indentRight.length; i++) {
+					block = indentRight[i].block();
+					if (incorrectBlocks.indexOf(block) == -1) {
+						incorrectBlocks.push(block);
+						$(block.view).addClass("indentRight");
+					}
+				}
 				feedbackArea.fadeIn(500);
 				feedbackArea.attr("class", "alert alert-danger");
 				if (incorrectBlocks.length == 1) {
@@ -359,7 +368,11 @@ Parsons.prototype.init = function (opts) {
 	this.initializeLines(content);
 	this.initializeView();
 	// Check the server for an answer to complete things
-	this.checkServer("parsons");
+	if (this.useRunestoneServices) {
+		this.checkServer("parsons");
+	} else {
+		this.checkLocalStorage();
+	}
 };
 
 // Based on the data-fields in the original HTML, initialize options
@@ -753,7 +766,11 @@ Parsons.prototype.loadData = function(data) {
 Parsons.prototype.localData = function() {
 	var data = localStorage.getItem(this.storageId);
 	if (data !== null) {
-		data = JSON.parse(data);
+		if (data.charAt(0) == "{") {
+			data = JSON.parse(data);
+		} else {
+			data = {};
+		}
 	} else {
 		data = {};
 	}
@@ -794,6 +811,9 @@ Parsons.prototype.setLocalStorage = function(data) {
 //   move: the user moved a block to a new position
 //   reset: the reset button was pressed
 Parsons.prototype.logMove = function(activity) {
+	if (!this.useRunestoneServices) {
+		return this;
+	}
 	var act = activity + "|" + this.sourceHash() + "|" + this.answerHash();
 	var divid = this.divid;
 	this.logBookEvent({
@@ -807,6 +827,9 @@ Parsons.prototype.logMove = function(activity) {
 //   correct: The answer given matches the solution
 //   incorrect*: The answer is wrong for various reasons
 Parsons.prototype.logAnswer = function(answer) {
+	if (!this.useRunestoneServices) {
+		return this;
+	}
 	var answerHash = this.answerHash();
 	var sourceHash = this.sourceHash();
 	var act = sourceHash + "|" + answerHash;
@@ -1056,7 +1079,7 @@ Parsons.prototype.clearFeedback = function() {
 	$(this.answerArea).removeClass("incorrect correct");
 	var children = this.answerArea.childNodes;
 	for (var i = 0; i < children.length; i++) {
-		$(children[i]).removeClass("correctPosition incorrectPosition incorrectIndent");
+		$(children[i]).removeClass("correctPosition incorrectPosition indentLeft indentRight");
 	}
 	$(this.messageDiv).hide();
 };
