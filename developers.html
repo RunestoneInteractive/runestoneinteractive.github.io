@@ -54,92 +54,36 @@
       <div class="row marketing">
         <div class="col-md-6">
           <h2>Our Structure</h2>
-          <p>There are a number of different ways to get involved with Runestone Interactive development.</p>
+          <p>There are a number of different ways to get involved with Runestone Interactive development. For example:</p>
+          <ul>
+            <li>Developing and changing the <a href="" alt="Link to Runestone Components repository">Runestone Components</a>, which are additions to <a href="">reStructured Text</a> that allow authors to add code exercises in a Runestone Interactive online textbook.</li><br><br>
+            <li>Developing and working on the <a href="" alt="Link to Runestone Server repository">Runestone Server</a>, which allows us to serve interactive textbooks in a useful, secure way. There are also many possible integrations with the Runestone software. Join <a href="">the discussions</a>!</li><br><br>
+            <li>Developing the existing test suite, for both the Runestone Components and the Runestone Server.</li><br><br>
+            <li>Writing additional documentation, and/or editing existing documentation for clarity.</li><br><br>
+            <li>Developing and editing more open source textbooks! Check out the <a href="library.html">library</a> of books we host and the information for <a href="instructors.html">instructors</a> for more information.
 
-          <pre>
-Approximating pi
-================
+          </ul>
 
-.. activecode:: pi_example1
+          <p>TBD a nice diagram explaining how things work together???</p>
 
-   terms=input("How many terms do you wish?")
-   pi = 0.0
-   den = 1
-   for counter in range(terms):
-       nextterm = (4.0/den)*(-1)**counter
-       pi = pi + nextterm
-       den = den + 2
-   print pi
-
-
-   def leibniz(terms):
-       acc = 0.0
-       num = 4.0
-       den = 1
-       for term in range(terms):
-           nextterm = num/den * (-1)**term
-           acc = acc + nextterm
-
-           den = den + 2
-
-       return acc
-
-Try running the code above with different values for the
-number of terms.  How many terms do you need in order to get
-3.14159 for the value of pi?
-        </pre>
-
-           <p>After you install the RunestoneTools, as described below.  You can save the example above to a file. When you run the <code>paver build</code> command, you will get an html file that you can load into your browser.  It will look like this:
-           	<img src="images/pipage.png" width="100%">
-           </p>
       </div>
 
       <div class="col-md-6">
-          <h2>An in Class Quiz</h2>
-Another Scenario might be that you want to have your students take a quick online quiz that looks like this:
-
-          <img src="images/quizpage.png" width="100%">
-
-You can create a quiz using the same simple markup language used in the previous example.
-
-<pre>
-A Short Quiz
-============
-
-Answer the following two Questions
-
-.. mchoice:: question1_1
-   :answer_a: Python
-   :answer_b: Java
-   :answer_c: C
-   :answer_d: ML
-   :correct: a
-   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer.
-   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
-   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
-   :feedback_d: No, ML is a functional programming language.  You can use Python to write functional programs as well.
-
-   What programming language does this site help you to learn?
+          <h2>It'll be helpful to learn...</h2>
 
 
+           <ul>
+            <li><strong>Python</strong>! A lot of the development of Runestone Interactive is in the Python language. It is currently in Python 2, but all code written should be 2/3 compatible. (The <code>six</code> library, which helps with this, is a dependency of all Runestone-related repositories.)</li>
+            <li><strong><a href="https://virtualenv.pypa.io/en/stable/">Virtual environments</a> for development in Python</strong>, which will help tremendously with development, especially if you work on several different aspects of the Runestone project (or other large Python projects like this)</li>
+            <li><strong>JavaScript</strong>! The RunestoneComponents are powered in large part by JavaScript (but there's also Python, HTML, etc).</li>
+            <li><strong>Git and GitHub</strong>, which we use for version control and development. GitHub has <a href="">some great tutorials</a> to help getting used to using Git and making pull requests in order to make contributions.</li>
+           </ul>
 
-.. mchoice:: question1_2
-   :multiple_answers:
-   :answer_a: red
-   :answer_b: yellow
-   :answer_c: black
-   :answer_d: green
-   :correct: a,b,d
-   :feedback_a: Red is a definitely on of the colors.
-   :feedback_b: Yes, yellow is correct.
-   :feedback_c: Remember the acronym...ROY G BIV.  B stands for blue.
-   :feedback_d: Yes, green is one of the colors.
+           <p>The Runestone Components are additional reStructure Text directives that allow authors to create things like this, which the Runestone Server allows us to power:
+            <img src="images/pipage.png" width="100%">
+           </p>
 
-   Which colors might be found in a rainbow? (choose all that are correct)
-
-
-</pre>
-
+        
         </div>
 
     </div>
@@ -148,7 +92,7 @@ Answer the following two Questions
 
       <hr class="featurette-divider">
       <a name="getstarted"></a>
-      <h1>Getting Started</h1>
+      <h1>Getting Started with your Runestone Development Environment</h1>
 
   	<style>
   		.gstart {
@@ -177,11 +121,12 @@ Answer the following two Questions
   	</style>
 
      <dl class="gstart">
-      <dt>Get the Template Project</dt>
-      <dd>The quickest way to get up and running is to install the runestone tools with pip:  <code>pip install runestone</code></dd>
+      <dt>Set up a virtualenv for Runestone work</dt>
+      <dd>There are a number of dependencies, and this will make it easy to complete the installations for Runestone development.</dd>
 
-      <dt>Create a Folder for your project</dt>
-        <dd><code>mkdir myproj</code> You can initialize a template project for yourself by running <code>runestone init</code> inside the project folder.  It will ask you some questions.  You can either take the defaults or customize your project for your own environment.</dd>
+      <dt>Install the development version of Runestone Components</dt>
+        <dd>The <a href="">RunestoneComponents</a> GitHub repository's readme has a bunch of information about how to do this. This is the first part you should install. You can stop here and look at that README if you don't want to do any development on the server.</dd>
+
       <dt>Edit</dt>
           <dd>The template project has an index.rst file ready to edit.  You can simply start with the index or overview file and build up from there.</dd>
       <dt>Build</dt>
