@@ -45,7 +45,7 @@
         <h1>Developers</h1>
         <p class="lead">Help us build a system for writing and hosting interactive textbooks!</p><p>
         <p class="lead">
-            For everything, there's a lot of work to be done. Join our actively growing development community -- read below to learn about how to get started.
+            For everything, there's a lot of work to be done. Join our actively growing development community -- read below to learn about how to get started. The work you do as a Runestone Interactive developer will help thousands of students and their instructors around the world.
         </p><p>
             <a class="btn btn-lg btn-primary" href="#getstarted" role="button">Get Started</a></p>
         </p>
@@ -131,10 +131,28 @@
           <dd>With your virtual environment activated, access the root of your Runestone Components directory, and run <code>pip install -e {path to your clone of RunestoneComponents}</code><br><br>Then, with your virtualenv still activated, navigate to the root of your RunestoneComponents directory and run <code>pip install -r requirements.txt</code> to install all Runestone Components dependencies.</dd>
 
       <dt>Install the web2py application for the Runestone Server</dt>
-          <dd>The Runestone Server is a <a href="http://www.web2py.com">web2py</a> application, so you first need to download web2py. You should download the .zip file of source code from <a href="http://www.web2py.com/init/default/download">here</a> (if you get web2py from apt-get or GitHub, you may miss some of the necessary submodules).<br><br>Next, fork and clone the <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server</a> repository.</dd>
+          <dd>The Runestone Server is a <a href="http://www.web2py.com">web2py</a> application, so you first need to download web2py. You should download the .zip file of source code from <a href="http://www.web2py.com/init/default/download">here</a> (if you get web2py from apt-get or GitHub, you may miss some of the necessary submodules).<br><br>Next, navigate to <code>applications</code> inside the <code>web2py</code> directory, and fork and clone the <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server</a> repository <strong>with the name <code>runestone</code></strong>.<br><br>The <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server README</a> provides instructions for how to do that (but be careful that you clone <i>your</i> fork, so you can make pull requests. If you copy directly from the README, you'll clone the RunestoneInteractive version, not yours).<br><br>You'll also need to have installed all of the server's Python dependencies in your virtual environment, so, navigate to the root of your new <code>runestone</code> repository, which should be at <code>web2py/applications/runestone</code> with your virtualenv activated, and run <code>pip install -r requirements.txt</code>.<br><br>The Runestone Server README also includes instructions for how your installation process should vary depending upon your operating system (Windows, Linux, Mac).</dd>
 
-      <dt>Deploy</dt>
-          <dd>You can serve your project right from your own computer by running <code>runestone serve</code>  Or you can copy the folder in the build subdirectory created by the build command anywhere that will serve a static website, including a site that supports github pages.</dd>
+      <dt>Install and set up your database</dt>
+          <dd>You'll need to install the <a href="">Postgresql</a> database server. Instructions for doing so are included in the server README as well. You can find instructions about how to do so on the Runestone Server README. Follow the instructions there to create and set up your database. If you can't run <code>localhost:8000/runestone</code> yet, no fear -- go on to the next step!</dd>
+
+      <dt>Choose and build a book</dt>
+        <dd>The Runestone Server, combined with the Runestone Components, power the interactive textbooks that Runestone Interactive is made for. Choose a book to start with (e.g. the <a href="">thinkcspy</a> book, or any other you find the repositories for from the <a href="library.html">library</a>, and fork and clone that book repository inside the <code>web2py/applications/runestone/books</code> directory.<br><br>Then, navigate to the root of that book directory, with your virtualenv still activated, and run <code>pip install -r requirements.txt</code> a last time. This will install all last requirements for building the book so you can see it rendered and deploy it properly.<br><br>Finally, in the command prompt, export your environment variables, so that your database access will work when you build a textbook -- this saves e.g. question data to the database, etc. Type the following at the command prompt to do so:
+        <pre>
+        export DBNAME=runestone
+        export DBPASS=yourpassword
+        export DBHOST=localhost
+        export DBUSER=yourusername ((NOTE: could be "postgres"))
+        </pre>
+
+        Then, follow the <a href="">instructions</a> available on the Runestone <strong>Components</strong> README to build and serve a book. To run your book on the server, after you do <code>runestone build</code>, you'll need to run <code>runestone deploy</code>.</dd> 
+
+      <dt>Finish setting up your database as needed</dt>
+        <dd>Follow the instructions in the Runestone Server README to complete your database setup. (If you run into any problem with "The Easier Way", The Harder Way" the README explains is not too hard! Just make sure you follow the instructions carefully.)</dd>
+
+      <dt>Get started!</dt>
+        <dd>You're all set! Check out the issues on the <a href="">Components repository</a> and on the <a href="">Server repository</a>. If you want to get started building the components test suite, check out the instructions in the <a href="">Runestone Components README</a>. You can also join <a href="">the mailing list</a>!</dd>
+
   </dl>
 
 
@@ -142,7 +160,7 @@
       <h1>More Information</h1>
       <ul>
           <li>We have a full set of developer docs <a href="build/html/index.html">here</a></li>
-        <li>For a quick reference type <code>runestone help list</code> or <code>runestone help directivename</code>  For example:
+        <li>For a quick reference when authoring content, writing tests, or otherwise working with the Runestone Components, type <code>runestone help list</code> or <code>runestone help directivename</code>  For example:
         <pre>
     $ runestone help codelens
 
