@@ -125,12 +125,14 @@
       <dd>There are a number of dependencies, and this will make it easy to complete the installations for Runestone development.</dd>
 
       <dt>Install the development version of Runestone Components</dt>
-        <dd>The <a href="">RunestoneComponents</a> GitHub repository's readme has a bunch of information about how to do this. This is the first part you should install. You can stop here and look at that README if you don't want to do any development on the server.</dd>
+        <dd>The <a href="">RunestoneComponents</a> GitHub repository's readme has a bunch of information about how to do this. This is the first part you should install. You can stop here and look at that README if you don't want to do any development on the server.<br><br>Runestone Components itself is in PyPi as <code>runestone</code>, so you can install it with pip, but if you're working on code development of anything for Runestone Interactive, you'll likely want to be able to interact with the code and see the development versions. Activate your virtual environment, and fork and clone this repository.</dd>
 
-      <dt>Edit</dt>
-          <dd>The template project has an index.rst file ready to edit.  You can simply start with the index or overview file and build up from there.</dd>
-      <dt>Build</dt>
-          <dd>The <code>runestone build</code> command will create a nice looking html file for you in the build directory under the template project.  Once you have built you can preview that file directly in your browser.</dd>
+      <dt>Install Runestone Components and its requirements</dt>
+          <dd>With your virtual environment activated, access the root of your Runestone Components directory, and run <code>pip install -e {path to your clone of RunestoneComponents}</code><br><br>Then, with your virtualenv still activated, navigate to the root of your RunestoneComponents directory and run <code>pip install -r requirements.txt</code> to install all Runestone Components dependencies.</dd>
+
+      <dt>Install the web2py application for the Runestone Server</dt>
+          <dd>The Runestone Server is a <a href="http://www.web2py.com">web2py</a> application, so you first need to download web2py. You should download the .zip file of source code from <a href="http://www.web2py.com/init/default/download">here</a> (if you get web2py from apt-get or GitHub, you may miss some of the necessary submodules).<br><br>Next, fork and clone the <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server</a> repository.</dd>
+
       <dt>Deploy</dt>
           <dd>You can serve your project right from your own computer by running <code>runestone serve</code>  Or you can copy the folder in the build subdirectory created by the build command anywhere that will serve a static website, including a site that supports github pages.</dd>
   </dl>
