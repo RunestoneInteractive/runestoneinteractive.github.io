@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Meet the Runestone Interactive Team">
+    <meta name="author" content="Brad Miller">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Runestone for Developers</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="build/html/faq.html">FAQ</a></li>
+          <li><a href="build/html/index.html">Docs</a></li>
+        </ul>
+        <h3 class="text-muted">Runestone Interactive</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Developers</h1>
+        <p class="lead">Help us build a system for writing and hosting interactive textbooks!</p><p>
+        <p class="lead">
+            For everything, there's a lot of work to be done. Join our actively growing development community -- read below to learn about how to get started. The work you do as a Runestone Interactive developer will help thousands of students and their instructors around the world.
+        </p><p>
+            <a class="btn btn-lg btn-primary" href="#getstarted" role="button">Get Started</a></p>
+        </p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-md-6">
+          <h2>Our Structure</h2>
+          <p>There are a number of different ways to get involved with Runestone Interactive development. For example:</p>
+          <ul>
+            <li>Developing and changing the <a href="https://github.com/RunestoneInteractive/RunestoneServer" alt="Link to Runestone Components repository">Runestone Components</a> (more info at that GitHub repository), which are additions to <a href="http://docutils.sourceforge.net/rst.html">reStructured Text</a> that allow authors to add code exercises in a Runestone Interactive online textbook.</li><br><br>
+            <li>Developing and working on the <a href="https://github.com/RunestoneInteractive/RunestoneServer" alt="Link to Runestone Server repository">Runestone Server</a> (more info at that GitHub repository), which allows us to serve interactive textbooks in a useful, secure way. There are also many possible integrations with the Runestone software. Join the discussions!</li><br><br>
+            <li>Developing the existing test suite, for both the Runestone Components and the Runestone Server.</li><br><br>
+            <li>Writing additional documentation, and/or editing existing documentation for clarity.</li><br><br>
+            <li>Developing and editing more open source textbooks! Check out the <a href="library.html">library</a> of books we host and the information for <a href="instructors.html">instructors</a> for more information.
+
+          </ul>
+
+          
+
+      </div>
+
+      <div class="col-md-6">
+          <h2>It'll be helpful to learn...</h2>
+
+
+           <ul>
+            <li><strong>Python</strong>! A lot of the development of Runestone Interactive is in the Python language. It is currently in Python 2, but all code written should be 2/3 compatible. (The <code>six</code> library, which helps with this, is a dependency of all Runestone-related repositories.)</li>
+            <li><strong><a href="https://virtualenv.pypa.io/en/stable/">Virtual environments</a> for development in Python</strong>, which will help tremendously with development, especially if you work on several different aspects of the Runestone project (or other large Python projects like this)</li>
+            <li><strong>JavaScript</strong>! The RunestoneComponents are powered in large part by JavaScript (but there's also Python, HTML, etc).</li>
+            <li><strong>Git and GitHub</strong>, which we use for version control and development. GitHub has <a href="https://guides.github.com/activities/hello-world/">some great tutorials</a> to help getting used to using Git and making pull requests in order to make contributions.</li>
+           </ul>
+
+           <p>The Runestone Components are additional reStructure Text directives that allow authors to create things like this, which the Runestone Server allows us to power:
+            <img src="images/pipage.png" width="100%">
+           </p>
+
+        
+        </div>
+
+    </div>
+
+
+
+      <hr class="featurette-divider">
+      <a name="getstarted"></a>
+      <h1>Getting Started with your Runestone Development Environment</h1>
+
+  	<style>
+  		.gstart {
+  			counter-reset: my-badass-counter;
+  		}
+  		.gstart dt {
+  			position: relative;
+  			font: bold 16px Georgia;
+  			padding: 4px 0 10px 0;
+  		}
+  		.gstart dt:before {
+  			content: counter(my-badass-counter);
+  			counter-increment: my-badass-counter;
+  			position: absolute;
+  			left: 0;
+  			top: 0;
+  			font: bold 50px/1 Sans-Serif;
+            color: #428bca;
+  		}
+  		.gstart dd {
+  			margin: 0 0 50px 0;
+  		}
+  		.gstart dt, .gstart dd {
+  			padding-left: 50px;
+  		}
+  	</style>
+
+     <dl class="gstart">
+      <dt>Set up a virtualenv for Runestone work</dt>
+      <dd>There are a number of dependencies, and this will make it easy to complete the installations for Runestone development.</dd>
+
+      <dt>Install the development version of Runestone Components</dt>
+        <dd>The <a href="https://github.com/RunestoneInteractive/RunestoneServer">RunestoneComponents GitHub repository</a>'s readme has a bunch of information about how to do this. This is the first part you should install. You can stop here and look at that README if you don't want to do any development on the server.<br><br>Runestone Components itself is in PyPi as <code>runestone</code>, so you can install it with pip, but if you're working on code development of anything for Runestone Interactive, you'll likely want to be able to interact with the code and see the development versions. Activate your virtual environment, and fork and clone this repository.</dd>
+
+      <dt>Install Runestone Components and its requirements</dt>
+          <dd>With your virtual environment activated, access the root of your Runestone Components directory, and run <code>pip install -e {path to your clone of RunestoneComponents}</code><br><br>Then, with your virtualenv still activated, navigate to the root of your RunestoneComponents directory and run <code>pip install -r requirements.txt</code> to install all Runestone Components dependencies.</dd>
+
+      <dt>Install the web2py application for the Runestone Server</dt>
+          <dd>The Runestone Server is a <a href="http://www.web2py.com">web2py</a> application, so you first need to download web2py. You should download the .zip file of source code from <a href="http://www.web2py.com/init/default/download">here</a> (if you get web2py from apt-get or GitHub, you may miss some of the necessary submodules).<br><br>Next, follow the instructions for the Runestone Server, starting with navigating to <code>applications</code> inside the <code>web2py</code> directory, and forking and cloning the <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server</a> repository there, <strong>with the name <code>runestone</code></strong>.<br><br>The <a href="https://github.com/RunestoneInteractive/RunestoneServer">Runestone Server README</a> provides instructions for how to do that (but be careful that you clone <i>your</i> fork, so you can make pull requests. If you copy directly from the README, you'll clone the RunestoneInteractive version, not yours).<br><br>You'll also need to have installed all of the server's Python dependencies in your virtual environment, so, navigate to the root of your new <code>runestone</code> repository, which should be at <code>web2py/applications/runestone</code> with your virtualenv activated, and run <code>pip install -r requirements.txt</code>.<br><br>The Runestone Server README also includes instructions for how your installation process should vary depending upon your operating system (Windows, Linux, Mac).</dd>
+
+      <dt>Install and set up your database</dt>
+          <dd>You'll need to install the <a href="https://www.postgresql.org/">Postgresql</a> database server. Instructions for doing so are included in the server README as well if you have not already done so. You can find instructions about how to do so on the Runestone Server README. (If you use a Mac, we recommend using <a href="https://brew.sh/">Homebrew</a> to <code>brew install postgresql</code> rather than using the Postgres app.) <br><br>Follow the instructions in the Runestone Server README to create and set up your database. If you can't run <code>localhost:8000/runestone</code> yet, no fear -- go on to the next step!</dd>
+
+      <dt>Choose and build a book</dt>
+        <dd>The Runestone Server, combined with the Runestone Components, power the interactive textbooks that Runestone Interactive is made for. Choose a book to start with (e.g. the <a href="https://github.com/RunestoneInteractive/thinkcspy">thinkcspy</a> book, or any other you find the repositories for from the <a href="library.html">library</a>, and fork and clone that book repository inside the <code>web2py/applications/runestone/books</code> directory.<br><br>Then, navigate to the root of that book directory, with your virtualenv still activated, and run <code>pip install -r requirements.txt</code> a last time. This will install all last requirements for building the book so you can see it rendered and deploy it properly.<br><br>Finally, in the command prompt, export your environment variables, so that your database access will work when you build a textbook -- this saves e.g. question data to the database, etc. Type the following at the command prompt to do so:
+        <pre>
+        export DBNAME=runestone
+        export DBPASS=yourpassword
+        export DBHOST=localhost
+        export DBUSER=yourusername ((NOTE: could be "postgres", depending on how you've done your db setup))</pre>
+
+        Then, run <code>runestone build</code>. To see the book properly built when you run the web2py server, after you run the runestone build command, you'll need to run <code>runestone deploy</code>.</dd> 
+
+      <dt>Finish setting up your database as needed</dt>
+        <dd>Follow the instructions in the Runestone Server README to complete your database setup. (If you run into any problem with "The Easier Way", The Harder Way" the README explains is not too hard! Just make sure you follow the instructions carefully.)<br><br><strong>Important note:</strong> If at any point in the process you had database trouble and dropped a database to start over, make sure you've also removed everything in the <code>databases</code> folder! Otherwise, Runestone won't know that it needs to create the tables again...</dd>
+
+      <dt>Get started!</dt>
+        <dd>You're all set! Check out the issues on the <a href="https://github.com/RunestoneInteractive/RunestoneComponents">Components repository</a> and on the <a href="https://github.com/RunestoneInteractive/RunestoneServer">Server repository</a>. If you want to get started building the components test suite, check out the instructions in the <a href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Components README</a>. You can also join <a href="">the mailing list</a>!</dd>
+
+  </dl>
+
+
+      <hr class="featurette-divider">
+      <h1>More Information</h1>
+      <ul>
+          <li>We have a full set of developer docs <a href="build/html/index.html">here</a></li>
+        <li>For a quick reference when authoring content, writing tests, or otherwise working with the Runestone Components, type <code>runestone help list</code> or <code>runestone help directivename</code>  For example:
+        <pre>
+    $ runestone help codelens
+
+    .. codelens:: uniqueid
+       :tracedata: Autogenerated or provided
+       :caption: caption below
+       :showoutput: show stdout from program
+       :question: Text of question to ask on breakline
+       :correct: correct answer to the question
+       :feedback: feedback for incorrect answers
+       :breakline: Line to stop on and pop up a question dialog
+       :python: either py2 or py3
+
+        x = 0
+        for i in range(10):
+           x = x + i
+       </pre></li>
+        <li>Check out this <a href="http://interactivepython.org/runestone/static/overview/overview.html">Demo Site</a> to see a bunch of the available components in action.</li>
+      </ul>
+
+      <hr class="featurette-divider">
+      <div class="footer">
+        <p>&copy; Runestone Interactive 2017</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29883683-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </body>
+</html>
