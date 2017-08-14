@@ -8,24 +8,28 @@ Updated:  December 16, 2015
 What is Runestone Interactive?
 ------------------------------
 
-Runestone is a project that has three main parts to it:
+Runestone is a project that has four main parts to it:
 
 .. admonition:: Runestone Parts
 
-   1.  A set of tools for writing interactive textbooks in restructuredText and other markup langauges.
-   2.  A open source server/API that supports the interactive textbooks
+   1.  A Textbook hosting service that allows you and your students to access any of the textbooks written using our tools.
+
+   2.  A set of open source textbooks written using the tools that you are free to use and modify in your own classes.
+
+   3.  A set of tools for writing interactive textbooks in restructuredText and other markup langauges.
+
+   4.  A open source server/API that supports the interactive textbooks
 
        * Save and reload source code written in the book
        * Retrieve results and answers from quizzes
+       * Create "Reading Assignments" with analytics that automatically give your students points for doing the readings and getting prepared for class.
        * Grade homework problems right in the textbook
        * Create Assignments by grouping exercises
 
-   3.  A set of open source textbooks written using the tools that you are free to use and modify in your own classes.
-   4.  A Textbook hosting service that allows you and your students to access any of the textbooks written using the tools.
 
-The Runestone project was originally conceived as only parts 1 and 2.  But it became clear very quickly that few people want to write their own textbooks, so part 3 was born, especially with the encouragement of our publisher at Franklin Beedle who allowed us to put our paper textbook online in interactive form.  Part 4 was conceived when it became clear that part 2 was too hard to install and configure for most people who just want to teach CS and not spend their days and nights configuring server software. :-)
+The Runestone project was originally conceived as only parts 2, and 4.  But it became clear very quickly that few people want to write their own textbooks, so part 3 was born, especially with the encouragement of our publisher at Franklin Beedle who allowed us to put our paper textbook online in interactive form.  Part 4 was conceived when it became clear that even fewer people wanted to manage their own server.
 
-Currently number 4 is being used by over 12,000 students a day in over 400 universities, colleges, and high schools. This number is growing by around 2,000 students each semester.
+Currently number 4 is being used by over 20,000 students a day in over 600 universities, colleges, and high schools. This number is growing by around 2,000 students each semester.
 
 What Runestone is Not?
 ----------------------
@@ -35,6 +39,13 @@ It sounds better if  you say it in your best Yoda voice.
 I never wanted Runestone to be a course management system. I still don't. In my opinion there are already plenty of mediocre to good course management systems out there.  I don't want to make yet another.  However circumstances, and other instructors keep pushing Runestone in that direction.  I'm going kicking and screaming.  I would much rather integrate than reinvent.  Making online grade books is a losing proposition, as everyone has their own idea of how the "best" gradebook should work.  I brought this on myself, the moment I said "hey, self, why not make a nice little grading interface so you can grade all of the assignments right in the book?"  I thought that would be handy, and much better than downloading a bunch from moodle and running them.  They were all right there in the database, just click a button and run the program, then enter the grade.  Later the grades can be copied over to moodle or whatever.
 
 The Rebellion continues, in the Google group I set up for instructors, I don't think I've had a single question about the content of the books.  Every single question and discussion falls under the category of "why  don't you have this <course management> feature?"  sigh.  Feature creep is real.
+
+LTI will save me.  Its almost there, and its almost ready.  The best solution in my opinion is a good integration through LTI with Moodle, Canvas, and other LMS systems that use the standard.  I live in hope...
+
+Whatever Brad, How do I learn more about the instructor interface
+-----------------------------------------------------------------
+
+I have made a `very informal set of videos <https://www.youtube.com/channel/UCAfQvSLv5senKZHfaycIz8w>`_for just this purpose.
 
 
 Help!  I cannot log in.  Every time I try to log in, I have to reset my password!
@@ -79,24 +90,12 @@ How do I build my own course?
 Is this site reliable enough to use in class?
 ---------------------------------------------
 
-Yes.  All of the important parts of the book are served as static pages.  Everything else that happens either uses Javascript right in the browser, or background ajax calls that won't have any impact on the primary text.  We host this on a very reliable service and we monitor our traffic constantly. We use a content distribution network for increased scalability and reliability.  In the fall of 2015 we are serving over 12,000 students a day with almost zero downtime.
+Yes.  All of the important parts of the book are served as static pages.  Everything else that happens either uses Javascript right in the browser, or background ajax calls that won't have any impact on the primary text.  We host this on a very reliable service and we monitor our traffic constantly. We use a content distribution network for increased scalability and reliability.  In the Spring of 2016 we were serving over 20,000 students a day with almost zero downtime.
 
+Why did you change domain names?
+--------------------------------
 
-Why doesn't List and Grade Assignments doesn't show anything?
--------------------------------------------------------------
-
-There could be two reasons.
-
-*  You only see assignments or quiz questions that your students have attempted.  If you or your students haven't attempted any assignments yet then this report will be empty.
-
-*  Check your course starting date.  If the starting date is in the future you won't see anything.  You can change your course start date `here <http://interactivepython.org/runestone/admin/startdate>`_.
-
-
-Where do the assignments I make in the instructors interface show up for the students?
---------------------------------------------------------------------------------------
-
-They don't.  You need to tell your students either in writing or verbally about the assignments.
-This `blog post <http://reputablejournal.com/Organizing-your-Runestone-Course.html>`_ Gives you some good background on how you can write your own problem sets, and communicate your assignments to your students.
+The old domain name, "interactivepython.org" was becoming quite inacurate. Although we started with Python we have a lot of users that are using the AP CS Review book (Java) and my Java for Python programmers book.  There is also at least one statistics textbook written in runestone as well.  I saw the domain name "runestone.academy" and thought that would be cool.
 
 I want to reuse my course from last year, what should I do?
 -----------------------------------------------------------
