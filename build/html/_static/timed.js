@@ -94,7 +94,8 @@ Timed.prototype.renderTimedAssess = function () {
     this.renderControlButtons();
     this.assessDiv.appendChild(this.timedDiv);    // This can't be appended in renderContainer because then it renders above the timer and control buttons.
     this.createRenderedQuestionArray();
-    this.renderNavControls();
+    if (this.renderedQuestionArray.length > 1)
+        this.renderNavControls();
     this.renderSubmitButton();
     this.renderFeedbackContainer();
     this.useRunestoneServices = opts.useRunestoneServices;
@@ -143,28 +144,50 @@ Timed.prototype.renderControlButtons = function () {
         "id": "controls",
         "style": "text-align: center"
     });
-    this.startBtn = document.createElement("btn");
-    this.pauseBtn = document.createElement("btn");
+    this.startBtn = document.createElement("button");
+    this.pauseBtn = document.createElement("button");
+    this.resetBtn = document.createElement("button");
+
     $(this.startBtn).attr({
         "class": "btn btn-success",
-        "id": "start"
+        "id": "start",
+        "tabindex": "0",
+        "role": "button",
     });
     this.startBtn.textContent = "Start";
     this.startBtn.addEventListener("click", function () {
         this.renderTimedQuestion();
         this.startAssessment();
     }.bind(this), false);
+
     $(this.pauseBtn).attr({
         "class": "btn btn-default",
         "id": "pause",
-        "disabled":"true"
+        "disabled":"true",
+        "tabindex": "0",
+        "role": "button"
     });
     this.pauseBtn.textContent = "Pause";
     this.pauseBtn.addEventListener("click", function () {
         this.pauseAssessment();
     }.bind(this), false);
+
+    $(this.resetBtn).attr({
+        "class": "btn btn-default",
+        "id": "reset",
+        "disabled": "true",
+        "tabindex": "1",
+        "role": "button"
+    });
+    this.resetBtn.textContent = "Reset";
+    this.resetBtn.addEventListener("click", function () {
+        this.checkResetability();
+    }.bind(this), false);
+    $(this.resetBtn).hide();
+
     this.controlDiv.appendChild(this.startBtn);
     this.controlDiv.appendChild(this.pauseBtn);
+    this.controlDiv.appendChild(this.resetBtn);
     this.assessDiv.appendChild(this.wrapperDiv);
     this.assessDiv.appendChild(this.controlDiv);
 };
@@ -173,15 +196,19 @@ Timed.prototype.renderNavControls = function () {
 	this.pagNavList = document.createElement("ul");
     $(this.pagNavList).addClass("pagination");
 	this.leftContainer = document.createElement("li");
-    this.leftNavButton = document.createElement("a");
+    this.leftNavButton = document.createElement("button");
     this.leftNavButton.innerHTML = "&#8249; Prev";
     $(this.leftNavButton).attr("aria-label", "Previous");
+    $(this.leftNavButton).attr("tabindex", "0");
+    $(this.leftNavButton).attr("role", "button");
     $(this.leftNavButton).css("cursor", "pointer");
 	this.leftContainer.appendChild(this.leftNavButton);
     this.pagNavList.appendChild(this.leftContainer);
     this.rightContainer = document.createElement("li");
-    this.rightNavButton = document.createElement("a");
+    this.rightNavButton = document.createElement("button");
     $(this.rightNavButton).attr("aria-label", "Next");
+    $(this.rightNavButton).attr("tabindex", "0");
+    $(this.rightNavButton).attr("role", "button");
     this.rightNavButton.innerHTML = "Next &#8250;";
     $(this.rightNavButton).css("cursor", "pointer");
     this.rightContainer.appendChild(this.rightNavButton);
@@ -309,24 +336,42 @@ Timed.prototype.renderFeedbackContainer = function () {
 Timed.prototype.createRenderedQuestionArray = function () {
     // this finds all the assess questions in this timed assessment and calls their constructor method
     // Also adds them to this.renderedQuestionArray
+    // todo:  This needs to be updated to account for the runestone div wrapper.
     for (var i = 0; i < this.newChildren.length; i++) {
         var tmpChild = this.newChildren[i];
         opts = {'orig':tmpChild, 'useRunestoneServices':eBookConfig.useRunestoneServices}
+        if ($(tmpChild).children("[data-component]")) {
+            tmpChild = $(tmpChild).children("[data-component]")[0];
+            opts.orig = tmpChild;
+        }
         if ($(tmpChild).is("[data-component=multiplechoice]")) {
-            this.renderedQuestionArray.push(new TimedMC(opts));
+            this.renderedQuestionArray.push({"question": new TimedMC(opts)});
         } else if ($(tmpChild).is("[data-component=fillintheblank]")) {
             var newFITB = new TimedFITB(opts);
-            this.renderedQuestionArray.push(newFITB);
+            this.renderedQuestionArray.push({"question": newFITB});
         } else if ($(tmpChild).is("[data-component=dragndrop]")) {
-            this.renderedQuestionArray.push(new TimedDragNDrop(opts));
+            this.renderedQuestionArray.push({"question": new TimedDragNDrop(opts)});
         } else if ($(tmpChild).is("[data-component=clickablearea]")) {
-            this.renderedQuestionArray.push(new TimedClickableArea(opts));
+            this.renderedQuestionArray.push({"question": new TimedClickableArea(opts)});
         } else if ($(tmpChild).is("[data-component=shortanswer]")) {
-            this.renderedQuestionArray.push(new TimedShortAnswer(opts));
+            this.renderedQuestionArray.push({"question": new TimedShortAnswer(opts)});
         } else if ($(tmpChild).is("[data-component=parsons]")) {
-            this.renderedQuestionArray.push(new TimedParsons(opts));
+            this.renderedQuestionArray.push({"question": new TimedParsons(opts)});
         } else if ($(tmpChild).is("[data-component=activecode]")) {
-            this.renderedQuestionArray.push(new TimedActiveCode(opts));
+            this.renderedQuestionArray.push({"question": new TimedActiveCode(opts)});
+        } else if ($(tmpChild).is("[data-childcomponent]")) {
+            // this is for when a directive has a wrapper element that isn't actually part of the javascript object
+            // for example, activecode has a wrapper div that contains the question for the element
+            var child = $("#" + $(tmpChild).data("childcomponent"));
+            if ($(child[0]).is("[data-component=activecode]")) {
+                // create & insert new JS object back into wrapper div-- we're simulating the parsing that would happen outside of a timed exam
+                opts.orig = child[0];
+                var newAC = new TimedActiveCode(opts);
+                $(child[0]).remove();
+                var tmp = tmpChild.childNodes[0];
+                $(tmp).after(newAC.containerDiv);
+                this.renderedQuestionArray.push({"wrapper": tmpChild, "question": newAC});
+            }
         }
     }
     if (this.random) {
@@ -349,12 +394,20 @@ Timed.prototype.randomizeRQA = function () {
 };
 
 Timed.prototype.renderTimedQuestion = function () {
-    $(this.switchDiv).replaceWith(this.renderedQuestionArray[this.currentQuestionIndex].containerDiv);
-    this.switchDiv = this.renderedQuestionArray[this.currentQuestionIndex].containerDiv;
+    var currentWrapper = this.renderedQuestionArray[this.currentQuestionIndex].wrapper;
+    var currentQuestion = this.renderedQuestionArray[this.currentQuestionIndex].question;
+    // if the question is actually inside a wrapper (for example, activecode), then we want to display the wrapper, but evaluate the actual question object
+    if (currentWrapper) {
+        $(this.switchDiv).replaceWith(currentWrapper);
+        this.switchDiv = currentWrapper;
+    } else {
+        $(this.switchDiv).replaceWith(currentQuestion.containerDiv);
+        this.switchDiv = currentQuestion.containerDiv;
+    }
     // If the timed component has listeners, those might need to be reinitialized
     // This flag will only be set in the elements that need it--it will be undefined in the others and thus evaluate to false
-    if (this.renderedQuestionArray[this.currentQuestionIndex].needsReinitialization) {
-        this.renderedQuestionArray[this.currentQuestionIndex].reinitializeListeners();
+    if (currentQuestion.needsReinitialization) {
+        currentQuestion.reinitializeListeners();
     }
 };
 
@@ -393,6 +446,10 @@ Timed.prototype.startAssessment = function () {
             var storageObj = {"answer": [0,0,this.renderedQuestionArray.length,0], "timestamp": timeStamp};
             localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObj));
         }
+        $(window).on('beforeunload', function(){
+            // this actual value gets ignored by newer browsers
+            return 'Are you sure you want to leave?';
+        });
     } else {
        this.handlePrevAssessment();
     }
@@ -416,6 +473,37 @@ Timed.prototype.pauseAssessment = function () {
         }
     }
 };
+
+Timed.prototype.checkResetability = function () {
+    /* Reset is only available if there is no record of a completed exam and the
+       localStorage does not reflect a partially completed exam */
+    let sendInfo = {"div_id":this.divid, "course":eBookConfig.course};
+    $(this.resetBtn).attr({
+        "disabled": true
+    });
+    console.log(sendInfo)
+    jQuery.getJSON(eBookConfig.ajaxURL + "checkTimedReset", sendInfo, this.resetExam.bind(this));
+
+}
+
+Timed.prototype.resetExam = function (result,status,ignore) {
+    console.log(result);
+    if (result.canReset === true) {
+        if (confirm("Only reset the exam if you experienced techinical difficulties. Your instructor will be notified of this reset.")) {
+            this.logBookEvent({"event":"timedExam","act":"reset","div_id":this.divid,
+                               "course":eBookConfig.course,"correct":this.score,"incorrect":this.incorrect,
+                               "skipped":this.skipped,"time":this.timeTaken,"reset":true});
+            localStorage.clear(); // Clear records of exam from localStorage
+
+            /* Prevent using server's record of the reset as the exam results when the page reloads */
+            localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given",JSON.stringify({"answer":[-1],"timestamp":new Date()}));
+
+            location.reload();
+        };
+    } else {
+        alert("This exam does not qualify to be reset. Contact your instructor with any questions.");
+    }
+}
 
 Timed.prototype.showTime = function () { // displays the timer value
     if (this.showTimer) {
@@ -467,6 +555,7 @@ Timed.prototype.increment = function () { // increments the timer
             } else {
                 this.timeLimit++; // Else count up to keep track of how long it took to complete
             }
+            localStorage.setItem(eBookConfig.email + ":" + this.divid + "-time", this.timeLimit);
             this.showTime();
             if (this.timeLimit > 0) {
                 this.increment();
@@ -483,17 +572,6 @@ Timed.prototype.increment = function () { // increments the timer
                 }
             }
         }.bind(this), 1000);
-    }
-};
-
-Timed.prototype.checkIfFinished = function () {
-    if (this.tookTimedExam()) {
-        $(this.startBtn).attr("disabled", true);
-        $(this.pauseBtn).attr("disabled", true);
-        $(this.finishButton).attr("disabled", true);
-        if (this.showResults) {
-           this.resetTimedMCMFStorage();
-        }
     }
 };
 
@@ -529,29 +607,31 @@ Timed.prototype.tookTimedExam = function () {
 };
 
 Timed.prototype.finishAssessment = function () {
-        $("#relations-next").show(); // show the next page button for now
-        $("#relations-prev").show(); // show the previous button for now
-        if (!this.showResults) {
-           $(this.timedDiv).hide();
-           $(this.pauseBtn).hide();
-           $(this.timerContainer).hide();
-        }
-        this.findTimeTaken();
-        this.running = 0;
-        this.done = 1;
-        this.taken = 1;
-        this.submitTimedProblems(true); // log results
-        this.checkScore();
-        this.displayScore();
-        this.storeScore();
-        this.logScore();
-        $(this.pauseBtn).attr("disabled", true);
-        this.finishButton.disabled = true;
+    $("#relations-next").show(); // show the next page button for now
+    $("#relations-prev").show(); // show the previous button for now
+    if (!this.showResults) {
+        $(this.timedDiv).hide();
+        $(this.pauseBtn).hide();
+        $(this.timerContainer).hide();
+    }
+    this.findTimeTaken();
+    this.running = 0;
+    this.done = 1;
+    this.taken = 1;
+    this.submitTimedProblems(true); // log results
+    this.checkScore();
+    this.displayScore();
+    this.storeScore();
+    this.logScore();
+    $(this.pauseBtn).attr("disabled", true);
+    this.finishButton.disabled = true;
+    $(window).off('beforeunload');
 };
 
 Timed.prototype.submitTimedProblems = function (logFlag) {
     for (var i = 0; i < this.renderedQuestionArray.length; i++) {
-        this.renderedQuestionArray[i].processTimedSubmission(logFlag);
+        var currentQuestion = this.renderedQuestionArray[i].question;
+        currentQuestion.processTimedSubmission(logFlag);
     }
     if (!this.showFeedback) {
         this.hideTimedFeedback();
@@ -560,7 +640,8 @@ Timed.prototype.submitTimedProblems = function (logFlag) {
 
 Timed.prototype.hideTimedFeedback = function () {
     for (var i = 0; i < this.renderedQuestionArray.length; i++) {
-        this.renderedQuestionArray[i].hideFeedback();   // Defined in each timed class
+        var currentQuestion = this.renderedQuestionArray[i].question;
+        currentQuestion.hideFeedback();
     }
 };
 
@@ -571,7 +652,7 @@ Timed.prototype.checkScore = function () {
     // Gets the score of each problem
 
     for (var i = 0; i < this.renderedQuestionArray.length; i++) {
-        var correct = this.renderedQuestionArray[i].checkCorrectTimed();
+        var correct = this.renderedQuestionArray[i].question.checkCorrectTimed();
         if (correct == "T") {
             this.score++;
             this.correctStr = this.correctStr + (i + 1) + ", ";
@@ -630,7 +711,6 @@ Timed.prototype.shouldUseServer = function (data) {
                 return true;
         } else if (storedData.length == 7) {
             if (data.correct == storedData[0] && data.incorrect == storedData[2] && data.skipped == storedData[4] && data.timeTaken == storedData[6]) {
-                this.logScore();
                 return false;   // In this case, because local storage has more info, we want to use that if it's consistent
             }
         }
@@ -677,44 +757,58 @@ Timed.prototype.restoreAnswers = function (data) {
             return;
         }
     } else {
-        tmpArr = [parseInt(data.correct), parseInt(data.incorrect), parseInt(data.skipped), parseInt(data.timeTaken)];
-        this.setLocalStorage(data);
+        // Parse results from the database
+        tmpArr = [parseInt(data.correct), parseInt(data.incorrect), parseInt(data.skipped), parseInt(data.timeTaken), data.reset];
+        this.setLocalStorage(tmpArr);
     }
-    if (tmpArr.length == 4)
-    {
-       this.score = tmpArr[0];
-       this.incorrect = tmpArr[1];
-       this.skipped = tmpArr[2];
-       this.timeTaken = tmpArr[3];
+    if (tmpArr.length == 1) {
+        // Exam was previously reset
+        this.reset = true;
+        this.taken = 0;
+        return;
     }
-    else if (tmpArr.length == 7)
-    {
-       this.score = tmpArr[0];
-       this.correctStr = tmpArr[1];
-       this.incorrect = tmpArr[2];
-       this.incorrectStr = tmpArr[3];
-       this.skipped = tmpArr[4];
-       this.skippedStr = tmpArr[5];
-       this.timeTaken = tmpArr[6];
+    if (tmpArr.length == 4) {
+        // Accidental Reload OR Database Entry
+        this.score = tmpArr[0];
+        this.incorrect = tmpArr[1];
+        this.skipped = tmpArr[2];
+        this.timeTaken = tmpArr[3];
+    }
+    else if (tmpArr.length == 7) {
+        // Loaded Completed Exam
+        this.score = tmpArr[0];
+        this.correctStr = tmpArr[1];
+        this.incorrect = tmpArr[2];
+        this.incorrectStr = tmpArr[3];
+        this.skipped = tmpArr[4];
+        this.skippedStr = tmpArr[5];
+        this.timeTaken = tmpArr[6];
     }
     else {
-       this.score = 0;
-       this.incorrect = 0;
-       this.skipped = this.renderedQuestionArray.length;
-       this.timeTaken = 0;
+        // Set localStorage in case of "accidental" reload
+        this.score = 0;
+        this.incorrect = 0;
+        this.skipped = this.renderedQuestionArray.length;
+        this.timeTaken = 0;
     }
     if (this.taken) {
-       this.handlePrevAssessment();
+        if (this.skipped === this.renderedQuestionArray.length) {
+            $(this.resetBtn).show();
+            $(this.resetBtn).attr({
+                "disabled": false
+            });
+            this.showFeedback = false;
+        }
+        this.handlePrevAssessment();
     }
     this.renderTimedQuestion();
     this.displayScore();
 	this.showTime();
 };
 
-Timed.prototype.setLocalStorage = function (data) {
+Timed.prototype.setLocalStorage = function (parsedData) {
     var timeStamp = new Date();
-    var answer = [parseInt(data.correct), parseInt(data.incorrect), parseInt(data.skipped), parseInt(data.timeTaken)];
-    var storageObj = {"answer": answer, "timestamp": timeStamp};
+    var storageObj = {"answer": parsedData, "timestamp": timeStamp};
     localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObj));
 };
 

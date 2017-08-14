@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>What is Runestone &mdash; Runestone Interactive 1.0 documentation</title>
-    
+    <title>What is Runestone &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -23,20 +20,21 @@
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/runestonebase.js"></script>
@@ -84,8 +82,9 @@
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/shortanswer.js"></script>
     <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="_static/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
@@ -99,7 +98,8 @@
     <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
-    <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide for Instructors" href="instructor_users.html" />
     <link rel="prev" title="Runestone Interactive Documentation" href="index.html" />
 <meta charset='utf-8'>
@@ -133,7 +133,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 <!-- Begin navbar -->
@@ -326,7 +326,7 @@
         -->
         
           <li>
-  <a href="_sources/intro.txt"
+  <a href="_sources/intro.rst.txt"
      rel="nofollow">Source</a></li>
         
       </ul>
@@ -345,8 +345,8 @@
 <p>Runestone Interactive started out as a moment of clarity, with a vision of how I wanted to write textbooks.  Over the last five years it has evolved and changed in unexpected ways.  Even amongst people who care about this project a lot it was hard to pin down a way to communicate exactly what Runestone Interactive has become.  So I want to use this post to try to nail it down.</p>
 <div class="section" id="online-open-source-interactive-textbooks">
 <h2>Online Open Source Interactive Textbooks<a class="headerlink" href="#online-open-source-interactive-textbooks" title="Permalink to this headline">¶</a></h2>
-<p>Most people know Runestone because of our textbooks.   What started out as <em>How to Think Like a Computer Scientist: Interactive Edition</em> has grown to include <em>Problem Solving with Algorithms and Data Structures using Python</em>, <em>Programs, Information, and People</em>, The <em>AP CS A  Review in Java</em>, <em>Big Ideas in Computer Science</em> and more.  The fact that they continue to be served from interactivepython.org is (as Douglas Adams would say) &#8220;increasingly inaccurate.&#8221;   As of this writing over 500 high schools and colleges have adopted one or more of these textbooks In their curricula.</p>
-<p>When an instructor decides to adopt a Runestone book for use in their course they can do so in two ways.   They may choose to give their students a link to one of the &#8220;open books&#8221; or they may choose to build a &#8220;custom course.&#8221;  The open books are simply versions of each textbook that do not require a login.  These books are great for individual learners that want to work through a book on their own time at their own pace.  When an instructor chooses to build a custom course they get a copy of the book at a unique URL just for their class.  There are a number of benefits to going this route:</p>
+<p>Most people know Runestone because of our textbooks.   What started out as <em>How to Think Like a Computer Scientist: Interactive Edition</em> has grown to include <em>Problem Solving with Algorithms and Data Structures using Python</em>, <em>Programs, Information, and People</em>, The <em>AP CS A  Review in Java</em>, <em>Big Ideas in Computer Science</em> and more.  The fact that they continue to be served from interactivepython.org is (as Douglas Adams would say) “increasingly inaccurate.”   As of this writing over 500 high schools and colleges have adopted one or more of these textbooks In their curricula.</p>
+<p>When an instructor decides to adopt a Runestone book for use in their course they can do so in two ways.   They may choose to give their students a link to one of the “open books” or they may choose to build a “custom course.”  The open books are simply versions of each textbook that do not require a login.  These books are great for individual learners that want to work through a book on their own time at their own pace.  When an instructor chooses to build a custom course they get a copy of the book at a unique URL just for their class.  There are a number of benefits to going this route:</p>
 <ul class="simple">
 <li>The teacher can decide when or if to incorporate changes from the master copy of the textbook.</li>
 <li>The teacher can customize the book by reordering chapters or even removing chapters from the book.</li>
@@ -360,7 +360,7 @@
 <div class="section" id="authoring-tools">
 <h2>Authoring Tools<a class="headerlink" href="#authoring-tools" title="Permalink to this headline">¶</a></h2>
 <p>What we did set out to make initially is a great set of interactive book authoring tools.  Our Big Hairy Audacious Goal was and is to become the LaTeX of the interactive textbook publishing world.  In the beginning writing an interactive textbook was equal parts writing and coding.  Runestone aims to remove the coding part so you can just focus on the writing.</p>
-<p>To accomplish this we have created a set of HTML components for things like multiple choice questions, interactive code, code visualizations and many more.  If you don&#8217;t have a sense for what kinds of things you can do with Runestone Interactive you should take a look at <a class="reference external" href="http://interactivepython.org/runestone/static/overview.html">The Overview</a>.  When the page is loaded simple the HTML components are rendered by a bunch of JavaScript and CSS to create the Runestone Components you see in the interactive books.</p>
+<p>To accomplish this we have created a set of HTML components for things like multiple choice questions, interactive code, code visualizations and many more.  If you don’t have a sense for what kinds of things you can do with Runestone Interactive you should take a look at <a class="reference external" href="http://interactivepython.org/runestone/static/overview.html">The Overview</a>.  When the page is loaded simple the HTML components are rendered by a bunch of JavaScript and CSS to create the Runestone Components you see in the interactive books.</p>
 <p>But nobody wants to write books in HTML!  So, we created a set of extensions for a simple markup language called <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">restructuredText</a>.  The restructuredText markup language lets you do all of the things you would expect to do in a language for writing, make lists, include images, footnotes, etc. etc.  In addition our extensions make it really easy to add   interactive components to your document.  For example to make an activecode component with runnable, editable code you would simply write the following in your text:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">codeid</span>
    <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
@@ -377,15 +377,15 @@
 <p>In the interactive textbook, after the Javascript and CSS do their magic  it looks like this:</p>
 <img alt="_images/activecode.png" src="_images/activecode.png" />
 <p>This three step process may seem complicated but it provides a lot of flexibility.  If you prefer  <a class="reference external" href="http://zverovich.net/2016/06/16/rst-vs-markdown.html">markdown</a> over restructuredText you can still write an interactive book by just dropping in the html into your markdown document.  If you prefer another language like mediaWiki or something that supports its own macros, you can even write your own macros for that language that compile to the HTML.</p>
-<p>The best thing is, you don&#8217;t have to write an entire book to take advantage of the interactive tools.  You can use Runestone to make lecture demonstrations, or set up labs or short tutorials for your students.  If you do that you can even host them on your own computer very easily.</p>
+<p>The best thing is, you don’t have to write an entire book to take advantage of the interactive tools.  You can use Runestone to make lecture demonstrations, or set up labs or short tutorials for your students.  If you do that you can even host them on your own computer very easily.</p>
 <p>Full documentation for all of the Runestone Components can be found at <a class="reference external" href="http://runestoneinteractive.org/build/html/directives.html">The Runestone Home</a>   If you have a suggestion for a new interactive component, or would like to help with the development and documentation of the Runestone Components please visit our page on <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Github</a>. If you would like to help out with any of the books they are all freely available <a class="reference external" href="https://github.com/RunestoneInteractive">on github</a>.</p>
 </div>
 <div class="section" id="the-runestone-server">
 <h2>The Runestone Server<a class="headerlink" href="#the-runestone-server" title="Permalink to this headline">¶</a></h2>
-<p>The last piece of the Runestone puzzle is the Runestone Server.  Most people can probably live a long and happy life without having to even think about the Runestone server.  It is the thing that provides web services to all of the Runestone Components and drives the instructor tools.  The server started out life as a necessity for me to use Runestone in my own classroom.  It has grown into a &#8220;textbook as a service&#8221; size server today, supporting over 13,000 students a day from all over the world.</p>
+<p>The last piece of the Runestone puzzle is the Runestone Server.  Most people can probably live a long and happy life without having to even think about the Runestone server.  It is the thing that provides web services to all of the Runestone Components and drives the instructor tools.  The server started out life as a necessity for me to use Runestone in my own classroom.  It has grown into a “textbook as a service” size server today, supporting over 13,000 students a day from all over the world.</p>
 <p>However there are a handful of others out there who for whatever reason, privacy concerns, scalability concerns, or just more control, want to run their own server.  This is good as it makes the server better and provides a small base of others who can help add features and fix bugs.</p>
-<p>The Runestone Server is built on top of the <a class="reference external" href="http://web2py.com">web2py</a> application framework.  I know, you&#8217;ve never heard of web2py, why would I do such a thing?  In 2011 it seemed like the right choice.  If I were starting again today it would definitely be a <a class="reference external" href="http://www.pocoo.org/flask">Flask</a> application.  I still hope to port everything to Flask one day.  But when I think about the opportunity cost of taking an entire summer to port the code versus using the summer to add new features to what is there, I lean heavily towards the new thing.  Eventually all of the bad decisions and shortcuts I&#8217;ve taken over the years will force me to do a rewrite.</p>
-<p>If you&#8217;re still with me, and are interested in helping out with server check out our <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">Github</a> page, in particular have a look at the CONTRIBUTING document.</p>
+<p>The Runestone Server is built on top of the <a class="reference external" href="http://web2py.com">web2py</a> application framework.  I know, you’ve never heard of web2py, why would I do such a thing?  In 2011 it seemed like the right choice.  If I were starting again today it would definitely be a <a class="reference external" href="http://www.pocoo.org/flask">Flask</a> application.  I still hope to port everything to Flask one day.  But when I think about the opportunity cost of taking an entire summer to port the code versus using the summer to add new features to what is there, I lean heavily towards the new thing.  Eventually all of the bad decisions and shortcuts I’ve taken over the years will force me to do a rewrite.</p>
+<p>If you’re still with me, and are interested in helping out with server check out our <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneServer">Github</a> page, in particular have a look at the CONTRIBUTING document.</p>
 </div>
 </div>
 
@@ -425,7 +425,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
     </p>
   </div>
 </footer>

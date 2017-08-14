@@ -5,7 +5,6 @@
 var isMouseDown = false;
 document.onmousedown = function() { isMouseDown = true };
 document.onmouseup   = function() { isMouseDown = false };
-
 var edList = {};
 
 ActiveCode.prototype = new RunestoneBase();
@@ -20,7 +19,8 @@ function ActiveCode(opts) {
 
 ActiveCode.prototype.init = function(opts) {
     RunestoneBase.apply( this, arguments );  // call parent constructor
-    var suffStart = -1;
+    RunestoneBase.prototype.init.apply(this, arguments);
+    var suffStart;
     var orig = opts.orig;
     this.useRunestoneServices = opts.useRunestoneServices;
     this.python3 = opts.python3;
@@ -32,7 +32,6 @@ ActiveCode.prototype.init = function(opts) {
     this.timelimit = $(orig).data('timelimit');
     this.includes = $(orig).data('include');
     this.hidecode = $(orig).data('hidecode');
-    this.sid = opts.sid;
     this.runButton = null;
     this.saveButton = null;
     this.loadButton = null;
@@ -43,8 +42,12 @@ ActiveCode.prototype.init = function(opts) {
     this.codelens = null;
     this.controlDiv = null;
     this.historyScrubber = null;
-    this.timestamps = ["Original"]
+    this.timestamps = ["Original"];
     this.autorun = $(orig).data('autorun');
+
+    if(this.graderactive) {
+        this.hidecode = false;
+    }
 
     if(this.includes !== undefined) {
         this.includes = this.includes.split(/\s+/);
@@ -56,7 +59,7 @@ ActiveCode.prototype.init = function(opts) {
         this.code = this.code.substring(0,suffStart);
     }
 
-    this.history = [this.code]
+    this.history = [this.code];
     this.createEditor();
     this.createOutput();
     this.createControls();
@@ -74,7 +77,7 @@ ActiveCode.prototype.init = function(opts) {
 
 ActiveCode.prototype.createEditor = function (index) {
     this.containerDiv = document.createElement('div');
-    var linkdiv = document.createElement('div')
+    var linkdiv = document.createElement('div');
     linkdiv.id = this.divid.replace(/_/g,'-').toLowerCase();  // :ref: changes _ to - so add this as a target
     $(this.containerDiv).addClass("ac_section alert alert-warning");
     var codeDiv = document.createElement("div");
@@ -109,9 +112,24 @@ ActiveCode.prototype.createEditor = function (index) {
             $(editor.getWrapperElement()).css('border-top', '2px solid #b43232');
             $(editor.getWrapperElement()).css('border-bottom', '2px solid #b43232');
             this.logBookEvent({'event': 'activecode', 'act': 'edit', 'div_id': this.divid});
-    }
+        }
         editor.acEditEvent = true;
-        }).bind(this));  // use bind to preserve *this* inside the on handler.
+    }).bind(this));  // use bind to preserve *this* inside the on handler.
+
+    //Solving Keyboard Trap of ActiveCode: If user use tab for navigation outside of ActiveCode, then change tab behavior in ActiveCode to enable tab user to tab out of the textarea
+    $(window).keydown(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 9 && $('textarea:focus').length === 0) {
+            editor.setOption("extraKeys", {
+                "Tab": function(cm) {
+                    $(document.activeElement).closest('.tab-content').nextSibling.focus();
+                },
+                "Shift-Tab": function(cm) {
+                    $(document.activeElement).closest('.tab-content').previousSibling.focus();
+                }
+            });
+        }
+    });
 
     this.editor = editor;
     if (this.hidecode) {
@@ -138,10 +156,13 @@ ActiveCode.prototype.createControls = function () {
         ctrlDiv.appendChild(butt);
         this.histButton = butt;
         $(butt).click(this.addHistoryScrubber.bind(this));
+        if (this.graderactive) {
+            this.addHistoryScrubber(true);
+        }
     }
 
 
-    if ($(this.origElem).data('gradebutton')) {
+    if ($(this.origElem).data('gradebutton') && ! this.graderactive) {
         butt = document.createElement("button");
         $(butt).addClass("ac_opt btn btn-default");
         $(butt).text("Show Feedback");
@@ -152,23 +173,35 @@ ActiveCode.prototype.createControls = function () {
     }
     // Show/Hide Code
     if (this.hidecode) {
+        $(this.runButton).attr('disabled', 'disabled');
         butt = document.createElement("button");
         $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text("Show/Hide Code");
+        $(butt).text("Show Code");
         $(butt).css("margin-left", "10px");
         this.showHideButt = butt;
         ctrlDiv.appendChild(butt);
-        $(butt).click( (function() { $(this.codeDiv).toggle();
+        $(butt).click( (function() {
+            $(this.codeDiv).toggle();
             if (this.historyScrubber == null) {
                 this.addHistoryScrubber(true);
             } else {
                 $(this.historyScrubber.parentElement).toggle();
             }
+            if ($(this.showHideButt).text() == "Show Code") {
+                $(this.showHideButt).text("Hide Code");
+            } else {
+                $(this.showHideButt).text("Show Code");
+            }
+            if ($(this.runButton).attr('disabled')) {
+                $(this.runButton).removeAttr('disabled');
+            } else {
+                $(this.runButton).attr('disabled', 'disabled');
+            }
         }).bind(this));
     }
 
     // CodeLens
-    if ($(this.origElem).data("codelens")) {
+    if ($(this.origElem).data("codelens") && ! this.graderactive) {
         butt = document.createElement("button");
         $(butt).addClass("ac_opt btn btn-default");
         $(butt).text("Show CodeLens");
@@ -178,15 +211,16 @@ ActiveCode.prototype.createControls = function () {
         $(butt).click(this.showCodelens.bind(this));
     }
     // CodeCoach
-    if (this.useRunestoneServices && $(this.origElem).data("coach")) {
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text("Code Coach");
-        $(butt).css("margin-left", "10px");
-        this.coachButton = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click(this.showCodeCoach.bind(this));
-    }
+    // bnm - disable code coach until it is revamped  2017-7-22
+    // if (this.useRunestoneServices && $(this.origElem).data("coach")) {
+    //     butt = document.createElement("button");
+    //     $(butt).addClass("ac_opt btn btn-default");
+    //     $(butt).text("Code Coach");
+    //     $(butt).css("margin-left", "10px");
+    //     this.coachButton = butt;
+    //     ctrlDiv.appendChild(butt);
+    //     $(butt).click(this.showCodeCoach.bind(this));
+    // }
 
     // Audio Tour
     if ($(this.origElem).data("audio")) {
@@ -196,7 +230,7 @@ ActiveCode.prototype.createControls = function () {
         $(butt).css("margin-left", "10px");
         this.atButton = butt;
         ctrlDiv.appendChild(butt);
-        $(butt).click((function() {new AudioTour(this.divid, this.editor.getValue(), 1, $(this.origElem).data("audio"))}).bind(this));
+        $(butt).click((function() {new AudioTour(this.divid, this.code, 1, $(this.origElem).data("audio"))}).bind(this));
     }
 
 
@@ -218,25 +252,28 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
     if (this.sid !== undefined) {
         data['sid'] = this.sid;
     }
+    console.log("before get hist");
     jQuery.getJSON(eBookConfig.ajaxURL + 'gethist.json', data, function(data, status, whatever) {
         if (data.history !== undefined) {
             this.history = this.history.concat(data.history);
             for (t in data.timestamps) {
                 this.timestamps.push( (new Date(data.timestamps[t])).toLocaleString() )
             }
+            console.log("gethist successful history updated")
         }
     }.bind(this))
         .always(function() {
+            console.log("making a new scrubber");
             var scrubberDiv = document.createElement("div");
             $(scrubberDiv).css("display","inline-block");
             $(scrubberDiv).css("margin-left","10px");
             $(scrubberDiv).css("margin-right","10px");
             $(scrubberDiv).width("180px");
-            scrubber = document.createElement("div");
+            var scrubber = document.createElement("div");
             this.slideit = function() {
+                console.log("slideit was called");
                 this.editor.setValue(this.history[$(scrubber).slider("value")]);
                 var curVal = this.timestamps[$(scrubber).slider("value")];
-                //this.scrubberTime.innerHTML = curVal;
                 var tooltip = '<div class="sltooltip"><div class="sltooltip-inner">' +
                     curVal + '</div><div class="sltooltip-arrow"></div></div>';
                 $(scrubber).find(".ui-slider-handle").html(tooltip);
@@ -247,13 +284,29 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
             $(scrubber).slider({
                 max: this.history.length-1,
                 value: this.history.length-1,
-                slide: this.slideit.bind(this),
-                change: this.slideit.bind(this)
             });
+            $(scrubber).on("slide",this.slideit.bind(this));
+            $(scrubber).on("slidechange",this.slideit.bind(this));
             scrubberDiv.appendChild(scrubber);
 
-            if (pos_last) {
-                scrubber.value = this.history.length-1
+            // If there is a deadline set then position the scrubber at the last submission
+            // prior to the deadline
+            if (this.deadline) {
+                let i = 0;
+                let done = false;
+                while (i < this.history.length && ! done) {
+                    if ((new Date(this.timestamps[i])) > this.deadline) {
+                        done = true;
+                    } else {
+                        i += 1
+                    }
+                }
+                i = i - 1;
+                scrubber.value = Math.max(i,0);
+                this.editor.setValue(this.history[scrubber.value]);
+            }
+            else if (pos_last) {
+                scrubber.value = this.history.length-1;
                 this.editor.setValue(this.history[scrubber.value]);
             } else {
                 scrubber.value = 0;
@@ -262,11 +315,12 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
             $(this.histButton).remove();
             this.histButton = null;
             this.historyScrubber = scrubber;
-            $(scrubberDiv).insertAfter(this.runButton)
+            $(scrubberDiv).insertAfter(this.runButton);
+            console.log("resoving deferred in addHistoryScrubber");
             deferred.resolve();
         }.bind(this));
     return deferred;
-}
+};
 
 
 ActiveCode.prototype.createOutput = function () {
@@ -277,6 +331,7 @@ ActiveCode.prototype.createOutput = function () {
     $(outDiv).addClass("ac_output col-md-5");
     this.outDiv = outDiv;
     this.output = document.createElement('pre');
+    this.output.id = this.divid+'_stdout';
     $(this.output).css("visibility","hidden");
 
     this.graphics = document.createElement('div');
@@ -293,7 +348,7 @@ ActiveCode.prototype.createOutput = function () {
     outDiv.appendChild(this.graphics);
     this.outerDiv.appendChild(outDiv);
 
-    clearDiv = document.createElement("div");
+    var clearDiv = document.createElement("div");
     $(clearDiv).css("clear","both");  // needed to make parent div resize properly
     this.outerDiv.appendChild(clearDiv);
 
@@ -304,14 +359,14 @@ ActiveCode.prototype.createOutput = function () {
     this.codelens = lensDiv;
     this.outerDiv.appendChild(lensDiv);
 
-    var coachDiv = document.createElement("div")
+    var coachDiv = document.createElement("div");
     $(coachDiv).addClass("col-md-12");
     $(coachDiv).css("display","none");
     this.codecoach = coachDiv;
     this.outerDiv.appendChild(coachDiv);
 
 
-    clearDiv = document.createElement("div");
+    var clearDiv = document.createElement("div");
     $(clearDiv).css("clear","both");  // needed to make parent div resize properly
     this.outerDiv.appendChild(clearDiv);
 
@@ -334,59 +389,7 @@ ActiveCode.prototype.addCaption = function() {
     this.outerDiv.parentNode.insertBefore(capDiv, this.outerDiv.nextSibling);
 };
 
-ActiveCode.prototype.saveEditor = function () {
-    var res;
-    var saveSuccess = function(data, status, whatever) {
-        if (data.redirect) {
-            alert("Did not save!  It appears you are not logged in properly")
-        } else if (data == "") {
-            alert("Error:  Program not saved");
-        }
-        else {
-            var acid = eval(data)[0];
-            if (acid.indexOf("ERROR:") == 0) {
-                alert(acid);
-            } else {
-                // use a tooltip to provide some success feedback
-                var save_btn = $(this.saveButton);
-                save_btn.attr('title', 'Saved your code.');
-                opts = {
-                    'trigger': 'manual',
-                    'placement': 'bottom',
-                    'delay': { show: 100, hide: 500}
-                };
-                save_btn.tooltip(opts);
-                save_btn.tooltip('show');
-                setTimeout(function () {
-                    save_btn.tooltip('destroy')
-                }, 4000);
 
-                $('#' + acid + ' .CodeMirror').css('border-top', '2px solid #aaa');
-                $('#' + acid + ' .CodeMirror').css('border-bottom', '2px solid #aaa');
-            }
-        }
-    }.bind(this);
-
-    var data = {acid: this.divid, code: this.editor.getValue()};
-    data.lang = this.language;
-    if (data.code.match(/^\s+$/)) {
-        res = confirm("You are about to save an empty program, this will overwrite a previously saved program.  Continue?");
-        if (! res) {
-            return;
-        }
-    }
-    $(document).ajaxError(function (e, jqhxr, settings, exception) {
-        //alert("Request Failed for" + settings.url)
-        console.log("Request Failed for" + settings.url);
-    });
-    jQuery.post(eBookConfig.ajaxURL + 'saveprog', data, saveSuccess);
-    if (this.editor.acEditEvent) {
-        this.logBookEvent({'event': 'activecode', 'act': 'edit', 'div_id': this.divid}); // Log the run event
-        this.editor.acEditEvent = false;
-    }
-    this.logBookEvent({'event': 'activecode', 'act': 'save', 'div_id': this.divid}); // Log the run event
-
-};
 
 ActiveCode.prototype.loadEditor = function () {
     var loadEditor = (function (data, status, whatever) {
@@ -434,11 +437,19 @@ ActiveCode.prototype.createGradeSummary = function () {
         var report = eval(data)[0];
         // check for report['message']
         if (report) {
-            body = "<h4>Grade Report</h4>" +
-                   "<p>This assignment: " + report['grade'] + "</p>" +
-                   "<p>" + report['comment'] + "</p>" +
-                   "<p>Number of graded assignments: " + report['count'] + "</p>" +
-                   "<p>Average score: " +  report['avg'] + "</p>"
+            if (report['version'] == 2){
+                // new version; would be better to embed this in HTML for the activecode
+                var body = "<h4>Grade Report</h4>" +
+                       "<p>This question: " + report['grade'] + " out of " + report['max'] + "</p>" +
+                       "<p>" + report['comment'] + "</p>"
+            }
+            else{
+                var body = "<h4>Grade Report</h4>" +
+                       "<p>This assignment: " + report['grade'] + "</p>" +
+                       "<p>" + report['comment'] + "</p>" +
+                       "<p>Number of graded assignments: " + report['count'] + "</p>" +
+                       "<p>Average score: " +  report['avg'] + "</p>"
+            }
 
         } else {
             body = "<h4>The server did not return any grade information</h4>";
@@ -457,7 +468,7 @@ ActiveCode.prototype.createGradeSummary = function () {
             '  </div>' +
             '</div>';
 
-        el = $(html);
+        var el = $(html);
         el.modal();
     };
     var data = {'div_id': this.divid};
@@ -549,7 +560,7 @@ ActiveCode.prototype.showCodeCoach = function () {
     myIframe.style.width = "100%";
     myIframe.src = srcURL;
     this.codecoach.appendChild(myIframe);
-    $(this.codecoach).show()
+    $(this.codecoach).show();
     this.logBookEvent({
         'event': 'coach',
         'act': 'view',
@@ -658,6 +669,24 @@ ActiveCode.prototype.builtinRead = function (x) {
         return Sk.builtinFiles["files"][x];
 };
 
+ActiveCode.prototype.fileReader = function(divid) {
+    let elem = document.getElementById(divid);
+    let data = ""
+    if (elem == null && Sk.builtinFiles["files"][divid]) {
+        return Sk.builtinFiles["files"][divid];
+    }
+    if (elem == null) {
+        throw new Sk.builtin.IOError("[Errno 2] No such file or directory: '" + divid + "'");
+    } else {
+        if (elem.nodeName.toLowerCase() == "textarea") {
+            data = elem.value;
+        } else {
+            data = elem.textContent;
+        }
+    }
+    return data;
+}
+
 ActiveCode.prototype.outputfun = function(text) {
     // bnm python 3
     pyStr = function(x) {
@@ -666,7 +695,7 @@ ActiveCode.prototype.outputfun = function(text) {
         } else {
             return x
         }
-    }
+    };
 
     var x = text;
     if (! this.python3 ) {
@@ -690,7 +719,7 @@ ActiveCode.prototype.outputfun = function(text) {
 ActiveCode.prototype.buildProg = function() {
     // assemble code from prefix, suffix, and editor for running.
     var pretext;
-    var prog = this.editor.getValue();
+    var prog = this.editor.getValue() + "\n";
     this.pretext = "";
     if (this.includes !== undefined) {
         // iterate over the includes, in-order prepending to prog
@@ -709,76 +738,123 @@ ActiveCode.prototype.buildProg = function() {
     return prog;
 };
 
-ActiveCode.prototype.runProg = function() {
-        var prog = this.buildProg();
-        var saveCode = true;
+ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, saveCode) {
+    if (this.historyScrubber === null && !this.autorun) {
+        console.log("Need a new scrubber");
+        scrubber_dfd = this.addHistoryScrubber();
+    } else {
+        scrubber_dfd = jQuery.Deferred();
+        scrubber_dfd.resolve();
+    }
 
-        $(this.output).text('');
-
-        $(this.eContainer).remove();
-        Sk.configure({output : this.outputfun.bind(this),
-              read   : this.builtinRead,
-              python3: this.python3,
-              imageProxy : 'http://image.runestone.academy:8080/320x'
-        });
-        Sk.divid = this.divid;
-        this.setTimeLimit();
-        (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = this.graphics;
-        Sk.canvas = this.graphics.id; //todo: get rid of this here and in image
-        $(this.runButton).attr('disabled', 'disabled');
-        $(this.codeDiv).switchClass("col-md-12","col-md-7",{duration:500,queue:false});
-        $(this.outDiv).show({duration:700,queue:false});
-
-        if (this.historyScrubber === null && !this.autorun) {
-            dfd = this.addHistoryScrubber();
+    history_dfd = jQuery.Deferred();
+    scrubber_dfd.done((function () {
+        if (this.historyScrubber && (this.history[$(this.historyScrubber).slider("value")] != this.editor.getValue())) {
+            console.log("updating scrubber with changed code");
+            saveCode = "True";
+            this.history.push(this.editor.getValue());
+            this.timestamps.push((new Date()).toLocaleString());
+            $(this.historyScrubber).slider("option", "max", this.history.length - 1);
+            $(this.historyScrubber).slider("option", "value", this.history.length - 1);
+            this.slideit();
+            console.log("finished scrubber update")
         } else {
-            dfd = jQuery.Deferred();
-            dfd.resolve();
+            saveCode = "False";
         }
 
-        hresolver = jQuery.Deferred();
-        dfd.done((function() {
-                if (this.historyScrubber && (this.history[$(this.historyScrubber).slider("value")] != this.editor.getValue())) {
-                    this.history.push(this.editor.getValue());
-                    this.timestamps.push((new Date()).toLocaleString());
-                    $(this.historyScrubber).slider("option", "max", this.history.length - 1)
-                    $(this.historyScrubber).slider("option", "value", this.history.length - 1)
-                }
-
-                if ((this.historyScrubber == null || this.history[$(this.historyScrubber).slider("value")] == this.editor.getValue())) {
-                    saveCode = "False";
-                } else {
-                    saveCode = "True"
-                }
-                hresolver.resolve();
-            }).bind(this));
-
-
-        var myPromise = Sk.misceval.asyncToPromise(function() {
-
-            return Sk.importMainWithBody("<stdin>", false, prog, true);
+        if (this.historyScrubber == null) {
+            saveCode = "False";
+        }
+        history_dfd.resolve();
+    }).bind(this))
+        .fail(function () {
+            console.log("Scrubber deferred failed - this should not happen");
+            history_dfd.resolve();
         });
+    return {history_dfd: history_dfd, saveCode: saveCode};
+};
 
-        // Make sure that the history scrubber is fully initialized AND the code has been run
-        // before we start logging stuff.
-        Promise.all([myPromise,hresolver]).then((function(mod) { // success
+
+ActiveCode.prototype.runProg = function () {
+    var prog = this.buildProg();
+    var saveCode = "True";
+    var scrubber_dfd, history_dfd, skulpt_run_dfd;
+    console.log("starting a new run of " + this.divid);
+    $(this.output).text('');
+
+    $(this.eContainer).remove();
+    Sk.configure({
+        output: this.outputfun.bind(this),
+        read: this.fileReader,
+        python3: this.python3,
+        imageProxy: 'http://image.runestone.academy:8080/320x',
+        inputfunTakesPrompt: true,
+    });
+    Sk.divid = this.divid;
+    this.setTimeLimit();
+    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = this.graphics;
+    Sk.canvas = this.graphics.id; //todo: get rid of this here and in image
+    $(this.runButton).attr('disabled', 'disabled');
+    $(this.historyScrubber).off("slidechange");
+    $(this.historyScrubber).slider("disable");
+    $(this.codeDiv).switchClass("col-md-12", "col-md-7", {duration: 500, queue: false});
+    $(this.outDiv).show({duration: 700, queue: false});
+
+    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+    history_dfd = __ret.history_dfd;
+    saveCode = __ret.saveCode;
+
+
+    skulpt_run_dfd = Sk.misceval.asyncToPromise(function () {
+
+        return Sk.importMainWithBody("<stdin>", false, prog, true);
+    });
+
+    // Make sure that the history scrubber is fully initialized AND the code has been run
+    // before we start logging stuff.
+    var self = this;
+
+    Promise.all([skulpt_run_dfd, history_dfd]).then((function (mod) { // success
             $(this.runButton).removeAttr('disabled');
-            this.logRunEvent({'div_id': this.divid, 'code': this.editor.getValue(), 'errinfo': 'success', 'to_save':saveCode, 'prefix': this.pretext, 'suffix':this.suffix}); // Log the run event
-        }).bind(this),
-            (function(err) {  // fail
-            $(this.runButton).removeAttr('disabled');
-            this.logRunEvent({'div_id': this.divid, 'code': this.editor.getValue(), 'errinfo': err.toString(), 'to_save':saveCode, 'prefix': this.pretext, 'suffix':this.suffix}); // Log the run event
-            this.addErrorMessage(err)
-                }).bind(this));
-
-
-        if (typeof(allVisualizers) != "undefined") {
-            $.each(allVisualizers, function (i, e) {
-                e.redrawConnectors();
-                });
+            if (this.slideit) {
+                $(this.historyScrubber).on("slidechange", this.slideit.bind(this));
             }
+            $(this.historyScrubber).slider("enable");
+            this.logRunEvent({
+                'div_id': this.divid,
+                'code': this.editor.getValue(),
+                'lang': this.language,
+                'errinfo': 'success',
+                'to_save': saveCode,
+                'prefix': this.pretext,
+                'suffix': this.suffix
+            }); // Log the run event
+        }).bind(this),
+        (function (err) {  // fail
+            history_dfd.done(function () {
+                $(self.runButton).removeAttr('disabled');
+                $(self.historyScrubber).on("slidechange", self.slideit.bind(self));
+                $(self.historyScrubber).slider("enable");
+                self.logRunEvent({
+                    'div_id': self.divid,
+                    'code': self.editor.getValue(),
+                    'lang': this.langauge,
+                    'errinfo': err.toString(),
+                    'to_save': saveCode,
+                    'prefix': self.pretext,
+                    'suffix': self.suffix
+                }); // Log the run event
+                self.addErrorMessage(err)
+            });
+        }));
 
-    };
+    if (typeof(allVisualizers) != "undefined") {
+        $.each(allVisualizers, function (i, e) {
+            e.redrawConnectors();
+        });
+    }
+
+};
 
 
 
@@ -793,7 +869,7 @@ function JSActiveCode(opts) {
 
 JSActiveCode.prototype.init = function(opts) {
     ActiveCode.prototype.init.apply(this,arguments)
-    }
+    };
 
 JSActiveCode.prototype.outputfun = function (a) {
     $(this.output).css("visibility","visible");
@@ -819,6 +895,10 @@ JSActiveCode.prototype.outputfun = function (a) {
 JSActiveCode.prototype.runProg = function() {
     var _this = this;
     var prog = this.buildProg();
+    var einfo;
+    var scrubber_dfd, history_dfd;
+    var saveCode = "True";
+
 
     var write = function(str) {
         _this.output.innerHTML += _this.outputfun(str);
@@ -829,6 +909,10 @@ JSActiveCode.prototype.runProg = function() {
         _this.output.innerHTML += _this.outputfun(str)+"<br />";
             };
 
+    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+    history_dfd = __ret.history_dfd;
+    saveCode = __ret.saveCode;
+
     $(this.eContainer).remove();
     $(this.output).text('');
     $(this.codeDiv).switchClass("col-md-12","col-md-6",{duration:500,queue:false});
@@ -836,9 +920,21 @@ JSActiveCode.prototype.runProg = function() {
 
     try {
         eval(prog)
+        einfo = "success";
     } catch(e) {
         this.addErrorMessage(e);
+        einfo = e;
     }
+
+    this.logRunEvent({
+    'div_id': this.divid,
+    'code': this.editor.getValue(),
+    'errinfo': einfo,
+    'to_save': saveCode,
+    'prefix': this.pretext,
+    'suffix': this.suffix
+    }); // Log the run event
+
 
 };
 
@@ -852,6 +948,11 @@ function HTMLActiveCode (opts) {
 
 HTMLActiveCode.prototype.runProg = function () {
     var prog = this.buildProg();
+    var scrubber_dfd, history_dfd, saveCode;
+
+    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+    history_dfd = __ret.history_dfd;
+    saveCode = __ret.saveCode;
 
 //    $('#'+myDiv+'_iframe').remove();
 //    $('#'+myDiv+'_htmlout').show();
@@ -864,6 +965,16 @@ HTMLActiveCode.prototype.runProg = function () {
     $(this.outDiv).show({duration:700,queue:false});
     prog = "<script type=text/javascript>window.onerror = function(msg,url,line) {alert(msg+' on line: '+line);};</script>" + prog;
     this.output.srcdoc = prog;
+
+    this.logRunEvent({
+    'div_id': this.divid,
+    'code': this.editor.getValue(),
+    'errinfo': 'success',
+    'to_save': saveCode,
+    'prefix': this.pretext,
+    'suffix': this.suffix
+    }); // Log the run event
+
 
 };
 
@@ -891,7 +1002,7 @@ HTMLActiveCode.prototype.createOutput = function () {
     outDiv.appendChild(this.output);
     this.outerDiv.appendChild(outDiv);
 
-    clearDiv = document.createElement("div");
+    var clearDiv = document.createElement("div");
     $(clearDiv).css("clear","both");  // needed to make parent div resize properly
     this.outerDiv.appendChild(clearDiv);
 
@@ -907,15 +1018,15 @@ AudioTour.prototype = new RunestoneBase();
 // function to display the audio tours
 function AudioTour (divid, code, bnum, audio_text) {
     this.elem = null; // current audio element playing
-    this.currIndex; // current index
-    this.len; // current length of audio files for tour
-    this.buttonCount; // number of audio tour buttons
-    this.aname; // the audio file name
-    this.ahash; // hash of the audio file name to the lines to highlight
-    this.theDivid; // div id
-    this.afile; // file name for audio
+    this.currIndex = null; // current index
+    this.len = null; // current length of audio files for tour
+    this.buttonCount = null; // number of audio tour buttons
+    this.aname = null; // the audio file name
+    this.ahash = null; // hash of the audio file name to the lines to highlight
+    this.theDivid = null; // div id
+    this.afile = null; // file name for audio
     this.playing = false; // flag to say if playing or not
-    this.tourName;
+    this.tourName = "";
 
     // Replacing has been done here to make sure special characters in the code are displayed correctly
     code = code.replaceAll("*doubleq*", "\"");
@@ -925,8 +1036,8 @@ function AudioTour (divid, code, bnum, audio_text) {
     code = code.replaceAll("*nline*", "<br/>");
     var codeArray = code.split("\n");
 
-    var audio_hash = new Array();
-    var bval = new Array();
+    var audio_hash = [];
+    var bval = [];
     var atype = audio_text.replaceAll("*doubleq*", "\"");
     var audio_type = atype.split("*atype*");
     for (var i = 0; i < audio_type.length - 1; i++) {
@@ -936,7 +1047,7 @@ function AudioTour (divid, code, bnum, audio_text) {
     }
 
     var first = "<pre><div id='" + divid + "_l1'>" + "1.   " + codeArray[0] + "</div>";
-    num_lines = codeArray.length;
+    var num_lines = codeArray.length;
     for (var i = 1; i < num_lines; i++) {
         if (i < 9) {
             first = first + "<div id='" + divid + "_l" + (i + 1) + "'>" + (i + 1) + ".   " + codeArray[i] + "</div>";
@@ -1083,8 +1194,8 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
 
     var max = atype.length;
     var str = "";
-    this.ahash = new Array();
-    this.aname = new Array();
+    this.ahash = [];
+    this.aname = [];
     for (i = 1; i < max - 1; i++) {
         var temp = atype[i].split(":");
         var temp_line = temp[0];
@@ -1099,7 +1210,7 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
         // akey+".mp3' type='audio/mpeg'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+akey+
         // ".ogg' type='audio/ogg'>Your browser does not support the audio tag</audio>";
 
-        var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse + "/audio/"
+        var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse + "/audio/";
         //var dir = "../_static/audio/"
         str += "<audio id=" + akey + " preload='auto' >";
         str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
@@ -1438,11 +1549,17 @@ LiveCode.prototype.createErrorOutput = function () {
 LiveCode.prototype.runProg = function() {
         var xhr, stdin;
         var runspec = {};
+        var scrubber_dfd, history_dfd;
         var data, host, source, editor;
+        var saveCode = "True";
         var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
 
         xhr = new XMLHttpRequest();
         source = this.editor.getValue();
+
+        var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+        history_dfd = __ret.history_dfd;
+        saveCode = __ret.saveCode;
 
         if (this.stdin) {
             stdin = $(this.stdin_el).val();
@@ -1497,7 +1614,7 @@ LiveCode.prototype.runProg = function() {
             } else {
                 logresult = result.outcome;
             }
-            this.logRunEvent({'div_id': this.divid, 'code': source, 'errinfo': logresult, 'event':'livecode'});
+            this.logRunEvent({'div_id': this.divid, 'code': source, 'errinfo': logresult, 'to_save':saveCode, 'event':'livecode'});
             switch (result.outcome) {
                 case 15:
                     $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
@@ -1598,39 +1715,37 @@ ACFactory.createActiveCode = function (orig, lang, addopts) {
         return new ActiveCode(opts);
     }
 
-}
+};
 
 // used by web2py controller(s)
 ACFactory.addActiveCodeToDiv = function(outerdivid, acdivid, sid, initialcode, language) {
     var  thepre, newac;
 
-    acdiv = document.getElementById(acdivid);
+    var acdiv = document.getElementById(acdivid);
     $(acdiv).empty();
     thepre = document.createElement("textarea");
     thepre['data-component'] = "activecode";
-    thepre.id = acdiv;
+    thepre.id = outerdivid;
     $(thepre).data('lang', language);
     $(acdiv).append(thepre);
     var opts = {'orig' : thepre, 'useRunestoneServices': true };
-    addopts = {}
+    var addopts = {'sid': sid, 'graderactive':true};
     if(language === 'htmlmixed') {
-        var addopts = {'vertical': true};
+        addopts['vertical'] = true;
     }
     newac = ACFactory.createActiveCode(thepre,language,addopts);
-    savediv = newac.divid;
-    newac.divid = outerdivid;
-    newac.sid = sid;
-    if (! initialcode ) {
-        newac.loadEditor();
-    } else {
-        newac.editor.setValue(initialcode);
-        setTimeout(function() {
-                newac.editor.refresh();
-            },500);
-    }
+    var savediv = newac.divid;
     newac.divid = savediv;
     newac.editor.setSize(500,300);
+    setTimeout(function() {
+            newac.editor.refresh();
+        },500);
+
 };
+
+ACFactory.createActiveCodeFromOpts = function(opts) {
+    return ACFactory.createActiveCode(opts.orig, opts.lang, opts)
+}
 
 ACFactory.createScratchActivecode = function() {
     /* set up the scratch Activecode editor in the search menu */
@@ -1665,7 +1780,7 @@ ACFactory.createScratchActivecode = function() {
         '    </div>' +
         '  </div>' +
         '</div>';
-    el = $(html);
+    var el = $(html);
     $('body').append(el);
 
     el.on('shown.bs.modal show.bs.modal', function () {
@@ -1693,7 +1808,7 @@ ACFactory.toggleScratchActivecode = function () {
 $(document).ready(function() {
     ACFactory.createScratchActivecode();
     $('[data-component=activecode]').each( function(index ) {
-        if ($(this.parentNode).data("component") !== "timedAssessment") {   // If this element exists within a timed component, don't render it here
+        if ($(this).closest('[data-component=timedAssessment]').length == 0 ) {   // If this element exists within a timed component, don't render it here
             edList[this.id] = ACFactory.createActiveCode(this, $(this).data('lang'));
         }
     });
@@ -1704,6 +1819,11 @@ $(document).ready(function() {
     }
 
 });
+
+if (typeof component_factory === 'undefined') {
+    component_factory = {}
+}
+component_factory['activecode'] = ACFactory.createActiveCodeFromOpts;
 
 $(document).bind("runestone:login", function() {
     $(".run-button").text("Save & Run");

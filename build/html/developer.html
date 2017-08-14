@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Developer Documentation for Runestone Interactive Tools &mdash; Runestone Interactive 1.0 documentation</title>
-    
+    <title>Developer Documentation for Runestone Interactive Tools &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -23,20 +20,21 @@
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/runestonebase.js"></script>
@@ -84,8 +82,9 @@
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/shortanswer.js"></script>
     <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="_static/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
@@ -99,7 +98,8 @@
     <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
-    <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Runestone Directives Documentation" href="directives.html" />
     <link rel="prev" title="User Guide for Instructors" href="instructor_users.html" />
 <meta charset='utf-8'>
@@ -133,7 +133,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 <!-- Begin navbar -->
@@ -326,7 +326,7 @@
         -->
         
           <li>
-  <a href="_sources/developer.txt"
+  <a href="_sources/developer.rst.txt"
      rel="nofollow">Source</a></li>
         
       </ul>
@@ -354,7 +354,7 @@
 <h2>Development Parts<a class="headerlink" href="#development-parts" title="Permalink to this headline">¶</a></h2>
 <p>If you plan to develop on the Runestone project, you should know that there are now <strong>three pieces</strong> of a <strong>local Runestone development environment.</strong></p>
 <ol class="arabic simple">
-<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Components</a> - this is the development version of the library you get when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">runestone</span></code>. <em>You should examine this first.</em> See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date. If you are <em>only</em> interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit &#8211; see #3. You can skip #2.)</li>
+<li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Components</a> - this is the development version of the library you get when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">runestone</span></code>. <em>You should examine this first.</em> See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date. If you are <em>only</em> interested in authoring content and/or developing directives (extensions to reStructuredText that provide interactive components of textbooks), you only need this. (You may also want open source book content to edit – see #3. You can skip #2.)</li>
 <li>The <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">Runestone Server</a> - this is the application that goes inside a <strong>web2py</strong> server. If you plan to run your own server for an interactive textbook, or develop on the Runestone server, you should install this. See the GitHub repository <a class="reference external" href="https://github.com/RunestoneInteractive/RunestoneComponents">HERE</a>, where the README is approximately up to date.</li>
 <li><strong>A book</strong> written for the runestone environment to build, deploy, and then serve on your local server. Typically, a book repository will be cloned (and potentially edited) to the appropriate place inside the  Runestone Server application, and can be built using the tools provided by RunestoneComponents. You can see an example of a book created for the Runestone environment on GitHub <a class="reference external" href="https://github.com/RunestoneInteractive/thinkcspy">HERE</a>. See the Runestone Components README for how to build and serve the book content locally.</li>
 </ol>
@@ -364,7 +364,7 @@
 </div>
 <div class="section" id="using-special-runestone-extensions">
 <h2>Using Special Runestone Extensions<a class="headerlink" href="#using-special-runestone-extensions" title="Permalink to this headline">¶</a></h2>
-<p>Runestone includes all of the pre-existing <a class="reference external" href="http://docutils.sourceforge.net/rst.html">ReStructured Text</a> formatting &#8211; you can use the documentation at that link for writing up book content, to include formatting like <strong>bold</strong> or <em>italic</em> or hyperlinks, etc. Runestone also has several particular <strong>directives</strong>, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and fill in the blank questions. The Runestone directives documentation includes full documentation of all of the available Runestone directives, including:</p>
+<p>Runestone includes all of the pre-existing <a class="reference external" href="http://docutils.sourceforge.net/rst.html">ReStructured Text</a> formatting – you can use the documentation at that link for writing up book content, to include formatting like <strong>bold</strong> or <em>italic</em> or hyperlinks, etc. Runestone also has several particular <strong>directives</strong>, which are certain syntaxes that allow you to include special interactive elements in a page. These include video, images, running and saving interactive code in the browser, and different types of exercises such as multiple choice problems and fill in the blank questions. The Runestone directives documentation includes full documentation of all of the available Runestone directives, including:</p>
 <ul class="simple">
 <li>What each directive allows you to create</li>
 <li>The syntax for using each directive</li>
@@ -411,7 +411,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
     </p>
   </div>
 </footer>

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Runestone Directives Documentation &mdash; Runestone Interactive 1.0 documentation</title>
-    
+    <title>Runestone Directives Documentation &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -23,20 +20,21 @@
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/runestonebase.js"></script>
@@ -84,8 +82,9 @@
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/shortanswer.js"></script>
     <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="_static/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
@@ -99,7 +98,8 @@
     <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
-    <link rel="top" title="Runestone Interactive 1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Extension Authors" href="writingAnExtension.html" />
     <link rel="prev" title="Developer Documentation for Runestone Interactive Tools" href="developer.html" />
 <meta charset='utf-8'>
@@ -133,7 +133,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 <!-- Begin navbar -->
@@ -297,7 +297,7 @@
 <li><a class="reference internal" href="#datafile">Datafile</a></li>
 <li><a class="reference internal" href="#multiple-choice">Multiple Choice</a></li>
 <li><a class="reference internal" href="#fill-in-the-blank">Fill in the Blank</a></li>
-<li><a class="reference internal" href="#parson-s-problems">Parson&#8217;s Problems</a></li>
+<li><a class="reference internal" href="#parson-s-problems">Parson’s Problems</a></li>
 <li><a class="reference internal" href="#disqus">Disqus</a></li>
 <li><a class="reference internal" href="#tabs-and-tab-groups">Tabs and Tab Groups</a></li>
 <li><a class="reference internal" href="#polls">Polls</a></li>
@@ -343,7 +343,7 @@
         -->
         
           <li>
-  <a href="_sources/directives.txt"
+  <a href="_sources/directives.rst.txt"
      rel="nofollow">Source</a></li>
         
       </ul>
@@ -383,7 +383,7 @@
 <li><a class="reference internal" href="#datafile" id="id7">Datafile</a></li>
 <li><a class="reference internal" href="#multiple-choice" id="id8">Multiple Choice</a></li>
 <li><a class="reference internal" href="#fill-in-the-blank" id="id9">Fill in the Blank</a></li>
-<li><a class="reference internal" href="#parson-s-problems" id="id10">Parson&#8217;s Problems</a></li>
+<li><a class="reference internal" href="#parson-s-problems" id="id10">Parson’s Problems</a></li>
 <li><a class="reference internal" href="#disqus" id="id11">Disqus</a></li>
 <li><a class="reference internal" href="#tabs-and-tab-groups" id="id12">Tabs and Tab Groups</a></li>
 <li><a class="reference internal" href="#polls" id="id13">Polls</a></li>
@@ -401,10 +401,10 @@
 </div>
 </div>
 <p>All directives start out with <code class="docutils literal"><span class="pre">..</span></code>, then a single space, followed by the name of the directive (e.g. <code class="docutils literal"><span class="pre">video</span></code>, as seen below), and then <code class="docutils literal"><span class="pre">::</span></code>, followed by a single space.</p>
-<p>Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It&#8217;s also necessary for managing any controls or</p>
-<p>Spacing, including indentation consistency, is very important in implementing directives inside <code class="docutils literal"><span class="pre">.rst</span></code> files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it&#8217;s worth checking your final product before releasing content to students.</p>
-<p>Directives may have <strong>required arguments</strong>. In many cases, an argument that is a unique identifier for that particular directive&#8217;s <code class="docutils literal"><span class="pre">div</span></code> id, will follow the <code class="docutils literal"><span class="pre">::</span></code> in the directive (example below).</p>
-<p>Further (often optional) arguments for a directive generally occur below that first line, surrounded by single <code class="docutils literal"><span class="pre">:</span></code> s. Some of those require parameters &#8211; for example, the <code class="docutils literal"><span class="pre">:thumb:</span></code> addition for the <code class="docutils literal"><span class="pre">video</span></code> directive  requires a path to a <code class="docutils literal"><span class="pre">.png</span></code> image for the thumbnail image that should appear for the video, which you can see in the video directive example.</p>
+<p>Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It’s also necessary for managing any controls or</p>
+<p>Spacing, including indentation consistency, is very important in implementing directives inside <code class="docutils literal"><span class="pre">.rst</span></code> files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it’s worth checking your final product before releasing content to students.</p>
+<p>Directives may have <strong>required arguments</strong>. In many cases, an argument that is a unique identifier for that particular directive’s <code class="docutils literal"><span class="pre">div</span></code> id, will follow the <code class="docutils literal"><span class="pre">::</span></code> in the directive (example below).</p>
+<p>Further (often optional) arguments for a directive generally occur below that first line, surrounded by single <code class="docutils literal"><span class="pre">:</span></code> s. Some of those require parameters – for example, the <code class="docutils literal"><span class="pre">:thumb:</span></code> addition for the <code class="docutils literal"><span class="pre">video</span></code> directive  requires a path to a <code class="docutils literal"><span class="pre">.png</span></code> image for the thumbnail image that should appear for the video, which you can see in the video directive example.</p>
 <p>When reStructured Text files are <em>built</em> into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.</p>
 <p>We are in the process of creating a full set of documentation for the HTML and JavaScript created by our special Runestone directives.</p>
 </div>
@@ -440,7 +440,7 @@
 <div class="section" id="activecode">
 <h3><a class="toc-backref" href="#id5">Activecode</a><a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h3>
 <p>The activecode directive allows you to create executable, editable example code. This allows your students to experiment with your examples by changing them and running them over and over again.</p>
-<p>In an <strong>activecode</strong> window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they&#8217;ve edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)</p>
+<p>In an <strong>activecode</strong> window, if logged in to a Runestone project with an account, each time you run the code, if it is has been edited since the last run, the version is saved. Each logged in user can view their own history, version by version, of the code they’ve edited in the window. (Screenshots are provided below of this behavior, since this example is shown outside a logged-in account.)</p>
 <p>Activecode windows can be graded in the Runestone interface and can be tied to assignments containing multiple problems. You can also include hidden code and data files in these windows, for instance, so students can invoke functions without seeing the function definitions. (See more on this below, in the optional arguments section.)</p>
 <p>One of the great things about activecode is that you can experiment with the code in the windows as much as you want. This can be very helpful as you are learning to program.</p>
 <p><strong>Examples in reStructured Text</strong></p>
@@ -493,12 +493,12 @@
 <p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive. No spaces may be included in this identifier.</p>
 <p>This unique identifer will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this particular code snippet; this unique identifier allows you to tie activecode blocks to a grading interface, or any other groupings for assessment within the Runestone interface, for instance if you wanted students to complete a problem in an activecode window. For this reason, we recommend that you follow some type of naming convention in determining these unique identifiers for directives, especially activecode directives, since they are the most common place for users to edit and potentially save content repeatedly.</p>
 <p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:nopre:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page. (You might use this if you did not want to see the results of print statements from an included code segment but otherwise wanted it to be runnable.)</p>
-<p><code class="docutils literal"><span class="pre">:nocanvas:</span></code>  &#8211; This flag prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created. A canvas element is generally created e.g. when a program using the <code class="docutils literal"><span class="pre">turtle</span></code> library is run (see above).</p>
+<p><code class="docutils literal"><span class="pre">:nopre:</span></code>  – This flag prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page. (You might use this if you did not want to see the results of print statements from an included code segment but otherwise wanted it to be runnable.)</p>
+<p><code class="docutils literal"><span class="pre">:nocanvas:</span></code>  – This flag prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created. A canvas element is generally created e.g. when a program using the <code class="docutils literal"><span class="pre">turtle</span></code> library is run (see above).</p>
 <p><code class="docutils literal"><span class="pre">:caption:</span></code> If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is <code class="docutils literal"><span class="pre">A</span> <span class="pre">Turtle</span> <span class="pre">making</span> <span class="pre">a</span> <span class="pre">square</span></code>.</p>
 <p><code class="docutils literal"><span class="pre">:language:</span></code> The text argument to this parameter can be python, javascript, or html.  TODO TODO is this still true, and what is the default if you leave it off, is it Python?</p>
 <p><code class="docutils literal"><span class="pre">:include:</span></code>  This option allows you to prepend other code blocks to this activecode block. It is useful because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content. For example, if you write a function definition in one activecode block, you can include that block in a later activecode block using the <code class="docutils literal"><span class="pre">:include:</span></code> argument, and thus can invoke that function in the current activecode block without redefining it. This argument requires at least one, and can take multiple, parameters: the unique identifiers of the activecode blocks that you want to include. (See the examples in reStructured text for an example of how you can use this.)</p>
-<p><code class="docutils literal"><span class="pre">:hidecode:</span></code> This will make the activecode editor initially hidden, and add a button to automatically show the editor. You might use this if you want to put an activecode block in the page in order to include it in another activecode block, but you don&#8217;t need or want students to see it right away.</p>
+<p><code class="docutils literal"><span class="pre">:hidecode:</span></code> This will make the activecode editor initially hidden, and add a button to automatically show the editor. You might use this if you want to put an activecode block in the page in order to include it in another activecode block, but you don’t need or want students to see it right away.</p>
 <p><code class="docutils literal"><span class="pre">:autorun:</span></code> This flag sets up an event so that your activecode example will begin running as soon as the web page is fully loaded.</p>
 <p><code class="docutils literal"><span class="pre">:above:</span></code> This positions the canvas above the editor.</p>
 <p><code class="docutils literal"><span class="pre">:nocodelens:</span></code> This activecode will not have a button to show the code in an interactive codelens widget (more explanation of what this is follows in the <strong>codelens directive</strong> section).</p>
@@ -527,7 +527,7 @@
 <p>The codelens directive creates an interactive environment for you to step through small code examples. (With the <code class="docutils literal"><span class="pre">:codelens:</span></code> argument to an activecode window, it can be used for any activecode code block.)</p>
 <p>Codelens displays the values of variables and shows the contents and links between your objects.  Unlike a normal code debugger intended for solving bugs, codelens lets you step forward and backward through the code.</p>
 <p>In addition to stepping through the code you as an author can embed a single question into the codelens example.  You may ask the student to predict what the value of a variable will be after a line executes, what the value of an element on the heap is at the point you pause the code (if the term <code class="docutils literal"><span class="pre">heap</span></code> is unfamiliar to you, you need note only that you should be asking questions about values of variables, not e.g. an element of a Python list), or you may ask the student to predict which line of code will be executed next. (This is an excellent way to help students develop a good mental model of how python works.) The codelens directive shows a codelens window initially, which looks as shown below, rather than an activecode window with the option of running through the code using codelens.</p>
-<p>It&#8217;s worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go to <code class="docutils literal"><span class="pre">http://www.pythontutor.com/</span></code>.</p>
+<p>It’s worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go to <code class="docutils literal"><span class="pre">http://www.pythontutor.com/</span></code>.</p>
 <p><strong>Examples in reStructured Text</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">simpleexample</span>
 
@@ -581,7 +581,7 @@
 <p><code class="docutils literal"><span class="pre">:showoutput:</span></code>  Sometimes it is desirable to ignore any output from print statements, in which case you would include this argument.  Or sometimes you just want to save space and not show console output, in which case you should not use this argument.</p>
 <p><code class="docutils literal"><span class="pre">:question:</span></code>  This is the question text that will be shown to the student. (Only one question per codelens for now.)</p>
 <p><code class="docutils literal"><span class="pre">:correct:</span></code> This is the correct answer to the question.  This should be specified as a value from the trace data (see above).  For example in the first example above, where you want to know the value of variable <code class="docutils literal"><span class="pre">b</span></code>, the correct answer parameter is <code class="docutils literal"><span class="pre">globals.b</span></code>. Note also that if you are asking a question about what line will be next executed, you can use the variable <code class="docutils literal"><span class="pre">line</span></code> (see example above), which refers to the line number that will be <em>next</em> executed (which may be a complex question if the code includes a loop or a conditional statement).</p>
-<p><code class="docutils literal"><span class="pre">:feedback:</span></code>  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it&#8217;s a good idea to make the feedback generic reminders or hints.</p>
+<p><code class="docutils literal"><span class="pre">:feedback:</span></code>  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it’s a good idea to make the feedback generic reminders or hints.</p>
 <p><code class="docutils literal"><span class="pre">:breakline:</span></code>  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.</p>
 <p><code class="docutils literal"><span class="pre">:tracedata:</span></code>  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The <strong>tracedata</strong> is the object from which you access the value of the <code class="docutils literal"><span class="pre">:correct:</span></code> answer (see below) if you are including a question in the codelens directive.</p>
 <p><strong>Developer notes for tracedata:</strong> You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your <code class="docutils literal"><span class="pre">.rst</span></code> file, which you can find in the <code class="docutils literal"><span class="pre">build</span></code> folder, in the corresponding directory to the directory in <code class="docutils literal"><span class="pre">_sources</span></code> where you saved your current <code class="docutils literal"><span class="pre">.rst</span></code> file (e.g. if your current rst file is in <code class="docutils literal"><span class="pre">_sources/Functions/introduction.rst</span></code>, you can see the tracedata for a codelens example in <code class="docutils literal"><span class="pre">build/Functions/introduction.html</span></code>. You can index into that <strong>tracedata</strong> object with dot notation, but index into any list within it with <code class="docutils literal"><span class="pre">[]</span></code>, as usual in Python.</p>
@@ -594,7 +594,7 @@
 </div>
 <div class="section" id="datafile">
 <h3><a class="toc-backref" href="#id7">Datafile</a><a class="headerlink" href="#datafile" title="Permalink to this headline">¶</a></h3>
-<p>The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user&#8217;s local hard drive, we can fake files&#8217; existence in two different ways.</p>
+<p>The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user’s local hard drive, we can fake files’ existence in two different ways.</p>
 <ol class="arabic simple">
 <li>We can put the data into <code class="docutils literal"><span class="pre">pre</span></code> element.  The id on the element serves as the filename.</li>
 <li>We can put the data into a <code class="docutils literal"><span class="pre">textarea</span></code> element.  Again the id on the element serves as the file name.  However, with a text area, the file data can be modified.</li>
@@ -635,17 +635,17 @@ also, this is the second line in the data file
 and this is the third line
 </pre>
 <p><strong>Arguments</strong></p>
-<p>The required argument is the &#8216;filename&#8217; (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is <code class="docutils literal"><span class="pre">mydata.txt</span></code> and <code class="docutils literal"><span class="pre">mydata2.txt</span></code>. This must be unique within the document as it does become the id of the element.</p>
+<p>The required argument is the ‘filename’ (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is <code class="docutils literal"><span class="pre">mydata.txt</span></code> and <code class="docutils literal"><span class="pre">mydata2.txt</span></code>. This must be unique within the document as it does become the id of the element.</p>
 <p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:hide:</span></code>  &#8211; This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).</p>
-<p><code class="docutils literal"><span class="pre">:edit:</span></code>  &#8211; This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??</p>
-<p><code class="docutils literal"><span class="pre">rows</span></code>  &#8211; This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.</p>
-<p><code class="docutils literal"><span class="pre">cols</span></code>  &#8211; Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.</p>
+<p><code class="docutils literal"><span class="pre">:hide:</span></code>  – This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).</p>
+<p><code class="docutils literal"><span class="pre">:edit:</span></code>  – This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??</p>
+<p><code class="docutils literal"><span class="pre">rows</span></code>  – This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.</p>
+<p><code class="docutils literal"><span class="pre">cols</span></code>  – Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.</p>
 </div>
 <div class="section" id="multiple-choice">
 <h3><a class="toc-backref" href="#id8">Multiple Choice</a><a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h3>
 <p>The multiple choice directive, <code class="docutils literal"><span class="pre">..mchoice::</span></code>, allows for insertion of multiple choice questions, either with a single correct option or a checkbox question with multiple correct answers (there must be at least one correct answer for a multiple choice question).</p>
-<p>(Previously, these directive options were in two different directives:  <code class="docutils literal"><span class="pre">mchoicemf</span></code> and <code class="docutils literal"><span class="pre">mchoicema</span></code>. For now, these work, but they are deprecated &#8211; you should use <code class="docutils literal"><span class="pre">mchoice</span></code> if you are writing new questions.)</p>
+<p>(Previously, these directive options were in two different directives:  <code class="docutils literal"><span class="pre">mchoicemf</span></code> and <code class="docutils literal"><span class="pre">mchoicema</span></code>. For now, these work, but they are deprecated – you should use <code class="docutils literal"><span class="pre">mchoice</span></code> if you are writing new questions.)</p>
 <p><strong>Examples in reStructured Text</strong></p>
 <p>Multiple Choice with One Correct Answer</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>.. mchoice:: question1_1
@@ -681,7 +681,7 @@ and this is the third line
 <p><strong>Examples</strong></p>
 <p><strong>Required Arguments</strong></p>
 <p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">question1_2</span></code>. You also must have at least <code class="docutils literal"><span class="pre">answer_a</span></code>, and the <code class="docutils literal"><span class="pre">correct</span></code> argument.</p>
-<p>The value for the <code class="docutils literal"><span class="pre">correct</span></code> argument must correspond to an answer you&#8217;ve included, e.g. if you have included <code class="docutils literal"><span class="pre">:answer_a:</span></code> and <code class="docutils literal"><span class="pre">:answer_b:</span></code> only, you cannot use <code class="docutils literal"><span class="pre">:correct:</span> <span class="pre">c</span></code>.</p>
+<p>The value for the <code class="docutils literal"><span class="pre">correct</span></code> argument must correspond to an answer you’ve included, e.g. if you have included <code class="docutils literal"><span class="pre">:answer_a:</span></code> and <code class="docutils literal"><span class="pre">:answer_b:</span></code> only, you cannot use <code class="docutils literal"><span class="pre">:correct:</span> <span class="pre">c</span></code>.</p>
 <p>For <em>Multiple Choice Multiple Answer</em>, you may have more than one correct answer, comma-separated, as seen in the raw RST examples above. For <em>Multiple Choice Single Answer</em>, you must have only one correct answer.</p>
 <p><strong>Optional Arguments</strong></p>
 <p><code class="docutils literal"><span class="pre">:multiple_answer:</span></code> - This argument determines whether the question may have multiple correct answers with checkboxes, as above (including this option means you get the multiple answers format).</p>
@@ -730,8 +730,8 @@ and this is the third line
 <p><strong>Optional Arguments</strong></p>
 </div>
 <div class="section" id="parson-s-problems">
-<h3><a class="toc-backref" href="#id10">Parson&#8217;s Problems</a><a class="headerlink" href="#parson-s-problems" title="Permalink to this headline">¶</a></h3>
-<p>Parson&#8217;s Problems:</p>
+<h3><a class="toc-backref" href="#id10">Parson’s Problems</a><a class="headerlink" href="#parson-s-problems" title="Permalink to this headline">¶</a></h3>
+<p>Parson’s Problems:</p>
 <p>Question text comes first, then <code class="docutils literal"><span class="pre">-----</span></code> separates the question text from the code.  You provide the correct code, and the javascript takes care of mixing it up.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">question1_100_4</span>
 
@@ -786,9 +786,9 @@ and this is the third line
 </pre></div>
 </div>
 <div id='exercise1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Question 1" >
-Write a program that prints &#8220;Hello, world&#8221;.</div><div data-component="tab" data-tabname="Discussion" >
+Write a program that prints “Hello, world”.</div><div data-component="tab" data-tabname="Discussion" >
 <script type="text/javascript">
-    function helloworlddiscussion_disqus(source) { 
+    function helloworlddiscussion_disqus(source) {
         if (window.DISQUS) {
 
             $('#disqus_thread').insertAfter(source); //put the DIV for the Disqus box after the link
@@ -807,7 +807,7 @@ Write a program that prints &#8220;Hello, world&#8221;.</div><div data-component
             $('<div id="disqus_thread"></div>').insertAfter(source);
 
             // set Disqus required vars
-            disqus_shortname = 'interactivepython';    
+            disqus_shortname = 'interactivepython';
             disqus_identifier = 'helloworlddiscussion_' + eBookConfig.course;
             disqus_url = 'http://helloworlddiscussion_'+eBookConfig.course+'.interactivepython.com/#!';
 
@@ -857,7 +857,7 @@ Write a program that prints &#8220;Hello, world&#8221;.</div><div data-component
 </div>
 
     <div data-component="reveal" id="revealid1"   data-showtitle="Reveal Content" data-hidetitle="Hide Content">
-    <p>This content starts out hidden. It&#8217;s visibility can be toggled by using the Show/Hide button.</p>
+    <p>This content starts out hidden. It’s visibility can be toggled by using the Show/Hide button.</p>
 <p>The reveal block can also contain other directives (ActiveCode, Disqus block, etc):</p>
 
     </div>
@@ -967,7 +967,7 @@ Write a program that prints &#8220;Hello, world&#8221;.</div><div data-component
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
     </p>
   </div>
 </footer>
