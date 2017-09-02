@@ -2,3 +2,5 @@
 build/docopt
 build/doctrees
 build/livereload
+.vscode/*
+build_info

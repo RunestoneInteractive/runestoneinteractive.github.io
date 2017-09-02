@@ -12,7 +12,7 @@ sys.path.append('../modules')
 project_name = "html"
 ###############################
 
-master_url = 'http://interactivepython.org'
+master_url = 'https://runestone.academy'
 master_app = 'runestone'
 serving_dir = './build/html'
 dest = '../../static'

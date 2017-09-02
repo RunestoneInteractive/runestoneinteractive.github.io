@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
-    <link rel="stylesheet" href="_static/livecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
@@ -72,8 +70,6 @@
     <script type="text/javascript" src="_static/timeddnd.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
-    <script type="text/javascript" src="_static/livecode.js"></script>
-    <script type="text/javascript" src="_static/clike.js"></script>
     <script type="text/javascript" src="_static/lib/prettify.js"></script>
     <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
@@ -107,7 +103,7 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <script type="text/javascript">
   eBookConfig = {};
-  eBookConfig.host = 'http://interactivepython.org' ? 'http://interactivepython.org' : 'http://127.0.0.1:8000';
+  eBookConfig.host = 'https://runestone.academy' ? 'https://runestone.academy' : 'http://127.0.0.1:8000';
   eBookConfig.app = eBookConfig.host+'/runestone';
   eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
   eBookConfig.course = 'html';
@@ -245,17 +241,17 @@
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
-            <li><a href='http://interactivepython.org/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
-            <li><a href='http://interactivepython.org/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
-            <li><a href='http://interactivepython.org/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
-            <li><a href='http://interactivepython.org/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
 			<li class="divider"></li>
-            <li><a href='http://interactivepython.org/runestone/admin/index'>Instructor's Page</a></li>
-            <li><a href='http://interactivepython.org/runestone/assignments/index'>Progress Page</a></li>
+            <li><a href='https://runestone.academy/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='https://runestone.academy/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
-            <li><a href="http://interactivepython.org/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="http://interactivepython.org/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="http://interactivepython.org/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/register" id="registerlink">Register</a></li>
             <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
           </ul>
         </li>
@@ -360,7 +356,7 @@
 <div class="section" id="authoring-tools">
 <h2>Authoring Tools<a class="headerlink" href="#authoring-tools" title="Permalink to this headline">¶</a></h2>
 <p>What we did set out to make initially is a great set of interactive book authoring tools.  Our Big Hairy Audacious Goal was and is to become the LaTeX of the interactive textbook publishing world.  In the beginning writing an interactive textbook was equal parts writing and coding.  Runestone aims to remove the coding part so you can just focus on the writing.</p>
-<p>To accomplish this we have created a set of HTML components for things like multiple choice questions, interactive code, code visualizations and many more.  If you don’t have a sense for what kinds of things you can do with Runestone Interactive you should take a look at <a class="reference external" href="http://interactivepython.org/runestone/static/overview.html">The Overview</a>.  When the page is loaded simple the HTML components are rendered by a bunch of JavaScript and CSS to create the Runestone Components you see in the interactive books.</p>
+<p>To accomplish this we have created a set of HTML components for things like multiple choice questions, interactive code, code visualizations and many more.  If you don’t have a sense for what kinds of things you can do with Runestone Interactive you should take a look at <a class="reference external" href="https://runestone.academy/runestone/static/overview.html">The Overview</a>.  When the page is loaded simple the HTML components are rendered by a bunch of JavaScript and CSS to create the Runestone Components you see in the interactive books.</p>
 <p>But nobody wants to write books in HTML!  So, we created a set of extensions for a simple markup language called <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">restructuredText</a>.  The restructuredText markup language lets you do all of the things you would expect to do in a language for writing, make lists, include images, footnotes, etc. etc.  In addition our extensions make it really easy to add   interactive components to your document.  For example to make an activecode component with runnable, editable code you would simply write the following in your text:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">codeid</span>
    <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>

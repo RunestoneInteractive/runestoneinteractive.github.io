@@ -79,8 +79,8 @@ How do I build my own course?
 .. admonition::  Steps to Build
 
    1.  First you should register yourself as a user on this site.  When you register you must pick a course.  Just use thinkcspy or pythonds, it doesn't matter as that will change when you build your own.
-   2.  Then go to the `instructors page <http://interactivepython.org/runestone/admin/index>`_.
-   3.  On this page you will see the links for listing and grading assignments and lots of other things.  Right now those won't show you anything, so move along to the `Create a Custom Course <http://interactivepython.org/runestone/designer>`_ link.
+   2.  Then go to the `instructors page <https://runestone.academy/runestone/admin/index>`_.
+   3.  On this page you will see the links for listing and grading assignments and lots of other things.  Right now those won't show you anything, so move along to the `Create a Custom Course <https://runestone.academy/runestone/designer>`_ link.
    4. Fill in the Project Name.  This should be a short one word description of your course like `luther150a.`  When your students register for the course this is the name they will have to type in to join your particular course.   No Spaces allwed in this name.
    5. The description can say a bit more about the course.
    6. The big choice is whether to use a ready-made book or to pick and choose sections from the repository of sections.  Most people just choose one of the pre-made books.
@@ -100,7 +100,7 @@ The old domain name, "interactivepython.org" was becoming quite inacurate. Altho
 I want to reuse my course from last year, what should I do?
 -----------------------------------------------------------
 
-You can either just change your course start date, see above, or you can rebuild your course.   We recommend that you rebuild your course every so often to get the latest bug fixes etc.  Here is the link to `rebuild your course <http://interactivepython.org/runestone/admin/rebuildcourse>`_.
+You can either just change your course start date, see above, or you can rebuild your course.   We recommend that you rebuild your course every so often to get the latest bug fixes etc.  Here is the link to `rebuild your course <https://runestone.academy/runestone/admin/rebuildcourse>`_.
 
 All the data from past terms is still saved in the database so students that want to go back and look at things from their past terms will be able to access their information, but nothing prior to your latest course start date will show up in any of your reports.
 
@@ -109,7 +109,7 @@ Unfortunately the assignment interface is not quite as easy.  If you really must
 How do I update my course to get the latest bug fixes?
 ------------------------------------------------------
 
-Here is the link to `rebuild your course <http://interactivepython.org/runestone/admin/rebuildcourse>`_.   We recommend that you do this every so often.  The instructors page will show you the current version of our software used to build the thinkcspy and pythonds books.  It will also show you the version for your own course.   If you course is out of date you will also get a flash message in the upper right corner of your browser window.
+Here is the link to `rebuild your course <https://runestone.academy/runestone/admin/rebuildcourse>`_.   We recommend that you do this every so often.  The instructors page will show you the current version of our software used to build the thinkcspy and pythonds books.  It will also show you the version for your own course.   If you course is out of date you will also get a flash message in the upper right corner of your browser window.
 
 
 I was just experimenting and I want to delete my course
