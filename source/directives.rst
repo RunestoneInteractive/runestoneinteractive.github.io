@@ -582,9 +582,9 @@ Answer fields may contain regular expressions.
 The text within an answer field is actually interpreted as a
 `regular expression <https://en.wikipedia.org/wiki/Regular_expression>`_.
 This means that when creating your answer fields, some characters may need ``escaping``.
-That is, if you want to use a character in your anawser that also is a special character
+That is, if you want to use a character in your answer that also is a special character
 in a `Python regular expression <https://docs.python.org/2/library/re.html>`_, 
-then you'll need to preceed it with a ``\`` character.
+then you'll need to precede it with a ``\`` character.
 For example:
 
 ::
@@ -609,7 +609,7 @@ For example:
 
 Note that in the first example, the ``:`` character also needed an escape.
 Although it's not a special character in this context,
-it is used by runestone to determine the start and end of the answer field.
+it is used by Runestone to determine the start and end of the answer field.
 
 **Examples in reStructured Text**
 
@@ -627,7 +627,7 @@ it is used by runestone to determine the start and end of the answer field.
      -   :away: Correct.
          :x: Incorrect. Try 'away'.
 
-This example uses a shpinx directive in the content area of the fill in the blank
+This example uses a sphinx directive in the content area of the fill in the blank
 and checks correct answers against a range of values:
 
 ::
@@ -675,7 +675,7 @@ The second value indicates the tolerance allowed.
      :.*: Incorrect. Try again.
 
 The fill in the blank directive can be combined with standard sphinx directives or nested within
-other runestone custom directives:
+other Runestone custom directives:
 
 .. reveal:: reveal-skill-check-branch
    :showtitle: Show Skill Check
