@@ -577,6 +577,40 @@ followed by a bulleted list containing sets of possible responses for each blank
 
 Answer fields may contain regular expressions.
 
+**How answer fields are parsed**
+
+The text within an answer field is actually interpreted as a
+`regular expression <https://en.wikipedia.org/wiki/Regular_expression>`_.
+This means that when creating your answer fields, some characters may need ``escaping``.
+That is, if you want to use a character in your anawser that also is a special character
+in a `Python regular expression <https://docs.python.org/2/library/re.html>`_, 
+then you'll need to preceed it with a ``\`` character.
+For example:
+
+::
+
+   .. fillintheblank:: regexescapes1
+      :casei:
+
+      Windows system files are stored in: |blank|. 
+
+      -   :C\:\\Windows\\system: Correct.
+          :program files: Third party applications are stored here, not system files.
+          :x: Try again.
+
+
+   .. fillintheblank:: regexescapes2
+
+      Python lists are declared using: |blank|. 
+
+      -   :\[\]: Correct.
+          :x: Try again.
+
+
+Note that in the first example, the ``:`` character also needed an escape.
+Although it's not a special character in this context,
+it is used by runestone to determine the start and end of the answer field.
+
 **Examples in reStructured Text**
 
 ::
