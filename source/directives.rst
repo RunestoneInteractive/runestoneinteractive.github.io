@@ -9,6 +9,29 @@ Each Runestone directive has a particular purpose. Each is detailed below, inclu
 * If applicable, how exercises created by these directives can be graded
 * Available additional developer documentation/notes
 
+Ensuring Accessibility in Runestone Components
+----------------------------------------------
+ 
+ Currently we are working on making Runestone books more accessible by modifying Runestone Components. For general changes to accessibility see accessibility.css, located in RunestoneComponents/runestone/common. Current efforts to make our ebooks more accessible are as follows:
+ 
+ * Modifying highlight color of navigation bar for non-mouse and mouse users
+ * Styling Bootstrap buttons to improve contrast ratio up to WCAG AA compliance
+ * Inverting color of Bootstrap buttons in order to make selection more obvious for the visually impaired
+ 
+ Individual Runestone components can also be modified for more accessibility to users. Current efforts to modify the accessibility of individual components can be found below:
+ 
+ * Improving tabbing functionality in Activecode questions for non-mouse users
+ 
+ Helpful sites to learn about how to improve accessibility in Runestone ebooks include:
+ 
+ * https://www.w3.org/WAI/intro/wcag
+ * https://www.w3.org/WAI/intro/aria
+ 
+ Here are some tools to evaluate the above standards:
+ 
+ * https://www.w3.org/WAI/eval/Overview
+ 
+
 General Syntax
 ---------------
 

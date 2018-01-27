@@ -33,6 +33,8 @@ ActiveCode.prototype.init = function(opts) {
     this.includes = $(orig).data('include');
     this.hidecode = $(orig).data('hidecode');
     this.runButton = null;
+    this.enabledownload = $(orig).data('enabledownload');
+    this.downloadButton = null;
     this.saveButton = null;
     this.loadButton = null;
     this.outerDiv = null;
@@ -149,7 +151,17 @@ ActiveCode.prototype.createControls = function () {
     this.runButton = butt;
     $(butt).click(this.runProg.bind(this));
     $(butt).attr("type","button")
-    
+
+    if (this.enabledownload || eBookConfig.downloadsEnabled) {
+      var butt = document.createElement("button");
+      $(butt).text("Download");
+      $(butt).addClass("btn save-button");
+      ctrlDiv.appendChild(butt);
+      this.downloadButton = butt;
+      $(butt).click(this.downloadFile.bind(this, this.language));
+      $(butt).attr("type","button")
+    }
+
     if (! this.hidecode) {
         var butt = document.createElement("button");
         $(butt).text("Load History");
@@ -162,7 +174,6 @@ ActiveCode.prototype.createControls = function () {
             this.addHistoryScrubber(true);
         }
     }
-
 
     if ($(this.origElem).data('gradebutton') && ! this.graderactive) {
         butt = document.createElement("button");
@@ -381,6 +392,42 @@ ActiveCode.prototype.disableSaveLoad = function() {
     $(this.saveButton).attr('title','Login to save your code');
     $(this.loadButton).addClass('disabled');
     $(this.loadButton).attr('title','Login to load your code');
+};
+
+var languageExtensions = { python:     'py',
+                           html:       'html',
+                           javascript: 'js',
+                           java:       'java',
+                           python2:    'py',
+                           python3:    'py'};
+
+ActiveCode.prototype.downloadFile = function (lang) {
+  var fnb = this.divid;
+  var d = new Date();
+  var fileName = fnb + '_' + d.toJSON()
+                              .substring(0,10) // reverse date format
+                              .split('-')
+                              .join('') + '.' + languageExtensions[lang];
+  var code = this.editor.getValue();
+
+  if ('Blob' in window) {
+      var textToWrite = code.replace(/\n/g, '\r\n');
+      var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+
+      if ('msSaveOrOpenBlob' in navigator) {
+        navigator.msSaveOrOpenBlob(textFileAsBlob, fileName);
+      } else {
+        var downloadLink = document.createElement('a');
+        downloadLink.download = fileName;
+        downloadLink.innerHTML = 'Download File';
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+      }
+  } else {
+    alert('Your browser does not support the HTML5 Blob.');
+  }
 };
 
 ActiveCode.prototype.addCaption = function() {
@@ -727,10 +774,11 @@ ActiveCode.prototype.buildProg = function() {
     this.pretext = "";
     if (this.includes !== undefined) {
         // iterate over the includes, in-order prepending to prog
+
         pretext = "";
         for (var x=0; x < this.includes.length; x++) {
             pretext = pretext + edList[this.includes[x]].editor.getValue();
-            }
+        }
         this.pretext = pretext;
         prog = pretext + prog
     }
@@ -1021,6 +1069,17 @@ AudioTour.prototype = new RunestoneBase();
 
 // function to display the audio tours
 function AudioTour (divid, code, bnum, audio_text) {
+    this.audio_tour = null;
+    this.audio_code = null;
+    this.windowcode = null;
+    this.first_audio = null;
+    this.prev_audio = null;
+    this.pause_audio = null;
+    this.next_audio = null;
+    this.last_audio = null;
+    this.status = null;
+    this.stop_button = null;
+    this.tourButtons = [];
     this.elem = null; // current audio element playing
     this.currIndex = null; // current index
     this.len = null; // current length of audio files for tour
@@ -1031,7 +1090,6 @@ function AudioTour (divid, code, bnum, audio_text) {
     this.afile = null; // file name for audio
     this.playing = false; // flag to say if playing or not
     this.tourName = "";
-
     // Replacing has been done here to make sure special characters in the code are displayed correctly
     code = code.replaceAll("*doubleq*", "\"");
     code = code.replaceAll("*singleq*", "'");
@@ -1039,7 +1097,6 @@ function AudioTour (divid, code, bnum, audio_text) {
     code = code.replaceAll("*close*", ")");
     code = code.replaceAll("*nline*", "<br/>");
     var codeArray = code.split("\n");
-
     var audio_hash = [];
     var bval = [];
     var atype = audio_text.replaceAll("*doubleq*", "\"");
@@ -1049,7 +1106,6 @@ function AudioTour (divid, code, bnum, audio_text) {
         var aword = audio_type[i].split(";");
         bval.push(aword[0]);
     }
-
     var first = "<pre><div id='" + divid + "_l1'>" + "1.   " + codeArray[0] + "</div>";
     var num_lines = codeArray.length;
     for (var i = 1; i < num_lines; i++) {
@@ -1068,103 +1124,138 @@ function AudioTour (divid, code, bnum, audio_text) {
     //laying out the HTML content
 
     var bcount = 0;
-    var html_string = "<div class='modal-lightsout'></div><div class='modal-profile'><h3>Take an audio tour!</h3><div class='modal-close-profile'></div><p id='windowcode'></p><p id='" + divid + "_audiocode'></p>";
-    html_string += "<p id='status'></p>";
-    html_string += "<input type='image' src='../_static/first.png' width='25' id='first_audio' name='first_audio' title='Play first audio in tour' alt='Play first audio in tour' onerror=\"this.onerror=null;this.src='_static/first.png'\" disabled/>" +
-                   "<input type='image' src='../_static/prev.png' width='25' id='prev_audio' name='prev_audio' title='Play previous audio in tour' alt='Play previous audio in tour' onerror=\"this.onerror=null;this.src='_static/prev.png'\" disabled/>" +
-                   "<input type='image' src='../_static/pause.png' width='25' id='pause_audio' name='pause_audio' title='Pause current audio' alt='Pause current audio' onerror=\"this.onerror=null;this.src='_static/pause.png'\" disabled/>" + "" +
-                   "<input type='image' src='../_static/next.png' width ='25' id='next_audio' name='next_audio' title='Play next audio in tour' alt='Play next audio in tour' onerror=\"this.onerror=null;this.src='_static/next.png'\" disabled/>" +
-                   "<input type='image' src='../_static/last.png' width ='25' id='last_audio' name='last_audio' title='Play last audio in tour' alt='Play last audio in tour' onerror=\"this.onerror=null;this.src='_static/last.png'\" disabled/><br/>";
+
     for (var i = 0; i < audio_type.length - 1; i++) {
-        html_string += "<input type='button' style='margin-right:5px;' class='btn btn-default btn-sm' id='button_audio_" + i + "' name='button_audio_" + i + "' value=" + bval[i] + " />";
+        var newButton = document.createElement("button");
+        newButton.className = "btn btn-success";
+        newButton.innerHTML = bval[i].replace(/\"/g,"");
+        this.tourButtons.push(newButton);
         bcount++;
     }
-    //html_string += "<p id='hightest'></p><p id='hightest1'></p><br/><br/><p id='test'></p><br/><p id='audi'></p></div>";
-    html_string += "</div>";
+    this.audio_tour = document.createElement("div");
+    this.audio_tour.align = "center";
 
-    var tourdiv = document.createElement('div');
-    document.body.appendChild(tourdiv);
-    $(tourdiv).html(html_string);
-    $('#windowcode').html(first);
+    this.audio_code = document.createElement("p");
 
-    // Position modal box
-    $.fn.center = function () {
-        this.css("position", "absolute");
-        // y position
-        this.css("top", ($(window).scrollTop() + $(navbar).height() + 10 + "px"));
-        // show window on the left so that you can see the output from the code still
-        this.css("left", ($(window).scrollLeft() + "px"));
-        return this;
-    };
+    this.windowcode = document.createElement("div");
+    this.windowcode.align = "left";
+    $(this.windowcode).html(first);
 
-    $(".modal-profile").center();
-    $('.modal-profile').fadeIn("slow");
-    //$('.modal-lightsout').css("height", $(document).height());
-    $('.modal-lightsout').fadeTo("slow", .5);
-    $('.modal-close-profile').show();
+    this.first_audio = document.createElement("button");
+    this.prev_audio = document.createElement("button");
+    this.pause_audio = document.createElement("button");
+    this.next_audio = document.createElement("button");
+    this.last_audio = document.createElement("button");
 
-    // closes modal box once close link is clicked, or if the lights out divis clicked
-    $('.modal-close-profile, .modal-lightsout').click( (function () {
+    this.first_audio.className = "btn-default glyphicon glyphicon-fast-backward";
+    this.prev_audio.className = "btn-default glyphicon glyphicon-step-backward";
+    this.pause_audio.className = "btn-default glyphicon glyphicon-pause";
+    this.next_audio.className = "btn-default glyphicon glyphicon-step-forward";
+    this.last_audio.className = "btn-default glyphicon glyphicon-fast-forward";
+
+    this.first_audio.setAttribute("style", "height: 22px; width: 25px; border-radius: 4px; margin-right:2px;");
+    this.prev_audio.setAttribute("style", "height: 22px; width: 25px; border-radius: 4px; margin-right:2px;");
+    this.pause_audio.setAttribute("style", "height: 22px; width: 25px; border-radius: 4px; margin-right:2px;");
+    this.next_audio.setAttribute("style", "height: 22px; width: 25px; border-radius: 4px; margin-right:2px;");
+    this.last_audio.setAttribute("style", "height: 22px; width: 25px; border-radius: 4px; margin-right:2px;");
+
+    this.first_audio.name = "first_audio";
+    this.prev_audio.name = "prev_audio";
+    this.pause_audio.name = "pause_audio";
+    this.next_audio.name = "next_audio";
+    this.last_audio.name = "last_audio";
+
+    this.first_audio.title = "Play first audio in tour";
+    this.prev_audio.title = "Play previous audio in tour";
+    this.pause_audio.title = "Pause current audio";
+    this.next_audio.title = "Play next audio in tour";
+    this.last_audio.title = "Play last audio in tour";
+
+    this.first_audio.setAttribute("aria-label", "Play first audio in tour");
+    this.prev_audio.setAttribute("aria-label", "Play previous audio in tour");
+    this.pause_audio.setAttribute("aria-label", "Pause audio");
+    this.next_audio.setAttribute("aria-label", "Play next audio in tour");
+    this.last_audio.setAttribute("aria-label", "Play last audio in tour");
+
+    this.first_audio.disabled = true;
+    this.prev_audio.disabled = true;
+    this.pause_audio.disabled = true;
+    this.next_audio.disabled = true;
+    this.last_audio.disabled = true;
+
+    this.status = document.createElement("div");
+    this.status.className = "alert alert-info";
+    this.status.setAttribute("style", "display: none;");
+
+    this.stop_button = document.createElement("button");
+    this.stop_button.className = "btn btn-default";
+    this.stop_button.innerHTML = "Stop tour";
+
+    $(this.audio_tour).append(this.audio_code, this.windowcode, document.createElement("br"), this.first_audio, this.prev_audio, this.pause_audio, this.next_audio, this.last_audio, document.createElement("br"), this.status, document.createElement("br"), this.tourButtons, this.stop_button);
+    $("#"+divid+" .ac_code_div").append(this.audio_tour);
+    $("#"+divid+" .ac_code_div").css("width", "50%");
+    $('#'+divid+' .CodeMirror.cm-s-default.ui-resizable').hide();
+    $('#'+divid+' .ac_opt.btn.btn-default:last-child').hide();
+
+    $(this.stop_button).click( (function () {
         if (this.playing) {
             this.elem.pause();
         }
         //log change to db
         this.logBookEvent({'event': 'Audio', 'act': 'closeWindow', 'div_id': divid});
-        $('.modal-profile').fadeOut("slow");
-        $('.modal-lightsout').fadeOut("slow");
-        document.body.removeChild(tourdiv);
+        $(this.audio_tour).remove();
+        $('#'+divid+' .CodeMirror.cm-s-default.ui-resizable').show();
+        $('#'+divid+' .ac_opt.btn.btn-default:last-child').show();
+        $("#"+divid+" .ac_code_div").css("width", "");
     }).bind(this));
 
-    // Accommodate buttons for a maximum of five tours
-
-    $('#' + 'button_audio_0').click((function () {
+    $(this.tourButtons[0]).click((function () {
         this.tour(divid, audio_hash[0], bcount);
     }).bind(this));
-    $('#' + 'button_audio_1').click((function () {
+    $(this.tourButtons[1]).click((function () {
         this.tour(divid, audio_hash[1], bcount);
     }).bind(this));
-    $('#' + 'button_audio_2').click((function () {
+    $(this.tourButtons[2]).click((function () {
         this.tour(divid, audio_hash[2], bcount);
     }).bind(this));
-    $('#' + 'button_audio_3').click((function () {
+    $(this.tourButtons[3]).click((function () {
         this.tour(divid, audio_hash[3], bcount);
     }).bind(this));
-    $('#' + 'button_audio_4').click((function () {
+    $(this.tourButtons[4]).click((function () {
         this.tour(divid, audio_hash[4], bcount);
     }).bind(this));
 
     // handle the click to go to the next audio
-    $('#first_audio').click((function () {
+    $(this.first_audio).click((function () {
         this.firstAudio();
     }).bind(this));
 
     // handle the click to go to the next audio
-    $('#prev_audio').click((function () {
+    $(this.prev_audio).click((function () {
         this.prevAudio();
     }).bind(this));
-
+    
     // handle the click to pause or play the audio
-    $('#pause_audio').click((function () {
-        this.pauseAndPlayAudio();
+    $(this.pause_audio).click((function () {
+        this.pauseAndPlayAudio(divid);
     }).bind(this));
 
     // handle the click to go to the next audio
-    $('#next_audio').click((function () {
+    $(this.next_audio).click((function () {
         this.nextAudio();
     }).bind(this));
 
     // handle the click to go to the next audio
-    $('#last_audio').click((function () {
+    $(this.last_audio).click((function () {
         this.lastAudio();
     }).bind(this));
 
     // make the image buttons look disabled
-    $("#first_audio").css('opacity', 0.25);
-    $("#prev_audio").css('opacity', 0.25);
-    $("#pause_audio").css('opacity', 0.25);
-    $("#next_audio").css('opacity', 0.25);
-    $("#last_audio").css('opacity', 0.25);
-
+    $(this.first_audio).css('opacity', 0.25);
+    $(this.prev_audio).css('opacity', 0.25);
+    $(this.pause_audio).css('opacity', 0.25);
+    $(this.next_audio).css('opacity', 0.25);
+    $(this.last_audio).css('opacity', 0.25);
 }
 
 AudioTour.prototype.tour = function (divid, audio_type, bcount) {
@@ -1172,26 +1263,29 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
     this.buttonCount = bcount;
     this.theDivid = divid;
 
+    this.status.setAttribute("style", "display: inline-block; margin-top: 7px; margin-bottom: 3px;");
+
     // enable prev, pause/play and next buttons and make visible
-    $('#first_audio').removeAttr('disabled');
-    $('#prev_audio').removeAttr('disabled');
-    $('#pause_audio').removeAttr('disabled');
-    $('#next_audio').removeAttr('disabled');
-    $('#last_audio').removeAttr('disabled');
-    $("#first_audio").css('opacity', 1.0);
-    $("#prev_audio").css('opacity', 1.0);
-    $("#pause_audio").css('opacity', 1.0);
-    $("#next_audio").css('opacity', 1.0);
-    $("#last_audio").css('opacity', 1.0);
+    $(this.first_audio).removeAttr('disabled');
+    $(this.prev_audio).removeAttr('disabled');
+    $(this.pause_audio).removeAttr('disabled');
+    $(this.next_audio).removeAttr('disabled');
+    $(this.last_audio).removeAttr('disabled');
+
+    $(this.first_audio).css('opacity', 1.0);
+    $(this.prev_audio).css('opacity', 1.0);
+    $(this.pause_audio).css('opacity', 1.0);
+    $(this.next_audio).css('opacity', 1.0);
+    $(this.last_audio).css('opacity', 1.0);
 
     // disable tour buttons
     for (var i = 0; i < bcount; i++)
-        $('#button_audio_' + i).attr('disabled', 'disabled');
+        $(this.tourButtons[i]).attr('disabled', 'disabled');
 
     var atype = audio_type.split(";");
     var name = atype[0].replaceAll("\"", " ");
     this.tourName = name;
-    $('#status').html("Starting the " + name);
+    $(this.status).html("Click the play button to begin the " + name);
 
     //log tour type to db
     this.logBookEvent({'event': 'Audio', 'act': name, 'div_id': divid});
@@ -1214,7 +1308,7 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
         // akey+".mp3' type='audio/mpeg'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+akey+
         // ".ogg' type='audio/ogg'>Your browser does not support the audio tag</audio>";
 
-        var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse + "/audio/";
+        var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse.toLowerCase() + "/audio/";
         //var dir = "../_static/audio/"
         str += "<audio id=" + akey + " preload='auto' >";
         str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
@@ -1225,31 +1319,19 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
         this.ahash[akey] = lnums;
         this.aname.push(akey);
     }
-    var ahtml = "#" + divid + "_audiocode";
-    $(ahtml).html(str); // set the html to the audio tags
+    $(this.audio_code).html(str);
     this.len = this.aname.length; // set the number of audio file in the tour
-
-    // start at the first audio
+    
     this.currIndex = 0;
-
-    // play the first audio in the tour
     this.playCurrIndexAudio();
 };
 
 AudioTour.prototype.handlePlaying = function() {
-
-    // if this.playing audio pause it
-    if (this.playing) {
-
-        this.elem.pause();
-
-        // unbind current ended
-        $('#' + this.afile).unbind('ended');
-
-        // unhighlight the prev lines
-        this.unhighlightLines(this.theDivid, this.ahash[this.aname[this.currIndex]]);
-    }
-
+    this.elem.pause();
+    // unbind current ended
+    $('#' + this.afile).unbind('ended');
+    // unhighlight the prev lines
+    this.unhighlightLines(this.theDivid, this.ahash[this.aname[this.currIndex]]);
 };
 
 AudioTour.prototype.firstAudio = function () {
@@ -1338,24 +1420,26 @@ AudioTour.prototype.playCurrIndexAudio = function () {
 
 // handle the end of the tour
 AudioTour.prototype.handleTourEnd = function () {
+    $(this.status).html("The " + this.tourName + " has ended.");
+    this.pause_audio.className = "btn-default glyphicon glyphicon-pause";
+    this.pause_audio.title = "Pause audio";
+    this.pause_audio.setAttribute("aria-label", "Pause audio");
 
-    $('#status').html(" The " + this.tourName + " Ended");
+    $(this.first_audio).attr('disabled', 'disabled');
+    $(this.prev_audio).attr('disabled', 'disabled');
+    $(this.pause_audio).attr('disabled', 'disabled');
+    $(this.next_audio).attr('disabled', 'disabled');
+    $(this.last_audio).attr('disabled', 'disabled');
 
-    // disable the prev, pause/play, and next buttons and make them more invisible
-    $('#first_audio').attr('disabled', 'disabled');
-    $('#prev_audio').attr('disabled', 'disabled');
-    $('#pause_audio').attr('disabled', 'disabled');
-    $('#next_audio').attr('disabled', 'disabled');
-    $('#last_audio').attr('disabled', 'disabled');
-    $("#first_audio").css('opacity', 0.25);
-    $("#prev_audio").css('opacity', 0.25);
-    $("#pause_audio").css('opacity', 0.25);
-    $("#next_audio").css('opacity', 0.25);
-    $("#last_audio").css('opacity', 0.25);
+    $(this.first_audio).css('opacity', 0.25);
+    $(this.prev_audio).css('opacity', 0.25);
+    $(this.pause_audio).css('opacity', 0.25);
+    $(this.next_audio).css('opacity', 0.25);
+    $(this.last_audio).css('opacity', 0.25);
 
     // enable the tour buttons
     for (var j = 0; j < this.buttonCount; j++)
-        $('#button_audio_' + j).removeAttr('disabled');
+        $(this.tourButtons[j]).removeAttr('disabled');
 };
 
 // only call this one after the first time
@@ -1390,17 +1474,22 @@ AudioTour.prototype.outerAudio = function () {
 AudioTour.prototype.playWhenReady = function (afile, divid, ahash) {
     // unbind current
     $('#' + afile).unbind('canplaythrough');
-    //console.log("in playWhenReady " + elem.duration);
-
-    $('#status').html("Playing the " + this.tourName);
     this.elem.currentTime = 0;
-    this.highlightLines(divid, ahash[afile]);
-    $('#' + afile).bind('ended', (function () {
-        this.outerAudio();
-    }).bind(this));
     this.playing = true;
-    this.elem.play();
-
+    //console.log("in playWhenReady " + elem.duration);
+    this.highlightLines(divid, ahash[afile]);
+    if (this.pause_audio.className === "btn-default glyphicon glyphicon-pause") {
+        $(this.status).html("Playing the " + this.tourName);
+        $('#' + afile).bind('ended', (function () {
+        this.outerAudio();
+        }).bind(this));
+        this.elem.play();
+    }
+    else {
+        $('#' + afile).bind('ended', (function () {
+        this.outerAudio();
+        }).bind(this));
+    }
 };
 
 
@@ -1413,7 +1502,7 @@ AudioTour.prototype.playaudio = function (i, aname, divid, ahash) {
     //console.log("in playaudio " + elem.duration);
     if (isNaN(this.elem.duration) || this.elem.duration == 0) {
         // set the status
-        $('#status').html("Loading audio.  Please wait.   If it doesn't start soon close this window (click on the red X) and try again");
+        $(this.status).html("Loading audio.  Please wait.   If the tour doesn't start soon click on 'Stop Tour' and try again.");
         $('#' + this.afile).bind('canplaythrough', (function () {
             this.playWhenReady(this.afile, divid, ahash);
         }).bind(this));
@@ -1425,16 +1514,18 @@ AudioTour.prototype.playaudio = function (i, aname, divid, ahash) {
 };
 
 // pause if this.playing and play if paused
-AudioTour.prototype.pauseAndPlayAudio = function () {
-    var btn = document.getElementById('pause_audio');
+AudioTour.prototype.pauseAndPlayAudio = function (divid) {
+    var btn = this.pause_audio;
 
     // if paused and clicked then continue from current
     if (this.elem.paused) {
         // calcualte the time left to play in milliseconds
         counter = (this.elem.duration - this.elem.currentTime) * 1000;
         this.elem.play(); // start the audio from current spot
-        document.getElementById("pause_audio").src = "../_static/pause.png";
-        document.getElementById("pause_audio").title = "Pause current audio";
+        this.pause_audio.className = "btn-default glyphicon glyphicon-pause";
+        this.pause_audio.title = "Pause current audio";
+        this.pause_audio.setAttribute("aria-label", "Pause audio");
+        $(this.status).html("Playing the " + this.tourName);
         //log change to db
         this.logBookEvent({'event': 'Audio', 'act': 'play', 'div_id': this.theDivid});
     }
@@ -1442,8 +1533,10 @@ AudioTour.prototype.pauseAndPlayAudio = function () {
     // if audio was this.playing pause it
     else if (this.playing) {
         this.elem.pause(); // pause the audio
-        document.getElementById("pause_audio").src = "../_static/play.png";
-        document.getElementById("pause_audio").title = "Play paused audio";
+        this.pause_audio.className = "btn-default glyphicon glyphicon-play";
+        this.pause_audio.title = "Play paused audio";
+        this.pause_audio.setAttribute("aria-label", "Play paused audio");
+        $(this.status).html("The " + this.tourName + " has been paused. Click on the play button to resume the tour.");
         //log change to db
         this.logBookEvent({'event': 'Audio', 'act': 'pause', 'div_id': this.theDivid});
     }
@@ -1499,8 +1592,6 @@ AudioTour.prototype.setBackgroundForLines = function (divid, lnum, color) {
     }
 };
 
-//
-//
 
 LiveCode.prototype = new ActiveCode();
 
@@ -1509,7 +1600,15 @@ function LiveCode(opts) {
         this.init(opts)
         }
     }
-
+function unescapeHtml(safe) {
+    if (safe) {
+        return safe.replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, "'");
+    }
+}
 LiveCode.prototype.init = function(opts) {
     ActiveCode.prototype.init.apply(this,arguments);
 
@@ -1517,11 +1616,16 @@ LiveCode.prototype.init = function(opts) {
     this.stdin = $(orig).data('stdin');
     this.datafile = $(orig).data('datafile');
     this.sourcefile = $(orig).data('sourcefile');
-
+    this.compileargs = unescapeHtml($(orig).data('compileargs'));
+    this.linkargs = unescapeHtml($(orig).data('linkargs'));
+    this.runargs = unescapeHtml($(orig).data('runargs'));
+    this.interpreterargs = unescapeHtml($(orig).data('interpreterargs'));
     this.API_KEY = "67033pV7eUUvqo07OJDIV8UZ049aLEK1";
     this.USE_API_KEY = true;
-    this.JOBE_SERVER = eBookConfig.host;
-    this.resource = '/runestone/proxy/jobeRun';
+
+    this.JOBE_SERVER = eBookConfig.jobehost;
+    this.resource = eBookConfig.proxyuri_runs;
+
     this.div2id = {};
     if (this.stdin) {
         this.createInputElement();
@@ -1550,45 +1654,119 @@ LiveCode.prototype.createErrorOutput = function () {
 
 };
 
+/**
+ * Note:
+ * In order to check for supplemental files in java and deal with asynchronicity
+ * I split the original runProg into two functions: runProg and runProg_callback
+ */
 LiveCode.prototype.runProg = function() {
+    var stdin;
+    var scrubber_dfd, history_dfd;
+    var saveCode = "True";
+    var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
+    var source = this.editor.getValue();
+    source = this.buildProg();
+
+    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+    history_dfd = __ret.history_dfd;
+    saveCode = __ret.saveCode;
+
+    var paramlist = ['compileargs','linkargs','runargs','interpreterargs'];
+    var paramobj = {}
+    for (param of paramlist) {
+        if (this[param]) {
+            paramobj[param] = eval(this[param]); // needs a list
+        }
+    }
+
+    if (this.stdin) {
+        stdin = $(this.stdin_el).val();
+    }
+
+    if (! this.sourcefile ) {
+        this.sourcefile = sfilemap[this.language];
+    }
+
+    $(this.output).html("Compiling and Running your Code Now...");
+
+    var files = [];
+    if(this.language === "java") {
+        if (this.datafile != undefined) {
+            var ids = this.datafile.split(",");
+            for (var i = 0; i < ids.length; i++) {
+                file = document.getElementById(ids[i].trim());
+                if (file === null || file === undefined) {
+                    // console.log("No file with given id");
+                } else if (file.className === "javaFiles") {
+                    files = files.concat(this.parseJavaClasses(file.textContent));
+                } else if (file.className === "image") {
+                    var fileName = file.id;
+                    var extension = fileName.substring(fileName.indexOf('.') + 1);
+                    var base64 = file.toDataURL('image/' + extension);
+                    base64 = base64.substring(base64.indexOf(',') + 1);
+                    files.push({name: fileName, content: base64});
+                } else {
+                    // if no className or un recognized className it is treated as an individual file
+                    // this could be any type of file, .txt, .java, .csv, etc
+                    files.push({name: file.id, content: file.textContent});
+                }
+            }
+        }
+    }
+
+    runspec = {
+            language_id: this.language,
+            sourcecode: source,
+            parameters: paramobj,
+            sourcefilename: this.sourcefile
+    };
+
+    if (stdin) {
+        runspec.input = stdin
+    }
+
+
+    if(this.language !== "java" || files.length === 0) {
+        data = JSON.stringify({'run_spec': runspec});
+        this.runProg_callback(data);
+    } else {
+        runspec['file_list'] = [];
+        var promises = [];
+        var instance = this;
+        $.getScript('http://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
+        {
+            for(var i = 0; i < files.length; i++) {
+                var fileName = files[i].name;
+                var fileContent = files[i].content;
+                instance.div2id[fileName] = "runestone" + MD5(fileName + fileContent);
+                runspec['file_list'].push([instance.div2id[fileName], fileName]);
+                promises.push(new Promise((resolve, reject) => {
+                     instance.checkFile(files[i], resolve, reject);
+                }));
+            }
+            data = JSON.stringify({'run_spec': runspec});
+            this.div2id = instance.div2id;
+            Promise.all(promises).then(function() {
+                // console.log("All files on Server");
+                instance.runProg_callback(data);
+            }).catch(function(err) {
+                // console.log("Error: " + err);
+            });
+        });
+    }
+
+}
+LiveCode.prototype.runProg_callback = function(data) {
+
         var xhr, stdin;
         var runspec = {};
         var scrubber_dfd, history_dfd;
-        var data, host, source, editor;
+        var host, source, editor;
         var saveCode = "True";
         var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
 
         xhr = new XMLHttpRequest();
-        source = this.editor.getValue();
 
-        var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
-        history_dfd = __ret.history_dfd;
-        saveCode = __ret.saveCode;
-
-        if (this.stdin) {
-            stdin = $(this.stdin_el).val();
-        }
-
-        if (! this.sourcefile ) {
-            this.sourcefile = sfilemap[this.language];
-        }
-
-        runspec = {
-            language_id: this.language,
-            sourcecode: source,
-            sourcefilename: this.sourcefile
-        };
-
-
-        if (stdin) {
-            runspec.input = stdin
-        }
-
-        if (this.datafile) {
-            this.pushDataFile(this.datafile);
-            runspec['file_list'] = [[this.div2id[this.datafile],this.datafile]];
-        }
-        data = JSON.stringify({'run_spec': runspec});
         host = this.JOBE_SERVER + this.resource;
 
         var odiv = this.output;
@@ -1601,6 +1779,7 @@ LiveCode.prototype.runProg = function() {
         xhr.open("POST", host, true);
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Accept', 'application/json');
+        xhr.setRequestHeader('X-API-KEY', this.API_KEY);
 
         xhr.onload = (function () {
             var logresult;
@@ -1637,18 +1816,16 @@ LiveCode.prototype.runProg = function() {
                     this.addJobeErrorMessage("Time Limit Exceeded on your program");
                     break;
                 default:
-                    if(result.stderr) {
+                    if(result.stderr){
                         $(odiv).html(result.stderr.replace(/\n/g, "<br>"));
                     } else {
                         this.addJobeErrorMessage("A server error occurred: " + xhr.status + " " + xhr.statusText);
                     }
             }
-
             // todo: handle server busy and timeout errors too
         }).bind(this);
 
         ///$("#" + divid + "_errinfo").remove();
-        $(this.output).html("Compiling and Running your Code Now...");
 
         xhr.onerror = (function () {
             this.addJobeErrorMessage("Error communicating with the server.");
@@ -1656,6 +1833,7 @@ LiveCode.prototype.runProg = function() {
         }).bind(this);
 
         xhr.send(data);
+
     };
 LiveCode.prototype.addJobeErrorMessage = function (err) {
         var errHead = $('<h3>').html('Error');
@@ -1669,35 +1847,215 @@ LiveCode.prototype.addJobeErrorMessage = function (err) {
     };
 
 
-LiveCode.prototype.pushDataFile = function (datadiv) {
+/**
+ * Checks to see if file is on server
+ * Places it on server if it is not on server
+ * @param  {object{name, contents}} file    File to place on server
+ * @param  {function} resolve promise resolve function
+ * @param  {function} reject  promise reject function
+ */
+LiveCode.prototype.checkFile = function(file, resolve, reject) {
+    var file_id = this.div2id[file.name];
+    var resource = eBookConfig.proxyuri_files + file_id;
+    var host = this.JOBE_SERVER + resource;
 
-        var file_id = 'runestone'+Math.floor(Math.random()*100000);
-        var contents = $(document.getElementById(datadiv)).text();
-        var contentsb64 = btoa(contents);
-        var data = JSON.stringify({ 'file_contents' : contentsb64 });
-        var resource = '/runestone/proxy/jobePushFile/' + file_id;
-        var host = this.JOBE_SERVER + resource;
-        var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
+    xhr.open("HEAD", host, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Accept', 'text/plain');
+    xhr.setRequestHeader('X-API-KEY', this.API_KEY);
 
-        if (this.div2id[datadiv] === undefined ) {
-            this.div2id[datadiv] = file_id;
-
-            xhr.open("PUT", host, true);
-            xhr.setRequestHeader('Content-type', 'application/json');
-            xhr.setRequestHeader('Accept', 'text/plain');
-            xhr.setRequestHeader('X-API-KEY', this.API_KEY);
-
-            xhr.onload = function () {
-                console.log("successfully sent file " + xhr.responseText);
-            };
-
-            xhr.onerror = function () {
-                console.log("error sending file" + xhr.responseText);
-            };
-
-            xhr.send(data)
-        }
+    xhr.onerror = function () {
+        // console.log("error sending file" + xhr.responseText);
     };
+
+    xhr.onload = (function () {
+        switch(xhr.status) {
+            case 208:
+                // console.log("File not on Server");
+                this.pushDataFile(file, resolve, reject);
+                break;
+            case 400:
+                // console.log("Bad Request");
+                reject();
+                break;
+            case 204:
+                // console.log("File already on Server");
+                resolve();
+                break;
+            default:
+                //console.log("This case should never happen");
+                reject();
+            }
+    }).bind(this);
+
+    xhr.send();
+
+};
+/**
+ * Places a file on a server
+ */
+LiveCode.prototype.pushDataFile = function (file, resolve, reject) {
+
+    var fileName = file.name;
+    var extension = fileName.substring(fileName.indexOf('.') + 1);
+
+    var file_id = this.div2id[fileName];
+    var contents = file.content;
+
+    // File types being uploaded that come in already in base64 format
+    var extensions = ['jar', 'zip', 'png', 'jpg', 'jpeg'];
+    var contentsb64;
+
+    if (extensions.indexOf(extension) === -1) {
+        contentsb64 = btoa(contents);
+    } else {
+        contentsb64 = contents;
+    }
+
+    var data = JSON.stringify({ 'file_contents' : contentsb64 });
+
+    var resource = eBookConfig.proxyuri_files + file_id;
+    var host = this.JOBE_SERVER + resource;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", host, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Accept', 'text/plain');
+
+    xhr.setRequestHeader('X-API-KEY', this.API_KEY);
+
+    xhr.onload = (function () {
+        switch(xhr.status) {
+            case 403:
+                // console.log("Forbidden");
+                reject();
+                break;
+            case 400:
+                // console.log("Bad Request");
+                reject();
+                break;
+            case 204:
+                //console.log("successfully sent file " + xhr.responseText);
+                //console.log("File " + fileName +", " + file_id +" placed on server");
+                resolve();
+                break;
+            default:
+                // console.log("This case should never happen");
+                reject();
+            }
+    }).bind(this);
+
+    xhr.onerror = function () {
+        // console.log("error sending file" + xhr.responseText);
+        reject();
+    };
+
+    xhr.send(data);
+
+};
+
+/**
+ * Seperates text into multiple .java files
+ * @param  {String} text String with muliple java classes needed to be seperated
+ * @return {array of objects}  .name gives the name of the java file with .java extension
+ *                   .content gives the contents of the file
+ */
+ LiveCode.prototype.parseJavaClasses = function(text) {
+
+     text = text.trim();
+
+     var found = false;
+     var stack = 0;
+     var startIndex = 0;
+     var classes = [];
+     var importIndex = 0;
+
+     var endOfLastCommentBeforeClassBegins = 0;
+
+     for(var i = 0; i < text.length; i++) {
+
+         var char = text.charAt(i);
+         if(char === '/') {
+             i++;
+             if(text.charAt(i) === '/') {
+                 i++;
+                 while(text.charAt(i) !== '\n' && i < text.length) {
+                     i++;
+                 }
+                 if(!found) {
+                     endOfLastCommentBeforeClassBegins = i;
+                 }
+             } else if(text.charAt(i) == '*') {
+                 i++;
+                 while((text.charAt(i) !== '*' || text.charAt(i+1) !== '/') && i + 1 < text.length) {
+                     i++;
+                 }
+                 if(!found) {
+                     endOfLastCommentBeforeClassBegins = i;
+                 }
+             }
+
+         } else if(char === '"') {
+
+             i++;
+             while(text.charAt(i) !== '"' && i < text.length) {
+                 i++;
+             }
+         } else if(char === '\'') {
+             while(text.charAt(i) !== '\'' && i < text.length) {
+                 i++;
+             }
+         } else if(char === '(') {
+             var pCount = 1;
+             i++;
+         	while(pCount > 0 && i < text.length){
+                if(text.charAt(i) === '(') {
+                    pCount++;
+                } else if(text.charAt(i) === ')') {
+                    pCount--;
+                }
+                 i++;
+             }
+         }
+
+
+         if(!found && text.charAt(i) === '{') {
+             startIndex = i;
+             found = true;
+             stack = 1;
+         } else if(found) {
+             if(text.charAt(i) === '{') {
+                 stack++;
+             }
+             if(text.charAt(i) === '}') {
+                 stack--;
+             }
+         }
+         if(found && stack === 0) {
+             endIndex = i+1;
+
+             var words = text.substring(endOfLastCommentBeforeClassBegins, startIndex).trim().split(" ");
+             var className = "";
+             for (var w = 0; w < words.length; w++) {
+                 className = words[w];
+                 if(words[w] === "extends" || words[w] === "implements") {
+                     className = words[w-1];
+                     w = words.length;
+                 }
+             }
+             className = className.trim() + ".java";
+
+             classes.push({name: className, content: text.substring(importIndex, endIndex)});
+             found = false;
+             importIndex = endIndex;
+             endOfLastCommentBeforeClassBegins = endIndex;
+         }
+
+     }
+     return classes;
+ }
+
 
 ACFactory = {};
 
@@ -1765,6 +2123,7 @@ ACFactory.createScratchActivecode = function() {
     divid = divid.split('?')[0];  // remove any query string (e.g ?lastPosition)
     divid = divid.replaceAll('/', '').replace('.html', '').replace(':', '');
     eBookConfig.scratchDiv = divid;
+    var lang = eBookConfig.acDefaultLanguage ? eBookConfig.acDefaultLanguage : 'python'
     // generate the HTML
     var html = '<div id="ac_modal_' + divid + '" class="modal fade">' +
         '  <div class="modal-dialog scratch-ac-modal">' +
@@ -1774,7 +2133,7 @@ ACFactory.createScratchActivecode = function() {
         '        <h4 class="modal-title">Scratch ActiveCode</h4>' +
         '      </div> ' +
         '      <div class="modal-body">' +
-        '      <textarea data-component="activecode" id="' + divid + '">' +
+        '      <textarea data-component="activecode" id="' + divid + '" data-lang="'+ lang +'">' +
         '\n' +
         '\n' +
         '\n' +
