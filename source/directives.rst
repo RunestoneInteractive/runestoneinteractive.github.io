@@ -41,7 +41,8 @@ General Syntax
 
 All directives start out with ``..``, then a single space, followed by the name of the directive (e.g. ``video``, as seen below), and then ``::``, followed by a single space.
 
-Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. This is for logging purposes. It's also necessary for managing any controls or
+Most directives have a required argument of a unique identifier, which goes immediately to the right of the directive name. 
+This unique identifier is used for logging, managing controls, and for testing Runestone components.
 
 Spacing, including indentation consistency, is very important in implementing directives inside ``.rst`` files. Any missed or incorrect space may cause unexpected errors, strange-looking pages, or may cause information not to display on the deployed pages in your online book, so it's worth checking your final product before releasing content to students.
 
@@ -52,6 +53,9 @@ Further (often optional) arguments for a directive generally occur below that fi
 When reStructured Text files are *built* into static files in your Runestone textbook, the directives result in HTML and JavaScript inside those HTML files that make up your book.
 
 We are in the process of creating a full set of documentation for the HTML and JavaScript created by our special Runestone directives.
+
+Runestone is a `Sphinx <http://www.sphinx-doc.org/en/master/>`_ extension.
+That means directives you can use in Sphinx will also work in Runestone.
 
 
 Directives
@@ -211,7 +215,7 @@ This unique identifer will be the ``div`` id that contains this particular code 
 
 ``:caption:`` If used, this requires a text parameter. The text parameter to this argument is formatted as a caption, underneath the activecode block. You can see one in the example above, where the caption is ``A Turtle making a square``.
 
-``:language:`` The text argument to this parameter can be python, javascript, or html.  TODO TODO is this still true, and what is the default if you leave it off, is it Python?
+``:language:`` The text argument to this parameter can be python, python3, java, C, C++, ruby, javascript, or html.  The default language is Python 2. Languages other than python, javascript, and html require an external server.
 
 ``:include:``  This option allows you to prepend other code blocks to this activecode block. It is useful because it allows you to write individual activecode examples that build on each other without having to duplicate all the code and force the user to scroll through the code to find the newly introduced content. For example, if you write a function definition in one activecode block, you can include that block in a later activecode block using the ``:include:`` argument, and thus can invoke that function in the current activecode block without redefining it. This argument requires at least one, and can take multiple, parameters: the unique identifiers of the activecode blocks that you want to include. (See the examples in reStructured text for an example of how you can use this.)
 
@@ -241,9 +245,13 @@ A tool has been developed to easily record and create the directive syntax for a
 
 **Developer Notes**
 
-Each activecode window is running in the browser.  There is no need to connect to a server, or to even be online, for these examples to work.  The activecode directive makes use of **Skulpt** (``www.skulpt.org``), which is an open source javascript implementation of Python.
+The default activecode language (python) runs directly in the browser.
+There is no need to connect to a server, or to even be online, for these examples to work.
+The activecode directive makes use of **Skulpt** (``www.skulpt.org``),
+which is an open source javascript implementation of Python.
+Other activecode languages require access to an external server to compile code on behalf of activecode.
 
-Normally an output from a print statment is appended to a ``<pre></pre>`` element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
+Normally an output from a print statement is appended to a ``<pre></pre>`` element in the web page.  Graphical output, such as the turtle graphics program in the example, is done on a ``<canvas>``.
 
 **Logs & Grading**
 
@@ -749,12 +757,12 @@ but it cannot have less.
 
 **Optional Arguments**
 
-``casei``  -- Perform case insensitive comparisons between values provided in ``blank`` fields and answer fields.
+``casei``  - Perform case insensitive comparisons between values provided in ``blank`` fields and answer fields.
 
 Parsons Problems
 ~~~~~~~~~~~~~~~~~
 
-The Parsons Problem directive, ``..parsonsprob::``, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
+The Parsons Problem directive, ``.. parsonsprob::``, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
 
 ::
 
@@ -780,11 +788,13 @@ The identifier after the ``::`` must be unique. No spaces.
 
 **Optional Arguments**
 
-``:language:`` - You can specify the language for the code. *python* is the default value, but other programming languages are possible: *java*, *javascript*, *html*, *c*, *c++*, or *ruby*. In addition to these programming languages, you can also specify *natural* for plain text.
+``:adaptive:`` - If specified, then this option will offer help after a few failed attempts.  After more failures, it will incrementally simplify the problem.
+
+``:language:`` - You can specify the language for the code. *python* is the default value, but other programming languages are possible: *java*, *javascript*, *html*, *c*, *c++*, or *ruby*. In addition to these programming languages, you can also specify *natural* for plain text. The default language can be set in the book ``pavement.py`` file.
 
 ``:noindent:`` - If you do not want to use the 2D capability, this argument will indent blocks as you specify them (see below). This makes the problem significantly easier to solve.
 
-``:maxdist:`` - If you specify distractors in the code, then this will specify the maximum number that are presented to the user.
+``:maxdist:`` - If you specify distractors in the code, then this will specify the maximum number of distractors presented to the user.
 
 ``:order:`` - If you don't want the code to be randomly shuffled, you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).
 
@@ -807,9 +817,9 @@ Place the question text after the arguments. Use ``-----`` to separate the quest
     	  curmax = alist[0]
     	  for item in alist:
        =====
-    		 if item &gt; curmax:
+    		 if item > curmax:
        =====
-             if item &lt; curmax: #paired
+             if item > curmax: #paired
        =====
     			curmax = item
        =====
