@@ -371,15 +371,15 @@
 <p>What we did set out to make initially is a great set of interactive book authoring tools.  Our Big Hairy Audacious Goal was and is to become the LaTeX of the interactive textbook publishing world.  In the beginning writing an interactive textbook was equal parts writing and coding.  Runestone aims to remove the coding part so you can just focus on the writing.</p>
 <p>To accomplish this we have created a set of HTML components for things like multiple choice questions, interactive code, code visualizations and many more.  If you don’t have a sense for what kinds of things you can do with Runestone Interactive you should take a look at <a class="reference external" href="https://runestone.academy/runestone/static/overview.html">The Overview</a>.  When the page is loaded simple the HTML components are rendered by a bunch of JavaScript and CSS to create the Runestone Components you see in the interactive books.</p>
 <p>But nobody wants to write books in HTML!  So, we created a set of extensions for a simple markup language called <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">restructuredText</a>.  The restructuredText markup language lets you do all of the things you would expect to do in a language for writing, make lists, include images, footnotes, etc. etc.  In addition our extensions make it really easy to add   interactive components to your document.  For example to make an activecode component with runnable, editable code you would simply write the following in your text:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">codeid</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">codeid</span>
    <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
 
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The restructured text would be compiled into the html component:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">textarea</span> <span class="n">data</span><span class="o">-</span><span class="n">component</span><span class="o">=</span><span class="s2">&quot;activecode&quot;</span> <span class="n">data</span><span class="o">-</span><span class="n">language</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="o">&gt;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="o">&lt;</span><span class="n">textarea</span> <span class="n">data</span><span class="o">-</span><span class="n">component</span><span class="o">=</span><span class="s">&quot;activecode&quot;</span> <span class="n">data</span><span class="o">-</span><span class="n">language</span><span class="o">=</span><span class="s">&quot;python&quot;</span><span class="o">&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span>
 <span class="o">&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -434,7 +434,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
     </p>
   </div>
 </footer>
