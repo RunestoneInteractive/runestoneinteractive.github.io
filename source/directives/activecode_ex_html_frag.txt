@@ -1,0 +1,9 @@
+.. activecode:: ac-example-html-frag
+   :language: html
+
+   <div style="background-color:lightblue">
+      <h3>Active code HTML fragment</h3>
+      <p>
+        HTML examples do not need to be complete documents.
+      </p>
+   </div>

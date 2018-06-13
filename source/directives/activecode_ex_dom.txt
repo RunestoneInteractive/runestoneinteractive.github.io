@@ -1,0 +1,8 @@
+.. activecode:: ac-example-dom
+   :nocodelens:
+
+   import document
+
+   t = document.getElementById('text1')
+   print('value = ', t.value)
+

@@ -1,0 +1,491 @@
+Activecode
+==========
+
+The activecode directive embeds executable, editable code in your pages. 
+Your students can experiment with your examples by changing them and running them over and over again.
+
+
+Synopsis
+--------
+
+.. code-block:: none
+
+   .. activecode:: unique_id
+
+      + --- Content area ---+
+      |
+      | one or more lines of code in a supported language
+      |
+      + --------------------+
+
+Depending on the code within the content area, 
+either a pre-formatted text area, or an HTML graphics canvas
+will be created to contain the program output.
+      
+Required Arguments
+------------------
+
+A unique identifier after a space and the ``::`` in the activecode directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
+
+The unique identifer will be the ``div`` id that contains this specific code block. 
+The unique identifier allows you to tie activecode blocks to a grading interface, 
+or any other groupings for assessment within the Runestone interface. 
+For this reason, we recommend that you follow some type of naming convention 
+for unique identifiers in directives.
+
+Optional Arguments
+------------------
+
+
+autorun 
+    ``Boolean``. Declare an activecode block that will begin running as soon as 
+    the web page is fully loaded.
+
+above
+    ``Boolean``. Instruct activecode to place the canvas above the editor.
+
+caption
+    ``String``. Define a caption for this activecode directive.
+
+compileargs
+    ``Array``. A list of compiler flags, passed to the external server with your code.
+    for the designated language.
+    One string per array element.
+
+    This option is only used if the language uses a compiler: C and C++.
+    For example:
+
+    .. code-block:: none
+
+       :language: cpp
+       :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+hidecode 
+    ``Boolean``. Make the activecode editor initially hidden, 
+    and add a button to automatically show the editor. 
+    
+    You might use this if you want to put an activecode block in the page in order to include 
+    it in another activecode block, but you don't need or want students to see it right away.
+
+include
+    ``CSV``. Include another activecode content area verbatim.
+
+    This option allows you to **prepend** other code blocks to this activecode block. 
+    ``include`` is useful because it allows you to write activecode examples that build 
+    on each other without having to duplicate all the code 
+    and force the user to scroll through the code to find the newly introduced content. 
+   
+    For example, if you write a function definition in one activecode block, 
+    you can include that block in a later activecode block using the ``:include:`` argument, 
+    and thus can invoke that function in the current activecode block without redefining it. 
+
+    This argument requires at least one, and optionally multiple, parameters. 
+    The list must contain the unique identifiers of the activecode blocks that you want to include,
+    each item separated by a comma.
+    Each item is added made available to the activecode block in the order listed,
+    but the code is not shown in the content area.
+    The code in the content area is processed last by activecode.
+
+interpreterargs
+    ``Array``. A list of interpreter flags, passed to the external server with your code.
+    One string per array element.
+
+    This option is only used if the language uses a interpreter: Python2 or 3, Java, octave.
+    For example:
+
+    .. code-block:: none
+
+       :language: java
+       :interpreterargs: ['-Xrs', '-Xss8m', '-Xmx200m']
+
+language
+    ``String``. Set the language of the content area.
+    The default language is python. 
+
+nocanvas 
+    ``Boolean``. Prevents a ``<canvas>`` element from getting created.
+
+    A canvas element is generally created only when a program using a graphics canvas,
+    such as when the ``turtle`` library is run.
+
+nocodelens 
+    ``Boolean``. Hide the button to step through code in codelens.
+
+nopre
+    ``Boolean``. Prevents a ``<pre></pre>`` element from getting created in the page. 
+
+    Normally an output from a print statement is appended to a ``<pre></pre>`` 
+    element in the web page.
+
+    You might use this if you did not want to see the results of print statements 
+    from an included code segment but otherwise wanted it to be runnable.
+
+stdin
+    ``String``. Define a virtual 'standard input' for an active code block.
+
+    If present, ``:stdin:`` creates a text area and 
+    allows a string to be passed to the program for processing.
+    An optional value after the argument defines the default value.
+
+tour_{1,2,3,4,5,6}  
+    ``Formatted String``. Used for audio tours of the code.
+
+    You can have up to six different audio tours of the same code.  
+    The format of a tour directive is ``tour name; line #: audio_file_name`` 
+    where ``audio_file_name`` is the path to the audio file. 
+
+    .. code-block:: none
+       
+       :tour_1: "Overall Tour"; 1-4: Tour01_Line01; 3: Tour01_Line03;
+       :tour_2: "Line by Line Tour"; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;
+
+    See `this tool <https://github.com/CSLearning4U/AudioTourTool>`_ for easy creation of activecode blocks with audio tours.
+
+Languages supported
+-------------------
+
+Supported languages are: 
+``python``, ``python3``, ``java``, ``c``, ``cpp``, ``ruby``, ``javascript``, and ``html``.  
+
+The default language is Python2 (python). 
+Languages other than python, JavaScript, and html 
+require an external server to compile code on behalf of activecode.
+
+Sphinx configuration options
+----------------------------
+The following ``options.build.template_args`` values can be set in a book pavement.py file.
+
+default_ac_lang
+    The default language for activecode directives.
+
+jobe_server
+    The URL to the Jobe server. 
+
+    See https://github.com/trampgeek/jobe for details on setting up your own.
+
+    If hosting a book from `Github pages <https://pages.github.com/>`__,
+    you may need to redirect requests to the default jobe host through a proxy:
+    Jobe accepts http requests only and `Github pages <https://pages.github.com/>`__ 
+    allows outbound https requests only.
+
+proxy_uri_runs
+    Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.
+
+    Most authors will not need to modify this.
+
+proxy_uri_files
+    Direct the Jobe server to use the specified directory to hold generated files to be returned
+    within the response.
+
+    Most authors will not need to modify this.
+
+Sphinx bootstrap
+................
+
+The configuration parameters defined in your book ``sphinx_bootstrap/layout.html``:
+
+.. code-block:: javascript
+
+   eBookConfig.jobehost = '{{jobe_server}}';
+   eBookConfig.proxyuri_runs = '{{proxy_uri_runs}}';
+   eBookConfig.proxyuri_files = '{{proxy_uri_files}}';
+
+
+Known limitations and bugs
+--------------------------
+
+The 'Scratch ActiveCode' link available from the Help Navigation bar drop down is a temporary
+activecode directive provided as a convenience.
+The scratch ActiveCode only knows how to process code using the ``default_ac_lang`` property in pavement.py.
+If not specified, then the scratch activecode content is python 2.
+
+The 'Show CodeLens' feature is only available when using default python as the language.
+External libraries such as turtle are not supported in codelens.
+The 'Show CodeLens' feature is not currently compatible with the ``:include:`` argument.
+
+The options ``above``, ``nopre``, and ``nocanvas`` do not work correctly.
+
+If ``stdin`` is used with python, the default value is not used and 
+the text area appears in the popup dialog instead of being added to the code block.
+``input()`` works, but ``stdin.readline()`` does not.
+
+Examples
+--------
+
+The most trivial example: an activecode directive with no content area.
+
+.. tabbed:: null
+
+        .. tab:: Source
+
+           .. code-block:: none
+
+              .. activecode:: empty_block
+
+        .. tab:: Run It
+
+           Write your own python program in the space provided.
+
+           .. activecode:: empty_block
+
+The next example defines a basic 'hello world' program in the default language (python).
+
+.. tabbed:: example1
+
+   .. tab:: Source
+
+      This example is so basic, perhaps no codelens is needed.
+
+      .. literalinclude:: activecode_ex1.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex1.txt
+
+The ``nopre`` option suppresses creating a pre-formatted output area in the activecode block.
+
+.. tabbed:: example1a
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex1a.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex1a.txt
+
+
+Active code content is not required to create output.
+``<pre>`` and ``<canvas>`` elements are only created when needed.
+
+.. tabbed:: example2
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex2.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex2.txt
+
+``:include:`` parameter
+.......................
+
+The include parameter allows examples to be built up incrementally.
+New examples can leverage code from earlier ones.
+This example calls functions defined in the previous two examples.
+
+.. tabbed:: example3
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex3.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex3.txt
+
+Turtle Graphics
+...............
+
+The built-in turtle library allows you and students to create simple 2D graphics programs.
+
+.. tabbed:: example4
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex4.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex4.txt
+
+        
+JavaScript
+..........
+
+Adding a JavaScript example is just as easy as Python, 
+all you need to do is add the ``:language:`` parameter to the activecode directive.
+
+Codelens is not supported for JavaScript, 
+so there is no need to add a ``:nocodelens:`` parameter.
+
+.. tabbed:: example5
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex_js.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex_js.txt
+
+Java
+....
+
+Java support is possible through a backend server, not in the browser.
+No graphics libraries (for example AWT) are available in any Java programs.
+
+Codelens is not supported for Java, 
+so there is no need to add a ``:nocodelens:`` parameter.
+
+.. tabbed:: example-java
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex_java.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex_java.txt
+
+C and C++
+.........
+
+The same rules that apply to Java, apply to C and C++ 
+(no graphics examples, compilation handled by a remote server).
+
+.. tabbed:: example-cpp
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex_cpp.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: activecode_ex_cpp.txt
+
+
+
+Accessing the Browser Document
+..............................
+
+Python and JavaScript programs written in activecode windows can import the document module.
+The document module allows access to basic elements of the web page, 
+including the new text entry box called
+**text1** :textfield:`text1:example input:medium` 
+like this one. 
+
+You can use this similarly to the use of ``stdin`` in C++ and Java code blocks.
+
+Try running the program, then change the value in the text entry box and run it again.
+
+.. tabbed:: example-dom
+
+   .. tab:: Python
+
+      .. literalinclude:: activecode_ex_dom.txt
+         :language: rst
+
+   .. tab:: Run Py
+
+      .. include:: activecode_ex_dom.txt
+
+   .. tab:: Javascript
+
+      .. literalinclude:: activecode_ex_domjs.txt
+         :language: rst
+
+   .. tab:: Run JS
+
+      .. include:: activecode_ex_domjs.txt
+
+Create a simple text field anywhere in a document using the following inline markup:
+
+.. code-block:: rst
+
+   :textfield:`text1:example input:medium` 
+
+or more generally:
+
+.. code-block:: rst
+
+   :textfield:`element_id:default value:width` 
+
+This translates to:
+
+.. code-block:: html
+
+        <input type='text' id='myid' 
+           class="form-control input-small" 
+           style="display:inline; width:width;" value='myvalue'></input>
+
+where width can be specified in pixels or percentage of page width (standard CSS syntax).
+Width can also be specified using relative sizes:
+
+========= =====================
+Width     Field width in pixels
+========= =====================
+mini      60 px
+small     90 px
+medium    150 px
+large     210 px
+xlarge    270 px
+xxlarge   530 px
+========= =====================
+
+HTML
+....
+
+Adding a HTML example is similar to programming language code blocks.
+
+Codelens is not supported for HTML, 
+so there is no need to add a ``:nocodelens:`` parameter.
+
+.. tabbed:: example-html
+
+   .. tab:: Source
+
+      .. literalinclude:: activecode_ex_html.txt
+         :language: rst
+
+   .. tab:: Render
+
+      .. include:: activecode_ex_html.txt
+
+   .. tab:: Fragment
+
+      .. literalinclude:: activecode_ex_html_frag.txt
+         :language: rst
+
+   .. tab:: Render Fragment
+
+      .. include:: activecode_ex_html_frag.txt
+
+
+Logs and Grading
+----------------
+
+In an **activecode** window, 
+if logged in to a Runestone project with an account, 
+each time ``Run`` is pressed after an edit,
+a new version is saved. 
+Each logged in user can view their own history, version by version, of the code they've edited in the window. 
+
+Logged in to a book, the load history appears like so:
+
+.. image:: /images/scrubber2.png
+   :alt: image of a code window, below a bar with save and run on the left and a bar showing a timestamp of last save
+   :align: center
+
+.. image:: /images/scrubber3.png
+   :alt: image of a bar with save and run on the left and a bar showing a timestamp of last save, later than the last, with different code
+   :align: center
+
+Activecode windows can be graded in the Runestone interface and can be tied to assignments 
+containing multiple problems. 
+You can also include hidden code and data files in these windows, 
+for instance, so students can invoke functions without seeing the function definitions. 
+
+See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.
+
