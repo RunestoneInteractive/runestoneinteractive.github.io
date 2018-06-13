@@ -1,0 +1,17 @@
+.. activecode:: ac-example-html
+   :language: html
+
+   <html>
+     <body>
+       <style>
+         h2 { font-size: 48px;
+            color: red;
+         }
+       </style>
+       <h2>Hello World</h2>
+       <ul>
+         <li>one</li>
+         <li>two</li>
+       </ul>
+     </body>
+   </html>

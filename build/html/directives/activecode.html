@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Activecode &#8212; Runestone Interactive 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Codelens" href="codelens.html" />
+    <link rel="prev" title="Runestone Directives Documentation" href="../directives.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://runestone.academy' ? 'https://runestone.academy' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'html';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = true;
+  eBookConfig.python3 = true;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Runestone Interactive</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/html/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='https://runestone.academy/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://runestone.academy/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/html/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Activecode</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#sphinx-bootstrap">Sphinx bootstrap</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations-and-bugs">Known limitations and bugs</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#include-parameter"><code class="docutils literal"><span class="pre">:include:</span></code> parameter</a></li>
+<li><a class="reference internal" href="#turtle-graphics">Turtle Graphics</a></li>
+<li><a class="reference internal" href="#javascript">JavaScript</a></li>
+<li><a class="reference internal" href="#java">Java</a></li>
+<li><a class="reference internal" href="#c-and-c">C and C++</a></li>
+<li><a class="reference internal" href="#accessing-the-browser-document">Accessing the Browser Document</a></li>
+<li><a class="reference internal" href="#html">HTML</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logs-and-grading">Logs and Grading</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Runestone Directives Documentation" data-toggle="tooltip">
+    <a href="../directives.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Codelens' data-toggle="tooltip" >
+    <a href="codelens.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li>
+  <a href="../_sources/directives/activecode.rst.txt"
+     rel="nofollow">Source</a></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="activecode">
+<h1>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h1>
+<p>The activecode directive embeds executable, editable code in your pages.
+Your students can experiment with your examples by changing them and running them over and over again.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none"><div class="highlight"><pre>.. activecode:: unique_id
+
+   + --- Content area ---+
+   |
+   | one or more lines of code in a supported language
+   |
+   + --------------------+
+</pre></div>
+</div>
+<p>Depending on the code within the content area,
+either a pre-formatted text area, or an HTML graphics canvas
+will be created to contain the program output.</p>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</p>
+<p>The unique identifer will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this specific code block.
+The unique identifier allows you to tie activecode blocks to a grading interface,
+or any other groupings for assessment within the Runestone interface.
+For this reason, we recommend that you follow some type of naming convention
+for unique identifiers in directives.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>autorun</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as
+the web page is fully loaded.</dd>
+<dt>above</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Instruct activecode to place the canvas above the editor.</dd>
+<dt>caption</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for this activecode directive.</dd>
+<dt>compileargs</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of compiler flags, passed to the external server with your code.
+for the designated language.
+One string per array element.</p>
+<p>This option is only used if the language uses a compiler: C and C++.
+For example:</p>
+<div class="last highlight-none"><div class="highlight"><pre>:language: cpp
+:compileargs: [&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]
+</pre></div>
+</div>
+</dd>
+<dt>hidecode</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the activecode editor initially hidden,
+and add a button to automatically show the editor.</p>
+<p class="last">You might use this if you want to put an activecode block in the page in order to include
+it in another activecode block, but you don’t need or want students to see it right away.</p>
+</dd>
+<dt>include</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. Include another activecode content area verbatim.</p>
+<p>This option allows you to <strong>prepend</strong> other code blocks to this activecode block.
+<code class="docutils literal"><span class="pre">include</span></code> is useful because it allows you to write activecode examples that build
+on each other without having to duplicate all the code
+and force the user to scroll through the code to find the newly introduced content.</p>
+<p>For example, if you write a function definition in one activecode block,
+you can include that block in a later activecode block using the <code class="docutils literal"><span class="pre">:include:</span></code> argument,
+and thus can invoke that function in the current activecode block without redefining it.</p>
+<p class="last">This argument requires at least one, and optionally multiple, parameters.
+The list must contain the unique identifiers of the activecode blocks that you want to include,
+each item separated by a comma.
+Each item is added made available to the activecode block in the order listed,
+but the code is not shown in the content area.
+The code in the content area is processed last by activecode.</p>
+</dd>
+<dt>interpreterargs</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of interpreter flags, passed to the external server with your code.
+One string per array element.</p>
+<p>This option is only used if the language uses a interpreter: Python2 or 3, Java, octave.
+For example:</p>
+<div class="last highlight-none"><div class="highlight"><pre>:language: java
+:interpreterargs: [&#39;-Xrs&#39;, &#39;-Xss8m&#39;, &#39;-Xmx200m&#39;]
+</pre></div>
+</div>
+</dd>
+<dt>language</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Set the language of the content area.
+The default language is python.</dd>
+<dt>nocanvas</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created.</p>
+<p class="last">A canvas element is generally created only when a program using a graphics canvas,
+such as when the <code class="docutils literal"><span class="pre">turtle</span></code> library is run.</p>
+</dd>
+<dt>nocodelens</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Hide the button to step through code in codelens.</dd>
+<dt>nopre</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page.</p>
+<p>Normally an output from a print statement is appended to a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code>
+element in the web page.</p>
+<p class="last">You might use this if you did not want to see the results of print statements
+from an included code segment but otherwise wanted it to be runnable.</p>
+</dd>
+<dt>stdin</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define a virtual ‘standard input’ for an active code block.</p>
+<p class="last">If present, <code class="docutils literal"><span class="pre">:stdin:</span></code> creates a text area and
+allows a string to be passed to the program for processing.
+An optional value after the argument defines the default value.</p>
+</dd>
+<dt>tour_{1,2,3,4,5,6}</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Formatted</span> <span class="pre">String</span></code>. Used for audio tours of the code.</p>
+<p>You can have up to six different audio tours of the same code.
+The format of a tour directive is <code class="docutils literal"><span class="pre">tour</span> <span class="pre">name;</span> <span class="pre">line</span> <span class="pre">#:</span> <span class="pre">audio_file_name</span></code>
+where <code class="docutils literal"><span class="pre">audio_file_name</span></code> is the path to the audio file.</p>
+<div class="highlight-none"><div class="highlight"><pre>:tour_1: &quot;Overall Tour&quot;; 1-4: Tour01_Line01; 3: Tour01_Line03;
+:tour_2: &quot;Line by Line Tour&quot;; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;
+</pre></div>
+</div>
+<p class="last">See <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">this tool</a> for easy creation of activecode blocks with audio tours.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Supported languages are:
+<code class="docutils literal"><span class="pre">python</span></code>, <code class="docutils literal"><span class="pre">python3</span></code>, <code class="docutils literal"><span class="pre">java</span></code>, <code class="docutils literal"><span class="pre">c</span></code>, <code class="docutils literal"><span class="pre">cpp</span></code>, <code class="docutils literal"><span class="pre">ruby</span></code>, <code class="docutils literal"><span class="pre">javascript</span></code>, and <code class="docutils literal"><span class="pre">html</span></code>.</p>
+<p>The default language is Python2 (python).
+Languages other than python, JavaScript, and html
+require an external server to compile code on behalf of activecode.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>The following <code class="docutils literal"><span class="pre">options.build.template_args</span></code> values can be set in a book pavement.py file.</p>
+<dl class="docutils">
+<dt>default_ac_lang</dt>
+<dd>The default language for activecode directives.</dd>
+<dt>jobe_server</dt>
+<dd><p class="first">The URL to the Jobe server.</p>
+<p>See <a class="reference external" href="https://github.com/trampgeek/jobe">https://github.com/trampgeek/jobe</a> for details on setting up your own.</p>
+<p class="last">If hosting a book from <a class="reference external" href="https://pages.github.com/">Github pages</a>,
+you may need to redirect requests to the default jobe host through a proxy:
+Jobe accepts http requests only and <a class="reference external" href="https://pages.github.com/">Github pages</a>
+allows outbound https requests only.</p>
+</dd>
+<dt>proxy_uri_runs</dt>
+<dd><p class="first">Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.</p>
+<p class="last">Most authors will not need to modify this.</p>
+</dd>
+<dt>proxy_uri_files</dt>
+<dd><p class="first">Direct the Jobe server to use the specified directory to hold generated files to be returned
+within the response.</p>
+<p class="last">Most authors will not need to modify this.</p>
+</dd>
+</dl>
+<div class="section" id="sphinx-bootstrap">
+<h3>Sphinx bootstrap<a class="headerlink" href="#sphinx-bootstrap" title="Permalink to this headline">¶</a></h3>
+<p>The configuration parameters defined in your book <code class="docutils literal"><span class="pre">sphinx_bootstrap/layout.html</span></code>:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">eBookConfig</span><span class="p">.</span><span class="nx">jobehost</span> <span class="o">=</span> <span class="s1">&#39;{{jobe_server}}&#39;</span><span class="p">;</span>
+<span class="nx">eBookConfig</span><span class="p">.</span><span class="nx">proxyuri_runs</span> <span class="o">=</span> <span class="s1">&#39;{{proxy_uri_runs}}&#39;</span><span class="p">;</span>
+<span class="nx">eBookConfig</span><span class="p">.</span><span class="nx">proxyuri_files</span> <span class="o">=</span> <span class="s1">&#39;{{proxy_uri_files}}&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="known-limitations-and-bugs">
+<h2>Known limitations and bugs<a class="headerlink" href="#known-limitations-and-bugs" title="Permalink to this headline">¶</a></h2>
+<p>The ‘Scratch ActiveCode’ link available from the Help Navigation bar drop down is a temporary
+activecode directive provided as a convenience.
+The scratch ActiveCode only knows how to process code using the <code class="docutils literal"><span class="pre">default_ac_lang</span></code> property in pavement.py.
+If not specified, then the scratch activecode content is python 2.</p>
+<p>The ‘Show CodeLens’ feature is only available when using default python as the language.
+External libraries such as turtle are not supported in codelens.
+The ‘Show CodeLens’ feature is not currently compatible with the <code class="docutils literal"><span class="pre">:include:</span></code> argument.</p>
+<p>The options <code class="docutils literal"><span class="pre">above</span></code>, <code class="docutils literal"><span class="pre">nopre</span></code>, and <code class="docutils literal"><span class="pre">nocanvas</span></code> do not work correctly.</p>
+<p>If <code class="docutils literal"><span class="pre">stdin</span></code> is used with python, the default value is not used and
+the text area appears in the popup dialog instead of being added to the code block.
+<code class="docutils literal"><span class="pre">input()</span></code> works, but <code class="docutils literal"><span class="pre">stdin.readline()</span></code> does not.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The most trivial example: an activecode directive with no content area.</p>
+<div id='null' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-none"><div class="highlight"><pre>.. activecode:: empty_block
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+<p>Write your own python program in the space provided.</p>
+
+<div data-childcomponent="empty_block" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=empty_block data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''   
+         >
+
+
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>The next example defines a basic ‘hello world’ program in the default language (python).</p>
+<div id='example1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<p>This example is so basic, perhaps no codelens is needed.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example1
+   <span class="nc">:nocodelens:</span>
+
+   def hello(name):
+       return &quot;Hello, &quot; + name + &quot;!&quot;
+
+   print (hello(&quot;World&quot;))
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="function-example1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=function-example1 data-lang="python" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+def hello(name):
+    return "Hello, " + name + "!"
+
+print (hello("World"))
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>The <code class="docutils literal"><span class="pre">nopre</span></code> option suppresses creating a pre-formatted output area in the activecode block.</p>
+<div id='example1a' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example1a
+   <span class="nc">:nopre:</span>
+   <span class="nc">:nocanvas:</span>
+   <span class="nc">:nocodelens:</span>
+
+   def hello(name):
+       return &quot;Hello, &quot; + name + &quot;!&quot;
+
+   print (hello(&quot;World&quot;))
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="function-example1a" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=function-example1a data-lang="python" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+def hello(name):
+    return "Hello, " + name + "!"
+
+print (hello("World"))
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Active code content is not required to create output.
+<code class="docutils literal"><span class="pre">&lt;pre&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> elements are only created when needed.</p>
+<div id='example2' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example2
+   <span class="nc">:language:</span> <span class="nf">python</span>
+
+   def example_func(inp):
+       return inp + &quot;!!&quot;
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="function-example2" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=function-example2 data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''   
+         >
+def example_func(inp):
+    return inp + "!!"
+</textarea>
+</div>
+</div>
+    </div>
+
+<div class="section" id="include-parameter">
+<h3><code class="docutils literal"><span class="pre">:include:</span></code> parameter<a class="headerlink" href="#include-parameter" title="Permalink to this headline">¶</a></h3>
+<p>The include parameter allows examples to be built up incrementally.
+New examples can leverage code from earlier ones.
+This example calls functions defined in the previous two examples.</p>
+<div id='example3' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> loop_example3
+   <span class="nc">:language:</span> <span class="nf">python</span>
+   <span class="nc">:caption:</span> <span class="nf">Demonstrate activecode include</span>
+   <span class="nc">:nocodelens:</span>
+   <span class="nc">:include:</span> <span class="nf">function-example1, function-example2</span>
+
+   for i in range(5):
+       # function included from example 1
+       print(hello(str(i)))
+
+   # function included from example 2
+   print (example_func(&#39;goodbye&#39;))
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="loop_example3" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=loop_example3 data-lang="python" 
+     data-include="function-example1 function-example2" data-timelimit=25000    
+    data-audio=''   
+         data-caption='Demonstrate activecode include'>
+for i in range(5):
+    # function included from example 1
+    print(hello(str(i)))
+
+# function included from example 2
+print (example_func('goodbye'))
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="turtle-graphics">
+<h3>Turtle Graphics<a class="headerlink" href="#turtle-graphics" title="Permalink to this headline">¶</a></h3>
+<p>The built-in turtle library allows you and students to create simple 2D graphics programs.</p>
+<div id='example4' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_example1
+   <span class="nc">:caption:</span> <span class="nf">A Turtle making a square</span>
+   <span class="nc">:nocodelens:</span>
+
+   import turtle
+   t = turtle.Turtle()
+
+   for i in range(4):
+       t.forward(100)
+       t.left(90)
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac_example1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac_example1 data-lang="python" 
+      data-timelimit=25000    
+    data-audio=''   
+         data-caption='A Turtle making a square'>
+import turtle
+t = turtle.Turtle()
+
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="javascript">
+<h3>JavaScript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h3>
+<p>Adding a JavaScript example is just as easy as Python,
+all you need to do is add the <code class="docutils literal"><span class="pre">:language:</span></code> parameter to the activecode directive.</p>
+<p>Codelens is not supported for JavaScript,
+so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
+<div id='example5' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-js
+   <span class="nc">:language:</span> <span class="nf">javascript</span>
+
+   var x = 10;
+   var y = 11;
+   var z = x + y;
+   console.log(z);
+   function fact(n) {
+      if(n &lt;= 1) return 1;
+      else {
+          return n * fact(n-1);
+      }
+   }
+   console.log(fact(10));
+   writeln(&#39;hello world&#39;);
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-example-js" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-js data-lang="javascript" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+var x = 10;
+var y = 11;
+var z = x + y;
+console.log(z);
+function fact(n) {
+   if(n <= 1) return 1;
+   else {
+       return n * fact(n-1);
+   }
+}
+console.log(fact(10));
+writeln('hello world');
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="java">
+<h3>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h3>
+<p>Java support is possible through a backend server, not in the browser.
+No graphics libraries (for example AWT) are available in any Java programs.</p>
+<p>Codelens is not supported for Java,
+so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
+<div id='example-java' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-java
+   <span class="nc">:language:</span> <span class="nf">java</span>
+   <span class="nc">:interpreterargs:</span> <span class="nf">[&#39;-Xrs&#39;, &#39;-Xss8m&#39;, &#39;-Xmx128m&#39;]</span>
+   <span class="nc">:stdin:</span> <span class="nf">100</span>
+
+   import java.util.Scanner;
+
+   public class TempConv {
+       public static void main(String[] args) {
+            Double fahr;
+            Double cel;
+            Scanner in;
+
+            in = new Scanner(System.in);
+            System.out.println(&quot;Enter the temperature in F: &quot;);
+            fahr = in.nextDouble();
+
+            cel = (fahr - 32) * 5.0/9.0;
+            System.out.println(fahr + &quot; degrees F is: &quot; + cel + &quot; C&quot;);
+       }
+
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-example-java" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-java data-lang="java" 
+      data-timelimit=25000    
+    data-audio=''   data-stdin='100'
+       data-interpreterargs="['-Xrs', '-Xss8m', '-Xmx128m']"  >
+import java.util.Scanner;
+
+public class TempConv {
+    public static void main(String[] args) {
+         Double fahr;
+         Double cel;
+         Scanner in;
+
+         in = new Scanner(System.in);
+         System.out.println("Enter the temperature in F: ");
+         fahr = in.nextDouble();
+
+         cel = (fahr - 32) * 5.0/9.0;
+         System.out.println(fahr + " degrees F is: " + cel + " C");
+    }
+
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="c-and-c">
+<h3>C and C++<a class="headerlink" href="#c-and-c" title="Permalink to this headline">¶</a></h3>
+<p>The same rules that apply to Java, apply to C and C++
+(no graphics examples, compilation handled by a remote server).</p>
+<div id='example-cpp' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_example-cpp11
+   <span class="nc">:language:</span> <span class="nf">cpp</span>
+   <span class="nc">:compileargs:</span> <span class="nf">[&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]</span>
+   <span class="nc">:stdin:</span> <span class="nf">Alice</span>
+
+   // A simple test for C++11 compiler
+   #include &lt;iostream&gt;
+   #include &lt;string&gt;
+
+   int main () {
+     int test[] = { 1, 2, 3, 5, 8 };  // can we use an initializer list?
+     for (auto i: test) {             // can we use a range-for loop?
+       std::cout &lt;&lt; &quot;i is &quot; &lt;&lt; i &lt;&lt; &#39;\n&#39;;
+     }
+
+     std::string name;
+     std::cin &gt;&gt; name;
+     std::cout &lt;&lt; &quot;Hello, &quot; &lt;&lt; name &lt;&lt; &quot;!\n&quot;;
+     return 0;
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac_example-cpp11" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac_example-cpp11 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   data-stdin='Alice'
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
+// A simple test for C++11 compiler
+#include <iostream>
+#include <string>
+
+int main () {
+  int test[] = { 1, 2, 3, 5, 8 };  // can we use an initializer list?
+  for (auto i: test) {             // can we use a range-for loop?
+    std::cout << "i is " << i << '\n';
+  }
+
+  std::string name;
+  std::cin >> name;
+  std::cout << "Hello, " << name << "!\n";
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="accessing-the-browser-document">
+<h3>Accessing the Browser Document<a class="headerlink" href="#accessing-the-browser-document" title="Permalink to this headline">¶</a></h3>
+<p>Python and JavaScript programs written in activecode windows can import the document module.
+The document module allows access to basic elements of the web page,
+including the new text entry box called
+<strong>text1</strong> <input type='text' id='text1' class="form-control" style="display:inline; width: 150px;" value="example input"></input>
+like this one.</p>
+<p>You can use this similarly to the use of <code class="docutils literal"><span class="pre">stdin</span></code> in C++ and Java code blocks.</p>
+<p>Try running the program, then change the value in the text entry box and run it again.</p>
+<div id='example-dom' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Python" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-dom
+   <span class="nc">:nocodelens:</span>
+
+   import document
+
+   t = document.getElementById(&#39;text1&#39;)
+   print(&#39;value = &#39;, t.value)
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run Py" >
+
+<div data-childcomponent="ac-example-dom" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-dom data-lang="python" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+import document
+
+t = document.getElementById('text1')
+print('value = ', t.value)
+</textarea>
+</div>
+</div><div data-component="tab" data-tabname="Javascript" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-domjs
+   <span class="nc">:language:</span> <span class="nf">javascript</span>
+
+   let t = document.getElementById(&#39;text1&#39;);
+   writeln(&#39;value = &#39; + t.value);
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run JS" >
+
+<div data-childcomponent="ac-example-domjs" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-domjs data-lang="javascript" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+let t = document.getElementById('text1');
+writeln('value = ' + t.value);
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Create a simple text field anywhere in a document using the following inline markup:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="na">:textfield:</span><span class="nv">`text1:example input:medium`</span>
+</pre></div>
+</div>
+<p>or more generally:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="na">:textfield:</span><span class="nv">`element_id:default value:width`</span>
+</pre></div>
+</div>
+<p>This translates to:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;text&#39;</span> <span class="na">id=</span><span class="s">&#39;myid&#39;</span>
+   <span class="na">class=</span><span class="s">&quot;form-control input-small&quot;</span>
+   <span class="na">style=</span><span class="s">&quot;display:inline; width:width;&quot;</span> <span class="na">value=</span><span class="s">&#39;myvalue&#39;</span><span class="nt">&gt;&lt;/input&gt;</span>
+</pre></div>
+</div>
+<p>where width can be specified in pixels or percentage of page width (standard CSS syntax).
+Width can also be specified using relative sizes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Width</th>
+<th class="head">Field width in pixels</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>mini</td>
+<td>60 px</td>
+</tr>
+<tr class="row-odd"><td>small</td>
+<td>90 px</td>
+</tr>
+<tr class="row-even"><td>medium</td>
+<td>150 px</td>
+</tr>
+<tr class="row-odd"><td>large</td>
+<td>210 px</td>
+</tr>
+<tr class="row-even"><td>xlarge</td>
+<td>270 px</td>
+</tr>
+<tr class="row-odd"><td>xxlarge</td>
+<td>530 px</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="html">
+<h3>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<p>Adding a HTML example is similar to programming language code blocks.</p>
+<p>Codelens is not supported for HTML,
+so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
+<div id='example-html' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-html
+   <span class="nc">:language:</span> <span class="nf">html</span>
+
+   &lt;html&gt;
+     &lt;body&gt;
+       &lt;style&gt;
+         h2 { font-size: 48px;
+            color: red;
+         }
+       &lt;/style&gt;
+       &lt;h2&gt;Hello World&lt;/h2&gt;
+       &lt;ul&gt;
+         &lt;li&gt;one&lt;/li&gt;
+         &lt;li&gt;two&lt;/li&gt;
+       &lt;/ul&gt;
+     &lt;/body&gt;
+   &lt;/html&gt;
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render" >
+
+<div data-childcomponent="ac-example-html" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-html data-lang="htmlmixed" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;style&gt;
+      h2 { font-size: 48px;
+         color: red;
+      }
+    &lt;/style&gt;
+    &lt;h2&gt;Hello World&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;one&lt;/li&gt;
+      &lt;li&gt;two&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+</div>
+</div><div data-component="tab" data-tabname="Fragment" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-html-frag
+   <span class="nc">:language:</span> <span class="nf">html</span>
+
+   &lt;div style=&quot;background-color:lightblue&quot;&gt;
+      &lt;h3&gt;Active code HTML fragment&lt;/h3&gt;
+      &lt;p&gt;
+        HTML examples do not need to be complete documents.
+      &lt;/p&gt;
+   &lt;/div&gt;
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render Fragment" >
+
+<div data-childcomponent="ac-example-html-frag" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-html-frag data-lang="htmlmixed" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+&lt;div style="background-color:lightblue"&gt;
+   &lt;h3&gt;Active code HTML fragment&lt;/h3&gt;
+   &lt;p&gt;
+     HTML examples do not need to be complete documents.
+   &lt;/p&gt;
+&lt;/div&gt;
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
+</div>
+<div class="section" id="logs-and-grading">
+<h2>Logs and Grading<a class="headerlink" href="#logs-and-grading" title="Permalink to this headline">¶</a></h2>
+<p>In an <strong>activecode</strong> window,
+if logged in to a Runestone project with an account,
+each time <code class="docutils literal"><span class="pre">Run</span></code> is pressed after an edit,
+a new version is saved.
+Each logged in user can view their own history, version by version, of the code they’ve edited in the window.</p>
+<p>Logged in to a book, the load history appears like so:</p>
+<img alt="image of a code window, below a bar with save and run on the left and a bar showing a timestamp of last save" class="align-center" src="../_images/scrubber2.png" />
+<img alt="image of a bar with save and run on the left and a bar showing a timestamp of last save, later than the last, with different code" class="align-center" src="../_images/scrubber3.png" />
+<p>Activecode windows can be graded in the Runestone interface and can be tied to assignments
+containing multiple problems.
+You can also include hidden code and data files in these windows,
+for instance, so students can invoke functions without seeing the function definitions.</p>
+<p>See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.</p>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Runestone Directives Documentation' data-toggle="tooltip">
+    <a href="../directives.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="../directives.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Codelens' data-toggle="tooltip" >
+    <a href="codelens.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="codelens.html" >Next Section - Codelens</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Brad Miller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
+    </p>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

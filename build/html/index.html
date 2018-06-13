@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
@@ -75,19 +74,21 @@
     <script type="text/javascript" src="_static/codelens.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="_static/codemirror.js"></script>
-    <script type="text/javascript" src="_static/xml.js"></script>
-    <script type="text/javascript" src="_static/css.js"></script>
-    <script type="text/javascript" src="_static/htmlmixed.js"></script>
     <script type="text/javascript" src="_static/python.js"></script>
-    <script type="text/javascript" src="_static/javascript.js"></script>
-    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="_static/skulpt.min.js"></script>
     <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
     <script type="text/javascript" src="_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="_static/datafile.js"></script>
     <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/dragndrop.js"></script>
@@ -361,27 +362,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="directives.html">Runestone Directives Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="directives.html#ensuring-accessibility-in-runestone-components">Ensuring Accessibility in Runestone Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/activecode.html">Activecode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/codelens.html">Codelens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/datafile.html">Datafile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/blockly.html">Blockly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/disqus.html">Disqus Comment Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/reveal.html">Reveal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/tab.html">Tabs and Tab Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/video.html">Video</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/clickable.html">Clickable Areas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/dnd.html">Drag and Drop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/fitb.html">Fill in the Blank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/choice.html">Multiple Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/parsons.html">Parsons Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/polls.html">Polls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/short.html">Short Answer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/usage.html">Usage Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives/numbering.html">Controlling Question Numbering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="directives.html#general-syntax">General Syntax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="directives.html#directives">Directives</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#video">Video</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#activecode">Activecode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#codelens">Codelens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#datafile">Datafile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#multiple-choice">Multiple Choice</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#fill-in-the-blank">Fill in the Blank</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#parsons-problems">Parsons Problems</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#disqus">Disqus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#tabs-and-tab-groups">Tabs and Tab Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#polls">Polls</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#reveal">Reveal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#drag-and-drop">Drag and Drop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#clickable-areas">Clickable Areas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#short-answer">Short Answer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#usage-assignment">Usage Assignment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="directives.html#controlling-question-numbering">Controlling Question Numbering</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#ensuring-accessibility-in-runestone-components">Ensuring Accessibility in Runestone Components</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="writingAnExtension.html">Extension Authors</a><ul>

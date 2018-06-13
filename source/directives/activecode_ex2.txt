@@ -1,0 +1,5 @@
+.. activecode:: function-example2
+   :language: python
+
+   def example_func(inp):
+       return inp + "!!"

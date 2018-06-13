@@ -1,0 +1,9 @@
+.. activecode:: function-example1a
+   :nopre:
+   :nocanvas:
+   :nocodelens:
+
+   def hello(name):
+       return "Hello, " + name + "!"
+
+   print (hello("World"))
