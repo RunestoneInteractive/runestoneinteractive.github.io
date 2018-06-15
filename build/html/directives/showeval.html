@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Video &#8212; Runestone Interactive 1.0 documentation</title>
+    <title>ShowEval Trace Mode &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -110,8 +110,6 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Clickable Areas" href="clickable.html" />
-    <link rel="prev" title="Timed Activity" href="timed.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -298,8 +296,17 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Video</a><ul>
-<li><a class="reference internal" href="#youtube">YouTube</a></li>
+<li><a class="reference internal" href="#">ShowEval Trace Mode</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -309,18 +316,6 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Timed Activity" data-toggle="tooltip">
-    <a href="timed.html" >
-      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
-    </a>
-  </li>
-  
-  <li id="relations-next" title='Next Chapter - Clickable Areas' data-toggle="tooltip" >
-    <a href="clickable.html" >
-      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
-    </a>
-  </li>
-  <li class="divider-vertical"></li>
 
 <script type="text/javascript">
   opts = {'placement':'bottom',
@@ -334,7 +329,7 @@
         -->
         
           <li>
-  <a href="../_sources/directives/video.rst.txt"
+  <a href="../_sources/directives/showeval.rst.txt"
      rel="nofollow">Source</a></li>
         
       </ul>
@@ -348,87 +343,99 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="video">
-<h1>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h1>
-<p><strong>Purpose</strong></p>
-<p>As you may imagine, the job of the video directive is to embed a video in a page.</p>
-<p><strong>Example in reStructured Text</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">interactive_python_vid_1</span>
-   <span class="p">:</span><span class="n">controls</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
-
-   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">mov</span>
-   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">media</span><span class="o">.</span><span class="n">interactivepython</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pythondsVideos</span><span class="o">/</span><span class="n">list_unique</span><span class="o">.</span><span class="n">webm</span>
-</pre></div>
+  <div class="section" id="showeval-trace-mode">
+<h1>ShowEval Trace Mode<a class="headerlink" href="#showeval-trace-mode" title="Permalink to this headline">¶</a></h1>
+<p>The title directive …</p>
+<div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
+    <button class="btn btn-success" id="showEval_0_nextStep">Next Step</button>
+    <button class="btn btn-default" id ="showEval_0_reset">Reset</button>
+    <div class="evalCont" style="background-color: #FDFDFD;">eggs = ['dogs', 'cats', 'moose']<br />
 </div>
-<div class="section" id="youtube">
-<h2>YouTube<a class="headerlink" href="#youtube" title="Permalink to this headline">¶</a></h2>
-<iframe src="https://www.youtube.com/embed/anwy2MPT5RE"     width="560" height="315" frameborder="0"     webkitAllowFullScreen mozallowfullscreen allowfullscreen     class="align-left" seamless ></iframe>
-    <div data-component="reveal" id="anwy2MPT5RE"  data-title="Source for the example above" data-showtitle="Show Source" data-hidetitle="Hide Source">
-    <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">youtube</span><span class="p">::</span> anwy2MPT5RE
-    <span class="nc">:height:</span> <span class="nf">315</span>
-    <span class="nc">:width:</span> <span class="nf">560</span>
-    <span class="nc">:align:</span> <span class="nf">left</span>
-</pre></div>
-</div>
-
-    </div>
-    <p><strong>Example</strong></p>
-<div id="interactive_python_vid_1" class="video_popup runestone" >
-<video controls preload="none"  poster="../_static/videothumb.png">
-    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.mov" type="video/mp4"></source>
-    <source src="http://media.interactivepython.org/pythondsVideos/list_unique.webm" type="video/webm"></source>
-    No supported video types
-</video>
+    <div class="evalCont" id="showEval_0"></div>
 </div>
 <script>
-   jQuery(function($) {
-      var rb = new RunestoneBase();
-      $('#interactive_python_vid_1_thumb').click(function(e) {
-         $('#interactive_python_vid_1').show();
-         $('#interactive_python_vid_1_thumb').hide();
-         rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
-         // Log the run event
-      });
-      $('#interactive_python_vid_1 video').one("click", function(){
-        this.play();
-      });
-      $('#interactive_python_vid_1 video').one("play", function(){
-        rb.logBookEvent({'event':'video','act':'play','div_id': 'interactive_python_vid_1'});
-      });
-   });
+    $(document).ready(function() {
+      steps = ["''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)", "{{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)", "{{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)", "'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})", "{{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}"];
+      showEval_0_object = new SHOWEVAL.ShowEval($('#showEval_0'), steps, true);
+      showEval_0_object.setNextButton('#showEval_0_nextStep');
+      showEval_0_object.setResetButton('#showEval_0_reset');
+    });
 </script>
-<p><strong>Required Arguments</strong></p>
-<p>A unique identifier for the video. No spaces. This goes to the right of the <code class="docutils literal"><span class="pre">..</span> <span class="pre">video::</span></code> term. In the example, the unique identifier chosen is <code class="docutils literal"><span class="pre">interactive_python_vid_1</span></code>.</p>
-<p><strong>Optional Arguments</strong></p>
-<p>There are two optional arguments to the video directive.</p>
-<p><code class="docutils literal"><span class="pre">:controls:</span></code> -  The controls argument is a flag that, if present, allows the library that runs these directives to generate the usual set of video controls: <em>play, pause, rewind, fast forward</em>. If <code class="docutils literal"><span class="pre">:controls:</span></code> is not present, the video will automatically play when the page is loaded.</p>
-<p><code class="docutils literal"><span class="pre">:thumb:</span></code> - The thumb argument references an image that will serve as the thumbnail for this video. It requires an additional parameter: the path to the image that should serve as the thumbnail (in the example, that path is <code class="docutils literal"><span class="pre">../_static/videothumb.png</span></code> (relative paths to the location of the <code class="docutils literal"><span class="pre">.rst</span></code> file you are currently working in are fine). If the <code class="docutils literal"><span class="pre">:thumb</span></code> argument is used, then a thumbnail image will take the place of the video on the page until the reader clicks on the thumbnail. Clicking on the thumbnail will cause the full video to appear at full size on the page.  If the <code class="docutils literal"><span class="pre">:thumb:</span></code> directive is not present, then the video will appear on the page in its full size.</p>
-<p><strong>Content</strong></p>
-<p>The content lines of the video directive are the lines that follow the arguments, preceded by a blank line. You can specify as many video sources as you need.  (Usually I specify two videos, one in <code class="docutils literal"><span class="pre">.mov</span></code> format and the other in <code class="docutils literal"><span class="pre">webm</span></code> format.  This seems to cover all browsers.)</p>
-<p><strong>Logs &amp; Grading</strong></p>
-<p>Video directives are not tied to the grading interface. Interactions logged in the database: each time a video is played, it is logged (so if you have logged-in users, you can have a log of who has played it; regardless, you can have a log of how many times it has been played).</p>
-<p><strong>Uses</strong></p>
-<p>Teachers have used the video directive to include demonstrative video to accompany conceptual explanations, or to bring in video explanations from other openly licensed sources (e.g. Khan Academy, interactivepython.org).</p>
+<div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
+    <button class="btn btn-success" id="showEval_1_nextStep">Next Step</button>
+    <button class="btn btn-default" id ="showEval_1_reset">Reset</button>
+    <div class="evalCont" style="background-color: #FDFDFD;">eggs = ['dogs', 'cats', 'moose']<br />
+</div>
+    <div class="evalCont" id="showEval_1"></div>
+</div>
+<script>
+    $(document).ready(function() {
+      steps = ["''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)", "{{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)", "{{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)", "'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})", "{{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}"];
+      showEval_1_object = new SHOWEVAL.ShowEval($('#showEval_1'), steps, false);
+      showEval_1_object.setNextButton('#showEval_1_nextStep');
+      showEval_1_object.setResetButton('#showEval_1_reset');
+    });
+</script>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none"><div class="highlight"><pre>.. title:: unique_id
+   :required: parameter value
+
+   + --- Content area ---
+   |
+   | one or more lines of code in a supported language
+   |
+   + --------------------
+</pre></div>
+</div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<p>unique id
+A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the title directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</p>
+<p>content area
+The title directive must contain at least one line of content.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">:nopre:</span></code></dt>
+<dd><strong>Boolean</strong>. Prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page.</dd>
+<dt><code class="docutils literal"><span class="pre">:caption:</span></code></dt>
+<dd><strong>String</strong>. Define a caption for the title directive.</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>tbd</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>tbd</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>tbd</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>You can embed disqus discussions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">title</span><span class="p">::</span>
+    <span class="p">:</span><span class="n">required</span><span class="p">:</span> <span class="n">value</span> <span class="mi">1</span>
+    <span class="p">:</span><span class="n">optional</span><span class="p">:</span>
+</pre></div>
+</div>
 </div>
 </div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Timed Activity' data-toggle="tooltip">
-    <a href="timed.html" >
-      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
-    </a>
-  </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="timed.html" ></a>
-  
-  <li id="relations-next" class="navLink" title='Next Section - Clickable Areas' data-toggle="tooltip" >
-    <a href="clickable.html" >
-      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
-    </a>
-  </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="clickable.html" >Next Section - Clickable Areas</a>
 
 <script type="text/javascript">
 

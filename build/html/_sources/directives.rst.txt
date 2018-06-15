@@ -21,7 +21,7 @@ Working with Code .. toctree::
                      directives/activecode
                      directives/codelens
                      directives/datafile
-                     directives/blockly
+                     directives/showeval
 
 Containers        .. toctree::
                      :titlesonly:
@@ -29,9 +29,10 @@ Containers        .. toctree::
                      directives/disqus
                      directives/reveal
                      directives/tab
+                     directives/timed
                      directives/video
 
-Q & A             .. toctree::
+Assessments       .. toctree::
                      :titlesonly:
 
                      directives/clickable
@@ -72,16 +73,13 @@ will follow the ``::`` in the directive::
     .. video:: interactive_python_vid_1
        :thumb: ../_static/videothumb.png
 
-Additional required and optional arguments for a directive occur below that first line, 
-one argument per line, surrounded by single ``:`` s. 
+Any required and optional arguments for a directive occur below that first line, 
+one argument per line, surrounded by single ``:``'s. 
 Some of those require parameters -- for example, the ``:thumb:`` addition for the ``video`` directive 
 requires a path to a ``.png`` image for the thumbnail image that should appear for the video.
 
 When reStructured Text files are *built* into static files in your Runestone textbook, 
 the directives result in HTML and JavaScript inside those HTML files that make up your book.
-
-We are in the process of creating a full set of documentation for the HTML and 
-JavaScript created by our special Runestone directives.
 
 Runestone is a `Sphinx <http://www.sphinx-doc.org/en/master/>`_ extension.
 That means directives you can use in Sphinx will also work in Runestone.
@@ -89,23 +87,28 @@ That means directives you can use in Sphinx will also work in Runestone.
 Ensuring Accessibility in Runestone Components
 ----------------------------------------------
  
- Currently we are working on making Runestone books more accessible by modifying Runestone Components. For general changes to accessibility see accessibility.css, located in RunestoneComponents/runestone/common. Current efforts to make our ebooks more accessible are as follows:
+Currently we are working on making Runestone books more accessible by 
+modifying Runestone Components. 
+For general changes to accessibility see accessibility.css, 
+located in RunestoneComponents/runestone/common. 
+Current efforts to make our ebooks more accessible are as follows:
  
- * Modifying highlight color of navigation bar for non-mouse and mouse users
- * Styling Bootstrap buttons to improve contrast ratio up to WCAG AA compliance
- * Inverting color of Bootstrap buttons in order to make selection more obvious for the visually impaired
+* Modifying highlight color of navigation bar for non-mouse and mouse users
+* Styling Bootstrap buttons to improve contrast ratio up to WCAG AA compliance
+* Inverting color of Bootstrap buttons in order to make selection more obvious for the visually impaired
  
- Individual Runestone components can also be modified for more accessibility to users. Current efforts to modify the accessibility of individual components can be found below:
+Individual Runestone components can also be modified for more accessibility to users. 
+Current efforts to modify the accessibility of individual components can be found below:
  
- * Improving tabbing functionality in Activecode questions for non-mouse users
+* Improving tabbing functionality in Activecode questions for non-mouse users
  
- Helpful sites to learn about how to improve accessibility in Runestone ebooks include:
+Helpful sites to learn about how to improve accessibility in Runestone ebooks include:
  
- * https://www.w3.org/WAI/intro/wcag
- * https://www.w3.org/WAI/intro/aria
+* https://www.w3.org/WAI/intro/wcag
+* https://www.w3.org/WAI/intro/aria
  
- Here are some tools to evaluate the above standards:
+Here are some tools to evaluate the above standards:
  
- * https://www.w3.org/WAI/eval/Overview
+* https://www.w3.org/WAI/eval/Overview
  
 

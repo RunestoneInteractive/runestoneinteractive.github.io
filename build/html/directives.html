@@ -378,7 +378,7 @@ where more detailed documentation can be found:</p>
 <li class="toctree-l1"><a class="reference internal" href="directives/activecode.html">Activecode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/codelens.html">Codelens</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/datafile.html">Datafile</a></li>
-<li class="toctree-l1"><a class="reference internal" href="directives/blockly.html">Blockly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directives/showeval.html">ShowEval Trace Mode</a></li>
 </ul>
 </div>
 </td>
@@ -389,12 +389,13 @@ where more detailed documentation can be found:</p>
 <li class="toctree-l1"><a class="reference internal" href="directives/disqus.html">Disqus Comment Box</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/reveal.html">Reveal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/tab.html">Tabs and Tab Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directives/timed.html">Timed Exam Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/video.html">Video</a></li>
 </ul>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td>Q &amp; A</td>
+<tr class="row-even"><td>Assessments</td>
 <td><div class="toctree-wrapper first last compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="directives/clickable.html">Clickable Areas</a></li>
@@ -435,27 +436,29 @@ will follow the <code class="docutils literal"><span class="pre">::</span></code
    <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
-<p>Additional required and optional arguments for a directive occur below that first line,
-one argument per line, surrounded by single <code class="docutils literal"><span class="pre">:</span></code> s.
+<p>Any required and optional arguments for a directive occur below that first line,
+one argument per line, surrounded by single <code class="docutils literal"><span class="pre">:</span></code>’s.
 Some of those require parameters – for example, the <code class="docutils literal"><span class="pre">:thumb:</span></code> addition for the <code class="docutils literal"><span class="pre">video</span></code> directive
 requires a path to a <code class="docutils literal"><span class="pre">.png</span></code> image for the thumbnail image that should appear for the video.</p>
 <p>When reStructured Text files are <em>built</em> into static files in your Runestone textbook,
 the directives result in HTML and JavaScript inside those HTML files that make up your book.</p>
-<p>We are in the process of creating a full set of documentation for the HTML and
-JavaScript created by our special Runestone directives.</p>
 <p>Runestone is a <a class="reference external" href="http://www.sphinx-doc.org/en/master/">Sphinx</a> extension.
 That means directives you can use in Sphinx will also work in Runestone.</p>
 </div>
 <div class="section" id="ensuring-accessibility-in-runestone-components">
 <h2>Ensuring Accessibility in Runestone Components<a class="headerlink" href="#ensuring-accessibility-in-runestone-components" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Currently we are working on making Runestone books more accessible by modifying Runestone Components. For general changes to accessibility see accessibility.css, located in RunestoneComponents/runestone/common. Current efforts to make our ebooks more accessible are as follows:</p>
+<p>Currently we are working on making Runestone books more accessible by
+modifying Runestone Components.
+For general changes to accessibility see accessibility.css,
+located in RunestoneComponents/runestone/common.
+Current efforts to make our ebooks more accessible are as follows:</p>
 <ul class="simple">
 <li>Modifying highlight color of navigation bar for non-mouse and mouse users</li>
 <li>Styling Bootstrap buttons to improve contrast ratio up to WCAG AA compliance</li>
 <li>Inverting color of Bootstrap buttons in order to make selection more obvious for the visually impaired</li>
 </ul>
-<p>Individual Runestone components can also be modified for more accessibility to users. Current efforts to modify the accessibility of individual components can be found below:</p>
+<p>Individual Runestone components can also be modified for more accessibility to users.
+Current efforts to modify the accessibility of individual components can be found below:</p>
 <ul class="simple">
 <li>Improving tabbing functionality in Activecode questions for non-mouse users</li>
 </ul>
@@ -468,7 +471,6 @@ That means directives you can use in Sphinx will also work in Runestone.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.w3.org/WAI/eval/Overview">https://www.w3.org/WAI/eval/Overview</a></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 
