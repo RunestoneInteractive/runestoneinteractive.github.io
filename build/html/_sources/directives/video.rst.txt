@@ -15,7 +15,25 @@ As you may imagine, the job of the video directive is to embed a video in a page
 
        http://media.interactivepython.org/pythondsVideos/list_unique.mov
        http://media.interactivepython.org/pythondsVideos/list_unique.webm
+YouTube
+-------
 
+.. youtube:: anwy2MPT5RE
+    :height: 315
+    :width: 560
+    :align: left
+
+.. reveal:: anwy2MPT5RE
+   :showtitle: Show Source
+   :hidetitle: Hide Source
+   :modaltitle: Source for the example above
+
+   .. code-block:: rst
+
+      .. youtube:: anwy2MPT5RE
+          :height: 315
+          :width: 560
+          :align: left
 
 **Example**
 

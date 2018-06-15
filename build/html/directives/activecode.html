@@ -315,7 +315,8 @@
 <li><a class="reference internal" href="#java">Java</a></li>
 <li><a class="reference internal" href="#c-and-c">C and C++</a></li>
 <li><a class="reference internal" href="#accessing-the-browser-document">Accessing the Browser Document</a></li>
-<li><a class="reference internal" href="#html">HTML</a></li>
+<li><a class="reference internal" href="#incorporating-unit-tests">Incorporating Unit Tests</a></li>
+<li><a class="reference internal" href="#html-source">HTML Source</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#logs-and-grading">Logs and Grading</a></li>
@@ -374,11 +375,14 @@ Your students can experiment with your examples by changing them and running the
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-none"><div class="highlight"><pre>.. activecode:: unique_id
+   :options:
 
    + --- Content area ---+
-   |
+   | question text or additional instructions
+   | ~~~~
    | one or more lines of code in a supported language
-   |
+   | ====
+   | hidden code to be executed
    + --------------------+
 </pre></div>
 </div>
@@ -391,7 +395,7 @@ will be created to contain the program output.</p>
 <p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive.
 Valid identifiers must not contain spaces.
 You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</p>
-<p>The unique identifer will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this specific code block.
+<p>The unique identifier will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this specific code block.
 The unique identifier allows you to tie activecode blocks to a grading interface,
 or any other groupings for assessment within the Runestone interface.
 For this reason, we recommend that you follow some type of naming convention
@@ -400,11 +404,35 @@ for unique identifiers in directives.</p>
 <div class="section" id="optional-arguments">
 <h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
+<dt>content area</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. The content area is a language dependent formatted string.</p>
+<p>Content may be null and can be logically divided into 3 distinct regions,
+all of which are optional.</p>
+<p>The region above the <code class="docutils literal"><span class="pre">~~~~</span></code> delimiter defines a block of text that is not treated as source code.
+It can contain any text as well as inline or paragraph level markup.
+This block can be as large as you like and will be displayed at the top of the rendered output,
+before the <em>Run</em> button.</p>
+<p>The region below the <code class="docutils literal"><span class="pre">====</span></code> delimiter defines a block of text that is treated as source code,
+but not displayed in the code editor.</p>
+<p>All other content is treated as source code and displayed in the code editor.</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_ex_content
+   <span class="nc">:language:</span> <span class="nf">python</span>
+
+   Fix the following code so that it <span class="gs">**always**</span> correctly adds <span class="s">``two``</span> numbers.
+
+   <span class="m">*</span> Your solution must use the parameters a and b
+   ~~~~
+   def add(a,b):
+       return 4
+
+   ====
+   # TODO: add unit tests
+</pre></div>
+</div>
+</dd>
 <dt>autorun</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as
 the web page is fully loaded.</dd>
-<dt>above</dt>
-<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Instruct activecode to place the canvas above the editor.</dd>
 <dt>caption</dt>
 <dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for this activecode directive.</dd>
 <dt>compileargs</dt>
@@ -413,14 +441,17 @@ for the designated language.
 One string per array element.</p>
 <p>This option is only used if the language uses a compiler: C and C++.
 For example:</p>
-<div class="last highlight-none"><div class="highlight"><pre>:language: cpp
-:compileargs: [&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]
+<div class="last highlight-rst"><div class="highlight"><pre><span class="nc">:language:</span> <span class="nf">cpp</span>
+<span class="nc">:compileargs:</span> <span class="nf">[&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]</span>
 </pre></div>
 </div>
 </dd>
 <dt>hidecode</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the activecode editor initially hidden,
 and add a button to automatically show the editor.</p>
+<p>When code is hidden, the ‘Run’ button is also disabled.</p>
+<p>To run the code, either press ‘Show Code’, then ‘Run’,
+or use the <code class="docutils literal"><span class="pre">autorun</span></code> option to run on page load.</p>
 <p class="last">You might use this if you want to put an activecode block in the page in order to include
 it in another activecode block, but you don’t need or want students to see it right away.</p>
 </dd>
@@ -443,30 +474,18 @@ The code in the content area is processed last by activecode.</p>
 <dt>interpreterargs</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of interpreter flags, passed to the external server with your code.
 One string per array element.</p>
-<p>This option is only used if the language uses a interpreter: Python2 or 3, Java, octave.
+<p>This option is only used if the language uses a interpreter: Python2 or 3, Java, and octave.
 For example:</p>
-<div class="last highlight-none"><div class="highlight"><pre>:language: java
-:interpreterargs: [&#39;-Xrs&#39;, &#39;-Xss8m&#39;, &#39;-Xmx200m&#39;]
+<div class="last highlight-rst"><div class="highlight"><pre><span class="nc">:language:</span> <span class="nf">java</span>
+<span class="nc">:interpreterargs:</span> <span class="nf">[&#39;-Xrs&#39;, &#39;-Xss8m&#39;, &#39;-Xmx200m&#39;]</span>
 </pre></div>
 </div>
 </dd>
 <dt>language</dt>
 <dd><code class="docutils literal"><span class="pre">String</span></code>. Set the language of the content area.
 The default language is python.</dd>
-<dt>nocanvas</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Prevents a <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> element from getting created.</p>
-<p class="last">A canvas element is generally created only when a program using a graphics canvas,
-such as when the <code class="docutils literal"><span class="pre">turtle</span></code> library is run.</p>
-</dd>
 <dt>nocodelens</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Hide the button to step through code in codelens.</dd>
-<dt>nopre</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Prevents a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code> element from getting created in the page.</p>
-<p>Normally an output from a print statement is appended to a <code class="docutils literal"><span class="pre">&lt;pre&gt;&lt;/pre&gt;</span></code>
-element in the web page.</p>
-<p class="last">You might use this if you did not want to see the results of print statements
-from an included code segment but otherwise wanted it to be runnable.</p>
-</dd>
 <dt>stdin</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define a virtual ‘standard input’ for an active code block.</p>
 <p class="last">If present, <code class="docutils literal"><span class="pre">:stdin:</span></code> creates a text area and
@@ -478,8 +497,8 @@ An optional value after the argument defines the default value.</p>
 <p>You can have up to six different audio tours of the same code.
 The format of a tour directive is <code class="docutils literal"><span class="pre">tour</span> <span class="pre">name;</span> <span class="pre">line</span> <span class="pre">#:</span> <span class="pre">audio_file_name</span></code>
 where <code class="docutils literal"><span class="pre">audio_file_name</span></code> is the path to the audio file.</p>
-<div class="highlight-none"><div class="highlight"><pre>:tour_1: &quot;Overall Tour&quot;; 1-4: Tour01_Line01; 3: Tour01_Line03;
-:tour_2: &quot;Line by Line Tour&quot;; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;
+<div class="highlight-rst"><div class="highlight"><pre><span class="nc">:tour_1:</span> <span class="nf">&quot;Overall Tour&quot;; 1-4: Tour01_Line01; 3: Tour01_Line03;</span>
+<span class="nc">:tour_2:</span> <span class="nf">&quot;Line by Line Tour&quot;; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;</span>
 </pre></div>
 </div>
 <p class="last">See <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">this tool</a> for easy creation of activecode blocks with audio tours.</p>
@@ -506,7 +525,7 @@ require an external server to compile code on behalf of activecode.</p>
 <p class="last">If hosting a book from <a class="reference external" href="https://pages.github.com/">Github pages</a>,
 you may need to redirect requests to the default jobe host through a proxy:
 Jobe accepts http requests only and <a class="reference external" href="https://pages.github.com/">Github pages</a>
-allows outbound https requests only.</p>
+allows outbound POST content via https only.</p>
 </dd>
 <dt>proxy_uri_runs</dt>
 <dd><p class="first">Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.</p>
@@ -537,7 +556,6 @@ If not specified, then the scratch activecode content is python 2.</p>
 <p>The ‘Show CodeLens’ feature is only available when using default python as the language.
 External libraries such as turtle are not supported in codelens.
 The ‘Show CodeLens’ feature is not currently compatible with the <code class="docutils literal"><span class="pre">:include:</span></code> argument.</p>
-<p>The options <code class="docutils literal"><span class="pre">above</span></code>, <code class="docutils literal"><span class="pre">nopre</span></code>, and <code class="docutils literal"><span class="pre">nocanvas</span></code> do not work correctly.</p>
 <p>If <code class="docutils literal"><span class="pre">stdin</span></code> is used with python, the default value is not used and
 the text area appears in the popup dialog instead of being added to the code block.
 <code class="docutils literal"><span class="pre">input()</span></code> works, but <code class="docutils literal"><span class="pre">stdin.readline()</span></code> does not.</p>
@@ -594,38 +612,7 @@ print (hello("World"))
 </div>
     </div>
 
-<p>The <code class="docutils literal"><span class="pre">nopre</span></code> option suppresses creating a pre-formatted output area in the activecode block.</p>
-<div id='example1a' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example1a
-   <span class="nc">:nopre:</span>
-   <span class="nc">:nocanvas:</span>
-   <span class="nc">:nocodelens:</span>
-
-   def hello(name):
-       return &quot;Hello, &quot; + name + &quot;!&quot;
-
-   print (hello(&quot;World&quot;))
-</pre></div>
-</div>
-</div><div data-component="tab" data-tabname="Run It" >
-
-<div data-childcomponent="function-example1a" class="runestone explainer ac_section alert alert-warning">
-
-<textarea data-component="activecode" id=function-example1a data-lang="python" 
-      data-timelimit=25000    
-    data-audio=''   
-         >
-def hello(name):
-    return "Hello, " + name + "!"
-
-print (hello("World"))
-</textarea>
-</div>
-</div>
-    </div>
-
-<p>Active code content is not required to create output.
-<code class="docutils literal"><span class="pre">&lt;pre&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;canvas&gt;</span></code> elements are only created when needed.</p>
+<p>An output area is created only when needed.</p>
 <div id='example2' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example2
    <span class="nc">:language:</span> <span class="nf">python</span>
@@ -719,6 +706,127 @@ t = turtle.Turtle()
 for i in range(4):
     t.forward(100)
     t.left(90)
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>This next program shown below is an interesting the turtle and recursion
+to construct a type of fractal called a Sierpinski Triangle.</p>
+<div id='example4-fractal' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<p>Try some other changes and see what happens (maybe change a few of the colors or make the level 2).
+If you ever want to go back to the original example, simply reload the page in the browser.
+One of the great things about activecode is that you can experiment as much as you want.
+This can be very helpful as you are learning to program.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-ex4-fractal
+    <span class="nc">:nocodelens:</span>
+    <span class="nc">:autorun:</span>
+    <span class="nc">:hidecode:</span>
+
+    Once you run the program, 
+    try experimenting with the number of triangle levels.
+    You can find this on line 39 (it is currently set to 3).  Try 4!
+
+    Note that this description did not affect line numbering in the source editor.
+    ~~~~
+    import turtle
+
+    def drawTriangle(points,color,myTurtle):
+        myTurtle.fillcolor(color)
+        myTurtle.up()
+        myTurtle.goto(points[0][0],points[0][1])
+        myTurtle.down()
+        myTurtle.begin_fill()
+        myTurtle.goto(points[1][0],points[1][1])
+        myTurtle.goto(points[2][0],points[2][1])
+        myTurtle.goto(points[0][0],points[0][1])
+        myTurtle.end_fill()
+
+    def getMid(p1,p2):
+        return ( (p1[0]+p2[0]) / 2, (p1[1] + p2[1]) / 2)
+
+    def sierpinski(points,degree,myTurtle):
+        colormap = [&#39;blue&#39;,&#39;red&#39;,&#39;green&#39;,&#39;white&#39;,&#39;yellow&#39;,
+                    &#39;violet&#39;,&#39;orange&#39;]
+        drawTriangle(points,colormap[degree],myTurtle)
+        if degree &gt; 0:
+            sierpinski([points[0],
+                            getMid(points[0], points[1]),
+                            getMid(points[0], points[2])],
+                       degree-1, myTurtle)
+            sierpinski([points[1],
+                            getMid(points[0], points[1]),
+                            getMid(points[1], points[2])],
+                       degree-1, myTurtle)
+            sierpinski([points[2],
+                            getMid(points[2], points[1]),
+                            getMid(points[0], points[2])],
+                       degree-1, myTurtle)
+
+    def main():
+       myTurtle = turtle.Turtle()
+       myWin = turtle.Screen()
+       myPoints = [[-100,-50],[0,100],[100,-50]]
+       sierpinski(myPoints,3,myTurtle)
+       myWin.exitonclick()
+
+    main()
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-example-ex4-fractal" class="runestone explainer ac_section alert alert-warning">
+<p>Once you run the program,
+try experimenting with the number of triangle levels.
+You can find this on line 39 (it is currently set to 3).  Try 4!</p>
+<p>Note that this description did not affect line numbering in the source editor.</p>
+
+<textarea data-component="activecode" id=ac-example-ex4-fractal data-lang="python" data-autorun="true"
+    data-hidecode="true"  data-timelimit=25000    
+    data-audio=''   
+         >
+import turtle
+
+def drawTriangle(points,color,myTurtle):
+    myTurtle.fillcolor(color)
+    myTurtle.up()
+    myTurtle.goto(points[0][0],points[0][1])
+    myTurtle.down()
+    myTurtle.begin_fill()
+    myTurtle.goto(points[1][0],points[1][1])
+    myTurtle.goto(points[2][0],points[2][1])
+    myTurtle.goto(points[0][0],points[0][1])
+    myTurtle.end_fill()
+
+def getMid(p1,p2):
+    return ( (p1[0]+p2[0]) / 2, (p1[1] + p2[1]) / 2)
+
+def sierpinski(points,degree,myTurtle):
+    colormap = ['blue','red','green','white','yellow',
+                'violet','orange']
+    drawTriangle(points,colormap[degree],myTurtle)
+    if degree > 0:
+        sierpinski([points[0],
+                        getMid(points[0], points[1]),
+                        getMid(points[0], points[2])],
+                   degree-1, myTurtle)
+        sierpinski([points[1],
+                        getMid(points[0], points[1]),
+                        getMid(points[1], points[2])],
+                   degree-1, myTurtle)
+        sierpinski([points[2],
+                        getMid(points[2], points[1]),
+                        getMid(points[0], points[2])],
+                   degree-1, myTurtle)
+
+def main():
+   myTurtle = turtle.Turtle()
+   myWin = turtle.Screen()
+   myPoints = [[-100,-50],[0,100],[100,-50]]
+   sierpinski(myPoints,3,myTurtle)
+   myWin.exitonclick()
+
+main()
 </textarea>
 </div>
 </div>
@@ -997,8 +1105,81 @@ Width can also be specified using relative sizes:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="html">
-<h3>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="incorporating-unit-tests">
+<h3>Incorporating Unit Tests<a class="headerlink" href="#incorporating-unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>It’s nice to be able to have students solve a particular problem by writing some code,
+but even better if you can give them some feedback and provide some tests for them.
+Much of the <a class="reference external" href="http://docs.python.org/2/library/unittest.html">unittest</a> module
+from Python is available in the <code class="docutils literal"><span class="pre">unittest</span></code> module for activecode.</p>
+<div id='example-unit' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<p>The full complement of
+<a class="reference external" href="http://docs.python.org/2/library/unittest.html#assert-methods">assertXXX functions is available</a>.
+In an introductory course exposing the inner workings of the unittest class
+may lead to more confusion that anything.
+However, you can still get the benefit of the unittest module with activecode
+by placing it in the hidden code at the end.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> example-unit
+   <span class="nc">:nocodelens:</span>
+
+   Fix the following code so that it <span class="gs">**always**</span> 
+   correctly adds <span class="s">``two``</span> numbers.
+
+   <span class="m">*</span> Your solution must use the parameters a and b
+   ~~~~
+   def add(a,b):
+       return 4
+
+   ====
+   from unittest.gui import TestCaseGui
+
+   class myTests(TestCaseGui):
+
+       def testOne(self):
+           self.assertEqual(add(2,2),4,&quot;You got lucky&quot;)
+           self.assertAlmostEqual(add(2.0,3.0), 5.0, 5, &quot;Try adding your parameters&quot;)
+           self.assertEqual(add(3,-5),-2)
+
+   myTests().main()
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="example-unit" class="runestone explainer ac_section alert alert-warning">
+<p>Fix the following code so that it <strong>always</strong>
+correctly adds <code class="docutils literal"><span class="pre">two</span></code> numbers.</p>
+<ul class="simple">
+<li>Your solution must use the parameters a and b</li>
+</ul>
+
+<textarea data-component="activecode" id=example-unit data-lang="python" 
+      data-timelimit=25000    
+    data-audio=''   
+         >
+def add(a,b):
+    return 4
+
+====
+from unittest.gui import TestCaseGui
+
+class myTests(TestCaseGui):
+
+    def testOne(self):
+        self.assertEqual(add(2,2),4,"You got lucky")
+        self.assertAlmostEqual(add(2.0,3.0), 5.0, 5, "Try adding your parameters")
+        self.assertEqual(add(3,-5),-2)
+
+myTests().main()
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Built-in support for unit test libraries is currently limited to python.</p>
+<p>It is still possible to use a combination of <code class="docutils literal"><span class="pre">:include:</span></code> and hidden code (<code class="docutils literal"><span class="pre">====</span></code>)
+to achieve similar goals by rolling your own tiny test framework.</p>
+</div>
+<div class="section" id="html-source">
+<h3>HTML Source<a class="headerlink" href="#html-source" title="Permalink to this headline">¶</a></h3>
 <p>Adding a HTML example is similar to programming language code blocks.</p>
 <p>Codelens is not supported for HTML,
 so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
@@ -1093,7 +1274,8 @@ Each logged in user can view their own history, version by version, of the code 
 containing multiple problems.
 You can also include hidden code and data files in these windows,
 for instance, so students can invoke functions without seeing the function definitions.</p>
-<p>See the instructor documentation [LINK TBA] for explanation of how to associate activecode blocks with graded assignments.</p>
+<p>See the <a class="reference internal" href="../instructor_users.html"><span class="doc">User Guide for Instructors</span></a> for an explanation of how to associate activecode blocks
+with graded assignments.</p>
 </div>
 </div>
 
