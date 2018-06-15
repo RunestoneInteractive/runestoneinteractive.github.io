@@ -188,7 +188,7 @@ jobe_server
     If hosting a book from `Github pages <https://pages.github.com/>`__,
     you may need to redirect requests to the default jobe host through a proxy:
     Jobe accepts http requests only and `Github pages <https://pages.github.com/>`__ 
-    allows outbound https requests only.
+    allows outbound POST content via https only.
 
 proxy_uri_runs
     Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.
