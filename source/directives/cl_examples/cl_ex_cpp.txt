@@ -1,0 +1,4 @@
+.. raw:: html
+
+   <iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Cstring%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initializer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%0A%20%20return%200%3B%0A%7D%0A&codeDivHeight=400&codeDivWidth=350&py=cpp"> </iframe>
+

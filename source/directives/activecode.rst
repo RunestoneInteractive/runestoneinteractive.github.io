@@ -4,11 +4,11 @@ Activecode
 The activecode directive embeds executable, editable code in your pages. 
 Your students can experiment with your examples by changing them and running them over and over again.
 
-
 Synopsis
 --------
+The general format of the activecode directive is:
 
-.. code-block:: none
+.. code-block:: rst
 
    .. activecode:: unique_id
       :options:
@@ -27,7 +27,6 @@ will be created to contain the program output.
       
 Required Arguments
 ------------------
-
 A unique identifier after a space and the ``::`` in the activecode directive.
 Valid identifiers must not contain spaces.
 You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
@@ -40,7 +39,6 @@ for unique identifiers in directives.
 
 Optional Arguments
 ------------------
-
 content area
     ``String``. The content area is a language dependent formatted string.
 
@@ -77,7 +75,7 @@ autorun
     the web page is fully loaded.
 
 caption
-    ``String``. Define a caption for this activecode directive.
+    ``String``. Define a caption for the bottom of the activecode frame.
 
 compileargs
     ``Array``. A list of compiler flags, passed to the external server with your code.

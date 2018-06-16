@@ -374,16 +374,17 @@
 Your students can experiment with your examples by changing them and running them over and over again.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-none"><div class="highlight"><pre>.. activecode:: unique_id
-   :options:
+<p>The general format of the activecode directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> unique_id
+   <span class="nc">:options:</span>
 
-   + --- Content area ---+
-   | question text or additional instructions
-   | ~~~~
-   | one or more lines of code in a supported language
-   | ====
-   | hidden code to be executed
-   + --------------------+
+   <span class="m">+</span> --- Content area ---+
+   <span class="o">|</span> question text or additional instructions
+   <span class="o">|</span> ~~~~
+   <span class="o">|</span> one or more lines of code in a supported language
+   <span class="o">|</span> ====
+   <span class="o">|</span> hidden code to be executed
+   <span class="m">+</span> --------------------+
 </pre></div>
 </div>
 <p>Depending on the code within the content area,
@@ -434,7 +435,7 @@ but not displayed in the code editor.</p>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as
 the web page is fully loaded.</dd>
 <dt>caption</dt>
-<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for this activecode directive.</dd>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for the bottom of the activecode frame.</dd>
 <dt>compileargs</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of compiler flags, passed to the external server with your code.
 for the designated language.
