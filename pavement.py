@@ -3,6 +3,7 @@ from paver.easy import *
 import paver.setuputils
 paver.setuputils.install_distutils_tasks()
 import os, sys
+import pkg_resources
 
 sys.path.append(os.getcwd())
 sys.path.append('../modules')
@@ -34,8 +35,15 @@ options(
             'course_url':master_url,
             'use_services': 'true',
             'python3': 'true',
+            'jobe_server': 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz',
+            'proxy_uri_runs': '/jobe/index.php/restapi/runs/',
+            'proxy_uri_files': '/jobe/index.php/restapi/files/'
         }
     )
 )
 
+version = pkg_resources.require("runestone")[0].version
+options.build.template_args['runestone_version'] = version
+
+    
 from runestone import build  # build is called implicitly by the paver driver.
