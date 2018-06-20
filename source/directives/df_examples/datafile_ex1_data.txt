@@ -1,0 +1,6 @@
+.. datafile:: ex1.txt
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+
