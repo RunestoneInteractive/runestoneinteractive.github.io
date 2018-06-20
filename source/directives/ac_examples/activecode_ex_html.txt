@@ -1,5 +1,6 @@
 .. activecode:: ac-example-html
    :language: html
+   :enabledownload:
 
    <html>
      <body>

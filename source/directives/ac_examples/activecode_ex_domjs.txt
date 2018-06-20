@@ -1,5 +1,6 @@
 .. activecode:: ac-example-domjs
    :language: javascript
+   :enabledownload:
 
    let t = document.getElementById('text1');
    writeln('value = ' + t.value);

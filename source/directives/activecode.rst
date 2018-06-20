@@ -70,16 +70,26 @@ content area
            ====
            # TODO: add unit tests
 
+autograde
+    ``Boolean``. Declare an activecode block that will begin running as soon as 
+
 autorun 
     ``Boolean``. Declare an activecode block that will begin running as soon as 
     the web page is fully loaded.
 
+available_files
+    ``CSV``. A comma separated list of simulated input files for use.
+
+    Each entry must be the unique_id of a :doc:`datafile` directive.
+
 caption
     ``String``. Define a caption for the bottom of the activecode frame.
 
+chatcodes
+    ``Boolean``. Enable users to talk about this code snippet with others
+
 compileargs
     ``Array``. A list of compiler flags, passed to the external server with your code.
-    for the designated language.
     One string per array element.
 
     This option is only used if the language uses a compiler: C and C++.
@@ -89,6 +99,14 @@ compileargs
 
        :language: cpp
        :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+datafile
+    ``CSV``. A comma separated list of simulated input files for use.
+
+    Each entry must be the unique_id of a :doc:`datafile` directive.
+
+enabledownload
+    ``Boolean``. allow textfield contents to be downloaded to local file
 
 hidecode 
     ``Boolean``. Make the activecode editor initially hidden, 
@@ -137,8 +155,27 @@ language
     ``String``. Set the language of the content area.
     The default language is python. 
 
+linkargs
+    ``Array``. A list of linker flags, passed to the external server with your code.
+    One string per array element.
+
+    This option is only used if the language uses a linker: C and C++.
+    For example:
+
+    .. code-block:: rst
+
+       :language: cpp
+       :linkargs: ['-lm', '-Wextra', '-pedantic', '-std=c++11']
+
+
 nocodelens 
     ``Boolean``. Hide the button to step through code in codelens.
+
+sourcefile
+    ``String``. Replace the default temporary source file name with the specified value.
+
+    Current defaults are ``test.``, followed by a language appropriate extension.
+    For java, the file name matches the class name.
 
 stdin
     ``String``. Define a virtual 'standard input' for an active code block.
@@ -147,10 +184,10 @@ stdin
     allows a string to be passed to the program for processing.
     An optional value after the argument defines the default value.
 
-tour_{1,2,3,4,5,6}  
+tour_{1,2,3,4,5}  
     ``Formatted String``. Used for audio tours of the code.
 
-    You can have up to six different audio tours of the same code.  
+    You can have up to five different audio tours of the same code.  
     The format of a tour directive is ``tour name; line #: audio_file_name`` 
     where ``audio_file_name`` is the path to the audio file. 
 
@@ -223,10 +260,11 @@ The 'Show CodeLens' feature is only available when using default python as the l
 External libraries such as turtle are not supported in codelens.
 The 'Show CodeLens' feature is not currently compatible with the ``:include:`` argument.
 
-
 If ``stdin`` is used with python, the default value is not used and 
 the text area appears in the popup dialog instead of being added to the code block.
 ``input()`` works, but ``stdin.readline()`` does not.
+
+The ``available_files`` option is python only.
 
 Examples
 --------
@@ -368,6 +406,38 @@ so there is no need to add a ``:nocodelens:`` parameter.
    .. tab:: Run It
 
       .. include:: ac_examples/activecode_ex_java.txt
+
+
+.. tabbed:: example-java-inherit
+
+   .. tab:: class Person
+
+      The source code for this file is stored in file
+      ``ac_examples/activecode_ex_java_person.txt``
+
+      .. literalinclude:: ac_examples/activecode_ex_java_person.txt
+         :language: rst
+
+   .. tab:: class Employee
+
+      The source for the Person class can be included at the end of the Employee class.
+      The source is hidden from users, but compiled into the final program.
+
+      .. literalinclude:: ac_examples/activecode_ex_java_employee.txt
+         :language: rst
+
+   .. tab:: Run Person
+
+      The example source that does not compile 'standalone' can still be displayed
+      in a standard code-block.
+
+      .. include:: ac_examples/activecode_ex_java_person.txt
+
+   .. tab:: Run Employee
+
+      .. include:: ac_examples/activecode_ex_java_employee.txt
+
+
 
 C and C++
 .........
@@ -512,6 +582,28 @@ so there is no need to add a ``:nocodelens:`` parameter.
    .. tab:: Render Fragment
 
       .. include:: ac_examples/activecode_ex_html_frag.txt
+
+ 
+Of course, having explored both Javascript and HTML,
+we may want an example that uses them both.
+The activecode directive provides good support for embedding javascript code
+directly in example HTML:
+
+.. tabbed:: example-html-js
+
+   .. tab:: Source
+
+      This example is adapted from `Fundamentals of Web Programming 
+      <https://runestone.academy/runestone/static/webfundamentals/index.html>`__
+
+      .. literalinclude:: ac_examples/activecode_ex_html_js.txt
+         :language: rst
+
+   .. tab:: Render
+
+      .. include:: ac_examples/activecode_ex_html_js.txt
+
+
 
 
 Logs and Grading

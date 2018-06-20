@@ -2,6 +2,7 @@
    :language: cpp
    :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
    :stdin: Alice
+   :enabledownload:
 
    // A simple test for C++11 compiler
    #include <iostream>

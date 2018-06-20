@@ -1,7 +1,8 @@
-.. activecode:: ac-example-java
+.. activecode:: ac-ex-java
    :language: java
    :interpreterargs: ['-Xrs', '-Xss8m', '-Xmx128m']
    :stdin: 100
+   :enabledownload:
 
    import java.util.Scanner;
 
