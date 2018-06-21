@@ -1,47 +1,57 @@
 Parsons Problems
 ================
 
-The Parsons Problem directive, ``.. parsonsprob::``, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
+In a Parsons problem, users are provided with the lines / blocks of code and 
+must reorder them to create a solution. 
 
-::
 
-    .. parsonsprob:: parsons_problem_1
+Synopsis
+--------
+The general format of the parsons directive is:
 
-       Construct a block of code that correctly implements the accumulator pattern.
-       -----
-       x = 0
-       for i in range(10)
-          x = x + 1
+.. code-block:: rst
 
-.. parsonsprob:: parsons_problem_1
+   .. parsonsprob:: unique_id
+      :options:
 
-   Construct a block of code that correctly implements the accumulator pattern.
-   -----
-   x = 0
-   for i in range(10)
-	  x = x + 1
+      + --- Content area ---
+      |
+      | one or more lines of instruction for the problem
+      | ----
+      | one or more lines of text 
+      | ====
+      | grouped by
+      | ====
+      | four equals
+      |
+      + --------------------
 
-**Required Arguments**
+Required Arguments
+------------------
 
-The identifier after the ``::`` must be unique. No spaces.
+unique id
+    A unique identifier after a space and the ``::`` in the title directive.
+    Valid identifiers must not contain spaces.
+    You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
 
-**Optional Arguments**
+content area
+    Place the question text after the arguments. 
+    Use ``-----`` to separate the question text from the code. 
+    The code should be specified in the correct order and indented properly. 
+    You can also group lines using ``=====`` as in the problem below. 
 
-``:adaptive:`` - If specified, then this option will offer help after a few failed attempts.  After more failures, it will incrementally simplify the problem.
+    The code blocks will be shuffled randomly in the source area; 
+    press the *Reset* button on a problem to see this shuffling in action. 
+    To make the problem more difficult, you can enter *distractors* that are not part of the solution. 
+    These lines or blocks are marked by placing ``#distractor`` after the line. 
+    You can pair one or more distractors with a correct code block by marking it with ``#paired``. 
+    When shuffled, paired blocks will be kept together with the correct code block.
 
-``:language:`` - You can specify the language for the code. *python* is the default value, but other programming languages are possible: *java*, *javascript*, *html*, *c*, or *ruby*. In addition to these programming languages, you can also specify *natural* for plain text. The default language can be set in the book ``pavement.py`` file.
+    .. note::
 
-``:noindent:`` - If you do not want to use the 2D capability, this argument will indent blocks as you specify them (see below). This makes the problem significantly easier to solve.
+       There is no space between the ``#`` and the ``distractor`` or ``paired``
 
-``:maxdist:`` - If you specify distractors in the code, then this will specify the maximum number of distractors presented to the user.
-
-``:order:`` - If you don't want the code to be randomly shuffled, you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).
-
-**Content**
-
-Place the question text after the arguments. Use ``-----`` to separate the question text from the code. The code should be specified in the correct order and indented properly. You can also group lines using ``=====`` as in the problem below. The code blocks will be shuffled randomly in the source area; press the *Reset* button on a problem to see this shuffling in action. To make the problem more difficult, you can enter distractors that are not part of the solution. These lines or blocks are marked by placing ``#distractor`` after the line. You can pair one or more distractors with a correct code block by marking it with ``#paired``. When shuffled, these will be kept together with the correct code block (see below).
-
-::
+.. code-block:: rst
 
     .. parsonsprob:: parsons_problem_2
        :noindent:
@@ -50,44 +60,110 @@ Place the question text after the arguments. Use ``-----`` to separate the quest
        -----
        def findmax(alist):
        =====
-    	  if len(alist) == 0:
-    		 return None
+          if len(alist) == 0:
+             return None
        =====
-    	  curmax = alist[0]
-    	  for item in alist:
+          curmax = alist[0]
+          for item in alist:
        =====
-    		 if item > curmax:
+             if item > curmax:
        =====
-             if item > curmax: #paired
+             if item < curmax: #paired
        =====
-    			curmax = item
+                curmax = item
        =====
-    	  return curmax
+          return curmax
        =====
           return CurMax #distractor
 
 
-.. parsonsprob:: parsons_problem_2
-   :noindent:
+Optional Arguments
+------------------
 
-   Construct a function that returns the max value from a list.
-   -----
-   def findmax(alist):
-   =====
-      if len(alist) == 0:
-         return None
-   =====
-      curmax = alist[0]
-      for item in alist:
-   =====
-         if item &gt; curmax:
-   =====
-         if item &lt; curmax: #paired
-   =====
-            curmax = item
-   =====
-      return curmax
-   =====
-      return CurMax #distractor
+adaptive
+    ``Boolean``. Offer to 'adapt', or simplify the problem after a few failed attempts.
+    Default is false.
+
+    If specified, then this option will offer help after a few failed attempts.  
+    After more failures, it will incrementally simplify the problem.
+
+language
+    ``String``. Set the language of the content area.
+
+    The default language is python. 
+    In a Parsons problem, the language is only used to control syntax highlighting.
+
+    The default language can be set in the book ``pavement.py`` file.
+
+noindent
+    ``Boolean``. Do not mark against incorrect indentation.
+
+    If you do not want to force correct indentation, 
+    then this argument will indent blocks as you specify them. 
+    This makes the problem significantly easier to solve.
+
+    By default, code indentation matters. 
+    This is semantically meaningful in Python and good code practice in other programming languages. 
+    In the problem below, the third line needs to be indented to be correct.
+
+    .. code-block:: rst
+
+        .. parsonsprob:: par_ex_indent_1
+
+           Construct a block of code that correctly implements the accumulator pattern.
+           -----
+           x = 0
+           for i in range(10)
+              x = x + 1
+
+maxdist
+    ``Integer``. Define a maximum number of distractors
+
+    If you specify distractors in the code, 
+    then this will specify the maximum number of distractors presented to the user.
+
+order
+    ``List``. Define a specific 'shuffled' order
+
+    If you don't want the code to be randomly shuffled, 
+    you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).
+
+
+Languages supported
+-------------------
+
+Any text is supported, however, syntax highlighting is supported for
+a limited number of programming languages.
+Syntax highlighting is supported for python, java, javascript, html, 
+c, c++, ruby, and natural.
+
+The language 'natural' is equivalent to 'none' in docutils,
+that is syntax highlighting is disabled.
+
+.. note::
+   
+   This directive uses 'c++' to refer to C++, whereas the activecode directive uses 'cpp'.
+
+Sphinx configuration options
+----------------------------
+
+The following ``options.build.template_args`` values can be set in a book pavement.py file.
+
+language
+    The default language for parsons problem directives.
+
+Internationalization
+....................
+
+TBD.
+
+Known limitations
+-----------------
+
+tbd
+
+Examples
+--------
+
 
 
