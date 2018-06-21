@@ -228,13 +228,20 @@ jobe_server
 proxy_uri_runs
     Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.
 
-    Most authors will not need to modify this.
-
 proxy_uri_files
     Direct the Jobe server to use the specified directory to hold generated files to be returned
     within the response.
 
-    Most authors will not need to modify this.
+If you need to configure one of these Jobe server parameters, 
+then you need to configure them all for requests sent to jobe to be handled correctly.
+Generally you can set the last two to:
+
+.. code-block:: javascript
+
+   'proxy_uri_runs': '/jobe/index.php/restapi/runs/',
+   'proxy_uri_files': '/jobe/index.php/restapi/files/'
+
+Most authors will not need to use anything other than these values.
 
 Sphinx bootstrap
 ................
