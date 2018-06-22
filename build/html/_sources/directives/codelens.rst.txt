@@ -5,7 +5,7 @@ The codelens directive creates an interactive environment for you to step throug
 
 Synopsis
 --------
-The general format of the activecode directive is:
+The general format of the codelens directive is:
 
 .. code-block:: rst
 
@@ -399,7 +399,8 @@ click on a line of code and set breakpoints.
 
 The back and forward buttons jump to the next breakpoint, if set.
 
-**Logs & Grading**
+Logs & Grading
+--------------
 
 Clicks are logged. Answers to questions are also logged, but are currently not plugged into the grading interface and are used solely as a tool for checking understanding.
 

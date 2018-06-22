@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -310,6 +316,7 @@
 <li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 <li><a class="reference internal" href="#workarounds-for-languages-other-than-python">Workarounds for languages other than Python</a></li>
+<li><a class="reference internal" href="#logs-grading">Logs &amp; Grading</a></li>
 </ul>
 </li>
 </ul>
@@ -363,7 +370,7 @@
 <p>The codelens directive creates an interactive environment for you to step through small python code examples.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p>The general format of the activecode directive is:</p>
+<p>The general format of the codelens directive is:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> unique_id
    <span class="nc">:options:</span>
 
@@ -557,7 +564,7 @@ $(window).resize(function() {
 });
 </script>
 </div>
-<div id='cl_null_ex' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='cl_null_ex' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> cl_ex_null
 </pre></div>
 </div>
@@ -612,7 +619,7 @@ $(window).resize(function() {
 });
 </script>
 </div>
-<div id='cl_simple' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='cl_simple' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>This example comes from <a class="reference external" href="http://pythontutor.com">http://pythontutor.com</a> itself.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> cl_ex1
 
@@ -705,7 +712,7 @@ $(window).resize(function() {
 });
 </script>
 </div>
-<div id='cl_ex_question2' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='cl_ex_question2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> question_example
    <span class="nc">:question:</span> <span class="nf">What is the value in b after line 4 executes?</span>
    <span class="nc">:feedback:</span> <span class="nf">When d is set to a copy of the value of b it doesn&#39;t change the value of b.</span>
@@ -922,7 +929,7 @@ $(window).resize(function() {
 });
 </script>
 </div>
-<div id='cl_simple' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='cl_simple' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> Ketchup_Speed
    <span class="nc">:question:</span> <span class="nf">What line will be executed after the current line executes?</span>
    <span class="nc">:feedback:</span> <span class="nf">This code is executed one line at a time from top to bottom. (No loops.)</span>
@@ -951,7 +958,7 @@ that does not mean there is not a code visualization option available.</p>
 <p>You can link directly to pythontutor.com.
 The site include a facility to generate either a link
 or an emdeddable iframe:</p>
-<div id='example-cpp' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example-cpp' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">raw</span><span class="p">::</span> html
 
    &lt;iframe width=&quot;800&quot; height=&quot;500&quot; frameborder=&quot;0&quot; src=&quot;http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Cstring%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initializer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20&#39;%5Cn&#39;%3B%0A%20%20%7D%0A%0A%20%20return%200%3B%0A%7D%0A&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;py=cpp&quot;&gt; &lt;/iframe&gt;
@@ -977,7 +984,9 @@ with an <code class="docutils literal"><span class="pre">only</span></code> dire
 <p>One minor advantage of the embedded iframe over codelens is the ability to
 click on a line of code and set breakpoints.</p>
 <p>The back and forward buttons jump to the next breakpoint, if set.</p>
-<p><strong>Logs &amp; Grading</strong></p>
+</div>
+<div class="section" id="logs-grading">
+<h2>Logs &amp; Grading<a class="headerlink" href="#logs-grading" title="Permalink to this headline">¶</a></h2>
 <p>Clicks are logged. Answers to questions are also logged, but are currently not plugged into the grading interface and are used solely as a tool for checking understanding.</p>
 </div>
 </div>

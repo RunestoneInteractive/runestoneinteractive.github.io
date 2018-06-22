@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -365,7 +371,7 @@
             <span class="p">:</span><span class="n">identifier</span><span class="p">:</span> <span class="n">helloworlddiscussion</span>
 </pre></div>
 </div>
-<div id='exercise1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Question 1" >
+<div id='exercise1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Question 1" >
 <p>Write a program that prints “Hello, world”.</p>
 
 <div data-childcomponent="helloworld" class="runestone explainer ac_section alert alert-warning">
@@ -373,7 +379,7 @@
 <textarea data-component="activecode" id=helloworld data-lang="python" 
       data-timelimit=25000  data-codelens="true"  
     data-audio=''   
-         >
+          >
 print("Hello, world")
 </textarea>
 </div>

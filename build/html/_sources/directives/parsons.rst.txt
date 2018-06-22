@@ -1,93 +1,261 @@
 Parsons Problems
 ================
 
-The Parsons Problem directive, ``.. parsonsprob::``, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.
-
-::
-
-    .. parsonsprob:: parsons_problem_1
-
-       Construct a block of code that correctly implements the accumulator pattern.
-       -----
-       x = 0
-       for i in range(10)
-          x = x + 1
-
-.. parsonsprob:: parsons_problem_1
-
-   Construct a block of code that correctly implements the accumulator pattern.
-   -----
-   x = 0
-   for i in range(10)
-	  x = x + 1
-
-**Required Arguments**
-
-The identifier after the ``::`` must be unique. No spaces.
-
-**Optional Arguments**
-
-``:adaptive:`` - If specified, then this option will offer help after a few failed attempts.  After more failures, it will incrementally simplify the problem.
-
-``:language:`` - You can specify the language for the code. *python* is the default value, but other programming languages are possible: *java*, *javascript*, *html*, *c*, or *ruby*. In addition to these programming languages, you can also specify *natural* for plain text. The default language can be set in the book ``pavement.py`` file.
-
-``:noindent:`` - If you do not want to use the 2D capability, this argument will indent blocks as you specify them (see below). This makes the problem significantly easier to solve.
-
-``:maxdist:`` - If you specify distractors in the code, then this will specify the maximum number of distractors presented to the user.
-
-``:order:`` - If you don't want the code to be randomly shuffled, you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).
-
-**Content**
-
-Place the question text after the arguments. Use ``-----`` to separate the question text from the code. The code should be specified in the correct order and indented properly. You can also group lines using ``=====`` as in the problem below. The code blocks will be shuffled randomly in the source area; press the *Reset* button on a problem to see this shuffling in action. To make the problem more difficult, you can enter distractors that are not part of the solution. These lines or blocks are marked by placing ``#distractor`` after the line. You can pair one or more distractors with a correct code block by marking it with ``#paired``. When shuffled, these will be kept together with the correct code block (see below).
-
-::
-
-    .. parsonsprob:: parsons_problem_2
-       :noindent:
-
-       Construct a function that returns the max value from a list.
-       -----
-       def findmax(alist):
-       =====
-    	  if len(alist) == 0:
-    		 return None
-       =====
-    	  curmax = alist[0]
-    	  for item in alist:
-       =====
-    		 if item > curmax:
-       =====
-             if item > curmax: #paired
-       =====
-    			curmax = item
-       =====
-    	  return curmax
-       =====
-          return CurMax #distractor
+In a Parsons problem, users are provided with the lines / blocks of code and students
+must reorder them to create a solution. 
 
 
-.. parsonsprob:: parsons_problem_2
-   :noindent:
+Synopsis
+--------
+The general format of the parsons directive is:
 
-   Construct a function that returns the max value from a list.
-   -----
-   def findmax(alist):
-   =====
-      if len(alist) == 0:
-         return None
-   =====
-      curmax = alist[0]
-      for item in alist:
-   =====
-         if item &gt; curmax:
-   =====
-         if item &lt; curmax: #paired
-   =====
-            curmax = item
-   =====
-      return curmax
-   =====
-      return CurMax #distractor
+.. code-block:: rst
+
+   .. parsonsprob:: unique_id
+      :options:
+
+      + --- Content area ---
+      |
+      | one or more lines of instruction for the problem
+      | -----
+      | one or more lines of text 
+      | =====
+      | grouped by
+      | =====
+      | five equals
+      |
+      + --------------------
+
+Required Arguments
+------------------
+
+unique id
+    A unique identifier after a space and the ``::`` in the title directive.
+    Valid identifiers must not contain spaces.
+    You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
+
+content area
+    A content block is required for a parsons problem.
+    Place the question text after any directive options, if specified.
+
+    Use ``-----`` to separate the question text from the code. 
+    The code should be specified in the correct order and indented properly. 
+    You can also group lines using ``=====`` as in the problem below. 
+
+    The code blocks will be shuffled randomly in the source area; 
+    press the *Reset* button on a problem to see this shuffling in action. 
+    To make the problem more difficult, you can enter *distractors* that are not part of the solution. 
+    These lines or blocks are marked by placing ``#distractor`` after the line. 
+    You can pair one or more distractors with a correct code block by marking it with ``#paired``. 
+    When shuffled, paired blocks will be kept together with the correct code block.
+
+    .. note::
+
+       There is no space between the ``#`` and the ``distractor`` or ``paired``
+
+Optional Arguments
+------------------
+
+adaptive
+    ``Boolean``. Offer to 'adapt', or simplify the problem after a few failed attempts.
+    Default is false.
+
+    If specified, then this option will offer help after a few failed attempts.  
+    After more failures, it will incrementally simplify the problem.
+
+language
+    ``String``. Set the language of the content area.
+
+    The default language is python. 
+    In a Parsons problem, the language is only used to control syntax highlighting.
+
+    The default language can be set in the book ``pavement.py`` file.
+
+maxdist
+    ``Integer``. Define a maximum number of distractors
+
+    If you specify distractors in the code, 
+    then this will specify the maximum number of distractors presented to the user.
+
+noindent
+    ``Boolean``. Do not mark against incorrect indentation.
+
+    If you do not want to force correct indentation, 
+    then this argument will indent blocks as you specify them. 
+    This makes the problem significantly easier to solve.
+
+    By default, code indentation matters. 
+    This is semantically meaningful in Python and good code practice in other programming languages. 
+    In the problem below, the third line needs to be indented to be correct.
+
+    .. literalinclude:: pa_examples/parson_ex1.txt
+         :language: rst
+
+numbered
+    ``Enumerated``. Turns on block numbering, either on the left or right.
+
+    Possible values are either ``left`` or ``right``.
+
+order
+    ``List``. Define a specific 'shuffled' order
+
+    If you don't want the code to be randomly shuffled, 
+    you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).
+
+
+Languages supported
+-------------------
+
+Any text is supported, however, syntax highlighting is supported for
+a limited number of programming languages.
+Syntax highlighting is supported for python, java, javascript, html, 
+c, c++, ruby, and natural.
+
+The language 'natural' is equivalent to 'none' in docutils,
+that is syntax highlighting is disabled.
+
+.. note::
+   
+   This directive uses 'c++' to refer to C++, whereas the activecode directive uses 'cpp'.
+
+Sphinx configuration options
+----------------------------
+
+The following ``options.build.template_args`` values can be set in a book pavement.py file.
+
+language
+    The default language for parsons problem directives.
+
+Internationalization
+....................
+
+TBD.
+
+Known limitations
+-----------------
+
+The correct item to be paired with a ``#paired`` distraction must appear directly prior to the block marked ``#paired``.
+
+Once you have committed to using ``====`` to define groups of lines,
+then **every** line must be separated as groups.
+
+All text in a parsons problem is actually parsed as HTML.
+Sphinx markup is interpreted as plain text.
+Characters that have special meaning in HTML (``<``, ``>``)
+need to be escaped in the parsons problem text (``&lt;``, ``&gt;``) 
+unless surrounded by whitespace, for example:
+
+.. code-block:: none
+
+   # HTML
+   if x>y:
+
+   # OK
+   if x > y:
+
+   # HTML
+   ArrayList<Integer> x = new ArrayList<>();
+
+   # OK
+   ArrayList < Integer > x = new ArrayList < > ();
+
+Examples
+--------
+The simplest parsons problems take each line of text,
+places each in its own parsons block,
+and assesses on both line order and indentation.
+
+.. tabbed:: example1
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex1.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex1.txt
+
+   .. tab:: C++
+
+      .. literalinclude:: pa_examples/parson_ex1_cpp.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex1_cpp.txt
+
+Use the ``=====`` markup in the content area to control parsons block definitions.
+
+.. tabbed:: example_groups
+
+   .. tab:: No groups
+      
+      The default is to split each line of code into it's own block.
+
+      .. literalinclude:: pa_examples/parson_ex_group1.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_group1.txt
+
+   .. tab:: Groups
+      
+      If even 1 group is used, then all lines are interpreted as belonging to a group.
+
+      In order to have somelines stand alone, they must be placed in a group.
+
+      .. literalinclude:: pa_examples/parson_ex_group2.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_group2.txt
+
+   .. tab:: C++
+
+      .. literalinclude:: pa_examples/parson_ex_cpp_group.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_cpp_group.txt
+
+
+
+The ``numbered`` option sets block numbers.
+
+.. tabbed:: numbered
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex_numbered.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_numbered.txt
+
+The ``maxdist`` option limits the number of distractors.
+
+This example also demonstrates the use of ``adaptive`` option
+that will attempt to simplify the problem
+by removing distractors and helping with indentation after 3 failed attempts.
+
+.. tabbed:: numbered
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_maxdist.txt
+
+   .. tab:: Foo
+
+      Odd behavior when a java parsons block follows a literal block.
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex_maxdist.txt
+         :language: rst
 
 

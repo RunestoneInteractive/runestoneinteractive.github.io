@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -298,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Datafile</a></li>
+<li><a class="reference internal" href="#">Datafile</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations-and-bugs">Known limitations and bugs</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -347,53 +365,382 @@
   
   <div class="section" id="datafile">
 <h1>Datafile<a class="headerlink" href="#datafile" title="Permalink to this headline">¶</a></h1>
-<p>The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user’s local hard drive, we can fake files’ existence in two different ways.</p>
-<ol class="arabic simple">
-<li>We can put the data into <code class="docutils literal"><span class="pre">pre</span></code> element.  The id on the element serves as the filename.</li>
-<li>We can put the data into a <code class="docutils literal"><span class="pre">textarea</span></code> element.  Again the id on the element serves as the file name.  However, with a text area, the file data can be modified.</li>
-</ol>
-<p>Both of these options can be achieved with the <code class="docutils literal"><span class="pre">datafile</span></code> directive.</p>
-<p><strong>Examples in reStructured Text</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata</span><span class="o">.</span><span class="n">txt</span>
-   <span class="p">:</span><span class="n">edit</span><span class="p">:</span>
-   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
-   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
+<p>The datafile directive works with <a class="reference internal" href="activecode.html"><span class="doc">Activecode</span></a> to emulate reading data from a file.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the datafile directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> filename
+   <span class="nc">:options:</span>
 
-   <span class="n">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
-   <span class="n">also</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
-   <span class="ow">and</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">third</span> <span class="n">line</span>
+   <span class="m">+</span> --- Content area ---+
+   |
+   <span class="o">|</span> zero or more lines of data
+   |
+   <span class="m">+</span> --------------------+
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">datafile</span><span class="p">::</span> <span class="n">mydata2</span><span class="o">.</span><span class="n">txt</span>
-   <span class="p">:</span><span class="n">rows</span><span class="p">:</span> <span class="mi">20</span>
-   <span class="p">:</span><span class="n">cols</span><span class="p">:</span> <span class="mi">60</span>
-
-   <span class="n">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
-   <span class="n">also</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="n">file</span>
-   <span class="ow">and</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">third</span> <span class="n">line</span>
+<p>The id of the directive serves as the filename.
+The filename can be referenced in an activecode code block as if it was a physical file
+on the filesystem.</p>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<p>The required argument is the ‘filename’ (actually a unique_id that simulates a physical file).
+It is the filename you must inform users of
+so that they can perform file reading operations in activecode windows.</p>
+<p>This must be unique within the document as it does become the id of the element.
+It does not have the same global uniqueness constraint that unique id’s require.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>cols</dt>
+<dd><code class="docutils literal"><span class="pre">Integer</span></code>.
+Set the width of the textarea.
+If not set, then Runestone will size the area to the contents, or provide a default.</dd>
+<dt>edit</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>.
+Toggle whether a datafile is editable. If not set, then false.</p>
+<p class="last">Editable text areas can also be resized by the user.</p>
+</dd>
+<dt>hide</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>.
+Toggle whether a datafile is visible. If not set, then true.</p>
+<p>Why hide this element?</p>
+<ul class="simple">
+<li>If you have an exceptionally long file that you want to use in an example
+where it is not important that the student see all the data.</li>
+<li>In an example when you want students to solve a problem dependent on file
+reading operations in which they should not be able to determine the answer by looking at the file.</li>
+</ul>
+<p class="last">Hidden datafiles can still be referenced in code.</p>
+</dd>
+<dt>rows</dt>
+<dd><code class="docutils literal"><span class="pre">Integer</span></code>.
+Set the height of the textarea.
+If not set, then Runestone will size the area to the contents, or provide a default.</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Python only at this time.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd</p>
+</div>
+</div>
+<div class="section" id="known-limitations-and-bugs">
+<h2>Known limitations and bugs<a class="headerlink" href="#known-limitations-and-bugs" title="Permalink to this headline">¶</a></h2>
+<p>An empty datafile with no default content cannot determine a default size for itself.
+If a blank data file is specified (no default content),
+then the rows and cols parameters must be set.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A datafile with no optional parameters set.</p>
+<div id='example0' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex0.txt
+   <span class="nc">:rows:</span> <span class="nf">5</span>
+   <span class="nc">:cols:</span> <span class="nf">60</span>
 </pre></div>
 </div>
-<p>This example will produce a text area that is 20 rows long and 60 columns wide.  The <code class="docutils literal"><span class="pre">:edit:</span></code> flag tells the directive to produce a textarea rather than a pre element.</p>
-<p><strong>Examples</strong></p>
+</div><div data-component="tab" data-tabname="Render It" >
+<p>Note that a this empty datafile is not editable!</p>
 
-<pre data-component="datafile" id=mydata.txt  data-edit="true" data-rows="20" data-cols="60">
+<pre data-component="datafile" id=ex0.txt  data-edit="false" data-rows="5" data-cols="60">
+
+</pre>
+</div>
+    </div>
+
+<p>A datafile with some default content</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex1.txt
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render It" >
+
+<pre data-component="datafile" id=ex1.txt  data-edit="false" data-rows="20" data-cols="46">
 here is the first line in the data file
 also, this is the second line in the data file
 and this is the third line
 </pre>
+</div>
+    </div>
 
-<pre data-component="datafile" id=mydata2.txt  data-edit="false" data-rows="20" data-cols="60">
+<p>A datafile with some default content</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex2.txt
+   <span class="nc">:edit:</span>
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render It" >
+
+<pre data-component="datafile" id=ex2.txt  data-edit="true" data-rows="20" data-cols="46">
 here is the first line in the data file
 also, this is the second line in the data file
 and this is the third line
 </pre>
-<p><strong>Arguments</strong></p>
-<p>The required argument is the ‘filename’ (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is <code class="docutils literal"><span class="pre">mydata.txt</span></code> and <code class="docutils literal"><span class="pre">mydata2.txt</span></code>. This must be unique within the document as it does become the id of the element.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:hide:</span></code>  – This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).</p>
-<p><code class="docutils literal"><span class="pre">:edit:</span></code>  – This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??</p>
-<p><code class="docutils literal"><span class="pre">rows</span></code>  – This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.</p>
-<p><code class="docutils literal"><span class="pre">cols</span></code>  – Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.</p>
+</div>
+    </div>
+
+<p>A datafile with some default content</p>
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex3.txt
+   <span class="nc">:edit:</span>
+   <span class="nc">:rows:</span> <span class="nf">5</span>
+   <span class="nc">:cols:</span> <span class="nf">40</span>
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render It" >
+
+<pre data-component="datafile" id=ex3.txt  data-edit="true" data-rows="5" data-cols="40">
+here is the first line in the data file
+also, this is the second line in the data file
+and this is the third line
+</pre>
+</div>
+    </div>
+
+<p>The following example shows a complete use of the datafile directive
+that defines a non-trivial input file and use in a small python program.</p>
+<div id='example_activecode' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> qbdata.txt
+   <span class="nc">:rows:</span> <span class="nf">40</span>
+   <span class="nc">:cols:</span> <span class="nf">70</span>
+
+   Colt McCoy QB CLE  135 222 1576    6   9   60.8%   74.5
+   Josh Freeman QB TB 291 474 3451    25  6   61.4%   95.9
+   Michael Vick QB PHI    233 372 3018    21  6   62.6%   100.2
+   Matt Schaub QB HOU 365 574 4370    24  12  63.6%   92.0
+   Philip Rivers QB SD    357 541 4710    30  13  66.0%   101.8
+   Matt Hasselbeck QB SEA 266 444 3001    12  17  59.9%   73.2
+   Jimmy Clausen QB CAR   157 299 1558    3   9   52.5%   58.4
+   Joe Flacco QB BAL  306 489 3622    25  10  62.6%   93.6
+   Kyle Orton QB DEN  293 498 3653    20  9   58.8%   87.5
+   Jason Campbell QB OAK  194 329 2387    13  8   59.0%   84.5
+   Peyton Manning QB IND  450 679 4700    33  17  66.3%   91.9
+   Drew Brees QB NO   448 658 4620    33  22  68.1%   90.9
+   Matt Ryan QB ATL   357 571 3705    28  9   62.5%   91.0
+   Matt Cassel QB KC  262 450 3116    27  7   58.2%   93.0
+   Mark Sanchez QB NYJ    278 507 3291    17  13  54.8%   75.3
+   Brett Favre QB MIN 217 358 2509    11  19  60.6%   69.9
+   David Garrard QB JAC   236 366 2734    23  15  64.5%   90.8
+   Eli Manning QB NYG 339 539 4002    31  25  62.9%   85.3
+   Carson Palmer QB CIN   362 586 3970    26  20  61.8%   82.4
+   Alex Smith QB SF   204 342 2370    14  10  59.6%   82.1
+   Chad Henne QB MIA  301 490 3301    15  19  61.4%   75.4
+   Tony Romo QB DAL   148 213 1605    11  7   69.5%   94.9
+   Jay Cutler QB CHI  261 432 3274    23  16  60.4%   86.3
+   Jon Kitna QB DAL   209 318 2365    16  12  65.7%   88.9
+   Tom Brady QB NE    324 492 3900    36  4   65.9%   111.0
+   Ben Roethlisberger QB PIT  240 389 3200    17  5   61.7%   97.0
+   Kerry Collins QB TEN   160 278 1823    14  8   57.6%   82.2
+   Derek Anderson QB ARI  169 327 2065    7   10  51.7%   65.9
+   Ryan Fitzpatrick QB BUF    255 441 3000    23  15  57.8%   81.8
+   Donovan McNabb QB WAS  275 472 3377    14  15  58.3%   77.1
+   Kevin Kolb QB PHI  115 189 1197    7   7   60.8%   76.1
+   Aaron Rodgers QB GB    312 475 3922    28  11  65.7%   101.2
+   Sam Bradford QB STL    354 590 3512    18  15  60.0%   76.5
+   Shaun Hill QB DET  257 416 2686    16  12  61.8%   81.3
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render It" >
+
+<pre data-component="datafile" id=qbdata.txt  data-edit="false" data-rows="40" data-cols="70">
+Colt McCoy QB CLE  135 222 1576    6   9   60.8%   74.5
+Josh Freeman QB TB 291 474 3451    25  6   61.4%   95.9
+Michael Vick QB PHI    233 372 3018    21  6   62.6%   100.2
+Matt Schaub QB HOU 365 574 4370    24  12  63.6%   92.0
+Philip Rivers QB SD    357 541 4710    30  13  66.0%   101.8
+Matt Hasselbeck QB SEA 266 444 3001    12  17  59.9%   73.2
+Jimmy Clausen QB CAR   157 299 1558    3   9   52.5%   58.4
+Joe Flacco QB BAL  306 489 3622    25  10  62.6%   93.6
+Kyle Orton QB DEN  293 498 3653    20  9   58.8%   87.5
+Jason Campbell QB OAK  194 329 2387    13  8   59.0%   84.5
+Peyton Manning QB IND  450 679 4700    33  17  66.3%   91.9
+Drew Brees QB NO   448 658 4620    33  22  68.1%   90.9
+Matt Ryan QB ATL   357 571 3705    28  9   62.5%   91.0
+Matt Cassel QB KC  262 450 3116    27  7   58.2%   93.0
+Mark Sanchez QB NYJ    278 507 3291    17  13  54.8%   75.3
+Brett Favre QB MIN 217 358 2509    11  19  60.6%   69.9
+David Garrard QB JAC   236 366 2734    23  15  64.5%   90.8
+Eli Manning QB NYG 339 539 4002    31  25  62.9%   85.3
+Carson Palmer QB CIN   362 586 3970    26  20  61.8%   82.4
+Alex Smith QB SF   204 342 2370    14  10  59.6%   82.1
+Chad Henne QB MIA  301 490 3301    15  19  61.4%   75.4
+Tony Romo QB DAL   148 213 1605    11  7   69.5%   94.9
+Jay Cutler QB CHI  261 432 3274    23  16  60.4%   86.3
+Jon Kitna QB DAL   209 318 2365    16  12  65.7%   88.9
+Tom Brady QB NE    324 492 3900    36  4   65.9%   111.0
+Ben Roethlisberger QB PIT  240 389 3200    17  5   61.7%   97.0
+Kerry Collins QB TEN   160 278 1823    14  8   57.6%   82.2
+Derek Anderson QB ARI  169 327 2065    7   10  51.7%   65.9
+Ryan Fitzpatrick QB BUF    255 441 3000    23  15  57.8%   81.8
+Donovan McNabb QB WAS  275 472 3377    14  15  58.3%   77.1
+Kevin Kolb QB PHI  115 189 1197    7   7   60.8%   76.1
+Aaron Rodgers QB GB    312 475 3922    28  11  65.7%   101.2
+Sam Bradford QB STL    354 590 3512    18  15  60.0%   76.5
+Shaun Hill QB DET  257 416 2686    16  12  61.8%   81.3
+</pre>
+</div><div data-component="tab" data-tabname="Source code" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> df_ac_ex_qb
+   <span class="nc">:nocodelens:</span>
+   <span class="nc">:datafile:</span> <span class="nf">qbdata.txt</span>
+   <span class="nc">:enabledownload:</span>
+
+   qbfile = open(&quot;qbdata.txt&quot;, &quot;r&quot;)
+
+   for aline in qbfile:
+       values = aline.split()
+       print(&#39;QB &#39;, values[0], values[1], &#39;had a rating of &#39;, values[10] )
+
+   qbfile.close()
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="df_ac_ex_qb" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=df_ac_ex_qb data-lang="python" 
+      data-timelimit=25000   data-enabledownload="true" 
+    data-audio=''  data-datafile='qbdata.txt' 
+          >
+qbfile = open("qbdata.txt", "r")
+
+for aline in qbfile:
+    values = aline.split()
+    print('QB ', values[0], values[1], 'had a rating of ', values[10] )
+
+qbfile.close()
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Adding a datafile directive doesn’t break non-python code,
+but it doesn’t use it (yet) either.</p>
+<div id='example_ac_cpp' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> poem.txt
+   <span class="nc">:edit:</span>
+
+   Beware the Jabberwock, my son!
+     The jaws that bite, the claws that catch!
+   Beware the Jubjub bird, and shun
+     The frumious Bandersnatch!&quot;
+
+   He took his vorpal sword in hand:
+     Long time the manxome foe he sought --
+   So rested he by the Tumtum tree,
+     And stood awhile in thought.
+
+   And, as in uffish thought he stood,
+     The Jabberwock, with eyes of flame,
+   Came whiffling through the tulgey wood,
+     And burbled as it came!
+
+   One, two! One, two! And through and through
+     The vorpal blade went snicker-snack!
+   He left it dead, and with its head
+     He went galumphing back.
+
+   And, has thou slain the Jabberwock?
+     Come to my arms, my beamish boy!
+   O frabjous day! Callooh! Callay!&#39;
+     He chortled in his joy.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render It" >
+
+<pre data-component="datafile" id=poem.txt  data-edit="true" data-rows="20" data-cols="43">
+Beware the Jabberwock, my son!
+  The jaws that bite, the claws that catch!
+Beware the Jubjub bird, and shun
+  The frumious Bandersnatch!"
+
+He took his vorpal sword in hand:
+  Long time the manxome foe he sought --
+So rested he by the Tumtum tree,
+  And stood awhile in thought.
+
+And, as in uffish thought he stood,
+  The Jabberwock, with eyes of flame,
+Came whiffling through the tulgey wood,
+  And burbled as it came!
+
+One, two! One, two! And through and through
+  The vorpal blade went snicker-snack!
+He left it dead, and with its head
+  He went galumphing back.
+
+And, has thou slain the Jabberwock?
+  Come to my arms, my beamish boy!
+O frabjous day! Callooh! Callay!'
+  He chortled in his joy.
+</pre>
+</div><div data-component="tab" data-tabname="Source code" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> df_ac_ex_poem
+   <span class="nc">:language:</span> <span class="nf">cpp</span>
+   <span class="nc">:compileargs:</span> <span class="nf">[&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]</span>
+   <span class="nc">:datafile:</span> <span class="nf">poem.txt</span>
+   <span class="nc">:enabledownload:</span>
+
+   #include &lt;fstream&gt;
+   #include &lt;iostream&gt;
+
+   int main () {
+     std::ifstream is(&quot;poem.txt&quot;);
+     char c;
+     while (is.get(c)) {
+       std::cout &lt;&lt; c;
+     }
+     is.close();
+     return 0;
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="df_ac_ex_poem" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=df_ac_ex_poem data-lang="cpp" 
+      data-timelimit=25000   data-enabledownload="true" 
+    data-audio=''  data-datafile='poem.txt' 
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <fstream>
+#include <iostream>
+
+int main () {
+  std::ifstream is("poem.txt");
+  char c;
+  while (is.get(c)) {
+    std::cout << c;
+  }
+  is.close();
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+</div>
 </div>
 
 
