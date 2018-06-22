@@ -1,7 +1,7 @@
 Parsons Problems
 ================
 
-In a Parsons problem, users are provided with the lines / blocks of code and 
+In a Parsons problem, users are provided with the lines / blocks of code and students
 must reorder them to create a solution. 
 
 
@@ -17,12 +17,12 @@ The general format of the parsons directive is:
       + --- Content area ---
       |
       | one or more lines of instruction for the problem
-      | ----
+      | -----
       | one or more lines of text 
-      | ====
+      | =====
       | grouped by
-      | ====
-      | four equals
+      | =====
+      | five equals
       |
       + --------------------
 
@@ -35,7 +35,9 @@ unique id
     You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
 
 content area
-    Place the question text after the arguments. 
+    A content block is required for a parsons problem.
+    Place the question text after any directive options, if specified.
+
     Use ``-----`` to separate the question text from the code. 
     The code should be specified in the correct order and indented properly. 
     You can also group lines using ``=====`` as in the problem below. 
@@ -50,32 +52,6 @@ content area
     .. note::
 
        There is no space between the ``#`` and the ``distractor`` or ``paired``
-
-.. code-block:: rst
-
-    .. parsonsprob:: parsons_problem_2
-       :noindent:
-
-       Construct a function that returns the max value from a list.
-       -----
-       def findmax(alist):
-       =====
-          if len(alist) == 0:
-             return None
-       =====
-          curmax = alist[0]
-          for item in alist:
-       =====
-             if item > curmax:
-       =====
-             if item < curmax: #paired
-       =====
-                curmax = item
-       =====
-          return curmax
-       =====
-          return CurMax #distractor
-
 
 Optional Arguments
 ------------------
@@ -95,6 +71,12 @@ language
 
     The default language can be set in the book ``pavement.py`` file.
 
+maxdist
+    ``Integer``. Define a maximum number of distractors
+
+    If you specify distractors in the code, 
+    then this will specify the maximum number of distractors presented to the user.
+
 noindent
     ``Boolean``. Do not mark against incorrect indentation.
 
@@ -106,21 +88,13 @@ noindent
     This is semantically meaningful in Python and good code practice in other programming languages. 
     In the problem below, the third line needs to be indented to be correct.
 
-    .. code-block:: rst
+    .. literalinclude:: pa_examples/parson_ex1.txt
+         :language: rst
 
-        .. parsonsprob:: par_ex_indent_1
+numbered
+    ``Enumerated``. Turns on block numbering, either on the left or right.
 
-           Construct a block of code that correctly implements the accumulator pattern.
-           -----
-           x = 0
-           for i in range(10)
-              x = x + 1
-
-maxdist
-    ``Integer``. Define a maximum number of distractors
-
-    If you specify distractors in the code, 
-    then this will specify the maximum number of distractors presented to the user.
+    Possible values are either ``left`` or ``right``.
 
 order
     ``List``. Define a specific 'shuffled' order
@@ -160,10 +134,128 @@ TBD.
 Known limitations
 -----------------
 
-tbd
+The correct item to be paired with a ``#paired`` distraction must appear directly prior to the block marked ``#paired``.
+
+Once you have committed to using ``====`` to define groups of lines,
+then **every** line must be separated as groups.
+
+All text in a parsons problem is actually parsed as HTML.
+Sphinx markup is interpreted as plain text.
+Characters that have special meaning in HTML (``<``, ``>``)
+need to be escaped in the parsons problem text (``&lt;``, ``&gt;``) 
+unless surrounded by whitespace, for example:
+
+.. code-block:: none
+
+   # HTML
+   if x>y:
+
+   # OK
+   if x > y:
+
+   # HTML
+   ArrayList<Integer> x = new ArrayList<>();
+
+   # OK
+   ArrayList < Integer > x = new ArrayList < > ();
 
 Examples
 --------
+The simplest parsons problems take each line of text,
+places each in its own parsons block,
+and assesses on both line order and indentation.
 
+.. tabbed:: example1
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex1.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex1.txt
+
+   .. tab:: C++
+
+      .. literalinclude:: pa_examples/parson_ex1_cpp.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex1_cpp.txt
+
+Use the ``=====`` markup in the content area to control parsons block definitions.
+
+.. tabbed:: example_groups
+
+   .. tab:: No groups
+      
+      The default is to split each line of code into it's own block.
+
+      .. literalinclude:: pa_examples/parson_ex_group1.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_group1.txt
+
+   .. tab:: Groups
+      
+      If even 1 group is used, then all lines are interpreted as belonging to a group.
+
+      In order to have somelines stand alone, they must be placed in a group.
+
+      .. literalinclude:: pa_examples/parson_ex_group2.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_group2.txt
+
+   .. tab:: C++
+
+      .. literalinclude:: pa_examples/parson_ex_cpp_group.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_cpp_group.txt
+
+
+
+The ``numbered`` option sets block numbers.
+
+.. tabbed:: numbered
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex_numbered.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_numbered.txt
+
+The ``maxdist`` option limits the number of distractors.
+
+This example also demonstrates the use of ``adaptive`` option
+that will attempt to simplify the problem
+by removing distractors and helping with indentation after 3 failed attempts.
+
+.. tabbed:: numbered
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_maxdist.txt
+
+   .. tab:: Foo
+
+      Odd behavior when a java parsons block follows a literal block.
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex_maxdist.txt
+         :language: rst
 
 

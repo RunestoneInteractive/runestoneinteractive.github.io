@@ -1,0 +1,22 @@
+.. parsonsprob:: pa-ex-cpp-group
+   :language: c++
+
+   Construct a block of code that correctly implements the accumulator pattern.
+   -----
+   template&lt;class InputIt, class T&gt;
+   =====
+   T sum(InputIt first, InputIt last, T value)
+   {
+   =====
+       while (first != last) {
+   =====
+          value = value + *first;
+   =====
+          ++first;
+   =====
+       }
+       return value;
+   =====
+   }
+
+
