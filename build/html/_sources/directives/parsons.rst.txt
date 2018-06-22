@@ -249,10 +249,6 @@ by removing distractors and helping with indentation after 3 failed attempts.
 
       .. include:: pa_examples/parson_ex_maxdist.txt
 
-   .. tab:: Foo
-
-      Odd behavior when a java parsons block follows a literal block.
-
    .. tab:: Source
 
       .. literalinclude:: pa_examples/parson_ex_maxdist.txt
