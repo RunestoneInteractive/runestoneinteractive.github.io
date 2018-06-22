@@ -36,6 +36,7 @@ ActiveCode.prototype.init = function(opts) {
     this.includes = $(orig).data('include');
     this.hidecode = $(orig).data('hidecode');
     this.chatcodes = $(orig).data('chatcodes');
+    this.hidehistory = $(orig).data('hidehistory');
     this.runButton = null;
     this.enabledownload = $(orig).data('enabledownload');
     this.downloadButton = null;
@@ -178,7 +179,7 @@ ActiveCode.prototype.createControls = function () {
       $(butt).attr("type","button")
     }
 
-    if (! this.hidecode) {
+    if (!this.hidecode && !this.hidehistory) {
         var butt = document.createElement("button");
         $(butt).text($.i18n("msg_activecode_load_history"));
         $(butt).addClass("btn btn-default");
@@ -466,7 +467,9 @@ var languageExtensions = { python:     'py',
                            javascript: 'js',
                            java:       'java',
                            python2:    'py',
-                           python3:    'py'};
+                           python3:    'py',
+                           cpp:        'cpp',
+                           c:          'c'};
 
 ActiveCode.prototype.downloadFile = function (lang) {
   var fnb = this.divid;
@@ -1690,8 +1693,10 @@ LiveCode.prototype.init = function(opts) {
     this.API_KEY = "67033pV7eUUvqo07OJDIV8UZ049aLEK1";
     this.USE_API_KEY = true;
 
-    this.JOBE_SERVER = eBookConfig.jobehost;
-    this.resource = eBookConfig.proxyuri_runs;
+    this.JOBE_SERVER = eBookConfig.jobehost || eBookConfig.host;
+    this.resource = eBookConfig.proxyuri_runs ||  '/runestone/proxy/jobeRun';
+    this.jobePutFiles = eBookConfig.proxy_uri_files || '/runestone/proxy/jobePushFile/';
+    this.jobeCheckFiles = eBookConfig.proxy_uri_files || '/runestone/proxy/jobeCheckFile/';
 
     this.div2id = {};
     if (this.stdin) {
@@ -1923,7 +1928,7 @@ LiveCode.prototype.addJobeErrorMessage = function (err) {
  */
 LiveCode.prototype.checkFile = function(file, resolve, reject) {
     var file_id = this.div2id[file.name];
-    var resource = eBookConfig.proxyuri_files + file_id;
+    var resource = this.jobeCheckFiles + file_id;
     var host = this.JOBE_SERVER + resource;
 
     var xhr = new XMLHttpRequest();
@@ -1982,7 +1987,7 @@ LiveCode.prototype.pushDataFile = function (file, resolve, reject) {
 
     var data = JSON.stringify({ 'file_contents' : contentsb64 });
 
-    var resource = eBookConfig.proxyuri_files + file_id;
+    var resource = this.jobePutFiles + file_id;
     var host = this.JOBE_SERVER + resource;
 
     var xhr = new XMLHttpRequest();

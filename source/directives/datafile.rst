@@ -1,74 +1,196 @@
 Datafile
 ========
 
-The datafile directive works with activecode when you want to have the user read some data from a file.  Because we want the file to come from the browser, not some far away server, or from the user's local hard drive, we can fake files' existence in two different ways.
+The datafile directive works with :doc:`activecode` to emulate reading data from a file.
 
-1.  We can put the data into ``pre`` element.  The id on the element serves as the filename.
+Synopsis
+--------
+The general format of the datafile directive is:
 
-2.  We can put the data into a ``textarea`` element.  Again the id on the element serves as the file name.  However, with a text area, the file data can be modified.
+.. code-block:: rst
 
-Both of these options can be achieved with the ``datafile`` directive.
+   .. datafile:: filename
+      :options:
 
-**Examples in reStructured Text**
+      + --- Content area ---+
+      | 
+      | zero or more lines of data
+      | 
+      + --------------------+
 
-::
+The id of the directive serves as the filename.
+The filename can be referenced in an activecode code block as if it was a physical file
+on the filesystem.
 
-    .. datafile:: mydata.txt
-       :edit:
-       :rows: 20
-       :cols: 60
+Required Arguments
+------------------
 
-       here is the first line in the data file
-       also, this is the second line in the data file
-       and this is the third line
+The required argument is the 'filename' (actually a unique_id that simulates a physical file).
+It is the filename you must inform users of 
+so that they can perform file reading operations in activecode windows. 
 
-::
-
-    .. datafile:: mydata2.txt
-       :rows: 20
-       :cols: 60
-
-       here is the first line in the data file
-       also, this is the second line in the data file
-       and this is the third line
-
-
-This example will produce a text area that is 20 rows long and 60 columns wide.  The ``:edit:`` flag tells the directive to produce a textarea rather than a pre element.
-
-**Examples**
-
-.. datafile:: mydata.txt
-   :edit:
-   :rows: 20
-   :cols: 60
-
-   here is the first line in the data file
-   also, this is the second line in the data file
-   and this is the third line
-
-.. datafile:: mydata2.txt
-   :rows: 20
-   :cols: 60
-
-   here is the first line in the data file
-   also, this is the second line in the data file
-   and this is the third line
+This must be unique within the document as it does become the id of the element.
+It does not have the same global uniqueness constraint that unique id's require.
 
 
+Optional Arguments
+------------------
 
-**Arguments**
+cols 
+    ``Integer``.
+    Set the width of the textarea.
+    If not set, then Runestone will size the area to the contents, or provide a default.
 
-The required argument is the 'filename' (this is not reliant on any actual filename, but is the filename you must inform users of so that they can perform file reading operations in activecode windows). In the examples it is ``mydata.txt`` and ``mydata2.txt``. This must be unique within the document as it does become the id of the element.
+edit 
+    ``Boolean``.
+    Toggle whether a datafile is editable. If not set, then false.
 
-**Optional Arguments**
+    Editable text areas can also be resized by the user.
+   
+hide 
+    ``Boolean``.
+    Toggle whether a datafile is visible. If not set, then true.
 
-``:hide:``  -- This makes the file invisible.  This might be good if you have an exceptionally long file that you want to use in an example where it is not important that the student see all the data, or in an example when you want students to solve a problem dependent on file reading operations in which they should not be able to determine the answer by looking at the file. It will simply be included in the page so that the file can be used in programs (activecode blocks, etc).
+    Why hide this element?  
+    
+    * If you have an exceptionally long file that you want to use in an example 
+      where it is not important that the student see all the data. 
+    * In an example when you want students to solve a problem dependent on file 
+      reading operations in which they should not be able to determine the answer by looking at the file. 
+      
+    Hidden datafiles can still be referenced in code.
 
-``:edit:``  -- This flag makes the file into an editable file in a textarea. This is great if you want your students to be able run their program on different data from a file.  All they have to do is edit the textarea and rerun the program. TODO are edits saveable by users??
+rows 
+    ``Integer``.
+    Set the height of the textarea.
+    If not set, then Runestone will size the area to the contents, or provide a default.
 
-``rows``  -- This is for sizing the textarea.  The value has no effect on a pre element.  If the rows value is not provided, the directive will do its best to guess the number of rows within a reasonable number.
+Languages supported
+-------------------
 
-``cols``  -- Again this is for sizing the text area, and again, if not provided, the directive will come up with a reasonable value.
+Python only at this time.
 
+Sphinx configuration options
+----------------------------
+
+No directive specific configuration options exist.
+
+Internationalization
+....................
+
+tbd
+
+Known limitations and bugs
+--------------------------
+
+An empty datafile with no default content cannot determine a default size for itself.
+If a blank data file is specified (no default content), 
+then the rows and cols parameters must be set.
+
+
+Examples
+--------
+
+A datafile with no optional parameters set.
+
+.. tabbed:: example0
+
+   .. tab:: Data Source
+
+      .. literalinclude:: df_examples/datafile_ex0.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      Note that a this empty datafile is not editable!
+
+      .. include:: df_examples/datafile_ex0.txt
+
+A datafile with some default content
+
+.. tabbed:: example1
+
+   .. tab:: Data Source
+
+      .. literalinclude:: df_examples/datafile_ex1_data.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      .. include:: df_examples/datafile_ex1_data.txt
+
+A datafile with some default content
+
+.. tabbed:: example2
+
+   .. tab:: Data Source
+
+      .. literalinclude:: df_examples/datafile_ex2_data.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      .. include:: df_examples/datafile_ex2_data.txt
+
+A datafile with some default content
+
+.. tabbed:: example3
+
+   .. tab:: Data Source
+
+      .. literalinclude:: df_examples/datafile_ex3_data.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      .. include:: df_examples/datafile_ex3_data.txt
+
+
+The following example shows a complete use of the datafile directive
+that defines a non-trivial input file and use in a small python program.
+
+.. tabbed:: example_activecode
+
+   .. tab:: Data
+
+      .. literalinclude:: df_examples/datafile_ex_qb_data.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      .. include:: df_examples/datafile_ex_qb_data.txt
+
+   .. tab:: Source code
+
+      .. literalinclude:: df_examples/datafile_ex_qb_code.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: df_examples/datafile_ex_qb_code.txt
+
+
+Adding a datafile directive doesn't break non-python code,
+but it doesn't use it (yet) either.
+
+.. tabbed:: example_ac_cpp
+
+   .. tab:: Data
+
+      .. literalinclude:: df_examples/datafile_ex_cpp_poem.txt
+         :language: rst
+
+   .. tab:: Render It
+
+      .. include:: df_examples/datafile_ex_cpp_poem.txt
+
+   .. tab:: Source code
+
+      .. literalinclude:: df_examples/datafile_ex_cpp_code.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: df_examples/datafile_ex_cpp_code.txt
 
 

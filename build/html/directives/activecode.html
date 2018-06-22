@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -374,16 +380,17 @@
 Your students can experiment with your examples by changing them and running them over and over again.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-none"><div class="highlight"><pre>.. activecode:: unique_id
-   :options:
+<p>The general format of the activecode directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> unique_id
+   <span class="nc">:options:</span>
 
-   + --- Content area ---+
-   | question text or additional instructions
-   | ~~~~
-   | one or more lines of code in a supported language
-   | ====
-   | hidden code to be executed
-   + --------------------+
+   <span class="m">+</span> --- Content area ---+
+   <span class="o">|</span> question text or additional instructions
+   <span class="o">|</span> ~~~~
+   <span class="o">|</span> one or more lines of code in a supported language
+   <span class="o">|</span> ====
+   <span class="o">|</span> hidden code to be executed
+   <span class="m">+</span> --------------------+
 </pre></div>
 </div>
 <p>Depending on the code within the content area,
@@ -430,14 +437,21 @@ but not displayed in the code editor.</p>
 </pre></div>
 </div>
 </dd>
+<dt>autograde</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as</dd>
 <dt>autorun</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as
 the web page is fully loaded.</dd>
+<dt>available_files</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. A comma separated list of simulated input files for use.</p>
+<p class="last">Each entry must be the unique_id of a <a class="reference internal" href="datafile.html"><span class="doc">Datafile</span></a> directive.</p>
+</dd>
 <dt>caption</dt>
-<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for this activecode directive.</dd>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for the bottom of the activecode frame.</dd>
+<dt>chatcodes</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Enable users to talk about this code snippet with others</dd>
 <dt>compileargs</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of compiler flags, passed to the external server with your code.
-for the designated language.
 One string per array element.</p>
 <p>This option is only used if the language uses a compiler: C and C++.
 For example:</p>
@@ -446,6 +460,12 @@ For example:</p>
 </pre></div>
 </div>
 </dd>
+<dt>datafile</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. A comma separated list of simulated input files for use.</p>
+<p class="last">Each entry must be the unique_id of a <a class="reference internal" href="datafile.html"><span class="doc">Datafile</span></a> directive.</p>
+</dd>
+<dt>enabledownload</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. allow textfield contents to be downloaded to local file</dd>
 <dt>hidecode</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the activecode editor initially hidden,
 and add a button to automatically show the editor.</p>
@@ -484,17 +504,32 @@ For example:</p>
 <dt>language</dt>
 <dd><code class="docutils literal"><span class="pre">String</span></code>. Set the language of the content area.
 The default language is python.</dd>
+<dt>linkargs</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of linker flags, passed to the external server with your code.
+One string per array element.</p>
+<p>This option is only used if the language uses a linker: C and C++.
+For example:</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="nc">:language:</span> <span class="nf">cpp</span>
+<span class="nc">:linkargs:</span> <span class="nf">[&#39;-lm&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]</span>
+</pre></div>
+</div>
+</dd>
 <dt>nocodelens</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Hide the button to step through code in codelens.</dd>
+<dt>sourcefile</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Replace the default temporary source file name with the specified value.</p>
+<p class="last">Current defaults are <code class="docutils literal"><span class="pre">test.</span></code>, followed by a language appropriate extension.
+For java, the file name matches the class name.</p>
+</dd>
 <dt>stdin</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define a virtual ‘standard input’ for an active code block.</p>
 <p class="last">If present, <code class="docutils literal"><span class="pre">:stdin:</span></code> creates a text area and
 allows a string to be passed to the program for processing.
 An optional value after the argument defines the default value.</p>
 </dd>
-<dt>tour_{1,2,3,4,5,6}</dt>
+<dt>tour_{1,2,3,4,5}</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Formatted</span> <span class="pre">String</span></code>. Used for audio tours of the code.</p>
-<p>You can have up to six different audio tours of the same code.
+<p>You can have up to five different audio tours of the same code.
 The format of a tour directive is <code class="docutils literal"><span class="pre">tour</span> <span class="pre">name;</span> <span class="pre">line</span> <span class="pre">#:</span> <span class="pre">audio_file_name</span></code>
 where <code class="docutils literal"><span class="pre">audio_file_name</span></code> is the path to the audio file.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="nc">:tour_1:</span> <span class="nf">&quot;Overall Tour&quot;; 1-4: Tour01_Line01; 3: Tour01_Line03;</span>
@@ -528,15 +563,19 @@ Jobe accepts http requests only and <a class="reference external" href="https://
 allows outbound POST content via https only.</p>
 </dd>
 <dt>proxy_uri_runs</dt>
-<dd><p class="first">Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.</p>
-<p class="last">Most authors will not need to modify this.</p>
-</dd>
+<dd>Direct the Jobe server to use the specified directory to hold temporary runtime artifacts.</dd>
 <dt>proxy_uri_files</dt>
-<dd><p class="first">Direct the Jobe server to use the specified directory to hold generated files to be returned
-within the response.</p>
-<p class="last">Most authors will not need to modify this.</p>
-</dd>
+<dd>Direct the Jobe server to use the specified directory to hold generated files to be returned
+within the response.</dd>
 </dl>
+<p>If you need to configure one of these Jobe server parameters,
+then you need to configure them all for requests sent to jobe to be handled correctly.
+Generally you can set the last two to:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="s1">&#39;proxy_uri_runs&#39;</span><span class="o">:</span> <span class="s1">&#39;/jobe/index.php/restapi/runs/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;proxy_uri_files&#39;</span><span class="o">:</span> <span class="s1">&#39;/jobe/index.php/restapi/files/&#39;</span>
+</pre></div>
+</div>
+<p>Most authors will not need to use anything other than these values.</p>
 <div class="section" id="sphinx-bootstrap">
 <h3>Sphinx bootstrap<a class="headerlink" href="#sphinx-bootstrap" title="Permalink to this headline">¶</a></h3>
 <p>The configuration parameters defined in your book <code class="docutils literal"><span class="pre">sphinx_bootstrap/layout.html</span></code>:</p>
@@ -559,11 +598,12 @@ The ‘Show CodeLens’ feature is not currently compatible with the <code class
 <p>If <code class="docutils literal"><span class="pre">stdin</span></code> is used with python, the default value is not used and
 the text area appears in the popup dialog instead of being added to the code block.
 <code class="docutils literal"><span class="pre">input()</span></code> works, but <code class="docutils literal"><span class="pre">stdin.readline()</span></code> does not.</p>
+<p>The <code class="docutils literal"><span class="pre">available_files</span></code> option is python only.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The most trivial example: an activecode directive with no content area.</p>
-<div id='null' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='null' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-none"><div class="highlight"><pre>.. activecode:: empty_block
 </pre></div>
 </div>
@@ -575,7 +615,7 @@ the text area appears in the popup dialog instead of being added to the code blo
 <textarea data-component="activecode" id=empty_block data-lang="python" 
       data-timelimit=25000  data-codelens="true"  
     data-audio=''   
-         >
+          >
 
 
 </textarea>
@@ -584,7 +624,7 @@ the text area appears in the popup dialog instead of being added to the code blo
     </div>
 
 <p>The next example defines a basic ‘hello world’ program in the default language (python).</p>
-<div id='example1' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>This example is so basic, perhaps no codelens is needed.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example1
    <span class="nc">:nocodelens:</span>
@@ -602,7 +642,7 @@ the text area appears in the popup dialog instead of being added to the code blo
 <textarea data-component="activecode" id=function-example1 data-lang="python" 
       data-timelimit=25000    
     data-audio=''   
-         >
+          >
 def hello(name):
     return "Hello, " + name + "!"
 
@@ -613,7 +653,7 @@ print (hello("World"))
     </div>
 
 <p>An output area is created only when needed.</p>
-<div id='example2' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> function-example2
    <span class="nc">:language:</span> <span class="nf">python</span>
 
@@ -628,7 +668,7 @@ print (hello("World"))
 <textarea data-component="activecode" id=function-example2 data-lang="python" 
       data-timelimit=25000  data-codelens="true"  
     data-audio=''   
-         >
+          >
 def example_func(inp):
     return inp + "!!"
 </textarea>
@@ -641,7 +681,7 @@ def example_func(inp):
 <p>The include parameter allows examples to be built up incrementally.
 New examples can leverage code from earlier ones.
 This example calls functions defined in the previous two examples.</p>
-<div id='example3' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> loop_example3
    <span class="nc">:language:</span> <span class="nf">python</span>
    <span class="nc">:caption:</span> <span class="nf">Demonstrate activecode include</span>
@@ -663,7 +703,7 @@ This example calls functions defined in the previous two examples.</p>
 <textarea data-component="activecode" id=loop_example3 data-lang="python" 
      data-include="function-example1 function-example2" data-timelimit=25000    
     data-audio=''   
-         data-caption='Demonstrate activecode include'>
+         data-caption='Demonstrate activecode include' >
 for i in range(5):
     # function included from example 1
     print(hello(str(i)))
@@ -679,7 +719,7 @@ print (example_func('goodbye'))
 <div class="section" id="turtle-graphics">
 <h3>Turtle Graphics<a class="headerlink" href="#turtle-graphics" title="Permalink to this headline">¶</a></h3>
 <p>The built-in turtle library allows you and students to create simple 2D graphics programs.</p>
-<div id='example4' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example4' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_example1
    <span class="nc">:caption:</span> <span class="nf">A Turtle making a square</span>
    <span class="nc">:nocodelens:</span>
@@ -699,7 +739,7 @@ print (example_func('goodbye'))
 <textarea data-component="activecode" id=ac_example1 data-lang="python" 
       data-timelimit=25000    
     data-audio=''   
-         data-caption='A Turtle making a square'>
+         data-caption='A Turtle making a square' >
 import turtle
 t = turtle.Turtle()
 
@@ -713,7 +753,7 @@ for i in range(4):
 
 <p>This next program shown below is an interesting the turtle and recursion
 to construct a type of fractal called a Sierpinski Triangle.</p>
-<div id='example4-fractal' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example4-fractal' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>Try some other changes and see what happens (maybe change a few of the colors or make the level 2).
 If you ever want to go back to the original example, simply reload the page in the browser.
 One of the great things about activecode is that you can experiment as much as you want.
@@ -784,7 +824,7 @@ You can find this on line 39 (it is currently set to 3).  Try 4!</p>
 <textarea data-component="activecode" id=ac-example-ex4-fractal data-lang="python" data-autorun="true"
     data-hidecode="true"  data-timelimit=25000    
     data-audio=''   
-         >
+          >
 import turtle
 
 def drawTriangle(points,color,myTurtle):
@@ -839,9 +879,10 @@ main()
 all you need to do is add the <code class="docutils literal"><span class="pre">:language:</span></code> parameter to the activecode directive.</p>
 <p>Codelens is not supported for JavaScript,
 so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
-<div id='example5' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example5' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-js
    <span class="nc">:language:</span> <span class="nf">javascript</span>
+   <span class="nc">:enabledownload:</span>
 
    var x = 10;
    var y = 11;
@@ -862,9 +903,9 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
 <div data-childcomponent="ac-example-js" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-example-js data-lang="javascript" 
-      data-timelimit=25000    
+      data-timelimit=25000   data-enabledownload="true" 
     data-audio=''   
-         >
+          >
 var x = 10;
 var y = 11;
 var z = x + y;
@@ -889,11 +930,12 @@ writeln('hello world');
 No graphics libraries (for example AWT) are available in any Java programs.</p>
 <p>Codelens is not supported for Java,
 so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
-<div id='example-java' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-java
+<div id='example-java' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-ex-java
    <span class="nc">:language:</span> <span class="nf">java</span>
    <span class="nc">:interpreterargs:</span> <span class="nf">[&#39;-Xrs&#39;, &#39;-Xss8m&#39;, &#39;-Xmx128m&#39;]</span>
    <span class="nc">:stdin:</span> <span class="nf">100</span>
+   <span class="nc">:enabledownload:</span>
 
    import java.util.Scanner;
 
@@ -916,12 +958,12 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
 </div>
 </div><div data-component="tab" data-tabname="Run It" >
 
-<div data-childcomponent="ac-example-java" class="runestone explainer ac_section alert alert-warning">
+<div data-childcomponent="ac-ex-java" class="runestone explainer ac_section alert alert-warning">
 
-<textarea data-component="activecode" id=ac-example-java data-lang="java" 
-      data-timelimit=25000    
+<textarea data-component="activecode" id=ac-ex-java data-lang="java" 
+      data-timelimit=25000   data-enabledownload="true" 
     data-audio=''   data-stdin='100'
-       data-interpreterargs="['-Xrs', '-Xss8m', '-Xmx128m']"  >
+       data-interpreterargs="['-Xrs', '-Xss8m', '-Xmx128m']"   >
 import java.util.Scanner;
 
 public class TempConv {
@@ -944,16 +986,173 @@ public class TempConv {
 </div>
     </div>
 
+<div id='example-java-inherit' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="class Person" >
+<p>The source code for this file is stored in file
+<code class="docutils literal"><span class="pre">ac_examples/activecode_ex_java_person.txt</span></code></p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_ex_person
+   <span class="nc">:language:</span> <span class="nf">java</span>
+   <span class="nc">:enabledownload:</span>
+
+   public class Person 
+   {
+      private String name; 
+  	
+      public Person(String initialName)
+      {
+         name = initialName;
+      }
+  	
+      public String getName()
+      {	
+         return name;
+      }
+  	
+      public boolean setName(String newName) 
+      {
+         if (newName != null)
+         {
+            name = newName;
+            return true;
+         }
+         return false;
+      }
+
+      public static void main(String[] args)
+      {
+         Person test = new Person(&quot;Alice&quot;);
+         System.out.println(test.getName());
+      }
+
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="class Employee" >
+<p>The source for the Person class can be included at the end of the Employee class.
+The source is hidden from users, but compiled into the final program.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_ex_employee
+   <span class="nc">:language:</span> <span class="nf">java</span>
+   <span class="nc">:enabledownload:</span>
+   <span class="nc">:include:</span> <span class="nf">ac_ex_person</span>
+
+   public class Employee extends Person
+   {
+    
+      private static int nextId = 1;
+      private int id; 
+  	
+      public Employee(String theName)
+      {
+         super(theName);
+         id = nextId;
+         nextId++;
+      }
+    
+      public int getId() 
+      {
+         return id;
+      }
+     
+      public static void main(String[] args)
+      {
+         Employee emp = new Employee(&quot;Mark&quot;);
+         System.out.println(emp.getName());
+         System.out.println(emp.getId());
+      }
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run Person" >
+<p>The example source that does not compile ‘standalone’ can still be displayed
+in a standard code-block.</p>
+
+<div data-childcomponent="ac_ex_person" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac_ex_person data-lang="java" 
+      data-timelimit=25000   data-enabledownload="true" 
+    data-audio=''   
+          >
+public class Person
+{
+   private String name;
+
+   public Person(String initialName)
+   {
+      name = initialName;
+   }
+
+   public String getName()
+   {
+      return name;
+   }
+
+   public boolean setName(String newName)
+   {
+      if (newName != null)
+      {
+         name = newName;
+         return true;
+      }
+      return false;
+   }
+
+   public static void main(String[] args)
+   {
+      Person test = new Person("Alice");
+      System.out.println(test.getName());
+   }
+
+}
+</textarea>
+</div>
+</div><div data-component="tab" data-tabname="Run Employee" >
+
+<div data-childcomponent="ac_ex_employee" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac_ex_employee data-lang="java" 
+     data-include="ac_ex_person" data-timelimit=25000   data-enabledownload="true" 
+    data-audio=''   
+          >
+public class Employee extends Person
+{
+
+   private static int nextId = 1;
+   private int id;
+
+   public Employee(String theName)
+   {
+      super(theName);
+      id = nextId;
+      nextId++;
+   }
+
+   public int getId()
+   {
+      return id;
+   }
+
+   public static void main(String[] args)
+   {
+      Employee emp = new Employee("Mark");
+      System.out.println(emp.getName());
+      System.out.println(emp.getId());
+   }
+}
+</textarea>
+</div>
+</div>
+    </div>
+
 </div>
 <div class="section" id="c-and-c">
 <h3>C and C++<a class="headerlink" href="#c-and-c" title="Permalink to this headline">¶</a></h3>
 <p>The same rules that apply to Java, apply to C and C++
 (no graphics examples, compilation handled by a remote server).</p>
-<div id='example-cpp' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example-cpp' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac_example-cpp11
    <span class="nc">:language:</span> <span class="nf">cpp</span>
    <span class="nc">:compileargs:</span> <span class="nf">[&#39;-Wall&#39;, &#39;-Wextra&#39;, &#39;-pedantic&#39;, &#39;-std=c++11&#39;]</span>
    <span class="nc">:stdin:</span> <span class="nf">Alice</span>
+   <span class="nc">:enabledownload:</span>
 
    // A simple test for C++11 compiler
    #include &lt;iostream&gt;
@@ -977,9 +1176,9 @@ public class TempConv {
 <div data-childcomponent="ac_example-cpp11" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_example-cpp11 data-lang="cpp" 
-      data-timelimit=25000    
+      data-timelimit=25000   data-enabledownload="true" 
     data-audio=''   data-stdin='Alice'
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
 // A simple test for C++11 compiler
 #include <iostream>
 #include <string>
@@ -1010,7 +1209,7 @@ including the new text entry box called
 like this one.</p>
 <p>You can use this similarly to the use of <code class="docutils literal"><span class="pre">stdin</span></code> in C++ and Java code blocks.</p>
 <p>Try running the program, then change the value in the text entry box and run it again.</p>
-<div id='example-dom' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Python" >
+<div id='example-dom' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Python" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-dom
    <span class="nc">:nocodelens:</span>
 
@@ -1027,7 +1226,7 @@ like this one.</p>
 <textarea data-component="activecode" id=ac-example-dom data-lang="python" 
       data-timelimit=25000    
     data-audio=''   
-         >
+          >
 import document
 
 t = document.getElementById('text1')
@@ -1037,6 +1236,7 @@ print('value = ', t.value)
 </div><div data-component="tab" data-tabname="Javascript" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-domjs
    <span class="nc">:language:</span> <span class="nf">javascript</span>
+   <span class="nc">:enabledownload:</span>
 
    let t = document.getElementById(&#39;text1&#39;);
    writeln(&#39;value = &#39; + t.value);
@@ -1047,9 +1247,9 @@ print('value = ', t.value)
 <div data-childcomponent="ac-example-domjs" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-example-domjs data-lang="javascript" 
-      data-timelimit=25000    
+      data-timelimit=25000   data-enabledownload="true" 
     data-audio=''   
-         >
+          >
 let t = document.getElementById('text1');
 writeln('value = ' + t.value);
 </textarea>
@@ -1111,7 +1311,7 @@ Width can also be specified using relative sizes:</p>
 but even better if you can give them some feedback and provide some tests for them.
 Much of the <a class="reference external" href="http://docs.python.org/2/library/unittest.html">unittest</a> module
 from Python is available in the <code class="docutils literal"><span class="pre">unittest</span></code> module for activecode.</p>
-<div id='example-unit' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example-unit' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>The full complement of
 <a class="reference external" href="http://docs.python.org/2/library/unittest.html#assert-methods">assertXXX functions is available</a>.
 In an introductory course exposing the inner workings of the unittest class
@@ -1154,7 +1354,7 @@ correctly adds <code class="docutils literal"><span class="pre">two</span></code
 <textarea data-component="activecode" id=example-unit data-lang="python" 
       data-timelimit=25000    
     data-audio=''   
-         >
+          >
 def add(a,b):
     return 4
 
@@ -1183,9 +1383,10 @@ to achieve similar goals by rolling your own tiny test framework.</p>
 <p>Adding a HTML example is similar to programming language code blocks.</p>
 <p>Codelens is not supported for HTML,
 so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
-<div id='example-html' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Source" >
+<div id='example-html' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-html
    <span class="nc">:language:</span> <span class="nf">html</span>
+   <span class="nc">:enabledownload:</span>
 
    &lt;html&gt;
      &lt;body&gt;
@@ -1208,9 +1409,9 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
 <div data-childcomponent="ac-example-html" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-example-html data-lang="htmlmixed" 
-      data-timelimit=25000    
+      data-timelimit=25000   data-enabledownload="true" 
     data-audio=''   
-         >
+          >
 &lt;html&gt;
   &lt;body&gt;
     &lt;style&gt;
@@ -1246,13 +1447,104 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
 <textarea data-component="activecode" id=ac-example-html-frag data-lang="htmlmixed" 
       data-timelimit=25000    
     data-audio=''   
-         >
+          >
 &lt;div style="background-color:lightblue"&gt;
    &lt;h3&gt;Active code HTML fragment&lt;/h3&gt;
    &lt;p&gt;
      HTML examples do not need to be complete documents.
    &lt;/p&gt;
 &lt;/div&gt;
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Of course, having explored both Javascript and HTML,
+we may want an example that uses them both.
+The activecode directive provides good support for embedding javascript code
+directly in example HTML:</p>
+<div id='example-html-js' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<p>This example is adapted from <a class="reference external" href="https://runestone.academy/runestone/static/webfundamentals/index.html">Fundamentals of Web Programming</a></p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-html-js
+   <span class="nc">:language:</span> <span class="nf">html</span>
+   <span class="nc">:enabledownload:</span>
+
+   &lt;html&gt; 
+     &lt;body&gt; 
+       &lt;h2&gt;Guessing game&lt;/h2&gt; 
+       &lt;p&gt; 
+         Try guessing a number I&#39;ve picked between 0 and 99. 
+       &lt;/p&gt; 
+       &lt;label for=&quot;red&quot;&gt;Guess:<span class="nt">&lt;/label&gt;</span> 
+       &lt;input id=&quot;guess&quot; type=&quot;text&quot; /&gt; 
+       &lt;button onclick=&quot;check()&quot;&gt;Check&lt;/button&gt; 
+       &lt;status&gt; &lt;/status&gt; 
+     
+       &lt;script type=&quot;text/javascript&quot;&gt; 
+         let status = document.querySelector(&#39;status&#39;);
+         let goal = Math.floor(Math.random()*100);
+         let count = 0;
+ 
+         check = function() { 
+           count++;
+           guess = document.querySelector(&quot;#guess&quot;).value; 
+           if (guess == goal) { 
+             status.innerHTML = 
+               &quot;&lt;p&gt;Correct! You took &quot; + count + &quot; tries.&lt;/p&gt;&quot;;
+           } else if (guess &lt; goal) { 
+               status.innerHTML = 
+                 &quot;&lt;p&gt;Guess # &quot; + count + &quot;. Try higher.&lt;/p&gt;&quot;;
+           } else { 
+               status.innerHTML = 
+                 &quot;&lt;p&gt;Guess # &quot; + count + &quot;. Try lower.&lt;/p&gt;&quot;;
+           } 
+         } 
+       &lt;/script&gt; 
+     &lt;/body&gt; 
+   &lt;/html&gt; 
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Render" >
+
+<div data-childcomponent="ac-example-html-js" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-example-html-js data-lang="htmlmixed" 
+      data-timelimit=25000   data-enabledownload="true" 
+    data-audio=''   
+          >
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h2&gt;Guessing game&lt;/h2&gt;
+    &lt;p&gt;
+      Try guessing a number I've picked between 0 and 99.
+    &lt;/p&gt;
+    &lt;label for="red"&gt;Guess:&lt;/label&gt;
+    &lt;input id="guess" type="text" /&gt;
+    &lt;button onclick="check()"&gt;Check&lt;/button&gt;
+    &lt;status&gt; &lt;/status&gt;
+
+    &lt;script type="text/javascript"&gt;
+      let status = document.querySelector('status');
+      let goal = Math.floor(Math.random()*100);
+      let count = 0;
+
+      check = function() {
+        count++;
+        guess = document.querySelector("#guess").value;
+        if (guess == goal) {
+          status.innerHTML =
+            "&lt;p&gt;Correct! You took " + count + " tries.&lt;/p&gt;";
+        } else if (guess &lt; goal) {
+            status.innerHTML =
+              "&lt;p&gt;Guess # " + count + ". Try higher.&lt;/p&gt;";
+        } else {
+            status.innerHTML =
+              "&lt;p&gt;Guess # " + count + ". Try lower.&lt;/p&gt;";
+        }
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 </textarea>
 </div>
 </div>

@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -298,7 +304,21 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Codelens</a></li>
+<li><a class="reference internal" href="#">Codelens</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#workarounds-for-languages-other-than-python">Workarounds for languages other than Python</a></li>
+<li><a class="reference internal" href="#logs-grading">Logs &amp; Grading</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -347,85 +367,188 @@
   
   <div class="section" id="codelens">
 <h1>Codelens<a class="headerlink" href="#codelens" title="Permalink to this headline">¶</a></h1>
-<p>The codelens directive creates an interactive environment for you to step through small code examples. (With the <code class="docutils literal"><span class="pre">:codelens:</span></code> argument to an activecode window, it can be used for any activecode code block.)</p>
-<p>Codelens displays the values of variables and shows the contents and links between your objects.  Unlike a normal code debugger intended for solving bugs, codelens lets you step forward and backward through the code.</p>
-<p>In addition to stepping through the code you as an author can embed a single question into the codelens example.  You may ask the student to predict what the value of a variable will be after a line executes, what the value of an element on the heap is at the point you pause the code (if the term <code class="docutils literal"><span class="pre">heap</span></code> is unfamiliar to you, you need note only that you should be asking questions about values of variables, not e.g. an element of a Python list), or you may ask the student to predict which line of code will be executed next. (This is an excellent way to help students develop a good mental model of how python works.) The codelens directive shows a codelens window initially, which looks as shown below, rather than an activecode window with the option of running through the code using codelens.</p>
-<p>It’s worth noting that you can also make use of codelens in a live environment where you can edit code and run new examples.  To use codelens interactively go to <code class="docutils literal"><span class="pre">http://www.pythontutor.com/</span></code>.</p>
-<p><strong>Examples in reStructured Text</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">codelens</span><span class="p">::</span> <span class="n">simpleexample</span>
+<p>The codelens directive creates an interactive environment for you to step through small python code examples.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the codelens directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> unique_id
+   <span class="nc">:options:</span>
 
-    <span class="n">fruit</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;apple&quot;</span><span class="p">,</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;banana&quot;</span><span class="p">,</span><span class="s">&quot;cherry&quot;</span><span class="p">]</span>
-    <span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
-    <span class="n">newlist</span> <span class="o">=</span> <span class="n">fruit</span> <span class="o">+</span> <span class="n">numlist</span>
-    <span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
-
-    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fruit</span>
-    <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span>
+   <span class="m">+</span> --- Content area ---+
+   |
+   <span class="o">|</span> one or more lines of python code
+   |
+   <span class="m">+</span> --------------------+
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre>.. codelens:: question_example
-   :question: What is the value in b after line 4 executes?
-   :feedback: When d is set to a copy of the value of b it doesn&#39;t change the value of b.
-   :breakline: 4
-   :correct: globals.b
-
-   a = 1
-   b = 12.3
-   c = &quot;Fred&quot;
-   d = b
-</pre></div>
+<p>Codelens displays the values of variables and shows the contents and links between your objects.
+Unlike a normal code debugger intended for solving bugs,
+codelens lets you step forward and backward through the code.</p>
+<p>In addition to stepping through the code,
+you as an author can embed a single question into the codelens example.
+You may ask the student to predict what the value of a variable will be after a line executes,
+what the value of an element on the heap is at the point you pause the code
+(if the term <code class="docutils literal"><span class="pre">heap</span></code> is unfamiliar to you,
+you need note only that you should be asking questions about values of variables,
+not e.g. an element of a Python list),
+or you may ask the student to predict which line of code will be executed next.
+This is an excellent way to help students develop a good mental model of how python works.</p>
+<p>It’s worth noting that you can also make use of codelens in a
+live environment where you can edit code and run new examples.
+To use codelens interactively go to <a class="reference external" href="http://www.pythontutor.com/">http://www.pythontutor.com/</a>.</p>
+<p>Although codelens in Runestone currently supports python only,
+the core visualization available within codelens is also available for any
+language supported by <a class="reference external" href="http://www.pythontutor.com/">pythontutor</a>, which currently includes C, C++, Java, Ruby and others.</p>
 </div>
-<div class="highlight-default"><div class="highlight"><pre>.. codelens:: Ketchup_Speed
-   :question: What line will be executed after the current line executes?
-   :feedback: This code is executed one line at a time from top to bottom. (No loops.)
-   :breakline: 3
-   :correct: line
-
-   dripMPH = .028
-   FPM = 5280.0
-   dripFPH = dripMPH * FPM
-   MPH = 60
-   dripFPM = dripFPH / MPH
-   print(&quot;Ketchup speed in feet per minute:&quot;)
-   print(dripFPM)
-   print(&quot;Ketchup speed to move 4 feet in a minute:&quot;)
-   print(4 / dripFPM)
-</pre></div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the codelens directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd><p class="first">The content of a codelens directive is the similar to an activecode directive block: lines of code.
+There are a few differences:</p>
+<ul class="simple">
+<li>The question text or additional instructions section separated from code content is not supported.
+The book will compile, but the codelens will not render correctly.</li>
+<li>The hidden code section is not supported.</li>
+</ul>
+<p class="last">Note that if your code has any errors,
+it will definitely cause a problem when tracing through the codelens example,
+so make sure to test your code before deploying your book!</p>
+</dd>
+</dl>
 </div>
-<p><strong>Examples</strong></p>
-<p>Here are the above examples of codelens in action:</p>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>caption</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>.
+Define a caption for the bottom of the title frame.</dd>
+<dt>showoutput</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>.
+Sometimes it is desirable to ignore any output from print statements,
+in which case you would include this argument.
+Or sometimes you just want to save space and not show console output,
+in which case you should not use this argument.</dd>
+<dt>question</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>.
+This is the question text that will be shown to the student.</p>
+<p class="last">Only one question per codelens for now.</p>
+</dd>
+<dt>correct</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>.
+This is the correct answer to the question.
+This should be specified as a value from the trace data (see above).
+For example in the first example above,
+where you want to know the value of variable <code class="docutils literal"><span class="pre">b</span></code>,
+the correct answer parameter is <code class="docutils literal"><span class="pre">globals.b</span></code>.
+Note also that if you are asking a question about what line will be next executed,
+you can use the variable <code class="docutils literal"><span class="pre">line</span></code> (see example above),
+which refers to the line number that will be <em>next</em> executed
+(which may be a complex question if the code includes a loop or a conditional statement).</dd>
+<dt>feedback</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>.
+If the student gives the wrong answer you can give them a few sentences of feedback;
+the parameter to this argument is any string.
+The feedback will be the same for every wrong answer,
+so it’s a good idea to make the feedback generic reminders or hints.</dd>
+<dt>breakline</dt>
+<dd><code class="docutils literal"><span class="pre">Integer</span></code>.
+This is the line number that you want the program to stop at and ask the question.
+Note that the lines in the code start at 1,
+and the breakpoint at which the code will stop and ask you the question
+breaks BEFORE executing the line you specify in the breakline.</dd>
+<dt>tracedata</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">JSON</span> <span class="pre">Object</span></code>.
+Normally this value is filled in automatically with a JavaScript object
+of the stack trace, but you can provide your own tracedata if you wish.
+The <strong>tracedata</strong> is the object from which you access the value of the
+<code class="docutils literal"><span class="pre">:correct:</span></code> answer (see below) if you are including a question in the codelens directive.</p>
+<div class="admonition-developer-notes last admonition">
+<p class="first admonition-title">Developer notes</p>
+<p>You can see an example of the tracedata of a codelens directive by
+writing the codelens directive with content, building your book,
+and then looking in the html document that was built from your <code class="docutils literal"><span class="pre">.rst</span></code> file,
+which you can find in the <code class="docutils literal"><span class="pre">build</span></code> folder, in the corresponding directory to the
+directory in <code class="docutils literal"><span class="pre">_sources</span></code> where you saved your current <code class="docutils literal"><span class="pre">.rst</span></code> file
+(e.g. if your current rst file is in <code class="docutils literal"><span class="pre">_sources/Functions/introduction.rst</span></code>,
+you can see the tracedata for a codelens example in <code class="docutils literal"><span class="pre">build/Functions/introduction.html</span></code>.</p>
+<p>You can index into that <strong>tracedata</strong> object with dot notation,
+but index into any list within it with <code class="docutils literal"><span class="pre">[]</span></code>, as usual in Python.</p>
+<p>Note that <code class="docutils literal"><span class="pre">globals</span></code> are the variables in the global scope.
+<code class="docutils literal"><span class="pre">locals</span></code> is populated only if the codelens question refers to an inner,
+local scope within the program, and elements within lists, for example, are stored on the <code class="docutils literal"><span class="pre">heap</span></code>.</p>
+<p><strong>How Tracedata works</strong></p>
+<p class="last">The way codelens works is that when a Runestone book is built,
+codelens takes the code and runs it through the python debugger where a series of stack frames are collected.
+I will refer to this list of stack frames as the trace data.
+The trace data is then embedded into the page,
+so when a student is reading the book and wants to step through a codelens example the
+trace data is visualized for the student.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Python only at this time.</p>
+<p>It is however to embed the core code visualization feature directly from python tutor.
+This workaround lacks the question and answer features of codelens,
+and is styled differently.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Codelens does not process code containing preambles or hidden code correctly.</p>
+<p>Codelens support is for core python only - libraries such as turtle or unittest are not supported.</p>
+<p>You can’t place a codelens directive inside a tabbed directive.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A codelens example with zero, or 1 line,
+while legal, does not make for a compelling demonstration.</p>
 
 <div class="runestone" style="max-width: none;">
 <div class="alert alert-warning cd_section">
-<div id="simpleexample"></div>
-<p class="cl_caption"><span class="cl_caption_text"> (simpleexample)</span> </p>
+<div id="cl_ex_null"></div>
+<p class="cl_caption"><span class="cl_caption_text"> (cl_ex_null)</span> </p>
 </div>
 <script type="text/javascript">
-var simpleexample_trace = {"code": "fruit = [\"apple\",\"orange\",\"banana\",\"cherry\"]\nnumlist = [6,7]\nnewlist = fruit + numlist\nzeros = [0] * 4\n\nzeros[1] = fruit\nzeros[1][2] = numlist", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["fruit"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, 0, 0, 0]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", "banana", "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["fruit", "numlist", "newlist", "zeros"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"newlist": ["REF", 3], "fruit": ["REF", 1], "zeros": ["REF", 4], "numlist": ["REF", 2]}, "heap": {"1": ["LIST", "apple", "orange", ["REF", 2], "cherry"], "2": ["LIST", 6, 7], "3": ["LIST", "apple", "orange", "banana", "cherry", 6, 7], "4": ["LIST", 0, ["REF", 1], 0, 0]}, "line": 7, "event": "return"}]};
-var simpleexample_vis;
+var cl_ex_null_trace = {"code": "\n", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "return"}]};
+var cl_ex_null_vis;
 
 $(document).ready(function() {
     try {
-        simpleexample_vis = new ExecutionVisualizer('simpleexample',simpleexample_trace,
+        cl_ex_null_vis = new ExecutionVisualizer('cl_ex_null',cl_ex_null_trace,
                                     {embeddedMode: true,
                                     verticalStack: false,
                                     heightChangeCallback: redrawAllVisualizerArrows,
                                     codeDivWidth: 500,
                                     lang : 'py2'
                                     });
-        attachLoggers(simpleexample_vis,'simpleexample');
-        styleButtons('simpleexample');
-        allVisualizers.push(simpleexample_vis);
+        attachLoggers(cl_ex_null_vis,'cl_ex_null');
+        styleButtons('cl_ex_null');
+        allVisualizers.push(cl_ex_null_vis);
     } catch (e) {
-        console.log("Failed to Initialize CodeLens component simpleexample_vis" );
+        console.log("Failed to Initialize CodeLens component cl_ex_null_vis" );
         console.log(e.toString());
     }
 
 });
 
 $(document).ready(function() {
-    $("#simpleexample_tracecheck").click(function() {
-        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'simpleexample'});
+    $("#cl_ex_null_tracecheck").click(function() {
+        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'cl_ex_null'});
     });
 });
 
@@ -435,12 +558,90 @@ if (allVisualizers === undefined) {
 
 
 $(window).resize(function() {
-    if (simpleexample_vis) {
-        simpleexample_vis.redrawConnectors();
+    if (cl_ex_null_vis) {
+        cl_ex_null_vis.redrawConnectors();
     }
 });
 </script>
 </div>
+<div id='cl_null_ex' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> cl_ex_null
+</pre></div>
+</div>
+</div>
+    </div>
+
+<p>A simple example to help visualize a concept: insertion sort.</p>
+
+<div class="runestone" style="max-width: none;">
+<div class="alert alert-warning cd_section">
+<div id="cl_ex1"></div>
+<p class="cl_caption"><span class="cl_caption_text"> (cl_ex1)</span> </p>
+</div>
+<script type="text/javascript">
+var cl_ex1_trace = {"code": "# from: http://www.ece.uci.edu/~chou/py02/python.html\ndef InsertionSort(A):\n    for j in range(1, len(A)):\n        key = A[j]\n        i = j - 1\n        while (i >= 0) and (A[i] > key):\n            A[i+1] = A[i]\n            i = i - 1\n        A[i+1] = key\n\ninput = [8, 3, 9, 15, 29, 7, 10]\nInsertionSort(input)\nprint(input)", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["InsertionSort"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null]}, "line": 11, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 12, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2]}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 2, "event": "call"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2]}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "j": 1}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 3, 9, 15, 29, 7, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 8, 9, 15, 29, 7, 10]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": -1, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 8, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": -1, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 8, 8, 9, 15, 29, 7, 10]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": -1, "j": 1, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": -1, "j": 2, "key": 3}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": -1, "j": 2, "key": 9}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 2, "key": 9}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 2, "key": 9}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 2, "key": 9}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 3, "key": 9}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 3, "key": 15}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 3, "key": 15}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 3, "key": 15}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 3, "key": 15}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 4, "key": 15}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 4, "key": 29}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 4, "key": 29}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 4, "key": 29}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 4, "key": 29}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 5, "key": 29}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 7, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 29, 10]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 29, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 29, 29, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 15, 29, 10]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 15, 29, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 15, 15, 29, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 2, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 9, 15, 29, 10]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 9, 15, 29, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 9, 9, 15, 29, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 1, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 8, 9, 15, 29, 10]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 8, 9, 15, 29, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 8, 8, 9, 15, 29, 10]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 5, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 10]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 6, "key": 7}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 10]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 0, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 10]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 5, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 10]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 5, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 10]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 5, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 29]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 29]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 29, 29]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 4, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 15, 29]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 15, 29]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 15, 15, 29]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 10, 15, 29]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "InsertionSort", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"A": ["REF", 2], "i": 3, "__return__": null, "j": 6, "key": 10}, "is_highlighted": true, "is_parent": false, "func_name": "InsertionSort", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "InsertionSort_f1", "ordered_varnames": ["A", "j", "key", "i", "__return__"]}], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 10, 15, 29]}, "line": 3, "event": "return"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 10, 15, 29]}, "line": 13, "event": "step_line"}, {"ordered_globals": ["InsertionSort", "input"], "stdout": "[3, 7, 8, 9, 10, 15, 29]\n", "func_name": "<module>", "stack_to_render": [], "globals": {"input": ["REF", 2], "InsertionSort": ["REF", 1]}, "heap": {"1": ["FUNCTION", "InsertionSort(A)", null], "2": ["LIST", 3, 7, 8, 9, 10, 15, 29]}, "line": 13, "event": "return"}]};
+var cl_ex1_vis;
+
+$(document).ready(function() {
+    try {
+        cl_ex1_vis = new ExecutionVisualizer('cl_ex1',cl_ex1_trace,
+                                    {embeddedMode: true,
+                                    verticalStack: false,
+                                    heightChangeCallback: redrawAllVisualizerArrows,
+                                    codeDivWidth: 500,
+                                    lang : 'py2'
+                                    });
+        attachLoggers(cl_ex1_vis,'cl_ex1');
+        styleButtons('cl_ex1');
+        allVisualizers.push(cl_ex1_vis);
+    } catch (e) {
+        console.log("Failed to Initialize CodeLens component cl_ex1_vis" );
+        console.log(e.toString());
+    }
+
+});
+
+$(document).ready(function() {
+    $("#cl_ex1_tracecheck").click(function() {
+        logBookEvent({'event':'codelens', 'act': 'check', 'div_id':'cl_ex1'});
+    });
+});
+
+if (allVisualizers === undefined) {
+   var allVisualizers = [];
+}
+
+
+$(window).resize(function() {
+    if (cl_ex1_vis) {
+        cl_ex1_vis.redrawConnectors();
+    }
+});
+</script>
+</div>
+<div id='cl_simple' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<p>This example comes from <a class="reference external" href="http://pythontutor.com">http://pythontutor.com</a> itself.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> cl_ex1
+
+   # from: http://www.ece.uci.edu/~chou/py02/python.html
+   def InsertionSort(A):
+       for j in range(1, len(A)):
+           key = A[j]
+           i = j - 1
+           while (i &gt;= 0) and (A[i] &gt; key):
+               A[i+1] = A[i]
+               i = i - 1
+           A[i+1] = key
+
+   input = [8, 3, 9, 15, 29, 7, 10]
+   InsertionSort(input)
+   print(input)
+</pre></div>
+</div>
+</div>
+    </div>
+
+<p>This example asks a student to predict the value of a variable:</p>
 
 <div class="runestone" style="max-width: none;">
 <div class="alert alert-warning cd_section">
@@ -511,6 +712,153 @@ $(window).resize(function() {
 });
 </script>
 </div>
+<div id='cl_ex_question2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> question_example
+   <span class="nc">:question:</span> <span class="nf">What is the value in b after line 4 executes?</span>
+   <span class="nc">:feedback:</span> <span class="nf">When d is set to a copy of the value of b it doesn&#39;t change the value of b.</span>
+   <span class="nc">:breakline:</span> <span class="nf">4</span>
+   <span class="nc">:correct:</span> <span class="nf">globals.b</span>
+
+   a = 1
+   b = 12.3
+   c = &quot;Fred&quot;
+   d = b
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Raw Trace" >
+<p>This is the default trace generated by runestone.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span><span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;a = 1\nb = 12.3\nc = \&quot;Fred\&quot;\nd = b&quot;</span><span class="p">,</span> <span class="s2">&quot;trace&quot;</span><span class="o">:</span> <span class="p">[{</span><span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;stdout&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;func_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;globals&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;heap&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;line&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="o">:</span> <span class="s2">&quot;step_line&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="s2">&quot;stdout&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;func_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;globals&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s2">&quot;heap&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;line&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="o">:</span> <span class="s2">&quot;step_line&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="s2">&quot;stdout&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;func_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;globals&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="mf">12.3</span><span class="p">},</span> <span class="s2">&quot;heap&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;line&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="o">:</span> <span class="s2">&quot;step_line&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="s2">&quot;question&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;What is the value in b after line 4 executes?&quot;</span><span class="p">,</span> <span class="s2">&quot;div&quot;</span><span class="o">:</span> <span class="s2">&quot;question_example_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;feedback&quot;</span><span class="o">:</span> <span class="s2">&quot;When d is set to a copy of the value of b it doesn&#39;t change the value of b.&quot;</span><span class="p">,</span> <span class="s2">&quot;correct&quot;</span><span class="o">:</span> <span class="s2">&quot;globals.b&quot;</span><span class="p">},</span> <span class="s2">&quot;stdout&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;func_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;globals&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="o">:</span> <span class="s2">&quot;Fred&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="mf">12.3</span><span class="p">},</span> <span class="s2">&quot;heap&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;line&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="o">:</span> <span class="s2">&quot;step_line&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="s2">&quot;question&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;What is the value in b after line 4 executes?&quot;</span><span class="p">,</span> <span class="s2">&quot;div&quot;</span><span class="o">:</span> <span class="s2">&quot;question_example_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;feedback&quot;</span><span class="o">:</span> <span class="s2">&quot;When d is set to a copy of the value of b it doesn&#39;t change the value of b.&quot;</span><span class="p">,</span> <span class="s2">&quot;correct&quot;</span><span class="o">:</span> <span class="s2">&quot;globals.b&quot;</span><span class="p">},</span> <span class="s2">&quot;stdout&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;func_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span> <span class="p">[],</span> <span class="s2">&quot;globals&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="o">:</span> <span class="s2">&quot;Fred&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="mf">12.3</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="o">:</span> <span class="mf">12.3</span><span class="p">},</span> <span class="s2">&quot;heap&quot;</span><span class="o">:</span> <span class="p">{},</span> <span class="s2">&quot;line&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="o">:</span> <span class="s2">&quot;return&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Pretty Trace" >
+<p>This is the raw trace, but formatted.
+The globals object refernced in the directive is at the end of this object.</p>
+<div class="highlight-javascript"><div class="highlight"><pre> <span class="p">{</span>
+   <span class="s2">&quot;code&quot;</span><span class="o">:</span><span class="s2">&quot;a = 1\nb = 12.3\nc = \&quot;Fred\&quot;\nd = b&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;trace&quot;</span><span class="o">:</span><span class="p">[</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;stdout&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;func_name&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;globals&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;heap&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;line&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+         <span class="s2">&quot;event&quot;</span><span class="o">:</span><span class="s2">&quot;step_line&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span><span class="p">[</span>
+            <span class="s2">&quot;a&quot;</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;stdout&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;func_name&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;globals&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="o">:</span><span class="mi">1</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;heap&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;line&quot;</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
+         <span class="s2">&quot;event&quot;</span><span class="o">:</span><span class="s2">&quot;step_line&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span><span class="p">[</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;stdout&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;func_name&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;globals&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span><span class="o">:</span><span class="mf">12.3</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;heap&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;line&quot;</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span>
+         <span class="s2">&quot;event&quot;</span><span class="o">:</span><span class="s2">&quot;step_line&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span><span class="p">[</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c&quot;</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;question&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="s2">&quot;What is the value in b after line 4 executes?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;div&quot;</span><span class="o">:</span><span class="s2">&quot;question_example_modal&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feedback&quot;</span><span class="o">:</span><span class="s2">&quot;When d is set to a copy of the value of b it doesn&#39;t change the value of b.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;correct&quot;</span><span class="o">:</span><span class="s2">&quot;globals.b&quot;</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;stdout&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;func_name&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;globals&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;c&quot;</span><span class="o">:</span><span class="s2">&quot;Fred&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span><span class="o">:</span><span class="mf">12.3</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;heap&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;line&quot;</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span>
+         <span class="s2">&quot;event&quot;</span><span class="o">:</span><span class="s2">&quot;step_line&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;ordered_globals&quot;</span><span class="o">:</span><span class="p">[</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;d&quot;</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;question&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="s2">&quot;What is the value in b after line 4 executes?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;div&quot;</span><span class="o">:</span><span class="s2">&quot;question_example_modal&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feedback&quot;</span><span class="o">:</span><span class="s2">&quot;When d is set to a copy of the value of b it doesn&#39;t change the value of b.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;correct&quot;</span><span class="o">:</span><span class="s2">&quot;globals.b&quot;</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;stdout&quot;</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;func_name&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;module&gt;&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;stack_to_render&quot;</span><span class="o">:</span><span class="p">[</span>
+
+         <span class="p">],</span>
+         <span class="s2">&quot;globals&quot;</span><span class="o">:</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;c&quot;</span><span class="o">:</span><span class="s2">&quot;Fred&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;b&quot;</span><span class="o">:</span><span class="mf">12.3</span><span class="p">,</span>
+            <span class="s2">&quot;d&quot;</span><span class="o">:</span><span class="mf">12.3</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;heap&quot;</span><span class="o">:</span><span class="p">{</span>
+
+         <span class="p">},</span>
+         <span class="s2">&quot;line&quot;</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span>
+         <span class="s2">&quot;event&quot;</span><span class="o">:</span><span class="s2">&quot;return&quot;</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+    </div>
+
+<p>The answer to a question need not relate to a value.
+In this example, we ask not for a value from a variable, but rather which line executes next.</p>
 
 <div class="runestone" style="max-width: none;">
 <div class="alert alert-warning cd_section">
@@ -581,26 +929,66 @@ $(window).resize(function() {
 });
 </script>
 </div>
-<p><strong>Required Arguments</strong></p>
-<p>The identifier after the <code class="docutils literal"><span class="pre">::</span></code> must be unique. No spaces.</p>
-<p><strong>Content</strong></p>
-<p>The content of a codelens directive is the same as an activecode directive block: lines of code.</p>
-<p>Note that if your code has any errors, it will definitely cause a problem when tracing through the codelens example, so make sure to test your code before deploying your book!</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:caption:</span></code>  The text provided for this option will be formatted as a caption on the bottom of the codelens window.</p>
-<p><code class="docutils literal"><span class="pre">:showoutput:</span></code>  Sometimes it is desirable to ignore any output from print statements, in which case you would include this argument.  Or sometimes you just want to save space and not show console output, in which case you should not use this argument.</p>
-<p><code class="docutils literal"><span class="pre">:question:</span></code>  This is the question text that will be shown to the student. (Only one question per codelens for now.)</p>
-<p><code class="docutils literal"><span class="pre">:correct:</span></code> This is the correct answer to the question.  This should be specified as a value from the trace data (see above).  For example in the first example above, where you want to know the value of variable <code class="docutils literal"><span class="pre">b</span></code>, the correct answer parameter is <code class="docutils literal"><span class="pre">globals.b</span></code>. Note also that if you are asking a question about what line will be next executed, you can use the variable <code class="docutils literal"><span class="pre">line</span></code> (see example above), which refers to the line number that will be <em>next</em> executed (which may be a complex question if the code includes a loop or a conditional statement).</p>
-<p><code class="docutils literal"><span class="pre">:feedback:</span></code>  If the student gives the wrong answer you can give them a few sentences of feedback; the parameter to this argument is any string. The feedback will be the same for every wrong answer, so it’s a good idea to make the feedback generic reminders or hints.</p>
-<p><code class="docutils literal"><span class="pre">:breakline:</span></code>  This is the line number that you want the program to stop at and ask  the question. Note that the lines in the code start at 1, and the breakpoint at which the code will stop and ask you the question breaks BEFORE executing the line you specify in the breakline.</p>
-<p><code class="docutils literal"><span class="pre">:tracedata:</span></code>  Normally this value is filled in automatically with a JavaScript object of the stack trace, but you can provide your own tracedata if you wish. The <strong>tracedata</strong> is the object from which you access the value of the <code class="docutils literal"><span class="pre">:correct:</span></code> answer (see below) if you are including a question in the codelens directive.</p>
-<p><strong>Developer notes for tracedata:</strong> You can see an example of the tracedata of a codelens directive by writing the codelens directive with content, building your book, and then looking in the html document that was built from your <code class="docutils literal"><span class="pre">.rst</span></code> file, which you can find in the <code class="docutils literal"><span class="pre">build</span></code> folder, in the corresponding directory to the directory in <code class="docutils literal"><span class="pre">_sources</span></code> where you saved your current <code class="docutils literal"><span class="pre">.rst</span></code> file (e.g. if your current rst file is in <code class="docutils literal"><span class="pre">_sources/Functions/introduction.rst</span></code>, you can see the tracedata for a codelens example in <code class="docutils literal"><span class="pre">build/Functions/introduction.html</span></code>. You can index into that <strong>tracedata</strong> object with dot notation, but index into any list within it with <code class="docutils literal"><span class="pre">[]</span></code>, as usual in Python.</p>
-<p>Here is an example of a set of tracedata.</p>
-<p>Note that <code class="docutils literal"><span class="pre">globals</span></code> are the variables in the global scope. <code class="docutils literal"><span class="pre">locals</span></code> is populated only if the codelens question refers to an inner, local scope within the program, and elements within lists, for example, are stored on the <code class="docutils literal"><span class="pre">heap</span></code>.</p>
-<p><strong>Further Developer Notes</strong></p>
-<p>The way codelens works is that when a Runestone book is built, codelens takes the code and runs it through the python debugger where a series of stack frames are collected.  I will refer to this list of stack frames as the trace data.  The trace data is then embedded into the page, so when a student is reading the book and wants to step through a codelens example the trace data is visualized for the student.</p>
-<p><strong>Logs &amp; Grading</strong></p>
+<div id='cl_simple' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">codelens</span><span class="p">::</span> Ketchup_Speed
+   <span class="nc">:question:</span> <span class="nf">What line will be executed after the current line executes?</span>
+   <span class="nc">:feedback:</span> <span class="nf">This code is executed one line at a time from top to bottom. (No loops.)</span>
+   <span class="nc">:breakline:</span> <span class="nf">3</span>
+   <span class="nc">:correct:</span> <span class="nf">line</span>
+
+   dripMPH = .028
+   FPM = 5280.0
+   dripFPH = dripMPH * FPM
+   MPH = 60
+   dripFPM = dripFPH / MPH
+   print(&quot;Ketchup speed in feet per minute:&quot;)
+   print(dripFPM)
+   print(&quot;Ketchup speed to move 4 feet in a minute:&quot;)
+   print(4 / dripFPM)
+</pre></div>
+</div>
+</div>
+    </div>
+
+</div>
+<div class="section" id="workarounds-for-languages-other-than-python">
+<h2>Workarounds for languages other than Python<a class="headerlink" href="#workarounds-for-languages-other-than-python" title="Permalink to this headline">¶</a></h2>
+<p>Although codelens is supported only for Python,
+that does not mean there is not a code visualization option available.</p>
+<p>You can link directly to pythontutor.com.
+The site include a facility to generate either a link
+or an emdeddable iframe:</p>
+<div id='example-cpp' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">raw</span><span class="p">::</span> html
+
+   &lt;iframe width=&quot;800&quot; height=&quot;500&quot; frameborder=&quot;0&quot; src=&quot;http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Cstring%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initializer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20&#39;%5Cn&#39;%3B%0A%20%20%7D%0A%0A%20%20return%200%3B%0A%7D%0A&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;py=cpp&quot;&gt; &lt;/iframe&gt;
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Frame" >
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Cstring%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initializer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%0A%20%20return%200%3B%0A%7D%0A&codeDivHeight=400&codeDivWidth=350&py=cpp"> </iframe></div>
+    </div>
+
+<p>It’s not perfect as the output and visualizations of variables does not flow below
+the code.
+Also, note that this technique relies on the <code class="docutils literal"><span class="pre">raw</span></code> directive,
+which does make your book less portable and flexible.</p>
+<p>It is a best practice to wrap markup specific to a single output generator
+with an <code class="docutils literal"><span class="pre">only</span></code> directive:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">only</span><span class="p">::</span> html
+
+<span class="p">   ..</span> <span class="ow">raw</span><span class="p">::</span> html
+
+      &lt;iframe ... /&gt;
+</pre></div>
+</div>
+<p>One minor advantage of the embedded iframe over codelens is the ability to
+click on a line of code and set breakpoints.</p>
+<p>The back and forward buttons jump to the next breakpoint, if set.</p>
+</div>
+<div class="section" id="logs-grading">
+<h2>Logs &amp; Grading<a class="headerlink" href="#logs-grading" title="Permalink to this headline">¶</a></h2>
 <p>Clicks are logged. Answers to questions are also logged, but are currently not plugged into the grading interface and are used solely as a tool for checking understanding.</p>
+</div>
 </div>
 
 

@@ -1,0 +1,7 @@
+.. datafile:: ex2.txt
+   :edit:
+
+   here is the first line in the data file
+   also, this is the second line in the data file
+   and this is the third line
+

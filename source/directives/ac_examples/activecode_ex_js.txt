@@ -1,5 +1,6 @@
 .. activecode:: ac-example-js
    :language: javascript
+   :enabledownload:
 
    var x = 10;
    var y = 11;

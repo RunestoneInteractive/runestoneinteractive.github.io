@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -298,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Parsons Problems</a></li>
+<li><a class="reference internal" href="#">Parsons Problems</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -347,81 +365,460 @@
   
   <div class="section" id="parsons-problems">
 <h1>Parsons Problems<a class="headerlink" href="#parsons-problems" title="Permalink to this headline">¶</a></h1>
-<p>The Parsons Problem directive, <code class="docutils literal"><span class="pre">..</span> <span class="pre">parsonsprob::</span></code>, allows for insertion of a 2D Parsons problem. In a Parsons problem, users are provided with the lines / blocks of code (in the left source area) needed to solve a problem and are asked to reorder them to create a solution (in the right answer area). The 2D version further asks users to specify how much to indent the code. This is semantically meaningful in Python and good code practice in other programming languages. In the problem below, the third line needs to be indented to be correct.</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">parsons_problem_1</span>
+<p>In a Parsons problem, users are provided with the lines / blocks of code and students
+must reorder them to create a solution.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the parsons directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> unique_id
+   <span class="nc">:options:</span>
 
-   <span class="n">Construct</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">code</span> <span class="n">that</span> <span class="n">correctly</span> <span class="n">implements</span> <span class="n">the</span> <span class="n">accumulator</span> <span class="n">pattern</span><span class="o">.</span>
-   <span class="o">-----</span>
-   <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> one or more lines of instruction for the problem
+   <span class="o">|</span> -----
+   <span class="o">|</span> one or more lines of text
+   <span class="o">|</span> =====
+   <span class="o">|</span> grouped by
+   <span class="o">|</span> =====
+   <span class="o">|</span> five equals
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
 </div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the title directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd><p class="first">A content block is required for a parsons problem.
+Place the question text after any directive options, if specified.</p>
+<p>Use <code class="docutils literal"><span class="pre">-----</span></code> to separate the question text from the code.
+The code should be specified in the correct order and indented properly.
+You can also group lines using <code class="docutils literal"><span class="pre">=====</span></code> as in the problem below.</p>
+<p>The code blocks will be shuffled randomly in the source area;
+press the <em>Reset</em> button on a problem to see this shuffling in action.
+To make the problem more difficult, you can enter <em>distractors</em> that are not part of the solution.
+These lines or blocks are marked by placing <code class="docutils literal"><span class="pre">#distractor</span></code> after the line.
+You can pair one or more distractors with a correct code block by marking it with <code class="docutils literal"><span class="pre">#paired</span></code>.
+When shuffled, paired blocks will be kept together with the correct code block.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is no space between the <code class="docutils literal"><span class="pre">#</span></code> and the <code class="docutils literal"><span class="pre">distractor</span></code> or <code class="docutils literal"><span class="pre">paired</span></code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>adaptive</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Offer to ‘adapt’, or simplify the problem after a few failed attempts.
+Default is false.</p>
+<p class="last">If specified, then this option will offer help after a few failed attempts.
+After more failures, it will incrementally simplify the problem.</p>
+</dd>
+<dt>language</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Set the language of the content area.</p>
+<p>The default language is python.
+In a Parsons problem, the language is only used to control syntax highlighting.</p>
+<p class="last">The default language can be set in the book <code class="docutils literal"><span class="pre">pavement.py</span></code> file.</p>
+</dd>
+<dt>maxdist</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Integer</span></code>. Define a maximum number of distractors</p>
+<p class="last">If you specify distractors in the code,
+then this will specify the maximum number of distractors presented to the user.</p>
+</dd>
+<dt>noindent</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Do not mark against incorrect indentation.</p>
+<p>If you do not want to force correct indentation,
+then this argument will indent blocks as you specify them.
+This makes the problem significantly easier to solve.</p>
+<p>By default, code indentation matters.
+This is semantically meaningful in Python and good code practice in other programming languages.
+In the problem below, the third line needs to be indented to be correct.</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex1
+
+   Construct a block of code that correctly implements 
+   the &lt;b&gt;accumulator&lt;/b&gt; pattern.
+   -----
+   x = 0
+   for i in range(10):
+       x = x + 1
+</pre></div>
+</div>
+</dd>
+<dt>numbered</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Enumerated</span></code>. Turns on block numbering, either on the left or right.</p>
+<p class="last">Possible values are either <code class="docutils literal"><span class="pre">left</span></code> or <code class="docutils literal"><span class="pre">right</span></code>.</p>
+</dd>
+<dt>order</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">List</span></code>. Define a specific ‘shuffled’ order</p>
+<p class="last">If you don’t want the code to be randomly shuffled,
+you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Any text is supported, however, syntax highlighting is supported for
+a limited number of programming languages.
+Syntax highlighting is supported for python, java, javascript, html,
+c, c++, ruby, and natural.</p>
+<p>The language ‘natural’ is equivalent to ‘none’ in docutils,
+that is syntax highlighting is disabled.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This directive uses ‘c++’ to refer to C++, whereas the activecode directive uses ‘cpp’.</p>
+</div>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>The following <code class="docutils literal"><span class="pre">options.build.template_args</span></code> values can be set in a book pavement.py file.</p>
+<dl class="docutils">
+<dt>language</dt>
+<dd>The default language for parsons problem directives.</dd>
+</dl>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>TBD.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>The correct item to be paired with a <code class="docutils literal"><span class="pre">#paired</span></code> distraction must appear directly prior to the block marked <code class="docutils literal"><span class="pre">#paired</span></code>.</p>
+<p>Once you have committed to using <code class="docutils literal"><span class="pre">====</span></code> to define groups of lines,
+then <strong>every</strong> line must be separated as groups.</p>
+<p>All text in a parsons problem is actually parsed as HTML.
+Sphinx markup is interpreted as plain text.
+Characters that have special meaning in HTML (<code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>)
+need to be escaped in the parsons problem text (<code class="docutils literal"><span class="pre">&amp;lt;</span></code>, <code class="docutils literal"><span class="pre">&amp;gt;</span></code>)
+unless surrounded by whitespace, for example:</p>
+<div class="highlight-none"><div class="highlight"><pre># HTML
+if x&gt;y:
+
+# OK
+if x &gt; y:
+
+# HTML
+ArrayList&lt;Integer&gt; x = new ArrayList&lt;&gt;();
+
+# OK
+ArrayList &lt; Integer &gt; x = new ArrayList &lt; &gt; ();
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The simplest parsons problems take each line of text,
+places each in its own parsons block,
+and assesses on both line order and indentation.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex1
+
+   Construct a block of code that correctly implements 
+   the &lt;b&gt;accumulator&lt;/b&gt; pattern.
+   -----
+   x = 0
+   for i in range(10):
+       x = x + 1
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
 
         <div class="runestone" style="max-width: none;">
-        <pre data-component="parsons" id="parsons_problem_1"      >
-        <span data-question>Q-4: Q-3: Construct a block of code that correctly implements the accumulator pattern.</span>x = 0
-for i in range(10)
-       x = x + 1
+        <pre data-component="parsons" id="pa-ex1"      >
+        <span data-question>Q-158: Q-157: Construct a block of code that correctly implements
+the <b>accumulator</b> pattern.</span>x = 0
+for i in range(10):
+    x = x + 1
         </pre>
         </div>
-    <p><strong>Required Arguments</strong></p>
-<p>The identifier after the <code class="docutils literal"><span class="pre">::</span></code> must be unique. No spaces.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:adaptive:</span></code> - If specified, then this option will offer help after a few failed attempts.  After more failures, it will incrementally simplify the problem.</p>
-<p><code class="docutils literal"><span class="pre">:language:</span></code> - You can specify the language for the code. <em>python</em> is the default value, but other programming languages are possible: <em>java</em>, <em>javascript</em>, <em>html</em>, <em>c</em>, or <em>ruby</em>. In addition to these programming languages, you can also specify <em>natural</em> for plain text. The default language can be set in the book <code class="docutils literal"><span class="pre">pavement.py</span></code> file.</p>
-<p><code class="docutils literal"><span class="pre">:noindent:</span></code> - If you do not want to use the 2D capability, this argument will indent blocks as you specify them (see below). This makes the problem significantly easier to solve.</p>
-<p><code class="docutils literal"><span class="pre">:maxdist:</span></code> - If you specify distractors in the code, then this will specify the maximum number of distractors presented to the user.</p>
-<p><code class="docutils literal"><span class="pre">:order:</span></code> - If you don’t want the code to be randomly shuffled, you can specify the order of the blocks in a comma-separated list (e.g., 0,5,3,2,4,1).</p>
-<p><strong>Content</strong></p>
-<p>Place the question text after the arguments. Use <code class="docutils literal"><span class="pre">-----</span></code> to separate the question text from the code. The code should be specified in the correct order and indented properly. You can also group lines using <code class="docutils literal"><span class="pre">=====</span></code> as in the problem below. The code blocks will be shuffled randomly in the source area; press the <em>Reset</em> button on a problem to see this shuffling in action. To make the problem more difficult, you can enter distractors that are not part of the solution. These lines or blocks are marked by placing <code class="docutils literal"><span class="pre">#distractor</span></code> after the line. You can pair one or more distractors with a correct code block by marking it with <code class="docutils literal"><span class="pre">#paired</span></code>. When shuffled, these will be kept together with the correct code block (see below).</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">parsonsprob</span><span class="p">::</span> <span class="n">parsons_problem_2</span>
-   <span class="p">:</span><span class="n">noindent</span><span class="p">:</span>
+    </div><div data-component="tab" data-tabname="C++" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex1-cpp
+   <span class="nc">:language:</span> <span class="nf">c++</span>
 
-   <span class="n">Construct</span> <span class="n">a</span> <span class="n">function</span> <span class="n">that</span> <span class="n">returns</span> <span class="n">the</span> <span class="nb">max</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">a</span> <span class="nb">list</span><span class="o">.</span>
-   <span class="o">-----</span>
-   <span class="k">def</span> <span class="nf">findmax</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
-   <span class="o">=====</span>
-      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-             <span class="k">return</span> <span class="k">None</span>
-   <span class="o">=====</span>
-      <span class="n">curmax</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alist</span><span class="p">:</span>
-   <span class="o">=====</span>
-             <span class="k">if</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">curmax</span><span class="p">:</span>
-   <span class="o">=====</span>
-         <span class="k">if</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">curmax</span><span class="p">:</span> <span class="c">#paired</span>
-   <span class="o">=====</span>
-                    <span class="n">curmax</span> <span class="o">=</span> <span class="n">item</span>
-   <span class="o">=====</span>
-      <span class="k">return</span> <span class="n">curmax</span>
-   <span class="o">=====</span>
-      <span class="k">return</span> <span class="n">CurMax</span> <span class="c">#distractor</span>
+   Construct a block of code that correctly implements the accumulator pattern.
+   -----
+   template &lt; class InputIt, class T &gt;
+   T sum(InputIt first, InputIt last, T value)
+   {
+       while (first != last) {
+          value = value + *first;
+          ++first;
+       }
+       return value;
+   }
 </pre></div>
 </div>
+</div><div data-component="tab" data-tabname="Try It" >
 
         <div class="runestone" style="max-width: none;">
-        <pre data-component="parsons" id="parsons_problem_2"     data-noindent="true"  >
-        <span data-question>Q-6: Q-5: Construct a function that returns the max value from a list.</span>def findmax(alist):
----
-   if len(alist) == 0:
-      return None
----
-   curmax = alist[0]
-   for item in alist:
----
-      if item &gt; curmax:
----
-      if item &lt; curmax: #paired
----
-         curmax = item
----
-   return curmax
----
-   return CurMax #distractor
+        <pre data-component="parsons" id="pa-ex1-cpp"      data-language="c++" >
+        <span data-question>Q-160: Q-159: Construct a block of code that correctly implements the accumulator pattern.</span>template < class InputIt, class T >
+T sum(InputIt first, InputIt last, T value)
+{
+    while (first != last) {
+       value = value + *first;
+       ++first;
+    }
+    return value;
+}
         </pre>
         </div>
     </div>
+    </div>
+
+<p>Use the <code class="docutils literal"><span class="pre">=====</span></code> markup in the content area to control parsons block definitions.</p>
+<div id='example_groups' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="No groups" >
+<p>The default is to split each line of code into it’s own block.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> par_ex_group1
+
+   Construct a function that returns the max value from a list.
+   -----
+   def findmax(alist):
+       if len(alist) == 0:
+           return None
+       curmax = alist[0]
+       for item in alist:
+           if item &gt; curmax:
+               curmax = item
+       return curmax
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="par_ex_group1"      >
+        <span data-question>Q-162: Q-161: Construct a function that returns the max value from a list.</span>def findmax(alist):
+    if len(alist) == 0:
+        return None
+    curmax = alist[0]
+    for item in alist:
+        if item > curmax:
+            curmax = item
+    return curmax
+        </pre>
+        </div>
+    </div><div data-component="tab" data-tabname="Groups" >
+<p>If even 1 group is used, then all lines are interpreted as belonging to a group.</p>
+<p>In order to have somelines stand alone, they must be placed in a group.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> par_ex_group2
+
+   Construct a function that returns the max value from a list.
+   -----
+   def findmax(alist):
+   =====
+       if len(alist) == 0:
+           return None
+   =====
+       curmax = alist[0]
+       for item in alist:
+   =====
+           if item &gt; curmax:
+   =====
+               curmax = item
+   =====
+       return curmax
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="par_ex_group2"      >
+        <span data-question>Q-164: Q-163: Construct a function that returns the max value from a list.</span>def findmax(alist):
+---
+    if len(alist) == 0:
+        return None
+---
+    curmax = alist[0]
+    for item in alist:
+---
+        if item > curmax:
+---
+            curmax = item
+---
+    return curmax
+        </pre>
+        </div>
+    </div><div data-component="tab" data-tabname="C++" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex-cpp-group
+   <span class="nc">:language:</span> <span class="nf">c++</span>
+
+   Construct a block of code that correctly implements the accumulator pattern.
+   -----
+   template&amp;lt;class InputIt, class T&amp;gt;
+   =====
+   T sum(InputIt first, InputIt last, T value)
+   {
+   =====
+       while (first != last) {
+   =====
+          value = value + *first;
+   =====
+          ++first;
+   =====
+       }
+       return value;
+   =====
+   }
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="pa-ex-cpp-group"      data-language="c++" >
+        <span data-question>Q-166: Q-165: Construct a block of code that correctly implements the accumulator pattern.</span>template&lt;class InputIt, class T&gt;
+---
+T sum(InputIt first, InputIt last, T value)
+{
+---
+    while (first != last) {
+---
+       value = value + *first;
+---
+       ++first;
+---
+    }
+    return value;
+---
+}
+        </pre>
+        </div>
+    </div>
+    </div>
+
+<p>The <code class="docutils literal"><span class="pre">numbered</span></code> option sets block numbers.</p>
+<div id='numbered' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> par_ex_num_left
+   <span class="nc">:numbered:</span> <span class="nf">left</span>
+
+   Construct a function that returns the max value from a list.
+   -----
+   def findmax(alist):
+   =====
+       if len(alist) == 0:
+           return None
+   =====
+       curmax = alist[0]
+       for item in alist:
+   =====
+           if item &gt; curmax:
+   =====
+               curmax = item
+   =====
+       return curmax
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="par_ex_num_left"       data-numbered="left">
+        <span data-question>Q-168: Q-167: Construct a function that returns the max value from a list.</span>def findmax(alist):
+---
+    if len(alist) == 0:
+        return None
+---
+    curmax = alist[0]
+    for item in alist:
+---
+        if item > curmax:
+---
+            curmax = item
+---
+    return curmax
+        </pre>
+        </div>
+    </div>
+    </div>
+
+<p>The <code class="docutils literal"><span class="pre">maxdist</span></code> option limits the number of distractors.</p>
+<p>This example also demonstrates the use of <code class="docutils literal"><span class="pre">adaptive</span></code> option
+that will attempt to simplify the problem
+by removing distractors and helping with indentation after 3 failed attempts.</p>
+<div id='numbered' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="pa-ex-maxdist"  data-adaptive="true"  data-maxdist="2"    >
+        <span data-question>Q-170: Q-169: The following program segment is a method that should return string array
+that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
+
+<p>
+   But, the blocks have been mixed up and include <b>two extra blocks</b> that
+   are not needed in a correct solution.
+</p></span>public static String[] reverse(String[] arr) {
+---
+    String[] result = new String[arr.length];
+---
+    String[] result = arr; #distractor
+---
+    int i = arr.length - 1;
+---
+    int i = arr.length; #distractor
+---
+    for (String element: arr) {
+---
+    for (element: arr) { #distractor
+---
+      result[i--] = element;
+---
+      result[i] = element; #distractor
+---
+    } // end for loop
+---
+    return result;
+---
+} // end reverse method
+        </pre>
+        </div>
+    </div><div data-component="tab" data-tabname="Foo" >
+Odd behavior when a java parsons block follows a literal block.</div><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex-maxdist
+   <span class="nc">:adaptive:</span>
+   <span class="nc">:maxdist:</span> <span class="nf">2</span>
+
+   The following program segment is a method that should return string array 
+   that is in reverse order -- so {&quot;b&quot;, &quot;a&quot;, &quot;z&quot;} should return {&quot;z&quot;, &quot;a&quot;, &quot;b&quot;}.  
+
+   &lt;p&gt;
+      But, the blocks have been mixed up and include &lt;b&gt;two extra blocks&lt;/b&gt; that 
+      are not needed in a correct solution.  
+   &lt;/p&gt;
+   -----
+   public static String[] reverse(String[] arr) {
+   =====
+       String[] result = new String[arr.length];
+   =====
+       String[] result = arr; #distractor
+   =====
+       int i = arr.length - 1;
+   =====
+       int i = arr.length; #distractor
+   =====
+       for (String element: arr) {
+   =====
+       for (element: arr) { #distractor
+   =====
+         result[i--] = element;
+   =====
+         result[i] = element; #distractor
+   =====
+       } // end for loop
+   =====
+       return result;
+   =====
+   } // end reverse method
+</pre></div>
+</div>
+</div>
+    </div>
+
+</div>
+</div>
 
 
   

@@ -1,3 +1,4 @@
+==================================
 Runestone Directives Documentation
 ==================================
 
@@ -47,18 +48,25 @@ Assessments       .. toctree::
 ================= ===================================
 
 General Syntax
----------------
+===============
 
 All directives start out with ``..``, then a single space, 
 followed by the name of the directive, and then ``::``, followed by a single space.
-
 Most directives have a required argument of a unique identifier, 
-which immediately follows the directive name. 
-For example::
+which immediately follows the directive name,
+for example:
 
-    .. video:: interactive_python_vid_1
+.. code-block:: rst
+
+   .. video:: interactive_python_vid_1
 
 This unique identifier is used for logging, managing controls, and for testing Runestone components.
+
+    .. admonition:: How unique?
+
+       Unique id's must be unique withing the **entire** book.
+       
+       A duplicate id found in any file *will* generate a warning and *may* cause problems.
 
 Spacing, including indentation consistency, 
 is very important in implementing directives inside ``.rst`` files. 
@@ -68,7 +76,9 @@ so it's worth checking your final product before releasing content to students.
 
 Directives may have **required arguments**. 
 In many cases, an argument that is a unique identifier for that particular directive's ``div`` id, 
-will follow the ``::`` in the directive::
+will follow the ``::`` in the directive:
+
+.. code-block:: rst
 
     .. video:: interactive_python_vid_1
        :thumb: ../_static/videothumb.png
@@ -85,7 +95,7 @@ Runestone is a `Sphinx <http://www.sphinx-doc.org/en/master/>`_ extension.
 That means directives you can use in Sphinx will also work in Runestone.
 
 Ensuring Accessibility in Runestone Components
-----------------------------------------------
+==============================================
  
 Currently we are working on making Runestone books more accessible by 
 modifying Runestone Components. 

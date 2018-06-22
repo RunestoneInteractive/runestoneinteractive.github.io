@@ -48,6 +48,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -111,7 +112,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Clickable Areas" href="clickable.html" />
-    <link rel="prev" title="Timed Activity" href="timed.html" />
+    <link rel="prev" title="Timed Exam Questions" href="timed.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -309,7 +315,7 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Timed Activity" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - Timed Exam Questions" data-toggle="tooltip">
     <a href="timed.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
@@ -363,16 +369,32 @@
 </div>
 <div class="section" id="youtube">
 <h2>YouTube<a class="headerlink" href="#youtube" title="Permalink to this headline">¶</a></h2>
-<iframe src="https://www.youtube.com/embed/anwy2MPT5RE"     width="560" height="315" frameborder="0"     webkitAllowFullScreen mozallowfullscreen allowfullscreen     class="align-left" seamless ></iframe>
-    <div data-component="reveal" id="anwy2MPT5RE"  data-title="Source for the example above" data-showtitle="Show Source" data-hidetitle="Hide Source">
-    <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">youtube</span><span class="p">::</span> anwy2MPT5RE
-    <span class="nc">:height:</span> <span class="nf">315</span>
-    <span class="nc">:width:</span> <span class="nf">560</span>
-    <span class="nc">:align:</span> <span class="nf">left</span>
-</pre></div>
-</div>
 
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="anwy2MPT5RE_vid"></div>
     </div>
+    <script id="anwy2MPT5RE_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('anwy2MPT5RE_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('anwy2MPT5RE_vid', {
+          height: '315',
+          width: '560',
+          videoId: 'anwy2MPT5RE',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
     <p><strong>Example</strong></p>
 <div id="interactive_python_vid_1" class="video_popup runestone" >
 <video controls preload="none"  poster="../_static/videothumb.png">
@@ -416,7 +438,7 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Timed Activity' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - Timed Exam Questions' data-toggle="tooltip">
     <a href="timed.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>

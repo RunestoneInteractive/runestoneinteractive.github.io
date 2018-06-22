@@ -48,6 +48,7 @@
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
     <script type="text/javascript" src="_static/codemirror.js"></script>
     <script type="text/javascript" src="_static/xml.js"></script>
     <script type="text/javascript" src="_static/css.js"></script>
@@ -127,6 +128,11 @@
   eBookConfig.isLoggedIn = false;
   eBookConfig.useRunestoneServices = true;
   eBookConfig.python3 = true;
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+
 </script>
 
 <div id="fb-root"></div>
@@ -416,14 +422,21 @@ where more detailed documentation can be found:</p>
 <div class="section" id="general-syntax">
 <h2>General Syntax<a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
 <p>All directives start out with <code class="docutils literal"><span class="pre">..</span></code>, then a single space,
-followed by the name of the directive, and then <code class="docutils literal"><span class="pre">::</span></code>, followed by a single space.</p>
-<p>Most directives have a required argument of a unique identifier,
-which immediately follows the directive name.
-For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">interactive_python_vid_1</span>
+followed by the name of the directive, and then <code class="docutils literal"><span class="pre">::</span></code>, followed by a single space.
+Most directives have a required argument of a unique identifier,
+which immediately follows the directive name,
+for example:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">video</span><span class="p">::</span> interactive_python_vid_1
 </pre></div>
 </div>
 <p>This unique identifier is used for logging, managing controls, and for testing Runestone components.</p>
+<blockquote>
+<div><div class="admonition-how-unique admonition">
+<p class="first admonition-title">How unique?</p>
+<p>Unique id’s must be unique withing the <strong>entire</strong> book.</p>
+<p class="last">A duplicate id found in any file <em>will</em> generate a warning and <em>may</em> cause problems.</p>
+</div>
+</div></blockquote>
 <p>Spacing, including indentation consistency,
 is very important in implementing directives inside <code class="docutils literal"><span class="pre">.rst</span></code> files.
 Any missed or incorrect space may cause unexpected errors,
@@ -432,8 +445,8 @@ so it’s worth checking your final product before releasing content to students
 <p>Directives may have <strong>required arguments</strong>.
 In many cases, an argument that is a unique identifier for that particular directive’s <code class="docutils literal"><span class="pre">div</span></code> id,
 will follow the <code class="docutils literal"><span class="pre">::</span></code> in the directive:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">video</span><span class="p">::</span> <span class="n">interactive_python_vid_1</span>
-   <span class="p">:</span><span class="n">thumb</span><span class="p">:</span> <span class="o">../</span><span class="n">_static</span><span class="o">/</span><span class="n">videothumb</span><span class="o">.</span><span class="n">png</span>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">video</span><span class="p">::</span> interactive_python_vid_1
+   <span class="nc">:thumb:</span> <span class="nf">../_static/videothumb.png</span>
 </pre></div>
 </div>
 <p>Any required and optional arguments for a directive occur below that first line,
