@@ -1,4 +1,5 @@
 .. parsonsprob:: pa-ex-maxdist
+   :language: java
    :adaptive:
    :maxdist: 2
 
