@@ -60,8 +60,9 @@ adaptive
     ``Boolean``. Offer to 'adapt', or simplify the problem after a few failed attempts.
     Default is false.
 
-    If specified, then this option will offer help after a few failed attempts.  
+    If specified, then this option will offer help after 3 failed attempts.  
     After more failures, it will incrementally simplify the problem.
+    It may remove indentation as part of the problem or remove distractors one at a time.
 
 language
     ``String``. Set the language of the content area.
@@ -139,25 +140,7 @@ The correct item to be paired with a ``#paired`` distraction must appear directl
 Once you have committed to using ``====`` to define groups of lines,
 then **every** line must be separated as groups.
 
-All text in a parsons problem is actually parsed as HTML.
-Sphinx markup is interpreted as plain text.
-Characters that have special meaning in HTML (``<``, ``>``)
-need to be escaped in the parsons problem text (``&lt;``, ``&gt;``) 
-unless surrounded by whitespace, for example:
-
-.. code-block:: none
-
-   # HTML
-   if x>y:
-
-   # OK
-   if x > y:
-
-   # HTML
-   ArrayList<Integer> x = new ArrayList<>();
-
-   # OK
-   ArrayList < Integer > x = new ArrayList < > ();
+.. include:: html_content.txt
 
 Examples
 --------
@@ -243,19 +226,32 @@ This example also demonstrates the use of ``adaptive`` option
 that will attempt to simplify the problem
 by removing distractors and helping with indentation after 3 failed attempts.
 
-.. tabbed:: numbered
+The ``adaptive`` option also adds a 'Help Me' button used to start the assistance.
+Adaptive behaviors do not kick in automatically, but only on request.
 
-   .. tab:: Try It
-
-      .. include:: pa_examples/parson_ex_maxdist.txt
-
-   .. tab:: Foo
-
-      Odd behavior when a java parsons block follows a literal block.
+.. tabbed:: maxdist
 
    .. tab:: Source
 
       .. literalinclude:: pa_examples/parson_ex_maxdist.txt
          :language: rst
 
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_maxdist.txt
+
+This example shows the use of paired distractors.
+
+The problem has already been simplified by not assessing indentation.
+
+.. tabbed:: paired
+
+   .. tab:: Source
+
+      .. literalinclude:: pa_examples/parson_ex_paired.txt
+         :language: rst
+
+   .. tab:: Try It
+
+      .. include:: pa_examples/parson_ex_paired.txt
 

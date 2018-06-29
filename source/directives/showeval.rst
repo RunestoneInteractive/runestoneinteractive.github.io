@@ -1,23 +1,121 @@
-ShowEval Trace Mode
-===================
-The title directive ...
+ShowEval
+========
+The ``showeval`` directive creates an animated sequence.
+
+Synopsis
+--------
+
+.. code-block:: rst
+
+   .. showeval:: unique_id
+      :trace_mode: boolean
+
+      + --- Content area ---+
+      | Pre-requisite information and code
+      | ~~~~
+      | some {{code}} followed by {{replacement code}}
+      | more {{code}} followed by {{replacement code}}  ##with optional comment
+      + --------------------+
 
 
-.. showeval:: showEval_0
-   :trace_mode: true
+All prerequisite information that should be displayed above the animation,
+such as variable declaration, are separated from the step strings by ``~~~~``.
 
-   eggs = ['dogs', 'cats', 'moose']
-   ~~~~
-
-   ''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)
-   {{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)
-   {{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)
-   'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})
-   {{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}
+The step animations follow the ``~~~~`` and are written one per line. 
 
 
+Required Arguments
+------------------
 
-.. showeval:: showEval_1
+unique id
+A unique identifier after a space and the ``::`` in the directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
+
+content area
+The ``showeval`` directive should contain at least two steps to be useful.
+The steps section has special formatting requirements:
+
+- Each step must be wholly contained on a line, one animation step per line.
+- Blank lines are OK.
+- Use double curly braces: ``{{`` and ``}}`` to mark 
+  text replaced during an animation step.
+  Only 1 set of replacement text per line.
+- The end braces of the original text and start of the replacement braces 
+  must be exactly ``}}{{`` - no spaces are permitted.
+
+  The braces surround the part of the line that should be replaced,
+  followed by the replacement text delimited using double curly braces. 
+  
+To add a comment that will appear in a div beside the animation, 
+denote that at the end of the step where you would like it to appear with ``##``.
+
+
+trace_mode
+    ``Boolean``. If ``true``, will print out a new line for each step of the animation.
+
+    If ``false``,  will display and animate a single line, 
+    overwriting the previous animation, during each animation step.
+
+
+Optional Arguments
+------------------
+
+No optional arguments are defined for this directive.
+
+Languages supported
+-------------------
+
+The ``showeval`` directive is language agnostic.
+Nothing is actually executed or interpreted.
+It is up to the animation author to ensure the syntax and grammar within an animation
+makes sense - no syntax checking is performed.
+
+Sphinx configuration options
+----------------------------
+
+No sphinx configuration options exist for this directive.
+
+Internationalization
+....................
+
+tbd
+
+Known limitations
+-----------------
+
+No syntax highlighting is performed for any language.
+
+This directive is intended to help explore the inner workings of a small chunk of code.
+To show the more complex interactions between variables and functions, 
+consider using :doc:`codelens`.
+
+.. include:: html_content.txt
+
+A bug in ``showeval`` prevents it from working correctly in a :doc:`tab` directive.
+Every animation line renders twice.
+
+Examples
+--------
+
+The first example shows joining two arrays with showeval in trace mode
+and then shows the exact same example in replace mode.
+  
+Showing the source code with ``:tracemode: true``.
+
+This source code:
+ 
+.. literalinclude:: se_examples/showeval_ex_py.txt
+  :language: rst
+
+Created this example:
+
+.. include:: se_examples/showeval_ex_py.txt
+
+This example shows the exact same code as the previous example,
+but with ``:tracemode: false``.
+
+.. showeval:: showEval_false
   :trace_mode: false
 
   eggs = ['dogs', 'cats', 'moose']
@@ -29,68 +127,23 @@ The title directive ...
   'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})
   {{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}
 
-Synopsis
---------
 
-.. code-block:: none
+Using comments
+..............
 
-   .. title:: unique_id
-      :required: parameter value
+Comments are optional and appear after ``##`` on any animation line.
 
-      + --- Content area ---
-      |
-      | one or more lines of code in a supported language
-      |
-      + --------------------
+A comment is displayed as soon as an animation line is loaded,
+**before** the animation executes.
+When the *Next Step* button is pressed, the comment is removed.
 
-Required Arguments
-------------------
+This source code:
+ 
+.. literalinclude:: se_examples/showeval_ex_cpp.txt
+   :language: none
 
-unique id
-A unique identifier after a space and the ``::`` in the title directive.
-Valid identifiers must not contain spaces.
-You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
+Created this example:
 
-content area
-The title directive must contain at least one line of content.
-
-Optional Arguments
-------------------
-
-``:nopre:``
-    **Boolean**. Prevents a ``<pre></pre>`` element from getting created in the page.
-
-``:caption:``
-    **String**. Define a caption for the title directive.
-
-Languages supported
--------------------
-
-tbd
-
-Sphinx configuration options
-----------------------------
-
-tbd
-
-Internationalization
-....................
-
-Known limitations
------------------
-
-tbd
-
-Examples
---------
-
-You can embed disqus discussions:
-
-::
-
-    .. title::
-        :required: value 1
-        :optional:
-
+.. include:: se_examples/showeval_ex_cpp.txt
 
 

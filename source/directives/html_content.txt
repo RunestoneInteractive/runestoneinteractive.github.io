@@ -1,0 +1,19 @@
+All text in the content area is actually parsed as HTML.
+Sphinx markup is interpreted as plain text.
+Characters that have special meaning in HTML (``<``, ``>``)
+need to be escaped in the directive text (``&lt;``, ``&gt;``)
+unless surrounded by whitespace, for example:
+
+.. code-block:: none
+
+   # No space, HTML required
+   if x&lt;y:
+
+   # OK as is
+   if x > y:
+
+   # No space, HTML required
+   ArrayList&lt;Integer&gt; x = new ArrayList&lt;&gt;();
+
+   # OK as is
+   ArrayList < Integer > x = new ArrayList < > ();
