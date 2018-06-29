@@ -1,0 +1,24 @@
+.. parsonsprob:: parson-ex-paired
+
+   Reorder the blocks so that this program prints 'Hello world!'.
+   -----
+   public class HelloWorld
+   {
+   =====
+   public Class HelloWorld
+   {                         #paired
+   =====
+      public static void main(String[] args)
+      {
+      =====
+      public static void main()
+      {                         #paired
+      =====
+         System.out.println("Hello world!");
+         =====
+         System.out.println("Hello world!") #paired
+         =====
+      }
+      =====
+   }
+   
