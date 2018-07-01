@@ -68,7 +68,5 @@ Examples
    .. tab:: Run It
 
       .. include:: di_examples/disqus-ex1.txt
-.
-
 
 

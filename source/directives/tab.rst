@@ -1,42 +1,109 @@
-Tabs and Tab Groups
-===================
+Tab Groups
+==========
+The ``tabbed`` directive is a container that allows splitting related content
+into selectable tabs, viewable one at a time.
 
-You can create a section that contains several tabs.  This is useful for exercises, and in other situations where you may want to partially reveal content.
+Synopsis
+--------
+The general format of the ``tabbed`` directive is:
 
-::
+.. code-block:: rst
 
-    .. tabbed:: exercise1
+   .. tabbed:: unique_id
 
-        .. tab:: Question 1
+      .. tab:: Tab #1
 
-            Write a program that prints "Hello, world".
+         + --- Content area #1 ---
+         |
+         | one or more lines of content
+         |
+         + -----------------------
 
-            .. activecode:: helloworld
+      .. tab:: Tab #2
 
-                print("Hello, world")
+         + --- Content area #2 ---
 
-        .. tab:: Discussion
+      .. tab:: Tab #N
 
-            .. disqus::
-                :shortname: interactivepython
-                :identifier: helloworlddiscussion
+         + --- Content area #N ---
 
-
-.. tabbed:: exercise1
-
-    .. tab:: Question 1
-
-        Write a program that prints "Hello, world".
-
-        .. activecode:: helloworld
-
-            print("Hello, world")
-
-    .. tab:: Discussion
-
-        .. disqus::
-            :shortname: interactivepython
-            :identifier: helloworlddiscussion
+There is no hard limit on the maximum number of tabs allowed.
+On narrow pages, the tabs will adjust to fit the overall tabbed content.
+However, too many tabs can impair usability more than they improve it.
+Use your judgement to see what works in your environment.
 
 
+Required Arguments
+------------------
+
+unique id
+    A unique identifier after a space and the ``::`` in the ``tabbed`` directive.
+    Valid identifiers must not contain spaces.
+    You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
+
+content area
+    The ``tabbed`` directive must at least 1 child ``.. tab::`` directive.
+
+    Any other content placed as an immediate child of the ``.. tabbed::`` directive is silently ignored.
+
+    The ``.. tab::`` is only valid inside a ``.. tabbed::`` parent container.
+
+**.. tab::**
+    ``String``. Create a new tab and label the tab using the provided string.
+    A label is required, but may contain spaces.
+
+    If the tab contains a null content area,
+    then the build process throws a warning and no tab appears in the rendered HTML.
+    
+    Any valid Sphinx or Runestone markup can reside within a tab.
+
+
+Optional Arguments
+------------------
+
+No optional arguments are defined for this directive.
+
+Languages supported
+-------------------
+
+The ``tabbed`` directive is language agnostic.
+Nothing is actually executed or interpreted.
+
+Sphinx configuration options
+----------------------------
+
+No directive specific configuration options exist.
+
+Internationalization
+....................
+
+tbd.
+
+Known limitations
+-----------------
+
+Currently, some Runestone directives do not function correctly in a tabbed container:
+
+- :doc:`codelens`
+- :doc:`showeval`
+
+Examples
+--------
+
+You can create a container that contains one or more tabs.
+
+.. tabbed:: tab-ex1
+
+   .. tab:: Source
+
+      .. literalinclude:: tab_examples/tab-ex1.txt
+         :language: rst
+
+   .. tab:: Run It
+
+      .. include:: tab_examples/tab-ex1.txt
+
+
+Note that nearly every example in this directives manual used tabs to organize the
+source code and live examples.
 
