@@ -453,29 +453,37 @@ Do not assume that ‘hidden’ assessment information is hidden from everyone.<
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">timed</span><span class="p">::</span> time-ex1
    <span class="nc">:timelimit:</span> <span class="nf">60</span>
 
-<span class="p">   ..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-time-ex1
-      <span class="nc">:answer_a:</span> <span class="nf">112233445566</span>
-      <span class="nc">:answer_b:</span> <span class="nf">123456</span>
-      <span class="nc">:answer_c:</span> <span class="nf">123234345456</span>
-      <span class="nc">:answer_d:</span> <span class="nf">1223344556</span>
-      <span class="nc">:answer_e:</span> <span class="nf">Nothing will be printed due to an IndexOutOfBoundsException.</span>
-      <span class="nc">:correct:</span> <span class="nf">b</span>
-      <span class="nc">:feedback_a:</span> <span class="nf">This would be true if the loop was printing each character twice and was incrementing the index by 1, but it prints two characters at a time and increments the index by 2.</span>
-      <span class="nc">:feedback_b:</span> <span class="nf">This will loop through the string and print two characters at a time. The first time through the loop index = 0 and it will print &quot;12&quot;. The second time through the loop index = 2 and it will print &quot;34&quot;. The third time through the loop index = 4 and it will print &quot;56&quot;. Remember that the substring method that takes two integer values will start the substring at the first value and include up to the character before the second value.</span>
-      <span class="nc">:feedback_c:</span> <span class="nf">This would be true if the loop was loop printing three characters at a time, but it prints two characters at a time.</span>
-      <span class="nc">:feedback_d:</span> <span class="nf">This would be true if the index was incrementing by 1 instead of 2.</span>
-      <span class="nc">:feedback_e:</span> <span class="nf">This would be true if the loop stopped when index was less than the string length instead of one less than the string length.</span>
+<span class="p">   ..</span> <span class="ow">mchoice</span><span class="p">::</span> timed_mc_ex1.1
 
-      Given the following code segment, what is printed when it is executed? 
-   
-<span class="p">      ..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">java</span>
+      What color is a stop sign?
 
-         <span class="n">String</span> <span class="n">test</span> <span class="o">=</span> <span class="s">&quot;123456&quot;</span><span class="o">;</span>
-         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">test</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="o">)</span>
-         <span class="o">{</span>
-             <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">test</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">,</span><span class="n">index</span><span class="o">+</span><span class="mi">2</span><span class="o">));</span>
-         <span class="o">}</span>
-         
+      <span class="m">-</span>   red
+
+          <span class="m">+</span>   Red it is.
+
+      <span class="m">-</span>   brown
+
+          <span class="m">-</span>   Not brown.
+
+      <span class="m">-</span>   blue
+
+          <span class="m">-</span>   Not blue.
+
+      <span class="m">-</span>   gray
+
+          <span class="m">-</span>   Not gray.
+
+<span class="p">   ..</span> <span class="ow">mchoice</span><span class="p">::</span> timed_mc_ex1.2
+      :multiple_answers:
+      <span class="nc">:correct:</span> <span class="nf">a, c</span>
+      <span class="nc">:answer_a:</span> <span class="nf">red</span>
+      <span class="nc">:answer_b:</span> <span class="nf">brown</span>
+      <span class="nc">:answer_c:</span> <span class="nf">blue</span>
+      <span class="nc">:answer_d:</span> <span class="nf">gray</span>
+      <span class="nc">:feedback_a:</span> <span class="nf">Red it is.</span>
+      <span class="nc">:feedback_b:</span> <span class="nf">Not brown.</span>
+      <span class="nc">:feedback_c:</span> <span class="nf">Blue it is.</span>
+      <span class="nc">:feedback_d:</span> <span class="nf">Not gray.</span>
 </pre></div>
 </div>
 </div><div data-component="tab" data-tabname="Run It" >
@@ -483,25 +491,27 @@ Do not assume that ‘hidden’ assessment information is hidden from everyone.<
     <ul data-component="timedAssessment" data-time=60 id="time-ex1"    >
     
             <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc-time-ex1">
-            <p>Q-60: Given the following code segment, what is printed when it is executed?</p>
-<div class="highlight-java"><div class="highlight"><pre><span class="n">String</span> <span class="n">test</span> <span class="o">=</span> <span class="s">&quot;123456&quot;</span><span class="o">;</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">test</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="o">)</span>
-<span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">test</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">,</span><span class="n">index</span><span class="o">+</span><span class="mi">2</span><span class="o">));</span>
-<span class="o">}</span>
-</pre></div>
-</div>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="timed_mc_ex1.1">
+            <p>Q-19: What color is a stop sign?</p>
+<li data-component="answer" data-correct id="timed_mc_ex1.1_opt_a">red</li><li data-component="feedback" id="timed_mc_ex1.1_opt_a">
+Red it is.</li><li data-component="answer"  id="timed_mc_ex1.1_opt_b">brown</li><li data-component="feedback" id="timed_mc_ex1.1_opt_b">
+Not brown.</li><li data-component="answer"  id="timed_mc_ex1.1_opt_c">blue</li><li data-component="feedback" id="timed_mc_ex1.1_opt_c">
+Not blue.</li><li data-component="answer"  id="timed_mc_ex1.1_opt_d">gray</li><li data-component="feedback" id="timed_mc_ex1.1_opt_d">
+Not gray.</li>
 
-            <li data-component="answer"  id="mc-time-ex1_opt_a">112233445566</li><li data-component="feedback" id="mc-time-ex1_opt_a">This would be true if the loop was printing each character twice and was incrementing the index by 1, but it prints two characters at a time and increments the index by 2.</li>
+            </ul>
+            </div>
             
-            <li data-component="answer" data-correct id="mc-time-ex1_opt_b">123456</li><li data-component="feedback" id="mc-time-ex1_opt_b">This will loop through the string and print two characters at a time. The first time through the loop index = 0 and it will print "12". The second time through the loop index = 2 and it will print "34". The third time through the loop index = 4 and it will print "56". Remember that the substring method that takes two integer values will start the substring at the first value and include up to the character before the second value.</li>
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="timed_mc_ex1.2">
             
-            <li data-component="answer"  id="mc-time-ex1_opt_c">123234345456</li><li data-component="feedback" id="mc-time-ex1_opt_c">This would be true if the loop was loop printing three characters at a time, but it prints two characters at a time.</li>
+            <li data-component="answer" data-correct id="timed_mc_ex1.2_opt_a">red</li><li data-component="feedback" id="timed_mc_ex1.2_opt_a">Red it is.</li>
             
-            <li data-component="answer"  id="mc-time-ex1_opt_d">1223344556</li><li data-component="feedback" id="mc-time-ex1_opt_d">This would be true if the index was incrementing by 1 instead of 2.</li>
+            <li data-component="answer"  id="timed_mc_ex1.2_opt_b">brown</li><li data-component="feedback" id="timed_mc_ex1.2_opt_b">Not brown.</li>
             
-            <li data-component="answer"  id="mc-time-ex1_opt_e">Nothing will be printed due to an IndexOutOfBoundsException.</li><li data-component="feedback" id="mc-time-ex1_opt_e">This would be true if the loop stopped when index was less than the string length instead of one less than the string length.</li>
+            <li data-component="answer" data-correct id="timed_mc_ex1.2_opt_c">blue</li><li data-component="feedback" id="timed_mc_ex1.2_opt_c">Blue it is.</li>
+            
+            <li data-component="answer"  id="timed_mc_ex1.2_opt_d">gray</li><li data-component="feedback" id="timed_mc_ex1.2_opt_d">Not gray.</li>
             
 
             </ul>

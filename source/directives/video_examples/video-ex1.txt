@@ -1,0 +1,8 @@
+.. video:: video-ex1
+   :controls:
+   :thumb: /_images/whileloop.png
+
+   http://media.interactivepython.org/thinkcsVideos/whileloop.mov
+   http://media.interactivepython.org/thinkcsVideos/whileloop.webm
+
+

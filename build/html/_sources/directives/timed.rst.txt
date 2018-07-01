@@ -123,5 +123,3 @@ Examples
       .. include:: timed_examples/time-ex2.txt
 
 
-
-
