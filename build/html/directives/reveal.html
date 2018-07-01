@@ -112,7 +112,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tabs and Tab Groups" href="tab.html" />
-    <link rel="prev" title="Disqus Comment Box" href="disqus.html" />
+    <link rel="prev" title="Disqus" href="disqus.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Reveal</a></li>
+<li><a class="reference internal" href="#">Reveal</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -312,7 +324,7 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Disqus Comment Box" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - Disqus" data-toggle="tooltip">
     <a href="disqus.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
@@ -353,28 +365,115 @@
   
   <div class="section" id="reveal">
 <h1>Reveal<a class="headerlink" href="#reveal" title="Permalink to this headline">¶</a></h1>
-<p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">reveal</span><span class="p">::</span> <span class="n">revealid1</span>
-    <span class="p">:</span><span class="n">showtitle</span><span class="p">:</span> <span class="n">Reveal</span> <span class="n">Content</span>
-    <span class="p">:</span><span class="n">hidetitle</span><span class="p">:</span> <span class="n">Hide</span> <span class="n">Content</span>
+<p>The <code class="docutils literal"><span class="pre">reveal</span></code> hides content until a ‘Show’ button is pressed.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">reveal</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">reveal</span><span class="p">::</span> unique_id
+   <span class="nc">:optional:</span> <span class="nf">parameter value</span>
 
-    <span class="n">This</span> <span class="n">content</span> <span class="n">starts</span> <span class="n">out</span> <span class="n">hidden</span><span class="o">.</span> <span class="n">It</span><span class="s">&#39;s visibility can be toggled by using the Show/Hide button.</span>
-
-    <span class="n">The</span> <span class="n">reveal</span> <span class="n">block</span> <span class="n">can</span> <span class="n">also</span> <span class="n">contain</span> <span class="n">other</span> <span class="n">directives</span> <span class="p">(</span><span class="n">ActiveCode</span><span class="p">,</span> <span class="n">Disqus</span> <span class="n">block</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
-
-    <span class="o">..</span> <span class="n">activecode</span><span class="p">::</span> <span class="n">ac11</span>
-
-        <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Hello, world&quot;</span><span class="p">)</span>
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> one or more lines of initially hidden content
+   <span class="o">|</span> which can include any Runestone or Sphinx supported directives.
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
 </div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">reveal</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd>The <code class="docutils literal"><span class="pre">reveal</span></code> directive must contain at least one line of content.</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>showtitle</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a label for the ‘show’ button. Default is <code class="docutils literal"><span class="pre">Show</span></code>.</dd>
+<dt>hidetitle</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define a label for the ‘hide’ button. Default is <code class="docutils literal"><span class="pre">Hide</span></code>.</p>
+<p class="last">This option only applies if the <code class="docutils literal"><span class="pre">modal</span></code> option is <strong>not</strong> used.</p>
+</dd>
+<dt>modal</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If defined, the revealed content is presented in a modal dialog.  Default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<p class="last">The default behavior reveals content in-line.</p>
+</dd>
+<dt>modaltitle</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Title of modal dialog window. Default is “Message from the author”.</p>
+<p class="last">This option only applies if the <code class="docutils literal"><span class="pre">modal</span></code> option is used.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Not applicable.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">reveal</span><span class="p">::</span> re-ex1
 
-    <div data-component="reveal" id="revealid1"   data-showtitle="Reveal Content" data-hidetitle="Hide Content">
-    <p>This content starts out hidden. It’s visibility can be toggled by using the Show/Hide button.</p>
-<p>The reveal block can also contain other directives (ActiveCode, Disqus block, etc):</p>
+   This content starts out hidden.
 
-<div data-childcomponent="ac11" class="runestone explainer ac_section alert alert-warning">
+   <span class="m">-</span> <span class="ge">*Any*</span> valid <span class="s">`Sphinx markup </span><span class="si">&lt;http://www.sphinx-doc.org&gt;</span><span class="s">`__</span> can be included.
+   <span class="m">-</span> Hidden content can be shown by using the Show button.
+   <span class="m">-</span> When shown, a Hide button appears at the end of the hidden content.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
 
-<textarea data-component="activecode" id=ac11 data-lang="python" 
+    <div data-component="reveal" id="re-ex1"   data-showtitle="Show" data-hidetitle="Hide">
+    <p>This content starts out hidden.</p>
+<ul class="simple">
+<li><em>Any</em> valid <a class="reference external" href="http://www.sphinx-doc.org">Sphinx markup</a> can be included.</li>
+<li>Hidden content can be shown by using the Show button.</li>
+<li>When shown, a Hide button appears at the end of the hidden content.</li>
+</ul>
+
+    </div>
+    </div>
+    </div>
+
+<p>Both show and hide buttons are easy to customize:</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">reveal</span><span class="p">::</span> re-ex2
+    <span class="nc">:showtitle:</span> <span class="nf">Reveal Content</span>
+    <span class="nc">:hidetitle:</span> <span class="nf">Hide Content</span>
+
+    The reveal block can contain other Runestone directives:
+
+<span class="p">    ..</span> <span class="ow">activecode</span><span class="p">::</span> ac-reveal-ex
+
+        print (&quot;Hello, world&quot;)
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+    <div data-component="reveal" id="re-ex2"   data-showtitle="Reveal Content" data-hidetitle="Hide Content">
+    <p>The reveal block can contain other Runestone directives:</p>
+
+<div data-childcomponent="ac-reveal-ex" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-reveal-ex data-lang="python" 
       data-timelimit=25000  data-codelens="true"  
     data-audio=''   
           >
@@ -384,11 +483,60 @@ print ("Hello, world")
 
     </div>
     </div>
+    </div>
+
+<p>Very useful for in class presentations, or for in book exercises where you want to keep a solution hidden.
+Display inline, or in a dialog, as you prefer.</p>
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre>Given the following C++ statements:
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">cpp</span>
+
+   <span class="kt">int</span>  <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="kt">int</span><span class="o">&amp;</span> <span class="n">ir</span>  <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+   <span class="k">auto</span> <span class="n">x</span>   <span class="o">=</span> <span class="n">ir</span><span class="p">;</span>
+
+What type is x?
+
+<span class="p">..</span> <span class="ow">reveal</span><span class="p">::</span> reveal-ex3
+   <span class="nc">:modal:</span>
+   <span class="nc">:modaltitle:</span> <span class="nf">Understanding auto type deduction</span>
+
+   If you said, <span class="s">``int``</span>, excellent job!
+
+   <span class="s">``ir``</span> is a reference to <span class="s">``val``</span>, 
+   which makes <span class="s">``ir``</span> just another name for <span class="s">``val``</span>. 
+   <span class="s">``auto x = ir;``</span> is exactly the same as if we had written 
+   <span class="s">``auto x = val;``</span> here.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+<p>Given the following C++ statements:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span>  <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">&amp;</span> <span class="n">ir</span>  <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">x</span>   <span class="o">=</span> <span class="n">ir</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>What type is x?</p>
+
+    <div data-component="reveal" id="reveal-ex3" data-modal data-title="Understanding auto type deduction" data-showtitle="Show" data-hidetitle="Hide">
+    <p>If you said, <code class="docutils literal"><span class="pre">int</span></code>, excellent job!</p>
+<p><code class="docutils literal"><span class="pre">ir</span></code> is a reference to <code class="docutils literal"><span class="pre">val</span></code>,
+which makes <code class="docutils literal"><span class="pre">ir</span></code> just another name for <code class="docutils literal"><span class="pre">val</span></code>.
+<code class="docutils literal"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">ir;</span></code> is exactly the same as if we had written
+<code class="docutils literal"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">val;</span></code> here.</p>
+
+    </div>
+    </div>
+    </div>
+
+</div>
+</div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Disqus Comment Box' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - Disqus' data-toggle="tooltip">
     <a href="disqus.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>

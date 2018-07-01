@@ -1,0 +1,21 @@
+Given the following C++ statements:
+
+.. code-block:: cpp
+
+   int  val = 0;
+   int& ir  = val;
+   auto x   = ir;
+
+What type is x?
+
+.. reveal:: reveal-ex3
+   :modal:
+   :modaltitle: Understanding auto type deduction
+
+   If you said, ``int``, excellent job!
+
+   ``ir`` is a reference to ``val``, 
+   which makes ``ir`` just another name for ``val``. 
+   ``auto x = ir;`` is exactly the same as if we had written 
+   ``auto x = val;`` here.
+

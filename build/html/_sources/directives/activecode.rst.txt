@@ -280,17 +280,17 @@ The most trivial example: an activecode directive with no content area.
 
 .. tabbed:: null
 
-        .. tab:: Source
+   .. tab:: Source
 
-           .. code-block:: none
+      .. code-block:: none
 
-              .. activecode:: empty_block
+         .. activecode:: empty_block
 
-        .. tab:: Run It
+   .. tab:: Run It
 
-           Write your own python program in the space provided.
+      Write your own python program in the space provided.
 
-           .. activecode:: empty_block
+      .. activecode:: empty_block
 
 The next example defines a basic 'hello world' program in the default language (python).
 

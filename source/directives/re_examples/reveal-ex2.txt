@@ -1,0 +1,10 @@
+.. reveal:: re-ex2
+    :showtitle: Reveal Content
+    :hidetitle: Hide Content
+
+    The reveal block can contain other Runestone directives:
+
+    .. activecode:: ac-reveal-ex
+
+        print ("Hello, world")
+

@@ -1,0 +1,8 @@
+.. reveal:: re-ex1
+
+   This content starts out hidden.
+
+   - *Any* valid `Sphinx markup <http://www.sphinx-doc.org>`__ can be included.
+   - Hidden content can be shown by using the Show button.
+   - When shown, a Hide button appears at the end of the hidden content.
+

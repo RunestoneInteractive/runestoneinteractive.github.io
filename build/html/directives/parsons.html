@@ -419,8 +419,9 @@ When shuffled, paired blocks will be kept together with the correct code block.<
 <dt>adaptive</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Offer to ‘adapt’, or simplify the problem after a few failed attempts.
 Default is false.</p>
-<p class="last">If specified, then this option will offer help after a few failed attempts.
-After more failures, it will incrementally simplify the problem.</p>
+<p class="last">If specified, then this option will offer help after 3 failed attempts.
+After more failures, it will incrementally simplify the problem.
+It may remove indentation as part of the problem or remove distractors one at a time.</p>
 </dd>
 <dt>language</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Set the language of the content area.</p>
@@ -493,21 +494,21 @@ that is syntax highlighting is disabled.</p>
 <p>The correct item to be paired with a <code class="docutils literal"><span class="pre">#paired</span></code> distraction must appear directly prior to the block marked <code class="docutils literal"><span class="pre">#paired</span></code>.</p>
 <p>Once you have committed to using <code class="docutils literal"><span class="pre">====</span></code> to define groups of lines,
 then <strong>every</strong> line must be separated as groups.</p>
-<p>All text in a parsons problem is actually parsed as HTML.
+<p>All text in the content area is actually parsed as HTML.
 Sphinx markup is interpreted as plain text.
 Characters that have special meaning in HTML (<code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>)
-need to be escaped in the parsons problem text (<code class="docutils literal"><span class="pre">&amp;lt;</span></code>, <code class="docutils literal"><span class="pre">&amp;gt;</span></code>)
+need to be escaped in the directive text (<code class="docutils literal"><span class="pre">&amp;lt;</span></code>, <code class="docutils literal"><span class="pre">&amp;gt;</span></code>)
 unless surrounded by whitespace, for example:</p>
-<div class="highlight-none"><div class="highlight"><pre># HTML
-if x&gt;y:
+<div class="highlight-none"><div class="highlight"><pre># No space, HTML required
+if x&amp;lt;y:
 
-# OK
+# OK as is
 if x &gt; y:
 
-# HTML
-ArrayList&lt;Integer&gt; x = new ArrayList&lt;&gt;();
+# No space, HTML required
+ArrayList&amp;lt;Integer&amp;gt; x = new ArrayList&amp;lt;&amp;gt;();
 
-# OK
+# OK as is
 ArrayList &lt; Integer &gt; x = new ArrayList &lt; &gt; ();
 </pre></div>
 </div>
@@ -532,7 +533,7 @@ and assesses on both line order and indentation.</p>
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex1"      >
-        <span data-question>Q-172: Q-171: Construct a block of code that correctly implements
+        <span data-question>Q-36: Q-35: Construct a block of code that correctly implements
 the <b>accumulator</b> pattern.</span>x = 0
 for i in range(10):
     x = x + 1
@@ -559,7 +560,7 @@ for i in range(10):
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex1-cpp"      data-language="c++" >
-        <span data-question>Q-174: Q-173: Construct a block of code that correctly implements the accumulator pattern.</span>template < class InputIt, class T >
+        <span data-question>Q-38: Q-37: Construct a block of code that correctly implements the accumulator pattern.</span>template < class InputIt, class T >
 T sum(InputIt first, InputIt last, T value)
 {
     while (first != last) {
@@ -594,7 +595,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_group1"      >
-        <span data-question>Q-176: Q-175: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Q-40: Q-39: Construct a function that returns the max value from a list.</span>def findmax(alist):
     if len(alist) == 0:
         return None
     curmax = alist[0]
@@ -630,7 +631,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_group2"      >
-        <span data-question>Q-178: Q-177: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Q-42: Q-41: Construct a function that returns the max value from a list.</span>def findmax(alist):
 ---
     if len(alist) == 0:
         return None
@@ -672,7 +673,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex-cpp-group"      data-language="c++" >
-        <span data-question>Q-180: Q-179: Construct a block of code that correctly implements the accumulator pattern.</span>template&lt;class InputIt, class T&gt;
+        <span data-question>Q-44: Q-43: Construct a block of code that correctly implements the accumulator pattern.</span>template&lt;class InputIt, class T&gt;
 ---
 T sum(InputIt first, InputIt last, T value)
 {
@@ -718,7 +719,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_num_left"       data-numbered="left">
-        <span data-question>Q-182: Q-181: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Q-46: Q-45: Construct a function that returns the max value from a list.</span>def findmax(alist):
 ---
     if len(alist) == 0:
         return None
@@ -740,42 +741,9 @@ T sum(InputIt first, InputIt last, T value)
 <p>This example also demonstrates the use of <code class="docutils literal"><span class="pre">adaptive</span></code> option
 that will attempt to simplify the problem
 by removing distractors and helping with indentation after 3 failed attempts.</p>
-<div id='numbered' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Try It" >
-
-        <div class="runestone" style="max-width: none;">
-        <pre data-component="parsons" id="pa-ex-maxdist"  data-adaptive="true"  data-maxdist="2"    data-language="java" >
-        <span data-question>Q-184: Q-183: The following program segment is a method that should return string array
-that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
-
-<p>
-   But, the blocks have been mixed up and include <b>two extra blocks</b> that
-   are not needed in a correct solution.
-</p></span>public static String[] reverse(String[] arr) {
----
-    String[] result = new String[arr.length];
----
-    String[] result = arr; #distractor
----
-    int i = arr.length - 1;
----
-    int i = arr.length; #distractor
----
-    for (String element: arr) {
----
-    for (element: arr) { #distractor
----
-      result[i--] = element;
----
-      result[i] = element; #distractor
----
-    } // end for loop
----
-    return result;
----
-} // end reverse method
-        </pre>
-        </div>
-    </div><div data-component="tab" data-tabname="Source" >
+<p>The <code class="docutils literal"><span class="pre">adaptive</span></code> option also adds a ‘Help Me’ button used to start the assistance.
+Adaptive behaviors do not kick in automatically, but only on request.</p>
+<div id='maxdist' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> pa-ex-maxdist
    <span class="nc">:language:</span> <span class="nf">java</span>
    <span class="nc">:adaptive:</span>
@@ -814,7 +782,99 @@ that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
    } // end reverse method
 </pre></div>
 </div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="pa-ex-maxdist"  data-adaptive="true"  data-maxdist="2"    data-language="java" >
+        <span data-question>Q-48: Q-47: The following program segment is a method that should return string array
+that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
+
+<p>
+   But, the blocks have been mixed up and include <b>two extra blocks</b> that
+   are not needed in a correct solution.
+</p></span>public static String[] reverse(String[] arr) {
+---
+    String[] result = new String[arr.length];
+---
+    String[] result = arr; #distractor
+---
+    int i = arr.length - 1;
+---
+    int i = arr.length; #distractor
+---
+    for (String element: arr) {
+---
+    for (element: arr) { #distractor
+---
+      result[i--] = element;
+---
+      result[i] = element; #distractor
+---
+    } // end for loop
+---
+    return result;
+---
+} // end reverse method
+        </pre>
+        </div>
+    </div>
+    </div>
+
+<p>This example shows the use of paired distractors.</p>
+<p>The problem has already been simplified by not assessing indentation.</p>
+<div id='paired' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">parsonsprob</span><span class="p">::</span> parson-ex-paired
+
+   Reorder the blocks so that this program prints &#39;Hello world!&#39;.
+   -----
+   public class HelloWorld
+   {
+   =====
+   public Class HelloWorld
+   {                         #paired
+   =====
+      public static void main(String[] args)
+      {
+      =====
+      public static void main()
+      {                         #paired
+      =====
+         System.out.println(&quot;Hello world!&quot;);
+         =====
+         System.out.println(&quot;Hello world!&quot;) #paired
+         =====
+      }
+      =====
+   }
+   
+</pre></div>
 </div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="parson-ex-paired"      >
+        <span data-question>Q-50: Q-49: Reorder the blocks so that this program prints 'Hello world!'.</span>public class HelloWorld
+{
+---
+public Class HelloWorld
+{                         #paired
+---
+   public static void main(String[] args)
+   {
+   ---
+   public static void main()
+   {                         #paired
+   ---
+      System.out.println("Hello world!");
+      ---
+      System.out.println("Hello world!") #paired
+      ---
+   }
+   ---
+}
+        </pre>
+        </div>
+    </div>
     </div>
 
 </div>
