@@ -186,7 +186,7 @@ while legal, does not make for a compelling demonstration.
 
 A simple example to help visualize a concept: insertion sort.
 
-.. include:: cl_examples/cl_ex1.txt
+.. include:: codelens_examples/cl_ex1.txt
 
 .. tabbed:: cl_simple
 
@@ -194,18 +194,18 @@ A simple example to help visualize a concept: insertion sort.
 
       This example comes from http://pythontutor.com itself.
 
-      .. literalinclude:: cl_examples/cl_ex1.txt
+      .. literalinclude:: codelens_examples/cl_ex1.txt
          :language: rst
 
 This example asks a student to predict the value of a variable:
 
-.. include:: cl_examples/cl_ex2.txt
+.. include:: codelens_examples/cl_ex2.txt
 
 .. tabbed:: cl_ex_question2
 
    .. tab:: Source
 
-      .. literalinclude:: cl_examples/cl_ex2.txt
+      .. literalinclude:: codelens_examples/cl_ex2.txt
          :language: rst
 
    .. tab:: Raw Trace
@@ -348,13 +348,13 @@ This example asks a student to predict the value of a variable:
 The answer to a question need not relate to a value.
 In this example, we ask not for a value from a variable, but rather which line executes next.
 
-.. include:: cl_examples/cl_ex3.txt
+.. include:: codelens_examples/cl_ex3.txt
 
 .. tabbed:: cl_simple
 
    .. tab:: Source
 
-      .. literalinclude:: cl_examples/cl_ex3.txt
+      .. literalinclude:: codelens_examples/cl_ex3.txt
          :language: rst
 
 
@@ -371,12 +371,12 @@ or an emdeddable iframe:
 
    .. tab:: Source
 
-      .. literalinclude:: cl_examples/cl_ex_cpp.txt
+      .. literalinclude:: codelens_examples/cl_ex_cpp.txt
          :language: rst
 
    .. tab:: Frame
 
-      .. include:: cl_examples/cl_ex_cpp.txt
+      .. include:: codelens_examples/cl_ex_cpp.txt
 
 It's not perfect as the output and visualizations of variables does not flow below
 the code.
