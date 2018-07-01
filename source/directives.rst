@@ -32,6 +32,7 @@ Containers        .. toctree::
                      directives/tab
                      directives/timed
                      directives/video
+                     directives/youtube
 
 Assessments       .. toctree::
                      :titlesonly:
