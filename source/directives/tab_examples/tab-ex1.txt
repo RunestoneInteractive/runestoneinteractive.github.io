@@ -1,0 +1,17 @@
+.. tabbed:: tab-ex1
+
+   .. tab:: Question 1
+
+      Write a program that prints "Hello, world".
+
+      .. activecode:: helloworld
+
+         print("Hello, world")
+
+   .. tab:: Discussion
+
+      .. disqus::
+         :shortname: interactivepython
+         :identifier: helloworlddiscussion
+
+

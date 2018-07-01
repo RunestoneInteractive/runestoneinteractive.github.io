@@ -1,0 +1,16 @@
+.. timed:: time-ex2
+   :noresult:
+   :nofeedback:
+
+
+   Write a javascript function that computes the factorial of a number.
+
+   .. activecode:: ac-timed-ex-js
+      :language: javascript
+
+
+      // your code here
+
+      write(factorial(5));
+
+
