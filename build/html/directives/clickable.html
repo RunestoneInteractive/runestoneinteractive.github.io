@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Clickable Areas &#8212; Runestone Interactive 1.0 documentation</title>
+    <title>Clickable Area &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Clickable Areas</a></li>
+<li><a class="reference internal" href="#">Clickable Area</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -351,19 +363,303 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="clickable-areas">
-<h1>Clickable Areas<a class="headerlink" href="#clickable-areas" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">clickablearea</span><span class="p">::</span> <span class="n">identifier</span>
-    <span class="p">:</span><span class="n">question</span><span class="p">:</span> <span class="n">Question</span> <span class="n">text</span>
-    <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Optional</span> <span class="n">feedback</span> <span class="k">for</span> <span class="n">incorrect</span> <span class="n">answer</span>
-    <span class="p">:</span><span class="n">iscode</span><span class="p">:</span> <span class="n">Boolean</span> <span class="n">that</span> <span class="k">if</span> <span class="n">present</span> <span class="n">will</span> <span class="n">put</span> <span class="n">the</span> <span class="n">content</span> <span class="n">into</span> <span class="n">a</span> <span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;</span>
-    <span class="p">:</span><span class="n">table</span><span class="p">:</span> <span class="n">Boolean</span> <span class="n">that</span> <span class="n">indicates</span> <span class="n">that</span> <span class="n">the</span> <span class="n">content</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">table</span><span class="o">.</span>
-    <span class="p">:</span><span class="n">correct</span><span class="p">:</span> <span class="n">An</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">indices</span> <span class="n">of</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">elements</span><span class="p">,</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">semicolons</span><span class="o">--</span><span class="k">if</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">table</span><span class="p">,</span> <span class="n">each</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">tuple</span>
-    <span class="k">with</span> <span class="n">the</span> <span class="n">first</span> <span class="n">number</span> <span class="n">being</span> <span class="n">the</span> <span class="n">row</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">second</span> <span class="n">number</span> <span class="n">being</span> <span class="n">the</span> <span class="n">column</span><span class="o">--</span><span class="n">use</span> <span class="n">a</span> <span class="n">column</span> <span class="n">number</span> <span class="n">of</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">row</span> <span class="n">correct</span> <span class="p">(</span><span class="n">ex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span> <span class="n">makes</span> <span class="n">the</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">data</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">correct</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span> <span class="n">the</span> <span class="n">entire</span> <span class="mi">3</span><span class="n">rd</span> <span class="n">row</span><span class="p">)</span>
-    <span class="p">:</span><span class="n">incorrect</span><span class="p">:</span> <span class="n">An</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">indices</span> <span class="n">of</span> <span class="n">the</span> <span class="n">incorrect</span> <span class="n">elements</span><span class="o">--</span><span class="n">same</span> <span class="nb">format</span> <span class="k">as</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">elements</span><span class="o">.</span>
+  <div class="section" id="clickable-area">
+<h1>Clickable Area<a class="headerlink" href="#clickable-area" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">clickablearea</span></code> directive defines an assessment that interprets mouse clicks in the content area.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">clickablearea</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> unique_id
+   <span class="nc">:required:</span> <span class="nf">parameter value</span>
 
-    <span class="o">--</span><span class="n">Content</span><span class="o">--</span>
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> A table in docutils &#39;grid table format&#39;
+   |
+   <span class="o">|</span> or
+   |
+   <span class="o">|</span> text with :click-correct: text :endclick:
+   <span class="o">|</span> and
+   <span class="o">|</span> text with :click-incorrect: text :endclick:
+   <span class="o">|</span> markup
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
+</div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">clickablearea</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd><p class="first">The <code class="docutils literal"><span class="pre">clickablearea</span></code> directive must contain at least one line of content.</p>
+<p>The content area has relatively strict formatting requirements.
+The content area must contain either a table
+in <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">grid table format</a>
+or text with special formatting options embedded in the text.</p>
+<p>If the content area contains a table, the <code class="docutils literal"><span class="pre">:table:</span></code> option must be set.</p>
+<p>If the content area contains anything else, the <code class="docutils literal"><span class="pre">:iscode:</span></code> option must be set.</p>
+<p class="last">A space must separate the last directive option from the content area.</p>
+</dd>
+<dt>question</dt>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Instructions describing what is expected for a correct response.</dd>
+<dt>iscode</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, the content area will expect text with special format strings</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">:click-correct:</span></code> – define the start of a correct section of text.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">:click-incorrect:</span></code> – define the start of an incorrect section of text.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">:endclick:</span></code> – define the end of a marked section of text, either correct or incorrect.</p>
+<p>Each click must end with a matching <code class="docutils literal"><span class="pre">:endclick:</span></code></p>
+</li>
+</ul>
+<p>For example:</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> question1
+   <span class="nc">:question:</span> <span class="nf">Click the rainbow color(s)</span>
+   <span class="nc">:iscode:</span>
+
+   :click-correct:Red:endclick:
+   :click-incorrect:Gold:endclick:
+   :click-correct:Blue:endclick:
+   :click-incorrect:Black:endclick:
+</pre></div>
+</div>
+</dd>
+<dt>table</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, the content area must contain a
+<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">grid table</a>
+and the directive must set the <code class="docutils literal"><span class="pre">:correct:</span></code> and <code class="docutils literal"><span class="pre">:incorrect:</span></code> options.</p>
+<p>For example:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> question2
+   <span class="nc">:question:</span> <span class="nf">Click the rainbow color(s)</span>
+   <span class="nc">:table:</span>
+   <span class="nc">:correct:</span> <span class="nf">1,0;2,2;3,1;3,3;4,2</span>
+   <span class="nc">:incorrect:</span> <span class="nf">2,1;2,3;3,2;4,1;4,3</span>
+
+   +-------+---------+--------+
+   <span class="o">|</span>  Red  |  Orange | Yellow |
+   +-------+---------+--------+
+   <span class="o">|</span> White |  Green  | White  |
+   +-------+---------+--------+
+   <span class="o">|</span>  Blue |  White  | Indigo |
+   +-------+---------+--------+
+   <span class="o">|</span> White |  Violet | White  |
+   +-------+---------+--------+
+</pre></div>
+</div>
+<p class="last">Table location numbering begins at 1.
+When referring to table cells, the upper left cell (‘Red’ in this example) is location <code class="docutils literal"><span class="pre">1,</span> <span class="pre">1</span></code>.
+The bottom right cell is at location <code class="docutils literal"><span class="pre">4,</span> <span class="pre">3</span></code>.</p>
+</dd>
+<dt>correct</dt>
+<dd><code class="docutils literal"><span class="pre">Formatted</span> <span class="pre">List</span></code>. A list of table coordinates that are marked as correct when clicked.</dd>
+<dt>incorrect</dt>
+<dd><code class="docutils literal"><span class="pre">Formatted</span> <span class="pre">List</span></code>. A list of table coordinates that are marked as correct when clicked.</dd>
+</dl>
+<p>For both of the formatted lists, the list is built of cell coordinates.</p>
+<ul>
+<li><p class="first">The first number is the table row.</p>
+</li>
+<li><p class="first">The second number is the table column.</p>
+<p>A column coordinate equal to <code class="docutils literal"><span class="pre">0</span></code> means all columns are selected.</p>
+</li>
+<li><p class="first">Each table coordinate is separated with <code class="docutils literal"><span class="pre">;</span></code>.</p>
+</li>
+<li><p class="first">No white space is allowed.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>feedback</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define incorrect feedback displayed when the <strong>Check Me</strong> button is pressed.</p>
+<p>The default is:</p>
+<div class="highlight-none"><div class="highlight"><pre>Incorrect. You clicked on X of the Y correct elements and A of the B incorrect elements.
+</pre></div>
+</div>
+<p>The feedback for correct responses is always:</p>
+<div class="last highlight-default"><div class="highlight"><pre>You are Correct!
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">clickablearea</span></code> directive is language agnostic.
+Nothing is actually executed or interpreted.
+It is up to the author to ensure the syntax and grammar within a clickable area
+makes sense - no syntax checking is performed.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>No syntax highlighting for <code class="docutils literal"><span class="pre">:iscode:</span></code> examples.</p>
+<p>The text for all options (question, feedback, etc.) must appear on a single line.
+No newlines are allowed.</p>
+<p>There is no way to suppress carriage returns in the source,
+which can make for long lines of text.
+If your text editor wraps, this can make the source difficult to read.</p>
+<p>There is no way to set the width or alignment of a table rendered using <code class="docutils literal"><span class="pre">:table:</span></code>.
+Columns widths will automatically adjust to fill the available space.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A simple table example.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> ca-ex1
+   <span class="nc">:question:</span> <span class="nf">Click on all the vowels</span>
+   <span class="nc">:table:</span>
+   <span class="nc">:correct:</span> <span class="nf">1,1</span>
+   <span class="nc">:incorrect:</span> <span class="nf">1,2;1,3;1,4</span>
+
+   +----+----+----+---+
+   <span class="o">|</span> a  | b  | c  | d |
+   +----+----+----+---+
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<div data-component="clickablearea" class="runestone alert alert-warning" id="ca-ex1" data-table data-cc="1,1" data-ci="1,2;1,3;1,4">
+<span data-question>Click on all the vowels</span>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="27%" />
+<col width="27%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+    </div>
+
+<p>An <code class="docutils literal"><span class="pre">:iscode:</span></code> based example.</p>
+<p>Note:
+- The content are can contain whitespace.
+- Multiple <code class="docutils literal"><span class="pre">correct</span></code> and <code class="docutils literal"><span class="pre">incorrect</span></code> sections can be specified on a single line.</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> ca_ex2
+   <span class="nc">:question:</span> <span class="nf">Click on all of the variables of type ``int`` in the code below</span>
+   <span class="nc">:iscode:</span>
+   <span class="nc">:feedback:</span> <span class="nf">Remember input returns a ``str``</span>
+
+   <span class="nc">:click-incorrect:seconds:endclick:</span> <span class="nf">= input(&quot;Please enter the number of seconds you wish to convert&quot;)</span>
+    
+   <span class="nc">:click-correct:hours:endclick:</span> <span class="nf">= int(seconds) / :click-incorrect:3600:endclick:</span>
+   <span class="nc">:click-correct:secs_still_remaining:endclick:</span> <span class="nf">= :click-correct:total_secs:endclick: % 3600</span>
+   print(:click-correct:secs_still_remaining:endclick:)
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<div data-component="clickablearea" class="runestone alert alert-warning" id="ca_ex2"   >
+<span data-question>Click on all of the variables of type ``int`` in the code below</span><span data-feedback>Remember input returns a ``str``</span><pre><span data-incorrect>seconds</span> = input("Please enter the number of seconds you wish to convert")
+
+<span data-correct>hours</span> = int(seconds) / <span data-incorrect>3600</span>
+<span data-correct>secs_still_remaining</span> = <span data-correct>total_secs</span> % 3600
+print(<span data-correct>secs_still_remaining</span>)</pre>
+
+</div>
+</div>
+</div>
+    </div>
+
+<p>Another code-based example in which the complete text of every line is wrapped in either a
+correct or incorrect section.
+Note that the content area preserves white space everywhere it appears in the content area.</p>
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> ca-ex3
+    <span class="nc">:question:</span> <span class="nf">Click on all the statements that are part of the body of the while loop.  If you make a mistake you can click on the statement again to unhighlight it.</span>
+    <span class="nc">:iscode:</span>
+    <span class="nc">:feedback:</span> <span class="nf">Remember, the body of a loop is all the statements between the { and } after the while keyword or single statement following the while if there are no {}.</span>
+    
+    :click-incorrect:int x = 5;:endclick:
+    :click-incorrect:while (x &gt; 0):endclick:
+    :click-incorrect:{:endclick:
+        :click-correct:System.out.println(x);:endclick:
+        :click-correct:x = x - 1;:endclick:
+    :click-incorrect:}:endclick:
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<div data-component="clickablearea" class="runestone alert alert-warning" id="ca-ex3"   >
+<span data-question>Click on all the statements that are part of the body of the while loop.  If you make a mistake you can click on the statement again to unhighlight it.</span><span data-feedback>Remember, the body of a loop is all the statements between the { and } after the while keyword or single statement following the while if there are no {}.</span><pre><span data-incorrect>int x = 5;</span>
+<span data-incorrect>while (x > 0)</span>
+<span data-incorrect>{</span>
+    <span data-correct>System.out.println(x);</span>
+    <span data-correct>x = x - 1;</span>
+<span data-incorrect>}</span></pre>
+
+</div>
+</div>
+</div>
+    </div>
+
+<div id='example4' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">clickablearea</span><span class="p">::</span> ca-ex4
+   <span class="nc">:question:</span> <span class="nf">Click on the values at index 1 and 3 in the following array.</span>
+   <span class="nc">:feedback:</span> <span class="nf">Remember that the first value is at index 0.  Click on an area again to unselect it and try again.</span>
+   <span class="nc">:table:</span>
+   <span class="nc">:correct:</span> <span class="nf">1,2;1,4</span>
+   <span class="nc">:incorrect:</span> <span class="nf">1,1;1,3;</span>
+        
+   +----+----+----+----+
+   <span class="o">|</span> 3  | 2  | 1  | -3 |
+   +----+----+----+----+
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<div data-component="clickablearea" class="runestone alert alert-warning" id="ca-ex4" data-table data-cc="1,2;1,4" data-ci="1,1;1,3;">
+<span data-question>Click on the values at index 1 and 3 in the following array.</span><span data-feedback>Remember that the first value is at index 0.  Click on an area again to unselect it and try again.</span>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+    </div>
+
 </div>
 </div>
 
