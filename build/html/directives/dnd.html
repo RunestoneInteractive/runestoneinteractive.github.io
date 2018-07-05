@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Drag and Drop</a></li>
+<li><a class="reference internal" href="#">Drag and Drop</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -353,15 +365,170 @@
   
   <div class="section" id="drag-and-drop">
 <h1>Drag and Drop<a class="headerlink" href="#drag-and-drop" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">dragndrop</span><span class="p">::</span> <span class="n">identifier</span>
-    <span class="p">:</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">displayed</span> <span class="k">if</span> <span class="n">things</span> <span class="n">are</span> <span class="n">incorrectly</span> <span class="n">matched</span><span class="o">--</span><span class="ow">is</span> <span class="n">optional</span>
-    <span class="p">:</span><span class="n">match_1</span><span class="p">:</span> <span class="n">Draggable</span> <span class="n">element</span> <span class="n">text</span><span class="o">|||</span><span class="n">Dropzone</span> <span class="n">to</span> <span class="n">be</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">text</span>
-    <span class="p">:</span><span class="n">match_2</span><span class="p">:</span> <span class="n">Drag</span> <span class="n">to</span> <span class="n">Answer</span> <span class="n">B</span><span class="o">|||</span><span class="n">Answer</span> <span class="n">B</span>
-    <span class="p">:</span><span class="n">match_3</span><span class="p">:</span> <span class="n">Draggable</span> <span class="n">text</span><span class="o">|||</span><span class="n">Text</span> <span class="n">of</span> <span class="n">dropzone</span>
-    <span class="o">...</span><span class="n">etc</span><span class="o">...</span><span class="p">(</span><span class="n">up</span> <span class="n">to</span> <span class="mi">20</span> <span class="n">matches</span><span class="p">)</span>
+<p>The <code class="docutils literal"><span class="pre">dragndrop</span></code> directive defines an assessment to match pairs of concepts using a drag and drop interface.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">dragndrop</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">dragndrop</span><span class="p">::</span> unique_id
+   <span class="nc">:optional:</span> <span class="nf">parameter value</span>
 
-    <span class="n">The</span> <span class="n">question</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> An optional question or instructions for the assessment.
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
+</div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">dragndrop</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>content area</dt>
+<dd><p class="first">The <code class="docutils literal"><span class="pre">dragndrop</span></code> directive may contain a content area.
+Plain text only. The content area is not processed in any way.
+No HTML or Sphinx markup is interpreted.</p>
+<p class="last">The content area is displayed before the drag and drop items.</p>
+</dd>
+<dt>feedback</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define incorrect feedback displayed when the <strong>Check Me</strong> button is pressed.</p>
+<p>The default is:</p>
+<div class="highlight-none"><div class="highlight"><pre>Incorrect. You got X correct and Y incorrect out of Z. You left A blank.
+</pre></div>
+</div>
+<p>If <code class="docutils literal"><span class="pre">:feedback:</span></code> is defined, it will appear after the default feedback.
+Otherwise, only the default feedback is displayed.</p>
+<p>Only 1 feedback field is permitted and is displayed regardless of which matches are incorrect.</p>
+<p>The feedback for correct responses is always:</p>
+<div class="last highlight-default"><div class="highlight"><pre>You are correct!
+</pre></div>
+</div>
+</dd>
+<dt>match_N</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Up to 20 source / destination pairs.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">N</span></code> is a value from <code class="docutils literal"><span class="pre">1</span></code> through <code class="docutils literal"><span class="pre">20</span></code>.</li>
+<li>The source / destination pairs are separated using: <code class="docutils literal"><span class="pre">|||</span></code>.</li>
+<li>All other text is passed through without modification.</li>
+<li>The order of match_N options does not matter.
+They will be randomly shuffled when rendered in your book.</li>
+</ul>
+<p>For example:</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="nc">:match_1:</span> <span class="nf">Draggable element text|||Dropzone to be matched with text</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">dragndrop</span></code> directive is language agnostic.
+Nothing is actually executed or interpreted.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>The text for matches must appear on a single line.
+No newlines are allowed.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A simple example.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">dragndrop</span><span class="p">::</span> dnd-ex-1
+   <span class="nc">:feedback:</span> <span class="nf">Feedback that is displayed if things are incorrectly matched.</span>
+   <span class="nc">:match_1:</span> <span class="nf">Draggable element text|||Dropzone to be matched with text</span>
+   <span class="nc">:match_2:</span> <span class="nf">Drag to Answer B|||Answer B</span>
+   <span class="nc">:match_3:</span> <span class="nf">Draggable text|||Text of dropzone</span>
+
+   The question goes here.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<ul data-component="dragndrop" id="dnd-ex-1">
+    <span data-component="question">The question goes here.</span>
+	<span data-component=feedback>Feedback that is displayed if things are incorrectly matched.</span>
+
+    <li data-component="draggable" id="dnd-ex-1_drag1">Draggable element text</li>
+    <li data-component="dropzone" for="dnd-ex-1_drag1">Dropzone to be matched with text</li>
+
+    <li data-component="draggable" id="dnd-ex-1_drag2">Drag to Answer B</li>
+    <li data-component="dropzone" for="dnd-ex-1_drag2">Answer B</li>
+
+    <li data-component="draggable" id="dnd-ex-1_drag3">Draggable text</li>
+    <li data-component="dropzone" for="dnd-ex-1_drag3">Text of dropzone</li>
+</ul></div></div>
+    </div>
+
+<p>A completely empty directive is permitted.</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<p>A dnd with no items compiles without warning.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">dragndrop</span><span class="p">::</span> dnd-ex-2
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+<p>But does not render anything useful.</p>
+
+<div class="runestone">
+<ul data-component="dragndrop" id="dnd-ex-2">
+    <span data-component="question">
+</span>
+	
+</ul></div></div>
+    </div>
+
+<p>Numbers for ‘match’ options need not start at 1,
+however, they must be unique within a single <code class="docutils literal"><span class="pre">dragndrop</span></code> assessment.</p>
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">dragndrop</span><span class="p">::</span> dnd-ex-3
+    <span class="nc">:match_11:</span> <span class="nf">C++|||cpp</span>
+    <span class="nc">:match_12:</span> <span class="nf">Java|||java</span>
+    <span class="nc">:match_13:</span> <span class="nf">Python|||py</span>
+
+    Match the language with its common file extension.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div class="runestone">
+<ul data-component="dragndrop" id="dnd-ex-3">
+    <span data-component="question">Match the language with its common file extension.</span>
+	
+
+    <li data-component="draggable" id="dnd-ex-3_drag11">C++</li>
+    <li data-component="dropzone" for="dnd-ex-3_drag11">cpp</li>
+
+    <li data-component="draggable" id="dnd-ex-3_drag12">Java</li>
+    <li data-component="dropzone" for="dnd-ex-3_drag12">java</li>
+
+    <li data-component="draggable" id="dnd-ex-3_drag13">Python</li>
+    <li data-component="dropzone" for="dnd-ex-3_drag13">py</li>
+</ul></div></div>
+    </div>
+
+<p>If a duplicate match is used, the directive will not compile.
+The runestone compiler will display an error similar to:</p>
+<div class="highlight-none"><div class="highlight"><pre>WARNING: your_file.rst:173: (ERROR/3) Error in &quot;dragndrop&quot; directive:
+invalid option data: duplicate option &quot;match_1&quot;.
+</pre></div>
+</div>
 </div>
 </div>
 
