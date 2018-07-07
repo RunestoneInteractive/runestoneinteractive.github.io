@@ -65,7 +65,7 @@ This unique identifier is used for logging, managing controls, and for testing R
 
     .. admonition:: How unique?
 
-       Unique id's must be unique withing the **entire** book.
+       Unique id's must be unique within the **entire** book.
        
        A duplicate id found in any file *will* generate a warning and *may* cause problems.
 
