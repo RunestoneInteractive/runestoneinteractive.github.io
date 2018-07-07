@@ -1,0 +1,9 @@
+.. mchoice:: mc-ex-0
+   :answer_a: Red
+   :answer_b: White
+   :answer_c: Black
+   :answer_d: Grey
+   :correct: a
+
+   Which color is found in the rainbow?
+

@@ -1,0 +1,8 @@
+.. fillintheblank:: fitb-ex5
+
+   Python lists are declared using: ``|blank|``. 
+
+   - :\[\]: Correct.
+     :x: Try again.
+
+

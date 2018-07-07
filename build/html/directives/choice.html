@@ -304,7 +304,20 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Multiple Choice</a></li>
+<li><a class="reference internal" href="#">Multiple Choice</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments-classic-format">Optional Arguments: Classic Format</a></li>
+<li><a class="reference internal" href="#optional-arguments-list-format">Optional Arguments: List Format</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -353,83 +366,357 @@
   
   <div class="section" id="multiple-choice">
 <h1>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h1>
-<p>The multiple choice directive, <code class="docutils literal"><span class="pre">..mchoice::</span></code>, allows for insertion of multiple choice questions, either with a single correct option or a checkbox question with multiple correct answers (there must be at least one correct answer for a multiple choice question).</p>
-<p>(Previously, these directive options were in two different directives:  <code class="docutils literal"><span class="pre">mchoicemf</span></code> and <code class="docutils literal"><span class="pre">mchoicema</span></code>. For now, these work, but they are deprecated – you should use <code class="docutils literal"><span class="pre">mchoice</span></code> if you are writing new questions.)</p>
-<p><strong>Examples in reStructured Text</strong></p>
-<p>Multiple Choice with One Correct Answer</p>
-<div class="highlight-default"><div class="highlight"><pre>.. mchoice:: question1_1
-   :answer_a: Python
-   :answer_b: Java
-   :answer_c: C
-   :answer_d: ML
-   :correct: a
-   :feedback_a: Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.
-   :feedback_b: Java is a good object oriented language but it has some details that make it hard for the beginner.
-   :feedback_c: C is an imperative programming language that has been around for a long time, but it is not the one that we use.
-   :feedback_d: No, ML is a functional programming language.  (You can use Python to write functional programs as well!)
+<p>The <code class="docutils literal"><span class="pre">mchoice</span></code> directive allows for insertion of multiple choice assessments.
+Questions may have either a single correct answer or a checkbox version with multiple correct
+answers.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">mchoice</span></code> directive one of either <strong>classic format</strong>:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
+   <span class="nc">:required:</span> <span class="nf">one or more answers</span>
+   <span class="nc">:optional:</span> <span class="nf">feedback for answers</span>
 
-   What programming language does this site help you to learn?
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> A question or prompt with 0 or more lines of content
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
 </div>
-<p>Multiple Choice with Multiple Answer(s)</p>
-<div class="highlight-default"><div class="highlight"><pre>.. mchoice:: question1_2
+<p>or <strong>list format</strong>:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
+   <span class="nc">:optional:</span> <span class="nf">parameter value</span>
+
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> A question or prompt with 0 or more lines of content
+   <span class="o">|</span> followed by
+   <span class="o">|</span> A list of answers
+   |
+   <span class="m">+</span> --------------------
+</pre></div>
+</div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">mchoice</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd>The <code class="docutils literal"><span class="pre">mchoice</span></code> directive must contain at least one line of content
+regardless of the format chosen.</dd>
+<dt>correct</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">List</span></code>. One or more correct answers.</p>
+<p>This option is required if using <strong>classic format</strong>.</p>
+<ul class="last simple">
+<li>If a single value, the question renders with single selection buttons (Radio buttons).</li>
+<li>If a list of values, the question renders with checkboxes, allowing multiple selection.</li>
+</ul>
+</dd>
+<dt>answer_a (through _e)</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Up to 5 possible answers.</p>
+<ul class="last simple">
+<li>This option is applicable only if using <strong>classic format</strong>.</li>
+<li>The value after the underscore must be in the range <code class="docutils literal"><span class="pre">a</span></code> through <code class="docutils literal"><span class="pre">e</span></code>.</li>
+<li>The option <code class="docutils literal"><span class="pre">:answer_a:</span></code> is <strong>required</strong>.</li>
+<li>Plain text only.</li>
+<li>The order of answers does not need to be fixed.
+Answers may be randomly shuffled.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments-classic-format">
+<h2>Optional Arguments: Classic Format<a class="headerlink" href="#optional-arguments-classic-format" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>feedback_a (through _e)</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Feedback specific to an answer.</p>
+<ul class="simple">
+<li>This option is applicable only if using <strong>classic format</strong>.</li>
+<li>Each answer can have its own feedback.</li>
+<li>Plain text only.</li>
+<li>The value after the underscore must be in the range <code class="docutils literal"><span class="pre">a</span></code> through <code class="docutils literal"><span class="pre">e</span></code>.</li>
+<li>If there is feedback for one answer, there should be feedback for each answer.</li>
+</ul>
+<p class="last">We recommend that thoughtful feedback be included for every multiple choice question,
+and that question writers consider how feedback may be useful for questions
+which have multiple correct answers!</p>
+</dd>
+<dt>multiple_answers</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, forces checkbox behavior regardless of the actual number of correct answers.</p>
+<p>Implied if the <code class="docutils literal"><span class="pre">:correct:</span></code> option is present and contains a list of correct answers.</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-1
+   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
+   <span class="nc">:answer_b:</span> <span class="nf">White</span>
+   <span class="nc">:answer_c:</span> <span class="nf">Blue</span>
+   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
+   <span class="nc">:correct:</span> <span class="nf">a,c</span>
+   <span class="nc">:feedback_a:</span> <span class="nf">Red is found in the rainbow.</span>
+   <span class="nc">:feedback_b:</span> <span class="nf">White is the mixing of all of the colors in the rainbow.</span>
+   <span class="nc">:feedback_c:</span> <span class="nf">Blue is found in the rainbow.</span>
+   <span class="nc">:feedback_d:</span> <span class="nf">Grey is never found in the rainbow.</span>
+
+   Which colors are found in the rainbow?
+</pre></div>
+</div>
+</dd>
+<dt>random</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, indicates multiple correct answers are possible.</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments-list-format">
+<h2>Optional Arguments: List Format<a class="headerlink" href="#optional-arguments-list-format" title="Permalink to this headline">¶</a></h2>
+<p>An alternative method of specifying answers and feedback:
+Place an <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#lists-and-quote-like-blocks">unordered list</a>
+at the end of the question text, in the following format.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If your question text happens to end with an unordered list,
+then place a comment, consisting of a paragraph containing only <code class="docutils literal"><span class="pre">..</span></code> at the end of the list.
+For example:</p>
+<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
+
+   Ask a question, which in this case, is followed by a list.
+
+   <span class="m">-</span>   This list is still part of the question text.
+
+<span class="cp">   ..</span>
+
+<span class="cp">   -   Text for answer A.</span>
+</pre></div>
+</div>
+</div>
+<p>The list format provides more flexibility in multiple choice questions:</p>
+<ul class="simple">
+<li>Up to 26 answers and feedback pairs may be provided.</li>
+<li>Unlike classic format, feedback for each answer is <strong>required</strong>.</li>
+<li>Your text may be multiple paragraphs,
+including <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#images">images</a>
+and any other <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#inline-markup">inline</a> or block markup.
+For example: <span class="math">\(\sqrt(2)/2\)</span>.</li>
+<li>Impossible to mistakenly associate incorrect answers and feedback.
+The classic format solely uses the letter to pair answers with feedback.</li>
+</ul>
+<p>As earlier, if your feedback contains an unordered list, end it with a comment.
+- Answers are always identified with a standard unordered list bullet: <code class="docutils literal"><span class="pre">-</span></code>.
+- Use a standard list <code class="docutils literal"><span class="pre">-</span></code> marker to identify feedback for incorrect answers.
+- Use a <code class="docutils literal"><span class="pre">+</span></code> marker to identify feedback for correct answers.
+- Just as in standard lists, separate a sublist with a blank line.
+- An answer may contain only 1 feedback sublist.</p>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>This directive is language agnostic.
+Nothing is actually executed or interpreted.
+It is up to the author to ensure the syntax and grammar within a clickable area
+makes sense - no syntax checking on code is performed.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>The list format directive is sensitive to paragraph spacing:</p>
+<ul class="simple">
+<li>The list spacing does not conform to the same rules as for standard
+Sphinx <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#lists-and-quote-like-blocks">unordered lists</a>.</li>
+<li>The empty line between a sublist and a following list may be omitted.</li>
+<li>However, the empty line is required between a list and its sublist.</li>
+</ul>
+<p>The ‘Compare Me’ button requires a book connected to a database for collecting grade statistics.
+There is no way to disable this button, if not connected to a database.</p>
+<p>There is no means to change the numbering of selected items
+(numbered, upper case, lower case, non-latin letters, etc).</p>
+<p>There is difference in the spacing between the question and the first answer
+in the classic and list formats.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Multiple Choice with 1 correct answer.</p>
+<div id='example0' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-0
+   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
+   <span class="nc">:answer_b:</span> <span class="nf">White</span>
+   <span class="nc">:answer_c:</span> <span class="nf">Black</span>
+   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
+   <span class="nc">:correct:</span> <span class="nf">a</span>
+
+   Which color is found in the rainbow?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Show It" >
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc-ex-0">
+            Q-134: Which color is found in the rainbow?
+            <li data-component="answer" data-correct id="mc-ex-0_opt_a">Red</li><li data-component="feedback" id="mc-ex-0_opt_a"></li>
+            
+            <li data-component="answer"  id="mc-ex-0_opt_b">White</li><li data-component="feedback" id="mc-ex-0_opt_b"></li>
+            
+            <li data-component="answer"  id="mc-ex-0_opt_c">Black</li><li data-component="feedback" id="mc-ex-0_opt_c"></li>
+            
+            <li data-component="answer"  id="mc-ex-0_opt_d">Grey</li><li data-component="feedback" id="mc-ex-0_opt_d"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+    </div>
+
+<p>Multiple Choice with multiple correct answers.
+This example shows both classic and list formats.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Classic Format" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-1
+   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
+   <span class="nc">:answer_b:</span> <span class="nf">White</span>
+   <span class="nc">:answer_c:</span> <span class="nf">Blue</span>
+   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
+   <span class="nc">:correct:</span> <span class="nf">a,c</span>
+   <span class="nc">:feedback_a:</span> <span class="nf">Red is found in the rainbow.</span>
+   <span class="nc">:feedback_b:</span> <span class="nf">White is the mixing of all of the colors in the rainbow.</span>
+   <span class="nc">:feedback_c:</span> <span class="nf">Blue is found in the rainbow.</span>
+   <span class="nc">:feedback_d:</span> <span class="nf">Grey is never found in the rainbow.</span>
+
+   Which colors are found in the rainbow?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Show Classic" >
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-1">
+            Q-135: Which colors are found in the rainbow?
+            <li data-component="answer" data-correct id="mc-ex-1_opt_a">Red</li><li data-component="feedback" id="mc-ex-1_opt_a">Red is found in the rainbow.</li>
+            
+            <li data-component="answer"  id="mc-ex-1_opt_b">White</li><li data-component="feedback" id="mc-ex-1_opt_b">White is the mixing of all of the colors in the rainbow.</li>
+            
+            <li data-component="answer" data-correct id="mc-ex-1_opt_c">Blue</li><li data-component="feedback" id="mc-ex-1_opt_c">Blue is found in the rainbow.</li>
+            
+            <li data-component="answer"  id="mc-ex-1_opt_d">Grey</li><li data-component="feedback" id="mc-ex-1_opt_d">Grey is never found in the rainbow.</li>
+            
+
+            </ul>
+            </div>
+            </div><div data-component="tab" data-tabname="List Format" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-2
+
+   Which colors are found in the rainbow?
+
+   <span class="m">-</span> Red
+
+     <span class="m">+</span> Yes, red is a correct rainbow color.
+
+   <span class="m">-</span> White
+
+     <span class="m">-</span> White is not a color found in a rainbow.
+
+   <span class="m">-</span> Blue
+
+     <span class="m">+</span> Yes, blue is a correct rainbow color.
+
+   <span class="m">-</span> Grey
+
+     <span class="m">-</span> Grey is not a color found in a rainbow.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Show List" >
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-2">
+            <p>Q-136: Which colors are found in the rainbow?</p>
+<li data-component="answer" data-correct id="mc-ex-2_opt_a">Red</li><li data-component="feedback" id="mc-ex-2_opt_a">
+Yes, red is a correct rainbow color.</li><li data-component="answer"  id="mc-ex-2_opt_b">White</li><li data-component="feedback" id="mc-ex-2_opt_b">
+White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="mc-ex-2_opt_c">Blue</li><li data-component="feedback" id="mc-ex-2_opt_c">
+Yes, blue is a correct rainbow color.</li><li data-component="answer"  id="mc-ex-2_opt_d">Grey</li><li data-component="feedback" id="mc-ex-2_opt_d">
+Grey is not a color found in a rainbow.</li>
+
+            </ul>
+            </div>
+            </div>
+    </div>
+
+<p>The <code class="docutils literal"><span class="pre">:multiple_answers:</span></code> option can be used to force presenting the
+multiple choice checkbox selections, even when there is only 1 correct answer.</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Classic Format" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex3
    :multiple_answers:
-   :answer_a: xyZ
-   :answer_b: new_var_3
-   :answer_c: 3things
-   :answer_d: hello-there
-   :correct: a,b
-   :feedback_a: Any combination of letters is a valid variable name in Python.
-   :feedback_b: Underscores are acceptable to include in Python variable names, as long as they are not the first character in the variable name.
-   :feedback_c: Variable names can&#39;t begin with digits in Python.
-   :feedback_d: Hyphens and dashes are not acceptable characters to include in variable names in Python.
+   <span class="nc">:random:</span>
+   <span class="nc">:answer_a:</span> <span class="nf">xyZ</span>
+   <span class="nc">:feedback_a:</span> <span class="nf">Any combination of letters is a valid variable name in Python.</span>
+   <span class="nc">:answer_b:</span> <span class="nf">new_var 3</span>
+   <span class="nc">:feedback_b:</span> <span class="nf">Variable names may not contain spaces in Python.</span>
+   <span class="nc">:answer_c:</span> <span class="nf">3things</span>
+   <span class="nc">:feedback_c:</span> <span class="nf">Variable names can&#39;t begin with digits in Python.</span>
+   <span class="nc">:answer_d:</span> <span class="nf">hello-there</span>
+   <span class="nc">:feedback_d:</span> <span class="nf">Hyphens and dashes are not acceptable characters to include in variable names in Python.</span>
+   <span class="nc">:correct:</span> <span class="nf">a</span>
 
    Which of these are valid variable names in Python? (Choose all that are correct)
 </pre></div>
 </div>
-<p><strong>Examples</strong></p>
+</div><div data-component="tab" data-tabname="Show Classic" >
 
             <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
-            Q-1: What programming language does this site help you to learn?
-            <li data-component="answer" data-correct id="question1_1_opt_a">Python</li><li data-component="feedback" id="question1_1_opt_a">Yes, Python is a great language to learn, whether you are a beginner or an experienced programmer. You can write many different styles of programs using the Python language.</li>
+            <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex3">
+            Q-137: Which of these are valid variable names in Python? (Choose all that are correct)
+            <li data-component="answer" data-correct id="mc-ex3_opt_a">xyZ</li><li data-component="feedback" id="mc-ex3_opt_a">Any combination of letters is a valid variable name in Python.</li>
             
-            <li data-component="answer"  id="question1_1_opt_b">Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but it has some details that make it hard for the beginner.</li>
+            <li data-component="answer"  id="mc-ex3_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex3_opt_b">Variable names may not contain spaces in Python.</li>
             
-            <li data-component="answer"  id="question1_1_opt_c">C</li><li data-component="feedback" id="question1_1_opt_c">C is an imperative programming language that has been around for a long time, but it is not the one that we use.</li>
+            <li data-component="answer"  id="mc-ex3_opt_c">3things</li><li data-component="feedback" id="mc-ex3_opt_c">Variable names can't begin with digits in Python.</li>
             
-            <li data-component="answer"  id="question1_1_opt_d">ML</li><li data-component="feedback" id="question1_1_opt_d">No, ML is a functional programming language.  (You can use Python to write functional programs as well!)</li>
+            <li data-component="answer"  id="mc-ex3_opt_d">hello-there</li><li data-component="feedback" id="mc-ex3_opt_d">Hyphens and dashes are not acceptable characters to include in variable names in Python.</li>
             
 
             </ul>
             </div>
-            
+            </div><div data-component="tab" data-tabname="List Format" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-4
+   :multiple_answers:
+   <span class="nc">:random:</span>
+
+   Which of these are valid variable names in Python? (Choose all that are correct)
+
+   <span class="m">-</span> xyZ
+
+     <span class="m">+</span> Any combination of letters is a valid variable name in Python.
+
+   <span class="m">-</span> new_var 3
+
+     <span class="m">-</span> Variable names may not contain spaces in Python.
+
+   <span class="m">-</span> 3things
+
+     <span class="m">-</span> Variable names can&#39;t begin with digits in Python.
+
+   <span class="m">-</span> hello-there
+
+     <span class="m">-</span> Hyphens and dashes are not acceptable characters to include in variable names in Python.
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Show List" >
+
             <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
-            Q-2: Which of these are valid variable names in Python? (Choose all that are correct)
-            <li data-component="answer" data-correct id="question1_2_opt_a">xyZ</li><li data-component="feedback" id="question1_2_opt_a">Any combination of letters is a valid variable name in Python.</li>
-            
-            <li data-component="answer" data-correct id="question1_2_opt_b">new_var_3</li><li data-component="feedback" id="question1_2_opt_b">Underscores are acceptable to include in Python variable names, as long as they are not the first character in the variable name.</li>
-            
-            <li data-component="answer"  id="question1_2_opt_c">3things</li><li data-component="feedback" id="question1_2_opt_c">Variable names can't begin with digits in Python.</li>
-            
-            <li data-component="answer"  id="question1_2_opt_d">hello-there</li><li data-component="feedback" id="question1_2_opt_d">Hyphens and dashes are not acceptable characters to include in variable names in Python.</li>
-            
+            <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex-4">
+            <p>Q-138: Which of these are valid variable names in Python? (Choose all that are correct)</p>
+<li data-component="answer" data-correct id="mc-ex-4_opt_a">xyZ</li><li data-component="feedback" id="mc-ex-4_opt_a">
+Any combination of letters is a valid variable name in Python.</li><li data-component="answer"  id="mc-ex-4_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex-4_opt_b">
+Variable names may not contain spaces in Python.</li><li data-component="answer"  id="mc-ex-4_opt_c">3things</li><li data-component="feedback" id="mc-ex-4_opt_c">
+Variable names can’t begin with digits in Python.</li><li data-component="answer"  id="mc-ex-4_opt_d">hello-there</li><li data-component="feedback" id="mc-ex-4_opt_d">
+Hyphens and dashes are not acceptable characters to include in variable names in Python.</li>
 
             </ul>
             </div>
-            <p><strong>Required Arguments</strong></p>
-<p>Unique identifier for the question, e.g. <code class="docutils literal"><span class="pre">question1_2</span></code>. You also must have at least <code class="docutils literal"><span class="pre">answer_a</span></code>, and the <code class="docutils literal"><span class="pre">correct</span></code> argument.</p>
-<p>The value for the <code class="docutils literal"><span class="pre">correct</span></code> argument must correspond to an answer you’ve included, e.g. if you have included <code class="docutils literal"><span class="pre">:answer_a:</span></code> and <code class="docutils literal"><span class="pre">:answer_b:</span></code> only, you cannot use <code class="docutils literal"><span class="pre">:correct:</span> <span class="pre">c</span></code>.</p>
-<p>For <em>Multiple Choice Multiple Answer</em>, you may have more than one correct answer, comma-separated, as seen in the raw RST examples above. For <em>Multiple Choice Single Answer</em>, you must have only one correct answer.</p>
-<p><strong>Optional Arguments</strong></p>
-<p><code class="docutils literal"><span class="pre">:multiple_answer:</span></code> - This argument determines whether the question may have multiple correct answers with checkboxes, as above (including this option means you get the multiple answers format).</p>
-<p><em>Multiple Choice Single Answer</em></p>
-<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers, like so. (See <strong>required arguments</strong> above.)</p>
-<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question.</p>
-<p><em>Multiple Choice Multiple Answer</em></p>
-<p><code class="docutils literal"><span class="pre">:answer_a:</span></code>, <code class="docutils literal"><span class="pre">:answer_b:</span></code>, <code class="docutils literal"><span class="pre">:answer_c:</span></code>, <code class="docutils literal"><span class="pre">:answer_d:</span></code>, <code class="docutils literal"><span class="pre">:answer_e:</span></code>  You can provide up to five different possible correct answers. (See <strong>required arguments</strong> above.)</p>
-<p><code class="docutils literal"><span class="pre">:feedback_a:</span></code>, <code class="docutils literal"><span class="pre">:feedback_b:</span></code>, <code class="docutils literal"><span class="pre">:feedback_c:</span></code>, <code class="docutils literal"><span class="pre">:feedback_d:</span></code>, <code class="docutils literal"><span class="pre">:feedback_e:</span></code>  Each answer can have its own feedback. If there is feedback for one answer, there should be feedback for each answer. We recommend that thoughtful feedback be included for every multiple choice question, and that question writers consider how feedback may be useful for questions which have multiple correct answers!</p>
+            </div>
+    </div>
+
+</div>
 </div>
 
 
