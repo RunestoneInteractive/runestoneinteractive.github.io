@@ -1,0 +1,9 @@
+.. fillintheblank:: fitb-ex4
+   :casei:
+
+   Windows system files are stored in: ``|blank|``. 
+
+   -   :C\:\\Windows\\system: Correct.
+       :program files: Third party applications are stored here, not system files.
+       :x: Try again.
+
