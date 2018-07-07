@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Polls &#8212; Runestone Interactive 1.0 documentation</title>
+    <title>Poll &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Polls</a></li>
+<li><a class="reference internal" href="#">Poll</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -351,18 +363,97 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="polls">
-<h1>Polls<a class="headerlink" href="#polls" title="Permalink to this headline">¶</a></h1>
-<p>Allow students to vote or rate things on a scale</p>
-<div class="highlight-default"><div class="highlight"><pre>.. poll:: pollid1
-   :scale: 10
-   :allowcomment:
+  <div class="section" id="poll">
+<h1>Poll<a class="headerlink" href="#poll" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">poll</span></code> directive allows students to vote or rate topics on a scale.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">poll</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">poll</span><span class="p">::</span> unique_id
+   <span class="nc">:optional:</span> <span class="nf">parameter value</span>
 
-    On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> A question or prompt
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
 </div>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">poll</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>content area</dt>
+<dd>The <code class="docutils literal"><span class="pre">poll</span></code> directive should contain at least one line of content to
+serve as a prompt for the poll.</dd>
+<dt>allowcomment</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, renders a comment box underneath the poll.
+Default is no comment box.</dd>
+<dt>option_N (through 10)</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define up to 10 a manually specified entries.
+The provided parameter defines the text displayed for this option.</p>
+<ul class="last simple">
+<li>The value after the underscore must be in the range <code class="docutils literal"><span class="pre">1</span></code> through <code class="docutils literal"><span class="pre">10</span></code>.</li>
+<li>Plain text only.</li>
+<li>The order defined also specifies the rendering order.</li>
+<li>This option is ignored if <code class="docutils literal"><span class="pre">:scale:</span></code> is present.</li>
+</ul>
+</dd>
+<dt>scale</dt>
+<dd><code class="docutils literal"><span class="pre">Integer</span></code>. Implements the “On a scale of 1 to N” type method of poll.
+The provided parameter defines the maximum scale value.</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Not applicable.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Polls require a backing database to be useful.</p>
+<p>Polls are always oriented vertically.
+There is no way to change the orientation of the option buttons.</p>
+<p>The question text must be plain text.
+No embedded Sphinx markup or HTML formatting is allowed.</p>
+<p>There is no upper bound on the <code class="docutils literal"><span class="pre">:scale:</span></code> value.
+A large value could cause long page loads and take large amounts of space.</p>
+<p>There is no check when using both both <code class="docutils literal"><span class="pre">:scale:</span></code> and <code class="docutils literal"><span class="pre">:option_N:</span></code>.
+If the scale option is used,
+then the <code class="docutils literal"><span class="pre">:option_N:</span></code> options are ignored.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A simple example using the <code class="docutils literal"><span class="pre">:scale:</span></code> option with comments enabled.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">poll</span><span class="p">::</span> poll-ex1
+   <span class="nc">:scale:</span> <span class="nf">5</span>
+   <span class="nc">:allowcomment:</span>
 
-<ul data-component="poll" id=pollid1 data-comment class='alert alert-warning'> On a scale from 1 to 10, how important do you think it is to have a polling directive in the Runestone Tools?
+   On a scale from 1 to 5, 
+   how important do <span class="gs">**you**</span> think it is to have a polling directive in the &lt;em&gt;Runestone&lt;/em&gt;?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<ul data-component="poll" id=poll-ex1 data-comment class='alert alert-warning'>On a scale from 1 to 5,
+how important do **you** think it is to have a polling directive in the <em>Runestone</em>?
 
 <li>1</li>
 
@@ -373,17 +464,58 @@
 <li>4</li>
 
 <li>5</li>
-
-<li>6</li>
-
-<li>7</li>
-
-<li>8</li>
-
-<li>9</li>
-
-<li>10</li>
 </ul></div>
+    </div>
+
+<p>An example using <code class="docutils literal"><span class="pre">:option_N:</span></code> options to manually configure choices.</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">poll</span><span class="p">::</span> poll-ex2
+   <span class="nc">:option_1:</span> <span class="nf">Red</span>
+   <span class="nc">:option_2:</span> <span class="nf">Orange</span>
+   <span class="nc">:option_3:</span> <span class="nf">Yellow</span>
+   <span class="nc">:option_4:</span> <span class="nf">Green</span>
+   <span class="nc">:option_5:</span> <span class="nf">Blue</span>
+   <span class="nc">:option_6:</span> <span class="nf">Indigo</span>
+   <span class="nc">:option_7:</span> <span class="nf">Violet</span>
+
+   What is your favorite color in the rainbow?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<ul data-component="poll" id=poll-ex2  class='alert alert-warning'>What is your favorite color in the rainbow?
+
+<li>Red</li>
+
+<li>Orange</li>
+
+<li>Yellow</li>
+
+<li>Green</li>
+
+<li>Blue</li>
+
+<li>Indigo</li>
+
+<li>Violet</li>
+</ul></div>
+    </div>
+
+<p>Note that a ‘null poll’ won’t throw any warnings, but does not render anything useful in your book.</p>
+<div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">poll</span><span class="p">::</span> poll-ex3
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<ul data-component="poll" id=poll-ex3  class='alert alert-warning'>
+
+</ul></div>
+    </div>
+
+<p>This might happen if you make a mistake indenting your poll markup.</p>
+</div>
+</div>
 
 
   
