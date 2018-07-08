@@ -112,7 +112,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Usage Assignment" href="usage.html" />
-    <link rel="prev" title="Polls" href="polls.html" />
+    <link rel="prev" title="Poll" href="polls.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Short Answer</a></li>
+<li><a class="reference internal" href="#">Short Answer</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -312,7 +324,7 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Polls" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - Poll" data-toggle="tooltip">
     <a href="polls.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
@@ -353,18 +365,121 @@
   
   <div class="section" id="short-answer">
 <h1>Short Answer<a class="headerlink" href="#short-answer" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">shortanswer</span><span class="p">::</span> <span class="n">uniqueid</span>
-   <span class="p">:</span><span class="n">optional</span><span class="p">:</span>
+<p>The <code class="docutils literal"><span class="pre">shortanswer</span></code> directive provides a free-form assessment that is stored
+and can be manually graded by an instructor.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">shortanswer</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">shortanswer</span><span class="p">::</span> unique_id
+   <span class="nc">:optional:</span>
 
-   <span class="n">text</span> <span class="n">of</span> <span class="n">the</span> <span class="n">question</span> <span class="n">goes</span> <span class="n">here</span>
+   <span class="m">+</span> --- Content area ---
+   |
+   <span class="o">|</span> A question or prompt for the assessment.
+   |
+   <span class="m">+</span> --------------------
 </pre></div>
+</div>
+<p>A feedback region underneath user content displays</p>
+<div class="highlight-none"><div class="highlight"><pre>Your answer has not been saved yet!
+</pre></div>
+</div>
+<p>in red background, until the ‘Save’ button is pressed.
+Then the feedback region displays</p>
+<div class="highlight-none"><div class="highlight"><pre>Your answer has been saved.
+</pre></div>
+</div>
+<p>in green background.
+Each time the content is modified, the save warning is redisplayed
+until ‘Save’ is pressed.</p>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>unique id</dt>
+<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">shortanswer</span></code> directive.
+Valid identifiers must not contain spaces.
+You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
+<dt>content area</dt>
+<dd>A question or prompt for the assessment.</dd>
+</dl>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>optional</dt>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, changes the assessment area background color,
+except for the feedback area, to light green.</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Not applicable.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Responses must be plain text only.
+There is no ‘upload’ feature.</p>
+<p>There is no option to set an initial height or width for the text area,
+although users can resize it.</p>
+<p>This directive requires a back end server to be useful.</p>
+<p>There is no ‘reset’ or ‘undo’ as found in other directives.
+Simply delete response text to reset to it’s initial state.</p>
+<p>This directive erroneously labels each assessment twice:</p>
+<div class="highlight-none"><div class="highlight"><pre>Q-1: Q-2: What colors are in the rainbow?
+</pre></div>
+</div>
+<p>in green background.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The default <code class="docutils literal"><span class="pre">shortanswer</span></code> appearance displays only the feedback region green.</p>
+<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">shortanswer</span><span class="p">::</span> short-ex3
+
+   What are the colors in the rainbow?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+<div class="runestone">
+<p data-component="shortanswer" class="journal alert alert-warning" id=short-ex3 >Q-159: Q-158: What are the colors in the rainbow?</p>
+</div>
+</div>
+    </div>
+
+<p>When <code class="docutils literal"><span class="pre">:optional:</span></code> is set,
+the <code class="docutils literal"><span class="pre">shortanswer</span></code> appearance displays the entire assessment area green.</p>
+<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">shortanswer</span><span class="p">::</span> short-ex2
+   <span class="nc">:optional:</span>
+
+   What are the colors in the rainbow?
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Try It" >
+
+<div class="runestone">
+<p data-component="shortanswer" class="journal alert alert-success" id=short-ex2 data-optional>Q-161: Q-160: What are the colors in the rainbow?</p>
+</div>
+</div>
+    </div>
+
 </div>
 </div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Polls' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - Poll' data-toggle="tooltip">
     <a href="polls.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
