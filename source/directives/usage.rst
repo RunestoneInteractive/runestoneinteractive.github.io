@@ -13,3 +13,6 @@ Usage Assignment
        :pct_required: <int>   :points: <int>
 
 
+.. usageassignment:: prep_1
+   :chapters: Poll
+

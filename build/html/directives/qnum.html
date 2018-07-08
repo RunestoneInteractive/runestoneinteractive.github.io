@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Multiple Choice &#8212; Runestone Interactive 1.0 documentation</title>
+    <title>Controlling Question Numbering &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -111,8 +111,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Parsons Problems" href="parsons.html" />
-    <link rel="prev" title="Fill in the Blank" href="fitb.html" />
+    <link rel="next" title="Usage Assignment" href="usage.html" />
+    <link rel="prev" title="Short Answer" href="short.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -304,11 +304,10 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Multiple Choice</a><ul>
+<li><a class="reference internal" href="#">Controlling Question Numbering</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
-<li><a class="reference internal" href="#optional-arguments-classic-format">Optional Arguments: Classic Format</a></li>
-<li><a class="reference internal" href="#optional-arguments-list-format">Optional Arguments: List Format</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
 <li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
 <li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
 <li><a class="reference internal" href="#internationalization">Internationalization</a></li>
@@ -325,14 +324,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Fill in the Blank" data-toggle="tooltip">
-    <a href="fitb.html" >
+  <li id="relations-prev" title="Previous Chapter - Short Answer" data-toggle="tooltip">
+    <a href="short.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - Parsons Problems' data-toggle="tooltip" >
-    <a href="parsons.html" >
+  <li id="relations-next" title='Next Chapter - Usage Assignment' data-toggle="tooltip" >
+    <a href="usage.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -350,7 +349,7 @@
         -->
         
           <li>
-  <a href="../_sources/directives/choice.rst.txt"
+  <a href="../_sources/directives/qnum.rst.txt"
      rel="nofollow">Source</a></li>
         
       </ul>
@@ -364,154 +363,53 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="multiple-choice">
-<h1>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">mchoice</span></code> directive allows for insertion of multiple choice assessments.
-Questions may have either a single correct answer or a checkbox version with multiple correct
-answers.</p>
+  <div class="section" id="controlling-question-numbering">
+<h1>Controlling Question Numbering<a class="headerlink" href="#controlling-question-numbering" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">qnum</span></code> directive provides control over question numbering.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p>The general format of the <code class="docutils literal"><span class="pre">mchoice</span></code> directive one of either <strong>classic format</strong>:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
-   <span class="nc">:required:</span> <span class="nf">one or more answers</span>
-   <span class="nc">:optional:</span> <span class="nf">feedback for answers</span>
-
-   <span class="m">+</span> --- Content area ---
-   |
-   <span class="o">|</span> A question or prompt with 0 or more lines of content
-   |
-   <span class="m">+</span> --------------------
+<p>The general format of the <code class="docutils literal"><span class="pre">qnum</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">qnum</span><span class="p">::</span>
+   <span class="nc">:prefix:</span> <span class="nf">character prefix before assessment number</span>
+   <span class="nc">:suffix:</span> <span class="nf">character prefix after assessment number</span>
+   <span class="nc">:start:</span> <span class="nf">start numbering with this value</span>
 </pre></div>
 </div>
-<p>or <strong>list format</strong>:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
-   <span class="nc">:optional:</span> <span class="nf">parameter value</span>
-
-   <span class="m">+</span> --- Content area ---
-   |
-   <span class="o">|</span> A question or prompt with 0 or more lines of content
-   <span class="o">|</span> followed by
-   <span class="o">|</span> A list of answers
-   |
-   <span class="m">+</span> --------------------
-</pre></div>
-</div>
+<p>The <code class="docutils literal"><span class="pre">qnum</span></code> directive does not use a content block or a unique id.</p>
+<p>It does not directly render anything itself,
+but changes question number labels in other assessments.</p>
+<p>If only one <code class="docutils literal"><span class="pre">qnum</span></code> directive exists in the file,
+then the <code class="docutils literal"><span class="pre">qnum</span></code> directive effects all assessments in the current file.</p>
+<p>If more than one <code class="docutils literal"><span class="pre">qnum</span></code> directive exists in the file,
+then changes created by the <code class="docutils literal"><span class="pre">qnum</span></code> directive affect the file sequentially.
+All questions that follow the <code class="docutils literal"><span class="pre">qnum</span></code> directive use the most recently defined <code class="docutils literal"><span class="pre">qnum</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">qnum</span></code> values affect only the current file.</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<p>No arguments are strictly required, however,
+a <code class="docutils literal"><span class="pre">qnum</span></code> directive with no options has no effect.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt>unique id</dt>
-<dd>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">mchoice</span></code> directive.
-Valid identifiers must not contain spaces.
-You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</dd>
-<dt>content area</dt>
-<dd>The <code class="docutils literal"><span class="pre">mchoice</span></code> directive must contain at least one line of content
-regardless of the format chosen.</dd>
-<dt>correct</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">List</span></code>. One or more correct answers.</p>
-<p>This option is required if using <strong>classic format</strong>.</p>
-<ul class="last simple">
-<li>If a single value, the question renders with single selection buttons (Radio buttons).</li>
-<li>If a list of values, the question renders with checkboxes, allowing multiple selection.</li>
-</ul>
+<dt>prefix</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define characters before the question number.</p>
+<p class="last">The default is <code class="docutils literal"><span class="pre">Q-</span></code>.</p>
 </dd>
-<dt>answer_a (through _e)</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Up to 5 possible answers.</p>
-<ul class="last simple">
-<li>This option is applicable only if using <strong>classic format</strong>.</li>
-<li>The value after the underscore must be in the range <code class="docutils literal"><span class="pre">a</span></code> through <code class="docutils literal"><span class="pre">e</span></code>.</li>
-<li>The option <code class="docutils literal"><span class="pre">:answer_a:</span></code> is <strong>required</strong>.</li>
-<li>Plain text only.</li>
-<li>The order of answers does not need to be fixed.
-Answers may be randomly shuffled.</li>
-</ul>
+<dt>suffix</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define characters after the question number.</p>
+<p class="last">The default is no suffix defined.</p>
+</dd>
+<dt>start</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Integer</span></code>. Define the start for question numbering. Must be &gt; <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<p class="last">The first question encountered will begin with this number and increment by 1 afterwards.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="optional-arguments-classic-format">
-<h2>Optional Arguments: Classic Format<a class="headerlink" href="#optional-arguments-classic-format" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>feedback_a (through _e)</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Feedback specific to an answer.</p>
-<ul class="simple">
-<li>This option is applicable only if using <strong>classic format</strong>.</li>
-<li>Each answer can have its own feedback.</li>
-<li>Plain text only.</li>
-<li>The value after the underscore must be in the range <code class="docutils literal"><span class="pre">a</span></code> through <code class="docutils literal"><span class="pre">e</span></code>.</li>
-<li>If there is feedback for one answer, there should be feedback for each answer.</li>
-</ul>
-<p class="last">We recommend that thoughtful feedback be included for every multiple choice question,
-and that question writers consider how feedback may be useful for questions
-which have multiple correct answers!</p>
-</dd>
-<dt>multiple_answers</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, forces checkbox behavior regardless of the actual number of correct answers.</p>
-<p>Implied if the <code class="docutils literal"><span class="pre">:correct:</span></code> option is present and contains a list of correct answers.</p>
-<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-1
-   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
-   <span class="nc">:answer_b:</span> <span class="nf">White</span>
-   <span class="nc">:answer_c:</span> <span class="nf">Blue</span>
-   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
-   <span class="nc">:correct:</span> <span class="nf">a,c</span>
-   <span class="nc">:feedback_a:</span> <span class="nf">Red is found in the rainbow.</span>
-   <span class="nc">:feedback_b:</span> <span class="nf">White is the mixing of all of the colors in the rainbow.</span>
-   <span class="nc">:feedback_c:</span> <span class="nf">Blue is found in the rainbow.</span>
-   <span class="nc">:feedback_d:</span> <span class="nf">Grey is never found in the rainbow.</span>
-
-   Which colors are found in the rainbow?
-</pre></div>
-</div>
-</dd>
-<dt>random</dt>
-<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. If present, indicates multiple correct answers are possible.</dd>
-</dl>
-</div>
-<div class="section" id="optional-arguments-list-format">
-<h2>Optional Arguments: List Format<a class="headerlink" href="#optional-arguments-list-format" title="Permalink to this headline">¶</a></h2>
-<p>An alternative method of specifying answers and feedback:
-Place an <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#lists-and-quote-like-blocks">unordered list</a>
-at the end of the question text, in the following format.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>If your question text happens to end with an unordered list,
-then place a comment, consisting of a paragraph containing only <code class="docutils literal"><span class="pre">..</span></code> at the end of the list.
-For example:</p>
-<div class="last highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> unique_id
-
-   Ask a question, which in this case, is followed by a list.
-
-   <span class="m">-</span>   This list is still part of the question text.
-
-<span class="cp">   ..</span>
-
-<span class="cp">   -   Text for answer A.</span>
-</pre></div>
-</div>
-</div>
-<p>The list format provides more flexibility in multiple choice questions:</p>
-<ul class="simple">
-<li>Up to 26 answers and feedback pairs may be provided.</li>
-<li>Unlike classic format, feedback for each answer is <strong>required</strong>.</li>
-<li>Your text may be multiple paragraphs,
-including <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#images">images</a>
-and any other <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#inline-markup">inline</a> or block markup.
-For example: <span class="math">\(\sqrt(2)/2\)</span>.</li>
-<li>Impossible to mistakenly associate incorrect answers and feedback.
-The classic format solely uses the letter to pair answers with feedback.</li>
-</ul>
-<p>As earlier, if your feedback contains an unordered list, end it with a comment.
-- Answers are always identified with a standard unordered list bullet: <code class="docutils literal"><span class="pre">-</span></code>.
-- Use a standard list <code class="docutils literal"><span class="pre">-</span></code> marker to identify feedback for incorrect answers.
-- Use a <code class="docutils literal"><span class="pre">+</span></code> marker to identify feedback for correct answers.
-- Just as in standard lists, separate a sublist with a blank line.
-- An answer may contain only 1 feedback sublist.</p>
 </div>
 <div class="section" id="languages-supported">
 <h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
-<p>This directive is language agnostic.
-Nothing is actually executed or interpreted.
-It is up to the author to ensure the syntax and grammar within a clickable area
-makes sense - no syntax checking on code is performed.</p>
+<p>Not applicable.</p>
 </div>
 <div class="section" id="sphinx-configuration-options">
 <h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
@@ -523,218 +421,134 @@ makes sense - no syntax checking on code is performed.</p>
 </div>
 <div class="section" id="known-limitations">
 <h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
-<p>The list format directive is sensitive to paragraph spacing:</p>
+<p>Not all Runestone assessments currently render question numbers.
+Those that do are:</p>
 <ul class="simple">
-<li>The list spacing does not conform to the same rules as for standard
-Sphinx <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#lists-and-quote-like-blocks">unordered lists</a>.</li>
-<li>The empty line between a sublist and a following list may be omitted.</li>
-<li>However, the empty line is required between a list and its sublist.</li>
+<li><a class="reference internal" href="choice.html"><span class="doc">Multiple Choice</span></a></li>
+<li><a class="reference internal" href="parsons.html"><span class="doc">Parsons Problems</span></a></li>
+<li><a class="reference internal" href="short.html"><span class="doc">Short Answer</span></a></li>
 </ul>
-<p>The ‘Compare Me’ button requires a book connected to a database for collecting grade statistics.
-There is no way to disable this button, if not connected to a database.</p>
-<p>There is no means to change the numbering of selected items
-(numbered, upper case, lower case, non-latin letters, etc).</p>
-<p>There is difference in the spacing between the question and the first answer
-in the classic and list formats.</p>
+<p>Those that do not:</p>
+<ul class="simple">
+<li><a class="reference internal" href="clickable.html"><span class="doc">Clickable Area</span></a></li>
+<li><a class="reference internal" href="dnd.html"><span class="doc">Drag and Drop</span></a></li>
+<li><a class="reference internal" href="fitb.html"><span class="doc">Fill in the Blank</span></a></li>
+<li><a class="reference internal" href="polls.html"><span class="doc">Poll</span></a></li>
+<li><a class="reference internal" href="activecode.html"><span class="doc">Activecode</span></a>, when in a <a class="reference internal" href="timed.html"><span class="doc">Timed Assessment</span></a> container.</li>
+</ul>
+<p>If <strong>every</strong> assessment in a file exists within a <a class="reference internal" href="tab.html"><span class="doc">Tab Groups</span></a> container,
+then the <code class="docutils literal"><span class="pre">qnum</span></code> directive has no effect.
+If even a single assessment is outside a tab group, then
+assessments are numbered as expected, both those in and out of tab containers.</p>
+<p>The <code class="docutils literal"><span class="pre">:suffix:</span></code> option does not change the <code class="docutils literal"><span class="pre">:</span></code> character between the
+number / suffix and whatever follows.
+That is, the <code class="docutils literal"><span class="pre">:</span></code> is not considered part of the suffix.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>Multiple Choice with 1 correct answer.</p>
-<div id='example0' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-0
-   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
-   <span class="nc">:answer_b:</span> <span class="nf">White</span>
-   <span class="nc">:answer_c:</span> <span class="nf">Black</span>
-   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
-   <span class="nc">:correct:</span> <span class="nf">a</span>
-
-   Which color is found in the rainbow?
+<p>Using</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">qnum</span><span class="p">::</span>
+   <span class="nc">:prefix:</span> <span class="nf">Ex-</span>
+   <span class="nc">:start:</span> <span class="nf">1</span>
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Show It" >
+<p>Changes question numbering as follows:</p>
 
             <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc-ex-0">
-            13: Which color is found in the rainbow?
-            <li data-component="answer" data-correct id="mc-ex-0_opt_a">Red</li><li data-component="feedback" id="mc-ex-0_opt_a"></li>
-            
-            <li data-component="answer"  id="mc-ex-0_opt_b">White</li><li data-component="feedback" id="mc-ex-0_opt_b"></li>
-            
-            <li data-component="answer"  id="mc-ex-0_opt_c">Black</li><li data-component="feedback" id="mc-ex-0_opt_c"></li>
-            
-            <li data-component="answer"  id="mc-ex-0_opt_d">Grey</li><li data-component="feedback" id="mc-ex-0_opt_d"></li>
-            
-
-            </ul>
-            </div>
-            </div>
-    </div>
-
-<p>Multiple Choice with multiple correct answers.
-This example shows both classic and list formats.</p>
-<div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Classic Format" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-1
-   <span class="nc">:answer_a:</span> <span class="nf">Red</span>
-   <span class="nc">:answer_b:</span> <span class="nf">White</span>
-   <span class="nc">:answer_c:</span> <span class="nf">Blue</span>
-   <span class="nc">:answer_d:</span> <span class="nf">Grey</span>
-   <span class="nc">:correct:</span> <span class="nf">a,c</span>
-   <span class="nc">:feedback_a:</span> <span class="nf">Red is found in the rainbow.</span>
-   <span class="nc">:feedback_b:</span> <span class="nf">White is the mixing of all of the colors in the rainbow.</span>
-   <span class="nc">:feedback_c:</span> <span class="nf">Blue is found in the rainbow.</span>
-   <span class="nc">:feedback_d:</span> <span class="nf">Grey is never found in the rainbow.</span>
-
-   Which colors are found in the rainbow?
-</pre></div>
-</div>
-</div><div data-component="tab" data-tabname="Show Classic" >
-
-            <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-1">
-            14: Which colors are found in the rainbow?
-            <li data-component="answer" data-correct id="mc-ex-1_opt_a">Red</li><li data-component="feedback" id="mc-ex-1_opt_a">Red is found in the rainbow.</li>
-            
-            <li data-component="answer"  id="mc-ex-1_opt_b">White</li><li data-component="feedback" id="mc-ex-1_opt_b">White is the mixing of all of the colors in the rainbow.</li>
-            
-            <li data-component="answer" data-correct id="mc-ex-1_opt_c">Blue</li><li data-component="feedback" id="mc-ex-1_opt_c">Blue is found in the rainbow.</li>
-            
-            <li data-component="answer"  id="mc-ex-1_opt_d">Grey</li><li data-component="feedback" id="mc-ex-1_opt_d">Grey is never found in the rainbow.</li>
-            
-
-            </ul>
-            </div>
-            </div><div data-component="tab" data-tabname="List Format" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-2
-
-   Which colors are found in the rainbow?
-
-   <span class="m">-</span> Red
-
-     <span class="m">+</span> Yes, red is a correct rainbow color.
-
-   <span class="m">-</span> White
-
-     <span class="m">-</span> White is not a color found in a rainbow.
-
-   <span class="m">-</span> Blue
-
-     <span class="m">+</span> Yes, blue is a correct rainbow color.
-
-   <span class="m">-</span> Grey
-
-     <span class="m">-</span> Grey is not a color found in a rainbow.
-</pre></div>
-</div>
-</div><div data-component="tab" data-tabname="Show List" >
-
-            <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-2">
-            <p>15: Which colors are found in the rainbow?</p>
-<li data-component="answer" data-correct id="mc-ex-2_opt_a">Red</li><li data-component="feedback" id="mc-ex-2_opt_a">
-Yes, red is a correct rainbow color.</li><li data-component="answer"  id="mc-ex-2_opt_b">White</li><li data-component="feedback" id="mc-ex-2_opt_b">
-White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="mc-ex-2_opt_c">Blue</li><li data-component="feedback" id="mc-ex-2_opt_c">
-Yes, blue is a correct rainbow color.</li><li data-component="answer"  id="mc-ex-2_opt_d">Grey</li><li data-component="feedback" id="mc-ex-2_opt_d">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="qnum-ex1">
+            <p>Ex-1-timed: Which colors are found in the rainbow?</p>
+<li data-component="answer" data-correct id="qnum-ex1_opt_a">Red</li><li data-component="feedback" id="qnum-ex1_opt_a">
+Yes, red is a correct rainbow color.</li><li data-component="answer"  id="qnum-ex1_opt_b">White</li><li data-component="feedback" id="qnum-ex1_opt_b">
+White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="qnum-ex1_opt_c">Blue</li><li data-component="feedback" id="qnum-ex1_opt_c">
+Yes, blue is a correct rainbow color.</li><li data-component="answer"  id="qnum-ex1_opt_d">Grey</li><li data-component="feedback" id="qnum-ex1_opt_d">
 Grey is not a color found in a rainbow.</li>
 
             </ul>
             </div>
-            </div>
-    </div>
-
-<p>The <code class="docutils literal"><span class="pre">:multiple_answers:</span></code> option can be used to force presenting the
-multiple choice checkbox selections, even when there is only 1 correct answer.</p>
-<div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Classic Format" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex3
-   :multiple_answers:
-   <span class="nc">:random:</span>
-   <span class="nc">:answer_a:</span> <span class="nf">xyZ</span>
-   <span class="nc">:feedback_a:</span> <span class="nf">Any combination of letters is a valid variable name in Python.</span>
-   <span class="nc">:answer_b:</span> <span class="nf">new_var 3</span>
-   <span class="nc">:feedback_b:</span> <span class="nf">Variable names may not contain spaces in Python.</span>
-   <span class="nc">:answer_c:</span> <span class="nf">3things</span>
-   <span class="nc">:feedback_c:</span> <span class="nf">Variable names can&#39;t begin with digits in Python.</span>
-   <span class="nc">:answer_d:</span> <span class="nf">hello-there</span>
-   <span class="nc">:feedback_d:</span> <span class="nf">Hyphens and dashes are not acceptable characters to include in variable names in Python.</span>
-   <span class="nc">:correct:</span> <span class="nf">a</span>
-
-   Which of these are valid variable names in Python? (Choose all that are correct)
+            
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="qnum-ex2"      >
+        <span data-question>Ex-3-timed: Ex-2-timed: Construct a block of code that correctly implements
+the <b>accumulator</b> pattern.</span>x = 0
+for i in range(10):
+    x = x + 1
+        </pre>
+        </div>
+    
+<div class="runestone">
+<p data-component="shortanswer" class="journal alert alert-warning" id=qnum-ex3 >Ex-5-timed: Ex-4-timed: What are the colors in the rainbow?</p>
+</div>
+<p>The following assessment is a timed exam that restarts question numbering
+and appends to the numbers:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">qnum</span><span class="p">::</span>
+   <span class="nc">:suffix:</span> <span class="nf">-timed</span>
+   <span class="nc">:start:</span> <span class="nf">1</span>
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Show Classic" >
+<p>Because the <code class="docutils literal"><span class="pre">:prefix:</span></code> was not set,
+the existing prefix <em>Ex</em> continues to be used.</p>
 
+    <ul data-component="timedAssessment"  id="qnum-time-ex1" data-no-result data-no-feedback  >
+    
             <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex3">
-            16: Which of these are valid variable names in Python? (Choose all that are correct)
-            <li data-component="answer" data-correct id="mc-ex3_opt_a">xyZ</li><li data-component="feedback" id="mc-ex3_opt_a">Any combination of letters is a valid variable name in Python.</li>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="timed-q-ex1">
+            <p>Ex-1-timed: What color is a stop sign?</p>
+<li data-component="answer" data-correct id="timed-q-ex1_opt_a">red</li><li data-component="feedback" id="timed-q-ex1_opt_a">
+Red it is.</li><li data-component="answer"  id="timed-q-ex1_opt_b">brown</li><li data-component="feedback" id="timed-q-ex1_opt_b">
+Not brown.</li><li data-component="answer"  id="timed-q-ex1_opt_c">blue</li><li data-component="feedback" id="timed-q-ex1_opt_c">
+Not blue.</li><li data-component="answer"  id="timed-q-ex1_opt_d">gray</li><li data-component="feedback" id="timed-q-ex1_opt_d">
+Not gray.</li>
+
+            </ul>
+            </div>
             
-            <li data-component="answer"  id="mc-ex3_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex3_opt_b">Variable names may not contain spaces in Python.</li>
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="timed-q-ex2">
+            Ex-2-timed: What colors might you see in a rainbow?
+            <li data-component="answer" data-correct id="timed-q-ex2_opt_a">red</li><li data-component="feedback" id="timed-q-ex2_opt_a">Red it is.</li>
             
-            <li data-component="answer"  id="mc-ex3_opt_c">3things</li><li data-component="feedback" id="mc-ex3_opt_c">Variable names can't begin with digits in Python.</li>
+            <li data-component="answer"  id="timed-q-ex2_opt_b">brown</li><li data-component="feedback" id="timed-q-ex2_opt_b">Not brown.</li>
             
-            <li data-component="answer"  id="mc-ex3_opt_d">hello-there</li><li data-component="feedback" id="mc-ex3_opt_d">Hyphens and dashes are not acceptable characters to include in variable names in Python.</li>
+            <li data-component="answer" data-correct id="timed-q-ex2_opt_c">blue</li><li data-component="feedback" id="timed-q-ex2_opt_c">Blue it is.</li>
+            
+            <li data-component="answer"  id="timed-q-ex2_opt_d">gray</li><li data-component="feedback" id="timed-q-ex2_opt_d">Not gray.</li>
             
 
             </ul>
             </div>
-            </div><div data-component="tab" data-tabname="List Format" >
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">mchoice</span><span class="p">::</span> mc-ex-4
-   :multiple_answers:
-   <span class="nc">:random:</span>
-
-   Which of these are valid variable names in Python? (Choose all that are correct)
-
-   <span class="m">-</span> xyZ
-
-     <span class="m">+</span> Any combination of letters is a valid variable name in Python.
-
-   <span class="m">-</span> new_var 3
-
-     <span class="m">-</span> Variable names may not contain spaces in Python.
-
-   <span class="m">-</span> 3things
-
-     <span class="m">-</span> Variable names can&#39;t begin with digits in Python.
-
-   <span class="m">-</span> hello-there
-
-     <span class="m">-</span> Hyphens and dashes are not acceptable characters to include in variable names in Python.
-</pre></div>
+            
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="timed-qnum-ex3"      >
+        <span data-question>Ex-4-timed: Ex-3-timed: Construct a block of code that correctly implements
+the <b>accumulator</b> pattern.</span>x = 0
+for i in range(10):
+    x = x + 1
+        </pre>
+        </div>
+    
+<div class="runestone">
+<p data-component="shortanswer" class="journal alert alert-warning" id=timed-qnum-ex4 >Ex-6-timed: Ex-5-timed: What are the colors in the rainbow?</p>
 </div>
-</div><div data-component="tab" data-tabname="Show List" >
-
-            <div class="runestone alert alert-warning">
-            <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex-4">
-            <p>17: Which of these are valid variable names in Python? (Choose all that are correct)</p>
-<li data-component="answer" data-correct id="mc-ex-4_opt_a">xyZ</li><li data-component="feedback" id="mc-ex-4_opt_a">
-Any combination of letters is a valid variable name in Python.</li><li data-component="answer"  id="mc-ex-4_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex-4_opt_b">
-Variable names may not contain spaces in Python.</li><li data-component="answer"  id="mc-ex-4_opt_c">3things</li><li data-component="feedback" id="mc-ex-4_opt_c">
-Variable names can’t begin with digits in Python.</li><li data-component="answer"  id="mc-ex-4_opt_d">hello-there</li><li data-component="feedback" id="mc-ex-4_opt_d">
-Hyphens and dashes are not acceptable characters to include in variable names in Python.</li>
-
-            </ul>
-            </div>
-            </div>
+</ul>
     </div>
-
-</div>
 </div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Fill in the Blank' data-toggle="tooltip">
-    <a href="fitb.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - Short Answer' data-toggle="tooltip">
+    <a href="short.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="fitb.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="short.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - Parsons Problems' data-toggle="tooltip" >
-    <a href="parsons.html" >
+  <li id="relations-next" class="navLink" title='Next Section - Usage Assignment' data-toggle="tooltip" >
+    <a href="usage.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="parsons.html" >Next Section - Parsons Problems</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="usage.html" >Next Section - Usage Assignment</a>
 
 <script type="text/javascript">
 

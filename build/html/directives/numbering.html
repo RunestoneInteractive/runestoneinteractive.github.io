@@ -304,7 +304,19 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Controlling Question Numbering</a></li>
+<li><a class="reference internal" href="#">Controlling Question Numbering</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#required-arguments">Required Arguments</a></li>
+<li><a class="reference internal" href="#optional-arguments">Optional Arguments</a></li>
+<li><a class="reference internal" href="#languages-supported">Languages supported</a></li>
+<li><a class="reference internal" href="#sphinx-configuration-options">Sphinx configuration options</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -353,19 +365,119 @@
   
   <div class="section" id="controlling-question-numbering">
 <h1>Controlling Question Numbering<a class="headerlink" href="#controlling-question-numbering" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">qnum</span><span class="p">::</span>
-   <span class="s">&#39;prefix&#39;</span><span class="p">:</span> <span class="n">character</span> <span class="n">prefix</span> <span class="n">before</span> <span class="n">the</span> <span class="n">number</span>
-   <span class="s">&#39;suffix&#39;</span><span class="p">:</span> <span class="n">character</span> <span class="n">prefix</span> <span class="n">after</span> <span class="n">the</span> <span class="n">number</span>
-   <span class="s">&#39;start&#39;</span><span class="p">:</span> <span class="n">start</span> <span class="n">numbering</span> <span class="k">with</span> <span class="n">this</span> <span class="n">value</span>
+<p>The <code class="docutils literal"><span class="pre">qnum</span></code> directive provides control over question numbering.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>The general format of the <code class="docutils literal"><span class="pre">qnum</span></code> directive is:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">qnum</span><span class="p">::</span>
+   <span class="nc">:prefix:</span> <span class="nf">character prefix before assessment number</span>
+   <span class="nc">:suffix:</span> <span class="nf">character prefix after assessment number</span>
+   <span class="nc">:start:</span> <span class="nf">start numbering with this value</span>
 </pre></div>
 </div>
-<p>For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">qnum</span><span class="p">::</span>
-   <span class="p">:</span><span class="n">prefix</span><span class="p">:</span> <span class="n">turtle</span><span class="o">-</span>
-   <span class="p">:</span><span class="n">start</span><span class="p">:</span> <span class="mi">10</span>
+<p>The <code class="docutils literal"><span class="pre">qnum</span></code> directive does not use a content block or a unique id.</p>
+<p>It does not directly render anything itself,
+but changes question number labels in other assessments.</p>
+<p>If only one <code class="docutils literal"><span class="pre">qnum</span></code> directive exists in the file,
+then the <code class="docutils literal"><span class="pre">qnum</span></code> directive effects all assessments in the current file.</p>
+<p>If more than one <code class="docutils literal"><span class="pre">qnum</span></code> directive exists in the file,
+then changes created by the <code class="docutils literal"><span class="pre">qnum</span></code> directive affect the file sequentially.
+All questions that follow the <code class="docutils literal"><span class="pre">qnum</span></code> directive use the most recently defined <code class="docutils literal"><span class="pre">qnum</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">qnum</span></code> values affect only the current file.</p>
+</div>
+<div class="section" id="required-arguments">
+<h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
+<p>No arguments are strictly required, however,
+a <code class="docutils literal"><span class="pre">qnum</span></code> directive with no options has no effect.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>prefix</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define characters before the question number.</p>
+<p class="last">The default is <code class="docutils literal"><span class="pre">Q-</span></code>.</p>
+</dd>
+<dt>suffix</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define characters after the question number.</p>
+<p class="last">The default is no suffix defined.</p>
+</dd>
+<dt>start</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">Integer</span></code>. Define the start for question numbering. Must be &gt; <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<p class="last">The first question encountered will begin with this number and increment by 1 afterwards.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="languages-supported">
+<h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
+<p>Not applicable.</p>
+</div>
+<div class="section" id="sphinx-configuration-options">
+<h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>No directive specific configuration options exist.</p>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<p>tbd.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Not all Runestone assessments currently render question numbers.
+Those that do are:</p>
+<ul class="simple">
+<li><a class="reference internal" href="choice.html"><span class="doc">Multiple Choice</span></a></li>
+<li><a class="reference internal" href="parsons.html"><span class="doc">Parsons Problems</span></a></li>
+<li><a class="reference internal" href="short.html"><span class="doc">Short Answer</span></a></li>
+</ul>
+<p>Those that do not:</p>
+<ul class="simple">
+<li><a class="reference internal" href="clickable.html"><span class="doc">Clickable Area</span></a></li>
+<li><a class="reference internal" href="dnd.html"><span class="doc">Drag and Drop</span></a></li>
+<li><a class="reference internal" href="fitb.html"><span class="doc">Fill in the Blank</span></a></li>
+<li><a class="reference internal" href="polls.html"><span class="doc">Poll</span></a></li>
+</ul>
+<p>If <strong>every</strong> assessment in a file exists within a <a class="reference internal" href="tab.html"><span class="doc">Tab Groups</span></a> container,
+then the <code class="docutils literal"><span class="pre">qnum</span></code> directive has no effect.
+If even a single assessment is outside a tab group, then
+assessments are numbers as expected, both those in and out of tab groups.</p>
+<p>The <code class="docutils literal"><span class="pre">:suffix:</span></code> option does not change the <code class="docutils literal"><span class="pre">:</span></code> character between the
+number / suffix and whatever follows.
+That is, the <code class="docutils literal"><span class="pre">:</span></code> is not considered part of the suffix.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Using</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">qnum</span><span class="p">::</span>
+   <span class="nc">:prefix:</span> <span class="nf">Ex-</span>
+   <span class="nc">:start:</span> <span class="nf">1</span>
 </pre></div>
 </div>
-<p>Will cause the questions in this section to be displayed as turtle-10, turtle-11, and so on.</p>
+<p>Changes question numbering as follows:</p>
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="qnum-ex1">
+            <p>Ex-1: Which colors are found in the rainbow?</p>
+<li data-component="answer" data-correct id="qnum-ex1_opt_a">Red</li><li data-component="feedback" id="qnum-ex1_opt_a">
+Yes, red is a correct rainbow color.</li><li data-component="answer"  id="qnum-ex1_opt_b">White</li><li data-component="feedback" id="qnum-ex1_opt_b">
+White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="qnum-ex1_opt_c">Blue</li><li data-component="feedback" id="qnum-ex1_opt_c">
+Yes, blue is a correct rainbow color.</li><li data-component="answer"  id="qnum-ex1_opt_d">Grey</li><li data-component="feedback" id="qnum-ex1_opt_d">
+Grey is not a color found in a rainbow.</li>
+
+            </ul>
+            </div>
+            
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="qnum-ex2"      >
+        <span data-question>Ex-3: Ex-2: Construct a block of code that correctly implements
+the <b>accumulator</b> pattern.</span>x = 0
+for i in range(10):
+    x = x + 1
+        </pre>
+        </div>
+    
+<div class="runestone">
+<p data-component="shortanswer" class="journal alert alert-warning" id=qnum-ex3 >Ex-5: Ex-4: What are the colors in the rainbow?</p>
+</div>
+</div>
 </div>
 
 

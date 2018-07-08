@@ -44,8 +44,8 @@ Assessments       .. toctree::
                      directives/parsons
                      directives/polls
                      directives/short
+                     directives/qnum
                      directives/usage
-                     directives/numbering
 ================= ===================================
 
 General Syntax
