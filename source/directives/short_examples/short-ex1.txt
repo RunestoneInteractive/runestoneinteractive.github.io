@@ -1,0 +1,3 @@
+.. shortanswer:: short-ex3
+
+   What are the colors in the rainbow?

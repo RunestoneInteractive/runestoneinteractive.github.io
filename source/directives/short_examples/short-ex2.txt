@@ -1,0 +1,6 @@
+.. shortanswer:: short-ex2
+   :optional:
+
+   What are the colors in the rainbow?
+
+
