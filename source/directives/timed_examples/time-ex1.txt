@@ -33,4 +33,6 @@
       :feedback_c: Blue it is.
       :feedback_d: Not gray.
 
+      What colors might you see in a rainbow?
+
 

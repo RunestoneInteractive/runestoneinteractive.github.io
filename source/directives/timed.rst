@@ -27,6 +27,22 @@ To start the exam click on the "Start" button.
 When you pause the exam the questions will be hidden.  
 There is also a clock icon that will display the time remaining 
 if it is a timed exam and the time used otherwise when the reader hovers over it.
+Questions are presented one at a time.
+
+Because ``timed`` tests always display questions one at a time,
+time limit or not,
+a 'timed' assessment with 
+
+- ``:nofeedback:``
+- ``:noresult:``
+- ``:notimer:``
+
+provide a means to present many questions, one at a time,
+but with no time or other statistics displayed.
+
+A "Reset" button allows restarting a timed assessment under certain conditions.
+Reset is only available if there is no record of a completed exam and the
+localStorage does not reflect a partially completed exam.
 
 Required Arguments
 ------------------

@@ -43,7 +43,8 @@ Optional Arguments
 prefix
     ``String``. Define characters before the question number.
 
-    The default is ``Q-``.
+    The default is no prefix for :doc:`choice` and ``Q-`` for 
+    :doc:`parsons` and :doc:`short`.
 
 suffix
     ``String``. Define characters after the question number.
@@ -86,12 +87,13 @@ Those that do not:
 - :doc:`dnd`
 - :doc:`fitb`
 - :doc:`polls`
+- :doc:`activecode`, when in a :doc:`timed` container.
 
 
 If **every** assessment in a file exists within a :doc:`tab` container,
 then the ``qnum`` directive has no effect.
 If even a single assessment is outside a tab group, then
-assessments are numbers as expected, both those in and out of tab groups.
+assessments are numbered as expected, both those in and out of tab containers.
 
 The ``:suffix:`` option does not change the ``:`` character between the 
 number / suffix and whatever follows.
@@ -142,5 +144,73 @@ Changes question numbering as follows:
 .. shortanswer:: qnum-ex3
 
    What are the colors in the rainbow?
+
+The following assessment is a timed exam that restarts question numbering
+and appends to the numbers:
+
+.. qnum::
+   :suffix: -timed
+   :start: 1
+
+.. code-block:: rst
+
+   .. qnum::
+      :suffix: -timed
+      :start: 1
+
+Because the ``:prefix:`` was not set, 
+the existing prefix *Ex* continues to be used.
+
+.. timed:: qnum-time-ex1
+   :nofeedback:
+   :noresult:
+
+   .. mchoice:: timed-q-ex1
+
+      What color is a stop sign?
+
+      -   red
+
+          +   Red it is.
+
+      -   brown
+
+          -   Not brown.
+
+      -   blue
+
+          -   Not blue.
+
+      -   gray
+
+          -   Not gray.
+
+   .. mchoice:: timed-q-ex2
+      :multiple_answers:
+      :correct: a, c
+      :answer_a: red
+      :answer_b: brown
+      :answer_c: blue
+      :answer_d: gray
+      :feedback_a: Red it is.
+      :feedback_b: Not brown.
+      :feedback_c: Blue it is.
+      :feedback_d: Not gray.
+
+      What colors might you see in a rainbow?
+
+   .. parsonsprob:: timed-qnum-ex3
+
+       Construct a block of code that correctly implements 
+       the <b>accumulator</b> pattern.
+       -----
+       x = 0
+       for i in range(10):
+           x = x + 1
+
+   .. shortanswer:: timed-qnum-ex4
+
+       What are the colors in the rainbow?
+
 
 

@@ -242,5 +242,3 @@ multiple choice checkbox selections, even when there is only 1 correct answer.
       .. include:: choice_examples/mc-ex4.txt
 
 
-
-

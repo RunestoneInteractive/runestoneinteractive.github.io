@@ -387,7 +387,21 @@ after the time runs out for an exam with a specified duration.</p>
 </ul>
 <p>When you pause the exam the questions will be hidden.
 There is also a clock icon that will display the time remaining
-if it is a timed exam and the time used otherwise when the reader hovers over it.</p>
+if it is a timed exam and the time used otherwise when the reader hovers over it.
+Questions are presented one at a time.</p>
+<p>Because <code class="docutils literal"><span class="pre">timed</span></code> tests always display questions one at a time,
+time limit or not,
+a ‘timed’ assessment with</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">:nofeedback:</span></code></li>
+<li><code class="docutils literal"><span class="pre">:noresult:</span></code></li>
+<li><code class="docutils literal"><span class="pre">:notimer:</span></code></li>
+</ul>
+<p>provide a means to present many questions, one at a time,
+but with no time or other statistics displayed.</p>
+<p>A “Reset” button allows restarting a timed assessment under certain conditions.
+Reset is only available if there is no record of a completed exam and the
+localStorage does not reflect a partially completed exam.</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
@@ -484,6 +498,8 @@ Do not assume that ‘hidden’ assessment information is hidden from everyone.<
       <span class="nc">:feedback_b:</span> <span class="nf">Not brown.</span>
       <span class="nc">:feedback_c:</span> <span class="nf">Blue it is.</span>
       <span class="nc">:feedback_d:</span> <span class="nf">Not gray.</span>
+
+      What colors might you see in a rainbow?
 </pre></div>
 </div>
 </div><div data-component="tab" data-tabname="Run It" >
@@ -492,7 +508,7 @@ Do not assume that ‘hidden’ assessment information is hidden from everyone.<
     
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="timed_mc_ex1.1">
-            <p>Q-19: What color is a stop sign?</p>
+            <p>Ex-7-timed: What color is a stop sign?</p>
 <li data-component="answer" data-correct id="timed_mc_ex1.1_opt_a">red</li><li data-component="feedback" id="timed_mc_ex1.1_opt_a">
 Red it is.</li><li data-component="answer"  id="timed_mc_ex1.1_opt_b">brown</li><li data-component="feedback" id="timed_mc_ex1.1_opt_b">
 Not brown.</li><li data-component="answer"  id="timed_mc_ex1.1_opt_c">blue</li><li data-component="feedback" id="timed_mc_ex1.1_opt_c">
@@ -504,7 +520,7 @@ Not gray.</li>
             
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="timed_mc_ex1.2">
-            
+            Ex-8-timed: What colors might you see in a rainbow?
             <li data-component="answer" data-correct id="timed_mc_ex1.2_opt_a">red</li><li data-component="feedback" id="timed_mc_ex1.2_opt_a">Red it is.</li>
             
             <li data-component="answer"  id="timed_mc_ex1.2_opt_b">brown</li><li data-component="feedback" id="timed_mc_ex1.2_opt_b">Not brown.</li>
