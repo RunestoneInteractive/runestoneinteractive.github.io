@@ -1,11 +1,11 @@
 Codelens
 ========
 
-The codelens directive creates an interactive environment for you to step through small python code examples. 
+The ``codelens`` directive creates an interactive environment for you to step through small python code examples. 
 
 Synopsis
 --------
-The general format of the codelens directive is:
+The general format of the ``codelens`` directive is:
 
 .. code-block:: rst
 
@@ -20,10 +20,10 @@ The general format of the codelens directive is:
 
 Codelens displays the values of variables and shows the contents and links between your objects.  
 Unlike a normal code debugger intended for solving bugs, 
-codelens lets you step forward and backward through the code.
+``codelens`` lets you step forward and backward through the code.
 
 In addition to stepping through the code,
-you as an author can embed a single question into the codelens example.  
+you as an author can embed a single question into the ``codelens`` example.  
 You may ask the student to predict what the value of a variable will be after a line executes, 
 what the value of an element on the heap is at the point you pause the code 
 (if the term ``heap`` is unfamiliar to you, 
@@ -32,32 +32,32 @@ not e.g. an element of a Python list),
 or you may ask the student to predict which line of code will be executed next. 
 This is an excellent way to help students develop a good mental model of how python works. 
 
-It's worth noting that you can also make use of codelens in a 
+It's worth noting that you can also make use of ``codelens`` in a 
 live environment where you can edit code and run new examples.  
-To use codelens interactively go to http://www.pythontutor.com/.
+To use ``codelens`` interactively go to http://www.pythontutor.com/.
 
-Although codelens in Runestone currently supports python only, 
-the core visualization available within codelens is also available for any
+Although ``codelens`` in Runestone currently supports python only, 
+the core visualization available within ``codelens`` is also available for any
 language supported by `pythontutor <http://www.pythontutor.com/>`_, which currently includes C, C++, Java, Ruby and others.
 
 Required Arguments
 ------------------
 
 unique id
-    A unique identifier after a space and the ``::`` in the codelens directive.
+    A unique identifier after a space and the ``::`` in the ``codelens`` directive.
     Valid identifiers must not contain spaces.
     You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
 
 content area
-    The content of a codelens directive is the similar to an activecode directive block: lines of code.
+    The content of a ``codelens`` directive is the similar to an :doc`activecode` directive block: lines of code.
     There are a few differences:
 
     * The question text or additional instructions section separated from code content is not supported.
-      The book will compile, but the codelens will not render correctly.
+      The book will compile, but the ``codelens`` will not render correctly.
     * The hidden code section is not supported.
 
     Note that if your code has any errors, 
-    it will definitely cause a problem when tracing through the codelens example, 
+    it will definitely cause a problem when tracing through the ``codelens`` example, 
     so make sure to test your code before deploying your book!
 
 Optional Arguments
@@ -78,7 +78,7 @@ question
     ``String``. 
     This is the question text that will be shown to the student. 
     
-    Only one question per codelens for now.
+    Only one question per ``codelens`` for now.
 
 correct 
     ``String``. 
@@ -111,32 +111,32 @@ tracedata
     Normally this value is filled in automatically with a JavaScript object 
     of the stack trace, but you can provide your own tracedata if you wish. 
     The **tracedata** is the object from which you access the value of the 
-    ``:correct:`` answer (see below) if you are including a question in the codelens directive.
+    ``:correct:`` answer (see below) if you are including a question in the ``codelens`` directive.
 
     .. admonition:: Developer notes
 
-       You can see an example of the tracedata of a codelens directive by
-       writing the codelens directive with content, building your book, 
+       You can see an example of the tracedata of a ``codelens`` directive by
+       writing the ``codelens`` directive with content, building your book, 
        and then looking in the html document that was built from your ``.rst`` file, 
        which you can find in the ``build`` folder, in the corresponding directory to the 
        directory in ``_sources`` where you saved your current ``.rst`` file 
        (e.g. if your current rst file is in ``_sources/Functions/introduction.rst``, 
-       you can see the tracedata for a codelens example in ``build/Functions/introduction.html``. 
+       you can see the tracedata for a ``codelens`` example in ``build/Functions/introduction.html``. 
         
        You can index into that **tracedata** object with dot notation, 
        but index into any list within it with ``[]``, as usual in Python.
 
        Note that ``globals`` are the variables in the global scope. 
-       ``locals`` is populated only if the codelens question refers to an inner, 
+       ``locals`` is populated only if the ``codelens`` question refers to an inner, 
        local scope within the program, and elements within lists, for example, are stored on the ``heap``.
 
        **How Tracedata works**
 
-       The way codelens works is that when a Runestone book is built, 
-       codelens takes the code and runs it through the python debugger where a series of stack frames are collected.  
+       The way ``codelens`` works is that when a Runestone book is built, 
+       ``codelens`` takes the code and runs it through the python debugger where a series of stack frames are collected.  
        I will refer to this list of stack frames as the trace data.  
        The trace data is then embedded into the page, 
-       so when a student is reading the book and wants to step through a codelens example the 
+       so when a student is reading the book and wants to step through a ``codelens`` example the 
        trace data is visualized for the student.
 
 Languages supported
@@ -145,7 +145,7 @@ Languages supported
 Python only at this time.
 
 It is however to embed the core code visualization feature directly from python tutor.
-This workaround lacks the question and answer features of codelens,
+This workaround lacks the question and answer features of ``codelens``,
 and is styled differently.
 
 
@@ -166,12 +166,12 @@ Codelens does not process code containing preambles or hidden code correctly.
 
 Codelens support is for core python only - libraries such as turtle or unittest are not supported.
 
-You can't place a codelens directive inside a tabbed directive.
+You can't place a ``codelens`` directive inside a :doc:`tab` directive.
 
 Examples
 --------
 
-A codelens example with zero, or 1 line,
+A ``codelens`` example with zero, or 1 line,
 while legal, does not make for a compelling demonstration.
 
 .. codelens:: cl_ex_null
@@ -360,7 +360,7 @@ In this example, we ask not for a value from a variable, but rather which line e
 
 Workarounds for languages other than Python
 -------------------------------------------
-Although codelens is supported only for Python,
+Although ``codelens`` is supported only for Python,
 that does not mean there is not a code visualization option available.
 
 You can link directly to pythontutor.com.
@@ -394,7 +394,7 @@ with an ``only`` directive:
 
          <iframe ... />
 
-One minor advantage of the embedded iframe over codelens is the ability to
+One minor advantage of the embedded iframe over ``codelens`` is the ability to
 click on a line of code and set breakpoints.
 
 The back and forward buttons jump to the next breakpoint, if set.

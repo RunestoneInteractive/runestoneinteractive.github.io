@@ -102,7 +102,7 @@ A simple example.
       .. literalinclude:: dnd_examples/dnd-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: dnd_examples/dnd-ex1.txt
 
@@ -118,7 +118,7 @@ A completely empty directive is permitted.
       .. literalinclude:: dnd_examples/dnd-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       But does not render anything useful.
 
@@ -134,7 +134,7 @@ however, they must be unique within a single ``dragndrop`` assessment.
       .. literalinclude:: dnd_examples/dnd-ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: dnd_examples/dnd-ex3.txt
 

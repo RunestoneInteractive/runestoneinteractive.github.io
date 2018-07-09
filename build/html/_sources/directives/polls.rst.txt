@@ -92,7 +92,7 @@ A simple example using the ``:scale:`` option with comments enabled.
       .. literalinclude:: poll_examples/poll-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: poll_examples/poll-ex1.txt
 
@@ -105,7 +105,7 @@ An example using ``:option_N:`` options to manually configure choices.
       .. literalinclude:: poll_examples/poll-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: poll_examples/poll-ex2.txt
 
@@ -118,7 +118,7 @@ Note that a 'null poll' won't throw any warnings, but does not render anything u
       .. literalinclude:: poll_examples/poll-ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: poll_examples/poll-ex3.txt
 

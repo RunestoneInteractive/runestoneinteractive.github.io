@@ -1,12 +1,12 @@
 Activecode
 ==========
 
-The activecode directive embeds executable, editable code in your pages. 
+The ``activecode`` directive embeds executable, editable code in your pages. 
 Your students can experiment with your examples by changing them and running them over and over again.
 
 Synopsis
 --------
-The general format of the activecode directive is:
+The general format of the ``activecode`` directive is:
 
 .. code-block:: rst
 
@@ -27,12 +27,12 @@ will be created to contain the program output.
       
 Required Arguments
 ------------------
-A unique identifier after a space and the ``::`` in the activecode directive.
+A unique identifier after a space and the ``::`` in the ``activecode`` directive.
 Valid identifiers must not contain spaces.
 You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
 
 The unique identifier will be the ``div`` id that contains this specific code block. 
-The unique identifier allows you to tie activecode blocks to a grading interface, 
+The unique identifier allows you to tie ``activecode`` blocks to a grading interface, 
 or any other groupings for assessment within the Runestone interface. 
 For this reason, we recommend that you follow some type of naming convention 
 for unique identifiers in directives.
@@ -71,10 +71,10 @@ content area
            # TODO: add unit tests
 
 autograde
-    ``Boolean``. Declare an activecode block that will begin running as soon as 
+    ``Boolean``. Declare an ``activecode`` block that will run unittest. Python only.
 
 autorun 
-    ``Boolean``. Declare an activecode block that will begin running as soon as 
+    ``Boolean``. Declare an ``activecode`` block that will begin running as soon as 
     the web page is fully loaded.
 
 available_files
@@ -83,7 +83,7 @@ available_files
     Each entry must be the unique_id of a :doc:`datafile` directive.
 
 caption
-    ``String``. Define a caption for the bottom of the activecode frame.
+    ``String``. Define a caption for the bottom of the directive frame.
 
 chatcodes
     ``Boolean``. Enable users to talk about this code snippet with others
@@ -109,7 +109,7 @@ enabledownload
     ``Boolean``. allow textfield contents to be downloaded to local file
 
 hidecode 
-    ``Boolean``. Make the activecode editor initially hidden, 
+    ``Boolean``. Make the ``activecode`` editor initially hidden, 
     and add a button to automatically show the editor. 
 
     When code is hidden, the 'Run' button is also disabled.
@@ -117,27 +117,27 @@ hidecode
     To run the code, either press 'Show Code', then 'Run',
     or use the ``autorun`` option to run on page load.
     
-    You might use this if you want to put an activecode block in the page in order to include 
-    it in another activecode block, but you don't need or want students to see it right away.
+    You might use this if you want to put an ``activecode`` block in the page in order to include 
+    it in another ``activecode`` block, but you don't need or want students to see it right away.
 
 include
-    ``CSV``. Include another activecode content area verbatim.
+    ``CSV``. Include another ``activecode`` content area verbatim.
 
-    This option allows you to **prepend** other code blocks to this activecode block. 
-    ``include`` is useful because it allows you to write activecode examples that build 
+    This option allows you to **prepend** other code blocks to this ``activecode`` block. 
+    ``include`` is useful because it allows you to write ``activecode`` examples that build 
     on each other without having to duplicate all the code 
     and force the user to scroll through the code to find the newly introduced content. 
    
-    For example, if you write a function definition in one activecode block, 
-    you can include that block in a later activecode block using the ``:include:`` argument, 
-    and thus can invoke that function in the current activecode block without redefining it. 
+    For example, if you write a function definition in one ``activecode`` block, 
+    you can include that block in a later ``activecode`` block using the ``:include:`` argument, 
+    and thus can invoke that function in the current ``activecode`` block without redefining it. 
 
     This argument requires at least one, and optionally multiple, parameters. 
-    The list must contain the unique identifiers of the activecode blocks that you want to include,
+    The list must contain the unique identifiers of the ``activecode`` blocks that you want to include,
     each item separated by a comma.
-    Each item is added made available to the activecode block in the order listed,
+    Each item is added made available to the ``activecode`` block in the order listed,
     but the code is not shown in the content area.
-    The code in the content area is processed last by activecode.
+    The code in the content area is processed last by ``activecode``.
 
 interpreterargs
     ``Array``. A list of interpreter flags, passed to the external server with your code.
@@ -196,7 +196,7 @@ tour_{1,2,3,4,5}
        :tour_1: "Overall Tour"; 1-4: Tour01_Line01; 3: Tour01_Line03;
        :tour_2: "Line by Line Tour"; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;
 
-    See `this tool <https://github.com/CSLearning4U/AudioTourTool>`_ for easy creation of activecode blocks with audio tours.
+    See `this tool <https://github.com/CSLearning4U/AudioTourTool>`_ for easy creation of ``activecode`` blocks with audio tours.
 
 Languages supported
 -------------------
@@ -206,14 +206,14 @@ Supported languages are:
 
 The default language is Python2 (python). 
 Languages other than python, JavaScript, and html 
-require an external server to compile code on behalf of activecode.
+require an external server to compile code on behalf of ``activecode``.
 
 Sphinx configuration options
 ----------------------------
 The following ``options.build.template_args`` values can be set in a book pavement.py file.
 
 default_ac_lang
-    The default language for activecode directives.
+    The default language for ``activecode`` directives.
 
 jobe_server
     The URL to the Jobe server. 
@@ -259,9 +259,9 @@ Known limitations and bugs
 --------------------------
 
 The 'Scratch ActiveCode' link available from the Help Navigation bar drop down is a temporary
-activecode directive provided as a convenience.
+``activecode`` directive provided as a convenience.
 The scratch ActiveCode only knows how to process code using the ``default_ac_lang`` property in pavement.py.
-If not specified, then the scratch activecode content is python 2.
+If not specified, then the scratch ``activecode`` content is python 2.
 
 The 'Show CodeLens' feature is only available when using default python as the language.
 External libraries such as turtle are not supported in codelens.
@@ -276,7 +276,7 @@ The ``available_files`` option is python only.
 Examples
 --------
 
-The most trivial example: an activecode directive with no content area.
+The most trivial example: an ``activecode`` directive with no content area.
 
 .. tabbed:: null
 
@@ -286,7 +286,7 @@ The most trivial example: an activecode directive with no content area.
 
          .. activecode:: empty_block
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       Write your own python program in the space provided.
 
@@ -303,7 +303,7 @@ The next example defines a basic 'hello world' program in the default language (
       .. literalinclude:: ac_examples/activecode_ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex1.txt
 
@@ -316,7 +316,7 @@ An output area is created only when needed.
       .. literalinclude:: ac_examples/activecode_ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex2.txt
 
@@ -334,7 +334,7 @@ This example calls functions defined in the previous two examples.
       .. literalinclude:: ac_examples/activecode_ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex3.txt
 
@@ -350,7 +350,7 @@ The built-in turtle library allows you and students to create simple 2D graphics
       .. literalinclude:: ac_examples/activecode_ex4.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex4.txt
 
@@ -364,13 +364,13 @@ to construct a type of fractal called a Sierpinski Triangle.
 
       Try some other changes and see what happens (maybe change a few of the colors or make the level 2).  
       If you ever want to go back to the original example, simply reload the page in the browser.  
-      One of the great things about activecode is that you can experiment as much as you want.  
+      One of the great things about ``activecode`` is that you can experiment as much as you want.  
       This can be very helpful as you are learning to program.
 
       .. literalinclude:: ac_examples/activecode_ex4-fractal.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex4-fractal.txt
 
@@ -378,7 +378,7 @@ JavaScript
 ..........
 
 Adding a JavaScript example is just as easy as Python, 
-all you need to do is add the ``:language:`` parameter to the activecode directive.
+all you need to do is add the ``:language:`` parameter to the ``activecode`` directive.
 
 Codelens is not supported for JavaScript, 
 so there is no need to add a ``:nocodelens:`` parameter.
@@ -390,7 +390,7 @@ so there is no need to add a ``:nocodelens:`` parameter.
       .. literalinclude:: ac_examples/activecode_ex_js.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex_js.txt
 
@@ -410,7 +410,7 @@ so there is no need to add a ``:nocodelens:`` parameter.
       .. literalinclude:: ac_examples/activecode_ex_java.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex_java.txt
 
@@ -433,14 +433,14 @@ so there is no need to add a ``:nocodelens:`` parameter.
       .. literalinclude:: ac_examples/activecode_ex_java_employee.txt
          :language: rst
 
-   .. tab:: Run Person
+   .. tab:: Try Person
 
       The example source that does not compile 'standalone' can still be displayed
       in a standard code-block.
 
       .. include:: ac_examples/activecode_ex_java_person.txt
 
-   .. tab:: Run Employee
+   .. tab:: Try Employee
 
       .. include:: ac_examples/activecode_ex_java_employee.txt
 
@@ -459,7 +459,7 @@ The same rules that apply to Java, apply to C and C++
       .. literalinclude:: ac_examples/activecode_ex_cpp.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex_cpp.txt
 
@@ -467,7 +467,7 @@ The same rules that apply to Java, apply to C and C++
 Accessing the Browser Document
 ..............................
 
-Python and JavaScript programs written in activecode windows can import the document module.
+Python and JavaScript programs written in ``activecode`` windows can import the document module.
 The document module allows access to basic elements of the web page, 
 including the new text entry box called
 **text1** :textfield:`text1:example input:medium` 
@@ -484,7 +484,7 @@ Try running the program, then change the value in the text entry box and run it 
       .. literalinclude:: ac_examples/activecode_ex_dom.txt
          :language: rst
 
-   .. tab:: Run Py
+   .. tab:: Try Py
 
       .. include:: ac_examples/activecode_ex_dom.txt
 
@@ -493,7 +493,7 @@ Try running the program, then change the value in the text entry box and run it 
       .. literalinclude:: ac_examples/activecode_ex_domjs.txt
          :language: rst
 
-   .. tab:: Run JS
+   .. tab:: Try JS
 
       .. include:: ac_examples/activecode_ex_domjs.txt
 
@@ -536,7 +536,7 @@ Incorporating Unit Tests
 It's nice to be able to have students solve a particular problem by writing some code, 
 but even better if you can give them some feedback and provide some tests for them.  
 Much of the `unittest <http://docs.python.org/2/library/unittest.html>`_ module 
-from Python is available in the ``unittest`` module for activecode.
+from Python is available in the ``unittest`` module for ``activecode``.
 
 .. tabbed:: example-unit
 
@@ -552,7 +552,7 @@ from Python is available in the ``unittest`` module for activecode.
       .. literalinclude:: ac_examples/activecode_ex_unit1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: ac_examples/activecode_ex_unit1.txt
 
@@ -593,7 +593,7 @@ so there is no need to add a ``:nocodelens:`` parameter.
  
 Of course, having explored both Javascript and HTML,
 we may want an example that uses them both.
-The activecode directive provides good support for embedding javascript code
+The ``activecode`` directive provides good support for embedding javascript code
 directly in example HTML:
 
 .. tabbed:: example-html-js
@@ -616,7 +616,7 @@ directly in example HTML:
 Logs and Grading
 ----------------
 
-In an **activecode** window, 
+In an ``activecode`` window, 
 if logged in to a Runestone project with an account, 
 each time ``Run`` is pressed after an edit,
 a new version is saved. 
@@ -637,6 +637,6 @@ containing multiple problems.
 You can also include hidden code and data files in these windows, 
 for instance, so students can invoke functions without seeing the function definitions. 
 
-See the :doc:`/instructor_users` for an explanation of how to associate activecode blocks 
+See the :doc:`/instructor_users` for an explanation of how to associate ``activecode`` blocks 
 with graded assignments.
 

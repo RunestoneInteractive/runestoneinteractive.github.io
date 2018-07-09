@@ -45,7 +45,6 @@ Assessments       .. toctree::
                      directives/polls
                      directives/short
                      directives/qnum
-                     directives/usage
 ================= ===================================
 
 General Syntax
@@ -65,9 +64,14 @@ This unique identifier is used for logging, managing controls, and for testing R
 
     .. admonition:: How unique?
 
-       Unique id's must be unique within the **entire** book.
+       Most unique id's must be unique within the **entire** book.
+       Some only need to be unique within a single document.
+       We will mention which is which,
+       in the documentation for each directive.
+       However, in general you are best served defining a convention for globally unique id's
+       and sticking with it for all Runestone directives.
        
-       A duplicate id found in any file *will* generate a warning and *may* cause problems.
+       A duplicate id may or may not generate a warning and *will* cause problems.
 
 Spacing, including indentation consistency, 
 is very important in implementing directives inside ``.rst`` files. 

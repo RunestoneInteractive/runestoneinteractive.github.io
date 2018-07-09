@@ -413,7 +413,6 @@ where more detailed documentation can be found:</p>
 <li class="toctree-l1"><a class="reference internal" href="directives/polls.html">Poll</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/short.html">Short Answer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="directives/qnum.html">Controlling Question Numbering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="directives/usage.html">Usage Assignment</a></li>
 </ul>
 </div>
 </td>
@@ -434,8 +433,13 @@ for example:</p>
 <blockquote>
 <div><div class="admonition-how-unique admonition">
 <p class="first admonition-title">How unique?</p>
-<p>Unique id’s must be unique within the <strong>entire</strong> book.</p>
-<p class="last">A duplicate id found in any file <em>will</em> generate a warning and <em>may</em> cause problems.</p>
+<p>Most unique id’s must be unique within the <strong>entire</strong> book.
+Some only need to be unique within a single document.
+We will mention which is which,
+in the documentation for each directive.
+However, in general you are best served defining a convention for globally unique id’s
+and sticking with it for all Runestone directives.</p>
+<p class="last">A duplicate id may or may not generate a warning and <em>will</em> cause problems.</p>
 </div>
 </div></blockquote>
 <p>Spacing, including indentation consistency,

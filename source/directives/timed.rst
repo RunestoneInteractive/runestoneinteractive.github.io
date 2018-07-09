@@ -123,7 +123,7 @@ Examples
       .. literalinclude:: timed_examples/time-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: timed_examples/time-ex1.txt
 
@@ -134,7 +134,7 @@ Examples
       .. literalinclude:: timed_examples/time-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: timed_examples/time-ex2.txt
 

@@ -187,7 +187,7 @@ Multiple Choice with 1 correct answer.
       .. literalinclude:: choice_examples/mc-ex0.txt
          :language: rst
 
-   .. tab:: Show It
+   .. tab:: Try It
 
       .. include:: choice_examples/mc-ex0.txt
 
@@ -202,7 +202,7 @@ This example shows both classic and list formats.
       .. literalinclude:: choice_examples/mc-ex1.txt
          :language: rst
 
-   .. tab:: Show Classic
+   .. tab:: Try Classic
 
       .. include:: choice_examples/mc-ex1.txt
 
@@ -211,7 +211,7 @@ This example shows both classic and list formats.
       .. literalinclude:: choice_examples/mc-ex2.txt
          :language: rst
 
-   .. tab:: Show List
+   .. tab:: Try List
 
       .. include:: choice_examples/mc-ex2.txt
 
@@ -228,7 +228,7 @@ multiple choice checkbox selections, even when there is only 1 correct answer.
       .. literalinclude:: choice_examples/mc-ex3.txt
          :language: rst
 
-   .. tab:: Show Classic
+   .. tab:: Try Classic
 
       .. include:: choice_examples/mc-ex3.txt
 
@@ -237,7 +237,7 @@ multiple choice checkbox selections, even when there is only 1 correct answer.
       .. literalinclude:: choice_examples/mc-ex4.txt
          :language: rst
 
-   .. tab:: Show List
+   .. tab:: Try List
 
       .. include:: choice_examples/mc-ex4.txt
 
