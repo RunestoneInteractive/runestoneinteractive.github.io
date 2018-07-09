@@ -376,11 +376,11 @@
   
   <div class="section" id="activecode">
 <h1>Activecode<a class="headerlink" href="#activecode" title="Permalink to this headline">¶</a></h1>
-<p>The activecode directive embeds executable, editable code in your pages.
+<p>The <code class="docutils literal"><span class="pre">activecode</span></code> directive embeds executable, editable code in your pages.
 Your students can experiment with your examples by changing them and running them over and over again.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p>The general format of the activecode directive is:</p>
+<p>The general format of the <code class="docutils literal"><span class="pre">activecode</span></code> directive is:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> unique_id
    <span class="nc">:options:</span>
 
@@ -399,11 +399,11 @@ will be created to contain the program output.</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
-<p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the activecode directive.
+<p>A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the <code class="docutils literal"><span class="pre">activecode</span></code> directive.
 Valid identifiers must not contain spaces.
 You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</p>
 <p>The unique identifier will be the <code class="docutils literal"><span class="pre">div</span></code> id that contains this specific code block.
-The unique identifier allows you to tie activecode blocks to a grading interface,
+The unique identifier allows you to tie <code class="docutils literal"><span class="pre">activecode</span></code> blocks to a grading interface,
 or any other groupings for assessment within the Runestone interface.
 For this reason, we recommend that you follow some type of naming convention
 for unique identifiers in directives.</p>
@@ -438,16 +438,16 @@ but not displayed in the code editor.</p>
 </div>
 </dd>
 <dt>autograde</dt>
-<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as</dd>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an <code class="docutils literal"><span class="pre">activecode</span></code> block that will run unittest. Python only.</dd>
 <dt>autorun</dt>
-<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an activecode block that will begin running as soon as
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Declare an <code class="docutils literal"><span class="pre">activecode</span></code> block that will begin running as soon as
 the web page is fully loaded.</dd>
 <dt>available_files</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. A comma separated list of simulated input files for use.</p>
 <p class="last">Each entry must be the unique_id of a <a class="reference internal" href="datafile.html"><span class="doc">Datafile</span></a> directive.</p>
 </dd>
 <dt>caption</dt>
-<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for the bottom of the activecode frame.</dd>
+<dd><code class="docutils literal"><span class="pre">String</span></code>. Define a caption for the bottom of the directive frame.</dd>
 <dt>chatcodes</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Enable users to talk about this code snippet with others</dd>
 <dt>compileargs</dt>
@@ -467,29 +467,29 @@ For example:</p>
 <dt>enabledownload</dt>
 <dd><code class="docutils literal"><span class="pre">Boolean</span></code>. allow textfield contents to be downloaded to local file</dd>
 <dt>hidecode</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the activecode editor initially hidden,
+<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the <code class="docutils literal"><span class="pre">activecode</span></code> editor initially hidden,
 and add a button to automatically show the editor.</p>
 <p>When code is hidden, the ‘Run’ button is also disabled.</p>
 <p>To run the code, either press ‘Show Code’, then ‘Run’,
 or use the <code class="docutils literal"><span class="pre">autorun</span></code> option to run on page load.</p>
-<p class="last">You might use this if you want to put an activecode block in the page in order to include
-it in another activecode block, but you don’t need or want students to see it right away.</p>
+<p class="last">You might use this if you want to put an <code class="docutils literal"><span class="pre">activecode</span></code> block in the page in order to include
+it in another <code class="docutils literal"><span class="pre">activecode</span></code> block, but you don’t need or want students to see it right away.</p>
 </dd>
 <dt>include</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. Include another activecode content area verbatim.</p>
-<p>This option allows you to <strong>prepend</strong> other code blocks to this activecode block.
-<code class="docutils literal"><span class="pre">include</span></code> is useful because it allows you to write activecode examples that build
+<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. Include another <code class="docutils literal"><span class="pre">activecode</span></code> content area verbatim.</p>
+<p>This option allows you to <strong>prepend</strong> other code blocks to this <code class="docutils literal"><span class="pre">activecode</span></code> block.
+<code class="docutils literal"><span class="pre">include</span></code> is useful because it allows you to write <code class="docutils literal"><span class="pre">activecode</span></code> examples that build
 on each other without having to duplicate all the code
 and force the user to scroll through the code to find the newly introduced content.</p>
-<p>For example, if you write a function definition in one activecode block,
-you can include that block in a later activecode block using the <code class="docutils literal"><span class="pre">:include:</span></code> argument,
-and thus can invoke that function in the current activecode block without redefining it.</p>
+<p>For example, if you write a function definition in one <code class="docutils literal"><span class="pre">activecode</span></code> block,
+you can include that block in a later <code class="docutils literal"><span class="pre">activecode</span></code> block using the <code class="docutils literal"><span class="pre">:include:</span></code> argument,
+and thus can invoke that function in the current <code class="docutils literal"><span class="pre">activecode</span></code> block without redefining it.</p>
 <p class="last">This argument requires at least one, and optionally multiple, parameters.
-The list must contain the unique identifiers of the activecode blocks that you want to include,
+The list must contain the unique identifiers of the <code class="docutils literal"><span class="pre">activecode</span></code> blocks that you want to include,
 each item separated by a comma.
-Each item is added made available to the activecode block in the order listed,
+Each item is added made available to the <code class="docutils literal"><span class="pre">activecode</span></code> block in the order listed,
 but the code is not shown in the content area.
-The code in the content area is processed last by activecode.</p>
+The code in the content area is processed last by <code class="docutils literal"><span class="pre">activecode</span></code>.</p>
 </dd>
 <dt>interpreterargs</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Array</span></code>. A list of interpreter flags, passed to the external server with your code.
@@ -536,7 +536,7 @@ where <code class="docutils literal"><span class="pre">audio_file_name</span></c
 <span class="nc">:tour_2:</span> <span class="nf">&quot;Line by Line Tour&quot;; 1: Tour02_Line01; 2: Tour02_Line02; 3: Tour02_Line03; 4: Tour02_Line04;</span>
 </pre></div>
 </div>
-<p class="last">See <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">this tool</a> for easy creation of activecode blocks with audio tours.</p>
+<p class="last">See <a class="reference external" href="https://github.com/CSLearning4U/AudioTourTool">this tool</a> for easy creation of <code class="docutils literal"><span class="pre">activecode</span></code> blocks with audio tours.</p>
 </dd>
 </dl>
 </div>
@@ -546,14 +546,14 @@ where <code class="docutils literal"><span class="pre">audio_file_name</span></c
 <code class="docutils literal"><span class="pre">python</span></code>, <code class="docutils literal"><span class="pre">python3</span></code>, <code class="docutils literal"><span class="pre">java</span></code>, <code class="docutils literal"><span class="pre">c</span></code>, <code class="docutils literal"><span class="pre">cpp</span></code>, <code class="docutils literal"><span class="pre">ruby</span></code>, <code class="docutils literal"><span class="pre">javascript</span></code>, and <code class="docutils literal"><span class="pre">html</span></code>.</p>
 <p>The default language is Python2 (python).
 Languages other than python, JavaScript, and html
-require an external server to compile code on behalf of activecode.</p>
+require an external server to compile code on behalf of <code class="docutils literal"><span class="pre">activecode</span></code>.</p>
 </div>
 <div class="section" id="sphinx-configuration-options">
 <h2>Sphinx configuration options<a class="headerlink" href="#sphinx-configuration-options" title="Permalink to this headline">¶</a></h2>
 <p>The following <code class="docutils literal"><span class="pre">options.build.template_args</span></code> values can be set in a book pavement.py file.</p>
 <dl class="docutils">
 <dt>default_ac_lang</dt>
-<dd>The default language for activecode directives.</dd>
+<dd>The default language for <code class="docutils literal"><span class="pre">activecode</span></code> directives.</dd>
 <dt>jobe_server</dt>
 <dd><p class="first">The URL to the Jobe server.</p>
 <p>See <a class="reference external" href="https://github.com/trampgeek/jobe">https://github.com/trampgeek/jobe</a> for details on setting up your own.</p>
@@ -589,9 +589,9 @@ Generally you can set the last two to:</p>
 <div class="section" id="known-limitations-and-bugs">
 <h2>Known limitations and bugs<a class="headerlink" href="#known-limitations-and-bugs" title="Permalink to this headline">¶</a></h2>
 <p>The ‘Scratch ActiveCode’ link available from the Help Navigation bar drop down is a temporary
-activecode directive provided as a convenience.
+<code class="docutils literal"><span class="pre">activecode</span></code> directive provided as a convenience.
 The scratch ActiveCode only knows how to process code using the <code class="docutils literal"><span class="pre">default_ac_lang</span></code> property in pavement.py.
-If not specified, then the scratch activecode content is python 2.</p>
+If not specified, then the scratch <code class="docutils literal"><span class="pre">activecode</span></code> content is python 2.</p>
 <p>The ‘Show CodeLens’ feature is only available when using default python as the language.
 External libraries such as turtle are not supported in codelens.
 The ‘Show CodeLens’ feature is not currently compatible with the <code class="docutils literal"><span class="pre">:include:</span></code> argument.</p>
@@ -602,12 +602,12 @@ the text area appears in the popup dialog instead of being added to the code blo
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>The most trivial example: an activecode directive with no content area.</p>
+<p>The most trivial example: an <code class="docutils literal"><span class="pre">activecode</span></code> directive with no content area.</p>
 <div id='null' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <div class="highlight-none"><div class="highlight"><pre>.. activecode:: empty_block
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 <p>Write your own python program in the space provided.</p>
 
 <div data-childcomponent="empty_block" class="runestone explainer ac_section alert alert-warning">
@@ -635,7 +635,7 @@ the text area appears in the popup dialog instead of being added to the code blo
    print (hello(&quot;World&quot;))
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="function-example1" class="runestone explainer ac_section alert alert-warning">
 
@@ -661,7 +661,7 @@ print (hello("World"))
        return inp + &quot;!!&quot;
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="function-example2" class="runestone explainer ac_section alert alert-warning">
 
@@ -696,7 +696,7 @@ This example calls functions defined in the previous two examples.</p>
    print (example_func(&#39;goodbye&#39;))
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="loop_example3" class="runestone explainer ac_section alert alert-warning">
 
@@ -732,7 +732,7 @@ print (example_func('goodbye'))
        t.left(90)
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="ac_example1" class="runestone explainer ac_section alert alert-warning">
 
@@ -756,7 +756,7 @@ to construct a type of fractal called a Sierpinski Triangle.</p>
 <div id='example4-fractal' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>Try some other changes and see what happens (maybe change a few of the colors or make the level 2).
 If you ever want to go back to the original example, simply reload the page in the browser.
-One of the great things about activecode is that you can experiment as much as you want.
+One of the great things about <code class="docutils literal"><span class="pre">activecode</span></code> is that you can experiment as much as you want.
 This can be very helpful as you are learning to program.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example-ex4-fractal
     <span class="nc">:nocodelens:</span>
@@ -813,7 +813,7 @@ This can be very helpful as you are learning to program.</p>
     main()
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="ac-example-ex4-fractal" class="runestone explainer ac_section alert alert-warning">
 <p>Once you run the program,
@@ -876,7 +876,7 @@ main()
 <div class="section" id="javascript">
 <h3>JavaScript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h3>
 <p>Adding a JavaScript example is just as easy as Python,
-all you need to do is add the <code class="docutils literal"><span class="pre">:language:</span></code> parameter to the activecode directive.</p>
+all you need to do is add the <code class="docutils literal"><span class="pre">:language:</span></code> parameter to the <code class="docutils literal"><span class="pre">activecode</span></code> directive.</p>
 <p>Codelens is not supported for JavaScript,
 so there is no need to add a <code class="docutils literal"><span class="pre">:nocodelens:</span></code> parameter.</p>
 <div id='example5' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
@@ -898,7 +898,7 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
    writeln(&#39;hello world&#39;);
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="ac-example-js" class="runestone explainer ac_section alert alert-warning">
 
@@ -956,7 +956,7 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
    }
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="ac-ex-java" class="runestone explainer ac_section alert alert-warning">
 
@@ -1061,7 +1061,7 @@ The source is hidden from users, but compiled into the final program.</p>
    }
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run Person" >
+</div><div data-component="tab" data-tabname="Try Person" >
 <p>The example source that does not compile ‘standalone’ can still be displayed
 in a standard code-block.</p>
 
@@ -1104,7 +1104,7 @@ public class Person
 }
 </textarea>
 </div>
-</div><div data-component="tab" data-tabname="Run Employee" >
+</div><div data-component="tab" data-tabname="Try Employee" >
 
 <div data-childcomponent="ac_ex_employee" class="runestone explainer ac_section alert alert-warning">
 
@@ -1171,7 +1171,7 @@ public class Employee extends Person
    }
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="ac_example-cpp11" class="runestone explainer ac_section alert alert-warning">
 
@@ -1202,7 +1202,7 @@ int main () {
 </div>
 <div class="section" id="accessing-the-browser-document">
 <h3>Accessing the Browser Document<a class="headerlink" href="#accessing-the-browser-document" title="Permalink to this headline">¶</a></h3>
-<p>Python and JavaScript programs written in activecode windows can import the document module.
+<p>Python and JavaScript programs written in <code class="docutils literal"><span class="pre">activecode</span></code> windows can import the document module.
 The document module allows access to basic elements of the web page,
 including the new text entry box called
 <strong>text1</strong> <input type='text' id='text1' class="form-control" style="display:inline; width: 150px;" value="example input"></input>
@@ -1219,7 +1219,7 @@ like this one.</p>
    print(&#39;value = &#39;, t.value)
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run Py" >
+</div><div data-component="tab" data-tabname="Try Py" >
 
 <div data-childcomponent="ac-example-dom" class="runestone explainer ac_section alert alert-warning">
 
@@ -1242,7 +1242,7 @@ print('value = ', t.value)
    writeln(&#39;value = &#39; + t.value);
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run JS" >
+</div><div data-component="tab" data-tabname="Try JS" >
 
 <div data-childcomponent="ac-example-domjs" class="runestone explainer ac_section alert alert-warning">
 
@@ -1310,7 +1310,7 @@ Width can also be specified using relative sizes:</p>
 <p>It’s nice to be able to have students solve a particular problem by writing some code,
 but even better if you can give them some feedback and provide some tests for them.
 Much of the <a class="reference external" href="http://docs.python.org/2/library/unittest.html">unittest</a> module
-from Python is available in the <code class="docutils literal"><span class="pre">unittest</span></code> module for activecode.</p>
+from Python is available in the <code class="docutils literal"><span class="pre">unittest</span></code> module for <code class="docutils literal"><span class="pre">activecode</span></code>.</p>
 <div id='example-unit' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>The full complement of
 <a class="reference external" href="http://docs.python.org/2/library/unittest.html#assert-methods">assertXXX functions is available</a>.
@@ -1342,7 +1342,7 @@ by placing it in the hidden code at the end.</p>
    myTests().main()
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="example-unit" class="runestone explainer ac_section alert alert-warning">
 <p>Fix the following code so that it <strong>always</strong>
@@ -1461,7 +1461,7 @@ so there is no need to add a <code class="docutils literal"><span class="pre">:n
 
 <p>Of course, having explored both Javascript and HTML,
 we may want an example that uses them both.
-The activecode directive provides good support for embedding javascript code
+The <code class="docutils literal"><span class="pre">activecode</span></code> directive provides good support for embedding javascript code
 directly in example HTML:</p>
 <div id='example-html-js' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
 <p>This example is adapted from <a class="reference external" href="https://runestone.academy/runestone/static/webfundamentals/index.html">Fundamentals of Web Programming</a></p>
@@ -1554,7 +1554,7 @@ directly in example HTML:</p>
 </div>
 <div class="section" id="logs-and-grading">
 <h2>Logs and Grading<a class="headerlink" href="#logs-and-grading" title="Permalink to this headline">¶</a></h2>
-<p>In an <strong>activecode</strong> window,
+<p>In an <code class="docutils literal"><span class="pre">activecode</span></code> window,
 if logged in to a Runestone project with an account,
 each time <code class="docutils literal"><span class="pre">Run</span></code> is pressed after an edit,
 a new version is saved.
@@ -1566,7 +1566,7 @@ Each logged in user can view their own history, version by version, of the code 
 containing multiple problems.
 You can also include hidden code and data files in these windows,
 for instance, so students can invoke functions without seeing the function definitions.</p>
-<p>See the <a class="reference internal" href="../instructor_users.html"><span class="doc">User Guide for Instructors</span></a> for an explanation of how to associate activecode blocks
+<p>See the <a class="reference internal" href="../instructor_users.html"><span class="doc">User Guide for Instructors</span></a> for an explanation of how to associate <code class="docutils literal"><span class="pre">activecode</span></code> blocks
 with graded assignments.</p>
 </div>
 </div>

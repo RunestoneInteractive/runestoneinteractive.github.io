@@ -81,7 +81,7 @@ Examples
       .. literalinclude:: re_examples/reveal-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: re_examples/reveal-ex1.txt
 
@@ -94,7 +94,7 @@ Both show and hide buttons are easy to customize:
       .. literalinclude:: re_examples/reveal-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: re_examples/reveal-ex2.txt
 
@@ -111,7 +111,7 @@ Display inline, or in a dialog, as you prefer.
       .. literalinclude:: re_examples/reveal-ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: re_examples/reveal-ex3.txt
 

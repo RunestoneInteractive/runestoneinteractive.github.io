@@ -1,11 +1,11 @@
 Datafile
 ========
 
-The datafile directive works with :doc:`activecode` to emulate reading data from a file.
+The ``datafile`` directive works with :doc:`activecode` to emulate reading data from a file.
 
 Synopsis
 --------
-The general format of the datafile directive is:
+The general format of the ``datafile`` directive is:
 
 .. code-block:: rst
 
@@ -43,13 +43,13 @@ cols
 
 edit 
     ``Boolean``.
-    Toggle whether a datafile is editable. If not set, then false.
+    Toggle whether a ``datafile`` is editable. If not set, then false.
 
     Editable text areas can also be resized by the user.
    
 hide 
     ``Boolean``.
-    Toggle whether a datafile is visible. If not set, then true.
+    Toggle whether a ``datafile`` is visible. If not set, then true.
 
     Why hide this element?  
     
@@ -83,7 +83,7 @@ tbd
 Known limitations and bugs
 --------------------------
 
-An empty datafile with no default content cannot determine a default size for itself.
+An empty ``datafile`` with no default content cannot determine a default size for itself.
 If a blank data file is specified (no default content), 
 then the rows and cols parameters must be set.
 
@@ -91,7 +91,7 @@ then the rows and cols parameters must be set.
 Examples
 --------
 
-A datafile with no optional parameters set.
+A ``datafile`` with no optional parameters set.
 
 .. tabbed:: example0
 
@@ -100,13 +100,13 @@ A datafile with no optional parameters set.
       .. literalinclude:: df_examples/datafile_ex0.txt
          :language: rst
 
-   .. tab:: Render It
+   .. tab:: Try It
 
       Note that a this empty datafile is not editable!
 
       .. include:: df_examples/datafile_ex0.txt
 
-A datafile with some default content
+A ``datafile`` with some default content
 
 .. tabbed:: example1
 
@@ -115,11 +115,11 @@ A datafile with some default content
       .. literalinclude:: df_examples/datafile_ex1_data.txt
          :language: rst
 
-   .. tab:: Render It
+   .. tab:: Try It
 
       .. include:: df_examples/datafile_ex1_data.txt
 
-A datafile with some default content
+A ``datafile`` with some default content
 
 .. tabbed:: example2
 
@@ -128,11 +128,11 @@ A datafile with some default content
       .. literalinclude:: df_examples/datafile_ex2_data.txt
          :language: rst
 
-   .. tab:: Render It
+   .. tab:: Try It
 
       .. include:: df_examples/datafile_ex2_data.txt
 
-A datafile with some default content
+A ``datafile`` with some default content
 
 .. tabbed:: example3
 
@@ -141,12 +141,12 @@ A datafile with some default content
       .. literalinclude:: df_examples/datafile_ex3_data.txt
          :language: rst
 
-   .. tab:: Render It
+   .. tab:: Try It
 
       .. include:: df_examples/datafile_ex3_data.txt
 
 
-The following example shows a complete use of the datafile directive
+The following example shows a complete use of the ``datafile`` directive
 that defines a non-trivial input file and use in a small python program.
 
 .. tabbed:: example_activecode
@@ -165,12 +165,12 @@ that defines a non-trivial input file and use in a small python program.
       .. literalinclude:: df_examples/datafile_ex_qb_code.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: df_examples/datafile_ex_qb_code.txt
 
 
-Adding a datafile directive doesn't break non-python code,
+Adding a ``datafile`` directive doesn't break non-python code,
 but it doesn't use it (yet) either.
 
 .. tabbed:: example_ac_cpp
@@ -189,7 +189,7 @@ but it doesn't use it (yet) either.
       .. literalinclude:: df_examples/datafile_ex_cpp_code.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: df_examples/datafile_ex_cpp_code.txt
 

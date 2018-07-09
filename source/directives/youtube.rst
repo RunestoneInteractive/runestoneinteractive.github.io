@@ -72,7 +72,13 @@ tbd.
 Known limitations
 -----------------
 
-tbd.
+The ID can only include the video ID.
+Adding a time as in ``&t=3m35s`` or ``&start=90s`` breaks the video.
+
+Can't loop video or link to youtuberepeater.com.
+
+No way to enable closed captioning on by default.
+
 
 Examples
 --------
@@ -84,9 +90,8 @@ Examples
       .. literalinclude:: video_examples/youtube-ex1.txt
          :language: rst
 
-   .. tab:: Show It
+   .. tab:: Try It
 
       .. include:: video_examples/youtube-ex1.txt
-
 
 

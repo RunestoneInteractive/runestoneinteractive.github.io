@@ -180,7 +180,7 @@ A simple table example.
       .. literalinclude:: clickable_examples/ca-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: clickable_examples/ca-ex1.txt
 
@@ -197,7 +197,7 @@ Note:
       .. literalinclude:: clickable_examples/ca-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: clickable_examples/ca-ex2.txt
 
@@ -212,7 +212,7 @@ Note that the content area preserves white space everywhere it appears in the co
       .. literalinclude:: clickable_examples/ca-ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: clickable_examples/ca-ex3.txt
 
@@ -224,7 +224,7 @@ Note that the content area preserves white space everywhere it appears in the co
       .. literalinclude:: clickable_examples/ca-ex4.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: clickable_examples/ca-ex4.txt
 

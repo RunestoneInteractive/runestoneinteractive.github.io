@@ -110,7 +110,7 @@ A simple example.
       .. literalinclude:: fitb_examples/fitb-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: fitb_examples/fitb-ex1.txt
 
@@ -139,7 +139,7 @@ and checks correct answers against a range of values:
       .. literalinclude:: fitb_examples/fitb-ex2.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: fitb_examples/fitb-ex2.txt
 
@@ -156,7 +156,7 @@ The answer fields are appended immediately after the question content.
       .. literalinclude:: fitb_examples/fitb-ex3.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: fitb_examples/fitb-ex3.txt
 
@@ -183,7 +183,7 @@ For example:
       .. literalinclude:: fitb_examples/fitb-ex4.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: fitb_examples/fitb-ex4.txt
 
@@ -196,6 +196,6 @@ Another simple example that requires escapes:
       .. literalinclude:: fitb_examples/fitb-ex5.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: fitb_examples/fitb-ex5.txt

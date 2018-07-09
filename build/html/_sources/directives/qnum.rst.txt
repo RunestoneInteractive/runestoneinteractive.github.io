@@ -43,7 +43,8 @@ Optional Arguments
 prefix
     ``String``. Define characters before the question number.
 
-    The default is ``Q-``.
+    The default is no prefix for :doc:`choice` and ``Q-`` for 
+    :doc:`parsons` and :doc:`short`.
 
 suffix
     ``String``. Define characters after the question number.

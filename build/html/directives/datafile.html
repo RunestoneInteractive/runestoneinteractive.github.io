@@ -365,10 +365,10 @@
   
   <div class="section" id="datafile">
 <h1>Datafile<a class="headerlink" href="#datafile" title="Permalink to this headline">¶</a></h1>
-<p>The datafile directive works with <a class="reference internal" href="activecode.html"><span class="doc">Activecode</span></a> to emulate reading data from a file.</p>
+<p>The <code class="docutils literal"><span class="pre">datafile</span></code> directive works with <a class="reference internal" href="activecode.html"><span class="doc">Activecode</span></a> to emulate reading data from a file.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p>The general format of the datafile directive is:</p>
+<p>The general format of the <code class="docutils literal"><span class="pre">datafile</span></code> directive is:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> filename
    <span class="nc">:options:</span>
 
@@ -400,12 +400,12 @@ Set the width of the textarea.
 If not set, then Runestone will size the area to the contents, or provide a default.</dd>
 <dt>edit</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>.
-Toggle whether a datafile is editable. If not set, then false.</p>
+Toggle whether a <code class="docutils literal"><span class="pre">datafile</span></code> is editable. If not set, then false.</p>
 <p class="last">Editable text areas can also be resized by the user.</p>
 </dd>
 <dt>hide</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>.
-Toggle whether a datafile is visible. If not set, then true.</p>
+Toggle whether a <code class="docutils literal"><span class="pre">datafile</span></code> is visible. If not set, then true.</p>
 <p>Why hide this element?</p>
 <ul class="simple">
 <li>If you have an exceptionally long file that you want to use in an example
@@ -435,20 +435,20 @@ If not set, then Runestone will size the area to the contents, or provide a defa
 </div>
 <div class="section" id="known-limitations-and-bugs">
 <h2>Known limitations and bugs<a class="headerlink" href="#known-limitations-and-bugs" title="Permalink to this headline">¶</a></h2>
-<p>An empty datafile with no default content cannot determine a default size for itself.
+<p>An empty <code class="docutils literal"><span class="pre">datafile</span></code> with no default content cannot determine a default size for itself.
 If a blank data file is specified (no default content),
 then the rows and cols parameters must be set.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>A datafile with no optional parameters set.</p>
+<p>A <code class="docutils literal"><span class="pre">datafile</span></code> with no optional parameters set.</p>
 <div id='example0' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex0.txt
    <span class="nc">:rows:</span> <span class="nf">5</span>
    <span class="nc">:cols:</span> <span class="nf">60</span>
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Render It" >
+</div><div data-component="tab" data-tabname="Try It" >
 <p>Note that a this empty datafile is not editable!</p>
 
 <pre data-component="datafile" id=ex0.txt  data-edit="false" data-rows="5" data-cols="60">
@@ -457,7 +457,7 @@ then the rows and cols parameters must be set.</p>
 </div>
     </div>
 
-<p>A datafile with some default content</p>
+<p>A <code class="docutils literal"><span class="pre">datafile</span></code> with some default content</p>
 <div id='example1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex1.txt
 
@@ -466,7 +466,7 @@ then the rows and cols parameters must be set.</p>
    and this is the third line
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Render It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <pre data-component="datafile" id=ex1.txt  data-edit="false" data-rows="20" data-cols="46">
 here is the first line in the data file
@@ -476,7 +476,7 @@ and this is the third line
 </div>
     </div>
 
-<p>A datafile with some default content</p>
+<p>A <code class="docutils literal"><span class="pre">datafile</span></code> with some default content</p>
 <div id='example2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex2.txt
    <span class="nc">:edit:</span>
@@ -486,7 +486,7 @@ and this is the third line
    and this is the third line
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Render It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <pre data-component="datafile" id=ex2.txt  data-edit="true" data-rows="20" data-cols="46">
 here is the first line in the data file
@@ -496,7 +496,7 @@ and this is the third line
 </div>
     </div>
 
-<p>A datafile with some default content</p>
+<p>A <code class="docutils literal"><span class="pre">datafile</span></code> with some default content</p>
 <div id='example3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data Source" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> ex3.txt
    <span class="nc">:edit:</span>
@@ -508,7 +508,7 @@ and this is the third line
    and this is the third line
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Render It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <pre data-component="datafile" id=ex3.txt  data-edit="true" data-rows="5" data-cols="40">
 here is the first line in the data file
@@ -518,7 +518,7 @@ and this is the third line
 </div>
     </div>
 
-<p>The following example shows a complete use of the datafile directive
+<p>The following example shows a complete use of the <code class="docutils literal"><span class="pre">datafile</span></code> directive
 that defines a non-trivial input file and use in a small python program.</p>
 <div id='example_activecode' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> qbdata.txt
@@ -614,7 +614,7 @@ Shaun Hill QB DET  257 416 2686    16  12  61.8%   81.3
    qbfile.close()
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="df_ac_ex_qb" class="runestone explainer ac_section alert alert-warning">
 
@@ -634,7 +634,7 @@ qbfile.close()
 </div>
     </div>
 
-<p>Adding a datafile directive doesn’t break non-python code,
+<p>Adding a <code class="docutils literal"><span class="pre">datafile</span></code> directive doesn’t break non-python code,
 but it doesn’t use it (yet) either.</p>
 <div id='example_ac_cpp' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Data" >
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">datafile</span><span class="p">::</span> poem.txt
@@ -715,7 +715,7 @@ O frabjous day! Callooh! Callay!'
    }
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 
 <div data-childcomponent="df_ac_ex_poem" class="runestone explainer ac_section alert alert-warning">
 

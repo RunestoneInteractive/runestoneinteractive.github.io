@@ -365,11 +365,12 @@
   
   <div class="section" id="disqus">
 <h1>Disqus<a class="headerlink" href="#disqus" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">disqus</span></code> directive allows embedding discussions directly inline with content.</p>
+<p>The <code class="docutils literal"><span class="pre">disqus</span></code> directive allows embedding a <a class="reference external" href="https://disqus.com/features/engage/">disqus comment widget</a>
+directly inline with other Runestone content.</p>
 <p>The directive inserts a hyperlink to pre-defined threaded Disqus discussion.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p>The general format of the disqus directive is:</p>
+<p>The general format of the <code class="docutils literal"><span class="pre">disqus</span></code> directive is:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">disqus</span><span class="p">::</span>
    <span class="nc">:shortname:</span> <span class="nf">Your registered  shortname with disqus</span>
    <span class="nc">:identifier:</span> <span class="nf">discussion1</span>
@@ -381,14 +382,14 @@
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>shortname</dt>
-<dd><p class="first">Your registered shortname with disqus.</p>
+<dd><p class="first">Your registered shortname with <code class="docutils literal"><span class="pre">disqus</span></code>.</p>
 <p>The shortname will be used to link directly to your discussion on discuss:</p>
 <div class="last highlight-default"><div class="highlight"><pre><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="s">&#39; + disqus_shortname + &#39;</span><span class="o">.</span><span class="n">disqus</span><span class="o">.</span><span class="n">com</span>
 </pre></div>
 </div>
 </dd>
 <dt>identifier</dt>
-<dd>A unique identifier for this discussion on disqus.</dd>
+<dd>A unique identifier for this discussion on <code class="docutils literal"><span class="pre">disqus</span></code>.</dd>
 </dl>
 </div>
 <div class="section" id="optional-arguments">
@@ -409,7 +410,14 @@
 </div>
 <div class="section" id="known-limitations">
 <h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
-<p>Using Disqus does present some security concerns.</p>
+<p>Using Disqus does present some security and privacy concerns.
+See:</p>
+<ul class="simple">
+<li>the disqus blog about a <a class="reference external" href="https://blog.disqus.com/security-alert-user-info-breach">security breach</a>
+and a <a class="reference external" href="https://thehackernews.com/2017/10/disqus-comment-system-hacked.html">writeup at hackernews</a>.</li>
+<li>A Wikipedia article summarizing some general
+<a class="reference external" href="https://en.wikipedia.org/wiki/Disqus#Criticism_and_privacy_concerns">security concerns</a>.</li>
+</ul>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
@@ -419,7 +427,7 @@
    <span class="nc">:identifier:</span> <span class="nf">helloworlddiscussion</span>
 </pre></div>
 </div>
-</div><div data-component="tab" data-tabname="Run It" >
+</div><div data-component="tab" data-tabname="Try It" >
 <script type="text/javascript">
     function helloworlddiscussion_disqus(source) {
         if (window.DISQUS) {

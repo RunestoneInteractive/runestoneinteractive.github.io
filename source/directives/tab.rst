@@ -42,7 +42,7 @@ unique id
     You should also avoid the characters `` ` ``, ``,``, ``:``, and ``*``.
 
 content area
-    The ``tabbed`` directive must at least 1 child ``.. tab::`` directive.
+    The ``tabbed`` directive must contain at least 1 child ``.. tab::`` directive.
 
     Any other content placed as an immediate child of the ``.. tabbed::`` directive is silently ignored.
 
@@ -50,10 +50,10 @@ content area
 
 **.. tab::**
     ``String``. Create a new tab and label the tab using the provided string.
-    A label is required, but may contain spaces.
+    A label is required, and may contain spaces.
 
     If the tab contains a null content area,
-    then the build process throws a warning and no tab appears in the rendered HTML.
+    then the build process throws a warning and the tab will not appear in the rendered HTML.
     
     Any valid Sphinx or Runestone markup can reside within a tab.
 
@@ -87,19 +87,23 @@ Currently, some Runestone directives do not function correctly in a tabbed conta
 - :doc:`codelens`
 - :doc:`showeval`
 
+If a ``tabbed`` contain has the same unique id as another in the same document,
+then no error or warning is displayed, but the conflicting ``tabbed`` container
+will not display its children correctly.
+
 Examples
 --------
 
 You can create a container that contains one or more tabs.
 
-.. tabbed:: tab-ex1
+.. tabbed:: tabbed-ex1
 
    .. tab:: Source
 
       .. literalinclude:: tab_examples/tab-ex1.txt
          :language: rst
 
-   .. tab:: Run It
+   .. tab:: Try It
 
       .. include:: tab_examples/tab-ex1.txt
 
