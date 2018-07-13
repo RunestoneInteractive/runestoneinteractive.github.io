@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -465,7 +469,7 @@ For example:</p>
 <p class="last">Each entry must be the unique_id of a <a class="reference internal" href="datafile.html"><span class="doc">Datafile</span></a> directive.</p>
 </dd>
 <dt>enabledownload</dt>
-<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. allow textfield contents to be downloaded to local file</dd>
+<dd><code class="docutils literal"><span class="pre">Boolean</span></code>. Allow textfield contents to be downloaded to local file</dd>
 <dt>hidecode</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. Make the <code class="docutils literal"><span class="pre">activecode</span></code> editor initially hidden,
 and add a button to automatically show the editor.</p>
@@ -476,7 +480,12 @@ or use the <code class="docutils literal"><span class="pre">autorun</span></code
 it in another <code class="docutils literal"><span class="pre">activecode</span></code> block, but you don’t need or want students to see it right away.</p>
 </dd>
 <dt>include</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. Include another <code class="docutils literal"><span class="pre">activecode</span></code> content area verbatim.</p>
+<dd><p class="first"><code class="docutils literal"><span class="pre">CSV</span></code>. Include another <code class="docutils literal"><span class="pre">activecode</span></code> content area verbatim.
+For example:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">activecode</span><span class="p">::</span> ac-example3
+   <span class="nc">:include:</span> <span class="nf">ac-example1, ac-example2</span>
+</pre></div>
+</div>
 <p>This option allows you to <strong>prepend</strong> other code blocks to this <code class="docutils literal"><span class="pre">activecode</span></code> block.
 <code class="docutils literal"><span class="pre">include</span></code> is useful because it allows you to write <code class="docutils literal"><span class="pre">activecode</span></code> examples that build
 on each other without having to duplicate all the code
@@ -527,6 +536,9 @@ For java, the file name matches the class name.</p>
 allows a string to be passed to the program for processing.
 An optional value after the argument defines the default value.</p>
 </dd>
+<dt>timelimit</dt>
+<dd><code class="docutils literal"><span class="pre">Integer</span></code>. Maximum time allowed, in milliseconds, for a program to compile and run.
+Default is 25 seconds.</dd>
 <dt>tour_{1,2,3,4,5}</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Formatted</span> <span class="pre">String</span></code>. Used for audio tours of the code.</p>
 <p>You can have up to five different audio tours of the same code.

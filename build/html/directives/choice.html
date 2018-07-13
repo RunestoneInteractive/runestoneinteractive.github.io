@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -555,7 +559,7 @@ in the classic and list formats.</p>
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc-ex-0">
-            Q-1: Which color is found in the rainbow?
+            Ex-13-timed: Which color is found in the rainbow?
             <li data-component="answer" data-correct id="mc-ex-0_opt_a">Red</li><li data-component="feedback" id="mc-ex-0_opt_a"></li>
             
             <li data-component="answer"  id="mc-ex-0_opt_b">White</li><li data-component="feedback" id="mc-ex-0_opt_b"></li>
@@ -591,7 +595,7 @@ This example shows both classic and list formats.</p>
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-1">
-            Q-2: Which colors are found in the rainbow?
+            Ex-14-timed: Which colors are found in the rainbow?
             <li data-component="answer" data-correct id="mc-ex-1_opt_a">Red</li><li data-component="feedback" id="mc-ex-1_opt_a">Red is found in the rainbow.</li>
             
             <li data-component="answer"  id="mc-ex-1_opt_b">White</li><li data-component="feedback" id="mc-ex-1_opt_b">White is the mixing of all of the colors in the rainbow.</li>
@@ -629,7 +633,7 @@ This example shows both classic and list formats.</p>
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc-ex-2">
-            <p>Q-3: Which colors are found in the rainbow?</p>
+            <p>Ex-15-timed: Which colors are found in the rainbow?</p>
 <li data-component="answer" data-correct id="mc-ex-2_opt_a">Red</li><li data-component="feedback" id="mc-ex-2_opt_a">
 Yes, red is a correct rainbow color.</li><li data-component="answer"  id="mc-ex-2_opt_b">White</li><li data-component="feedback" id="mc-ex-2_opt_b">
 White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="mc-ex-2_opt_c">Blue</li><li data-component="feedback" id="mc-ex-2_opt_c">
@@ -664,7 +668,7 @@ multiple choice checkbox selections, even when there is only 1 correct answer.</
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex3">
-            Q-4: Which of these are valid variable names in Python? (Choose all that are correct)
+            Ex-16-timed: Which of these are valid variable names in Python? (Choose all that are correct)
             <li data-component="answer" data-correct id="mc-ex3_opt_a">xyZ</li><li data-component="feedback" id="mc-ex3_opt_a">Any combination of letters is a valid variable name in Python.</li>
             
             <li data-component="answer"  id="mc-ex3_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex3_opt_b">Variable names may not contain spaces in Python.</li>
@@ -704,7 +708,7 @@ multiple choice checkbox selections, even when there is only 1 correct answer.</
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-ex-4">
-            <p>Q-5: Which of these are valid variable names in Python? (Choose all that are correct)</p>
+            <p>Ex-17-timed: Which of these are valid variable names in Python? (Choose all that are correct)</p>
 <li data-component="answer" data-correct id="mc-ex-4_opt_a">xyZ</li><li data-component="feedback" id="mc-ex-4_opt_a">
 Any combination of letters is a valid variable name in Python.</li><li data-component="answer"  id="mc-ex-4_opt_b">new_var 3</li><li data-component="feedback" id="mc-ex-4_opt_b">
 Variable names may not contain spaces in Python.</li><li data-component="answer"  id="mc-ex-4_opt_c">3things</li><li data-component="feedback" id="mc-ex-4_opt_c">

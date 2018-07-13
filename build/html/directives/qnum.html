@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -457,7 +461,7 @@ That is, the <code class="docutils literal"><span class="pre">:</span></code> is
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="qnum-ex1">
-            <p>Ex-1: Which colors are found in the rainbow?</p>
+            <p>Ex-1-timed: Which colors are found in the rainbow?</p>
 <li data-component="answer" data-correct id="qnum-ex1_opt_a">Red</li><li data-component="feedback" id="qnum-ex1_opt_a">
 Yes, red is a correct rainbow color.</li><li data-component="answer"  id="qnum-ex1_opt_b">White</li><li data-component="feedback" id="qnum-ex1_opt_b">
 White is not a color found in a rainbow.</li><li data-component="answer" data-correct id="qnum-ex1_opt_c">Blue</li><li data-component="feedback" id="qnum-ex1_opt_c">
@@ -469,7 +473,7 @@ Grey is not a color found in a rainbow.</li>
             
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="qnum-ex2"      >
-        <span data-question>Ex-3: Ex-2: Construct a block of code that correctly implements
+        <span data-question>Ex-3-timed: Ex-2-timed: Construct a block of code that correctly implements
 the <b>accumulator</b> pattern.</span>x = 0
 for i in range(10):
     x = x + 1
@@ -477,7 +481,7 @@ for i in range(10):
         </div>
     
 <div class="runestone">
-<p data-component="shortanswer" class="journal alert alert-warning" id=qnum-ex3 >Ex-5: Ex-4: What are the colors in the rainbow?</p>
+<p data-component="shortanswer" class="journal alert alert-warning" id=qnum-ex3 >Ex-5-timed: Ex-4-timed: What are the colors in the rainbow?</p>
 </div>
 <p>The following assessment is a timed exam that restarts question numbering
 and appends to the numbers:</p>

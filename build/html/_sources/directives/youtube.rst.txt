@@ -20,7 +20,7 @@ The general format of the ``vimeo`` directive is:
    .. vimeo:: vimeo video id
       :options:
 
-Both the ``vimeo`` and ``youtube`` directives take the same options.
+Both the ``vimeo`` and ``youtube`` directives take the same options (with one exception).
 
 Required Arguments
 ------------------
@@ -38,6 +38,15 @@ align
     ``Enumeration``. Define video horizontal alignment.
     
     One of ``left``, ``right``, or ``center`` is allowed. The default is ``left``.
+
+divid
+    ``String``. Define a runestone id for this video. YouTube only.
+
+    The default divid is the YouTube video id.
+    
+    This is provides backward compatibility when converting HTML5 hosted videos 
+    to the YouTube platform.
+    Or use this if you want to use a different descriptor to reference rather than the YouTube video id.
 
 height
     ``Integer``. Define video height in pixels.  

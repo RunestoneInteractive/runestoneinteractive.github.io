@@ -110,7 +110,7 @@ This source code:
 
 Created this example:
 
-.. include:: se_examples/showeval_ex_py.txt
+.. include:: se_examples/showeval_ex_py2.txt
 
 This example shows the exact same code as the previous example,
 but with ``:tracemode: false``.
@@ -140,10 +140,10 @@ When the *Next Step* button is pressed, the comment is removed.
 This source code:
  
 .. literalinclude:: se_examples/showeval_ex_cpp.txt
-   :language: none
+   :language: rst
 
 Created this example:
 
-.. include:: se_examples/showeval_ex_cpp.txt
+.. include:: se_examples/showeval_ex_cpp2.txt
 
 

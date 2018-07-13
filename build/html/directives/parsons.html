@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -533,7 +537,7 @@ and assesses on both line order and indentation.</p>
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex1"      >
-        <span data-question>Q-7: Q-6: Construct a block of code that correctly implements
+        <span data-question>Ex-19-timed: Ex-18-timed: Construct a block of code that correctly implements
 the <b>accumulator</b> pattern.</span>x = 0
 for i in range(10):
     x = x + 1
@@ -560,7 +564,7 @@ for i in range(10):
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex1-cpp"      data-language="c++" >
-        <span data-question>Q-9: Q-8: Construct a block of code that correctly implements the accumulator pattern.</span>template < class InputIt, class T >
+        <span data-question>Ex-21-timed: Ex-20-timed: Construct a block of code that correctly implements the accumulator pattern.</span>template < class InputIt, class T >
 T sum(InputIt first, InputIt last, T value)
 {
     while (first != last) {
@@ -595,7 +599,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_group1"      >
-        <span data-question>Q-11: Q-10: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Ex-23-timed: Ex-22-timed: Construct a function that returns the max value from a list.</span>def findmax(alist):
     if len(alist) == 0:
         return None
     curmax = alist[0]
@@ -631,7 +635,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_group2"      >
-        <span data-question>Q-13: Q-12: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Ex-25-timed: Ex-24-timed: Construct a function that returns the max value from a list.</span>def findmax(alist):
 ---
     if len(alist) == 0:
         return None
@@ -673,7 +677,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex-cpp-group"      data-language="c++" >
-        <span data-question>Q-15: Q-14: Construct a block of code that correctly implements the accumulator pattern.</span>template&lt;class InputIt, class T&gt;
+        <span data-question>Ex-27-timed: Ex-26-timed: Construct a block of code that correctly implements the accumulator pattern.</span>template&lt;class InputIt, class T&gt;
 ---
 T sum(InputIt first, InputIt last, T value)
 {
@@ -719,7 +723,7 @@ T sum(InputIt first, InputIt last, T value)
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="par_ex_num_left"       data-numbered="left">
-        <span data-question>Q-17: Q-16: Construct a function that returns the max value from a list.</span>def findmax(alist):
+        <span data-question>Ex-29-timed: Ex-28-timed: Construct a function that returns the max value from a list.</span>def findmax(alist):
 ---
     if len(alist) == 0:
         return None
@@ -786,7 +790,7 @@ Adaptive behaviors do not kick in automatically, but only on request.</p>
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="pa-ex-maxdist"  data-adaptive="true"  data-maxdist="2"    data-language="java" >
-        <span data-question>Q-19: Q-18: The following program segment is a method that should return string array
+        <span data-question>Ex-31-timed: Ex-30-timed: The following program segment is a method that should return string array
 that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
 
 <p>
@@ -853,7 +857,7 @@ that is in reverse order -- so {"b", "a", "z"} should return {"z", "a", "b"}.
 
         <div class="runestone" style="max-width: none;">
         <pre data-component="parsons" id="parson-ex-paired"      >
-        <span data-question>Q-21: Q-20: Reorder the blocks so that this program prints 'Hello world!'.</span>public class HelloWorld
+        <span data-question>Ex-33-timed: Ex-32-timed: Reorder the blocks so that this program prints 'Hello world!'.</span>public class HelloWorld
 {
 ---
 public Class HelloWorld

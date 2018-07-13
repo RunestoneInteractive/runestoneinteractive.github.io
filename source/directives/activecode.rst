@@ -106,7 +106,7 @@ datafile
     Each entry must be the unique_id of a :doc:`datafile` directive.
 
 enabledownload
-    ``Boolean``. allow textfield contents to be downloaded to local file
+    ``Boolean``. Allow textfield contents to be downloaded to local file
 
 hidecode 
     ``Boolean``. Make the ``activecode`` editor initially hidden, 
@@ -121,7 +121,13 @@ hidecode
     it in another ``activecode`` block, but you don't need or want students to see it right away.
 
 include
-    ``CSV``. Include another ``activecode`` content area verbatim.
+    ``CSV``. Include another ``activecode`` content area verbatim. 
+    For example:
+
+    .. code-block:: rst
+     
+       .. activecode:: ac-example3
+          :include: ac-example1, ac-example2
 
     This option allows you to **prepend** other code blocks to this ``activecode`` block. 
     ``include`` is useful because it allows you to write ``activecode`` examples that build 
@@ -183,6 +189,10 @@ stdin
     If present, ``:stdin:`` creates a text area and 
     allows a string to be passed to the program for processing.
     An optional value after the argument defines the default value.
+
+timelimit
+    ``Integer``. Maximum time allowed, in milliseconds, for a program to compile and run.  
+    Default is 25 seconds.
 
 tour_{1,2,3,4,5}  
     ``Formatted String``. Used for audio tours of the code.

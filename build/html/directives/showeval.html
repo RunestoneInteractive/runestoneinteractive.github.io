@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -487,18 +491,18 @@ and then shows the exact same example in replace mode.</p>
 </div>
 <p>Created this example:</p>
 <div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
-    <button class="btn btn-success" id="showEval_true_nextStep">Next Step</button>
-    <button class="btn btn-default" id ="showEval_true_reset">Reset</button>
+    <button class="btn btn-success" id="showEval_true_copy_nextStep">Next Step</button>
+    <button class="btn btn-default" id ="showEval_true_copy_reset">Reset</button>
     <div class="evalCont" style="background-color: #FDFDFD;">eggs = ['dogs', 'cats', 'moose']<br />
 </div>
-    <div class="evalCont" id="showEval_true"></div>
+    <div class="evalCont" id="showEval_true_copy"></div>
 </div>
 <script>
     $(document).ready(function() {
       steps = ["''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)", "{{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)", "{{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)", "'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})", "{{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}"];
-      showEval_true_object = new SHOWEVAL.ShowEval($('#showEval_true'), steps, true);
-      showEval_true_object.setNextButton('#showEval_true_nextStep');
-      showEval_true_object.setResetButton('#showEval_true_reset');
+      showEval_true_copy_object = new SHOWEVAL.ShowEval($('#showEval_true_copy'), steps, true);
+      showEval_true_copy_object.setNextButton('#showEval_true_copy_nextStep');
+      showEval_true_copy_object.setResetButton('#showEval_true_copy_reset');
     });
 </script>
 <p>This example shows the exact same code as the previous example,
@@ -525,21 +529,21 @@ but with <code class="docutils literal"><span class="pre">:tracemode:</span> <sp
 <strong>before</strong> the animation executes.
 When the <em>Next Step</em> button is pressed, the comment is removed.</p>
 <p>This source code:</p>
-<div class="highlight-none"><div class="highlight"><pre>Given:
+<div class="highlight-rst"><div class="highlight"><pre>Given:
 
-.. code-block:: cpp
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">cpp</span>
 
-   template &lt;RandomAccessIterable It&gt; 
-   void insertion_sort(It begin, It end) {
-     for (auto i = begin; i != end; ++i) {
-       std::rotate(std::upper_bound(begin, i, *i), i, std::next(i));
-     }
-   }
+   <span class="k">template</span> <span class="o">&lt;</span><span class="n">RandomAccessIterable</span> <span class="n">It</span><span class="o">&gt;</span> 
+   <span class="kt">void</span> <span class="n">insertion_sort</span><span class="p">(</span><span class="n">It</span> <span class="n">begin</span><span class="p">,</span> <span class="n">It</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">begin</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">upper_bound</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">i</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
 
 And given:
 
-.. showeval:: showEval_cpp
-   :trace_mode: true
+<span class="p">..</span> <span class="ow">showeval</span><span class="p">::</span> showEval_cpp
+   <span class="nc">:trace_mode:</span> <span class="nf">true</span>
 
    std::vector&amp;lt;int&amp;gt; v = {-2, 3, 2, -3, 1, -1, 0};
    insertion_sort(v.begin(), v.end());
@@ -550,9 +554,6 @@ And given:
    v = -3 -2 {{2 3 1}}{{1 2 3}} -1 0       ## next rotate 1 into v[2] 
    v = -3 -2 {{1 2 3 -1}}{{-1 1 2 3}} 0    ## next rotate -1 into v[2] 
    v = -3 -2 -1 {{1 2 3 0}}{{0 1 2 3}}     ## finally, rotate 0 into v[3] 
-
-
-
 </pre></div>
 </div>
 <p>Created this example:</p>
@@ -567,19 +568,19 @@ And given:
 </div>
 <p>And given:</p>
 <div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
-    <button class="btn btn-success" id="showEval_cpp_nextStep">Next Step</button>
-    <button class="btn btn-default" id ="showEval_cpp_reset">Reset</button>
+    <button class="btn btn-success" id="showEval_cpp_copy_nextStep">Next Step</button>
+    <button class="btn btn-default" id ="showEval_cpp_copy_reset">Reset</button>
     <div class="evalCont" style="background-color: #FDFDFD;">std::vector&lt;int&gt; v = {-2, 3, 2, -3, 1, -1, 0};<br />
 insertion_sort(v.begin(), v.end());<br />
 </div>
-    <div class="evalCont" id="showEval_cpp"></div>
+    <div class="evalCont" id="showEval_cpp_copy"></div>
 </div>
 <script>
     $(document).ready(function() {
       steps = ['v = -2 {{3 2}}{{2 3}} -3 1 -1 0         ## first, rotate 2 into v[1]', 'v = {{-2 2 3 -3}}{{-3 -2 2 3}} 1 -1 0   ## next rotate -3 into v[0]', 'v = -3 -2 {{2 3 1}}{{1 2 3}} -1 0       ## next rotate 1 into v[2]', 'v = -3 -2 {{1 2 3 -1}}{{-1 1 2 3}} 0    ## next rotate -1 into v[2]', 'v = -3 -2 -1 {{1 2 3 0}}{{0 1 2 3}}     ## finally, rotate 0 into v[3]'];
-      showEval_cpp_object = new SHOWEVAL.ShowEval($('#showEval_cpp'), steps, true);
-      showEval_cpp_object.setNextButton('#showEval_cpp_nextStep');
-      showEval_cpp_object.setResetButton('#showEval_cpp_reset');
+      showEval_cpp_copy_object = new SHOWEVAL.ShowEval($('#showEval_cpp_copy'), steps, true);
+      showEval_cpp_copy_object.setNextButton('#showEval_cpp_copy_nextStep');
+      showEval_cpp_copy_object.setResetButton('#showEval_cpp_copy_reset');
     });
 </script>
 </div>

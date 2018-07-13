@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -87,6 +88,9 @@
     <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
@@ -379,7 +383,7 @@
    <span class="nc">:options:</span>
 </pre></div>
 </div>
-<p>Both the <code class="docutils literal"><span class="pre">vimeo</span></code> and <code class="docutils literal"><span class="pre">youtube</span></code> directives take the same options.</p>
+<p>Both the <code class="docutils literal"><span class="pre">vimeo</span></code> and <code class="docutils literal"><span class="pre">youtube</span></code> directives take the same options (with one exception).</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
@@ -396,6 +400,13 @@
 <dt>align</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">Enumeration</span></code>. Define video horizontal alignment.</p>
 <p class="last">One of <code class="docutils literal"><span class="pre">left</span></code>, <code class="docutils literal"><span class="pre">right</span></code>, or <code class="docutils literal"><span class="pre">center</span></code> is allowed. The default is <code class="docutils literal"><span class="pre">left</span></code>.</p>
+</dd>
+<dt>divid</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">String</span></code>. Define a runestone id for this video. YouTube only.</p>
+<p>The default divid is the YouTube video id.</p>
+<p class="last">This is provides backward compatibility when converting HTML5 hosted videos
+to the YouTube platform.
+Or use this if you want to use a different descriptor to reference rather than the YouTube video id.</p>
 </dd>
 <dt>height</dt>
 <dd><code class="docutils literal"><span class="pre">Integer</span></code>. Define video height in pixels.

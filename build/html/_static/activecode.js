@@ -437,7 +437,7 @@ ActiveCode.prototype.createOutput = function () {
 
 
     var lensDiv = document.createElement("div");
-    $(lensDiv).addClass("col-md-6");
+    $(lensDiv).addClass("col-md-12");
     $(lensDiv).css("display","none");
     this.codelens = lensDiv;
     this.outerDiv.appendChild(lensDiv);
@@ -613,7 +613,7 @@ ActiveCode.prototype.showCodelens = function () {
 
     var cl = this.codelens.firstChild;
     if (cl) {
-        div.removeChild(cl)
+        this.codelens.removeChild(cl)
     }
     var code = this.editor.getValue();
     var myVars = {};
@@ -1695,8 +1695,8 @@ LiveCode.prototype.init = function(opts) {
 
     this.JOBE_SERVER = eBookConfig.jobehost || eBookConfig.host;
     this.resource = eBookConfig.proxyuri_runs ||  '/runestone/proxy/jobeRun';
-    this.jobePutFiles = eBookConfig.proxy_uri_files || '/runestone/proxy/jobePushFile/';
-    this.jobeCheckFiles = eBookConfig.proxy_uri_files || '/runestone/proxy/jobeCheckFile/';
+    this.jobePutFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobePushFile/';
+    this.jobeCheckFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobeCheckFile/';
 
     this.div2id = {};
     if (this.stdin) {
@@ -1944,6 +1944,7 @@ LiveCode.prototype.checkFile = function(file, resolve, reject) {
     xhr.onload = (function () {
         switch(xhr.status) {
             case 208:
+            case 404:
                 // console.log("File not on Server");
                 this.pushDataFile(file, resolve, reject);
                 break;
