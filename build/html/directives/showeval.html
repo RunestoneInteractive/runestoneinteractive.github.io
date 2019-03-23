@@ -2,104 +2,98 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ShowEval &#8212; Runestone Interactive 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=B035A1D9" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=D0B347A5" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=B9BAA0D1" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/matrixeq.js"></script>
-    <script type="text/javascript" src="../_static/clickable.js"></script>
-    <script type="text/javascript" src="../_static/timedclickable.js"></script>
-    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
-    <script type="text/javascript" src="../_static/fitb.js"></script>
-    <script type="text/javascript" src="../_static/timedfitb.js"></script>
-    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
-    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
-    <script type="text/javascript" src="../_static/Blob.js"></script>
-    <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
-    <script type="text/javascript" src="../_static/parsons.js"></script>
-    <script type="text/javascript" src="../_static/timedparsons.js"></script>
-    <script type="text/javascript" src="../_static/animationbase.js"></script>
-    <script type="text/javascript" src="../_static/mchoice.js"></script>
-    <script type="text/javascript" src="../_static/timedmc.js"></script>
-    <script type="text/javascript" src="../_static/timed.js"></script>
-    <script type="text/javascript" src="../_static/shortanswer.js"></script>
-    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
-    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="../_static/pytutor.js"></script>
-    <script type="text/javascript" src="../_static/codelens.js"></script>
-    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
-    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
-    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
-    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=9560E65E"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=8E40E713"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=7C095993"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=8D873C0A"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=8329CA55"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=6789FE30"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=5EB6170D"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=ED84393D"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=3FBAE230"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=CB855D57"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=3C6652E0"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
-    <script type="text/javascript" src="../_static/clike.js"></script>
-    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/datafile.js"></script>
-    <script type="text/javascript" src="../_static/showEval.js"></script>
-    <script type="text/javascript" src="../_static/dragndrop.js"></script>
-    <script type="text/javascript" src="../_static/timeddnd.js"></script>
-    <script type="text/javascript" src="../_static/poll.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=A048601A"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=5150FA78"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=C5CE0C81"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=2B6403E8"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=6C59AE9F"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="../_static/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
@@ -130,12 +124,12 @@
   eBookConfig.loginRequired = false;
   eBookConfig.build_info = "unknown";
   eBookConfig.isLoggedIn = false;
-  eBookConfig.useRunestoneServices = true;
+  eBookConfig.useRunestoneServices = false;
   eBookConfig.python3 = true;
   eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.3.2';
 
 </script>
 
@@ -152,8 +146,7 @@
 
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -257,30 +250,6 @@
         <li class="divider-vertical"></li>
 
         
-        <!-- user account dropdown -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
-          </a>
-          <ul class="dropdown-menu user-menu">
-            <li><span class='loggedinuser'></span></li>
-            <li class="divider"></li>
-            <li><a href='https://runestone.academy/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
-            <li><a href='https://runestone.academy/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
-            <li><a href='https://runestone.academy/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
-            <li><a href='https://runestone.academy/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
-			<li class="divider"></li>
-            <li><a href='https://runestone.academy/runestone/admin/index'>Instructor's Page</a></li>
-            <li><a href='https://runestone.academy/runestone/assignments/index'>Progress Page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://runestone.academy/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
-            <li><a href="https://runestone.academy/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
-            <li><a href="https://runestone.academy/runestone/default/user/register" id="registerlink">Register</a></li>
-            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
-          </ul>
-        </li>
-        <!-- end user account dropdown -->
-        
         <li class="divider-vertical"></li>
 
         <!-- help menu dropdown -->
@@ -372,10 +341,10 @@
   
   <div class="section" id="showeval">
 <h1>ShowEval<a class="headerlink" href="#showeval" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">showeval</span></code> directive creates an animated sequence.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">showeval</span></code> directive creates an animated sequence.</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">showeval</span><span class="p">::</span> unique_id
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">showeval</span><span class="p">::</span> unique_id
    <span class="nc">:trace_mode:</span> <span class="nf">boolean</span>
 
    <span class="m">+</span> --- Content area ---+
@@ -387,39 +356,39 @@
 </pre></div>
 </div>
 <p>All prerequisite information that should be displayed above the animation,
-such as variable declaration, are separated from the step strings by <code class="docutils literal"><span class="pre">~~~~</span></code>.</p>
-<p>The step animations follow the <code class="docutils literal"><span class="pre">~~~~</span></code> and are written one per line.</p>
+such as variable declaration, are separated from the step strings by <code class="docutils literal notranslate"><span class="pre">~~~~</span></code>.</p>
+<p>The step animations follow the <code class="docutils literal notranslate"><span class="pre">~~~~</span></code> and are written one per line.</p>
 </div>
 <div class="section" id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this headline">¶</a></h2>
 <p>unique id
-A unique identifier after a space and the <code class="docutils literal"><span class="pre">::</span></code> in the directive.
+A unique identifier after a space and the <code class="docutils literal notranslate"><span class="pre">::</span></code> in the directive.
 Valid identifiers must not contain spaces.
-You should also avoid the characters `` ` <code class="docutils literal"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal"><span class="pre">:</span></code>, and <code class="docutils literal"><span class="pre">*</span></code>.</p>
+You should also avoid the characters `` ` <code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``,</span></code>, <code class="docutils literal notranslate"><span class="pre">:</span></code>, and <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p>
 <p>content area
-The <code class="docutils literal"><span class="pre">showeval</span></code> directive should contain at least two steps to be useful.
+The <code class="docutils literal notranslate"><span class="pre">showeval</span></code> directive should contain at least two steps to be useful.
 The steps section has special formatting requirements:</p>
 <ul>
 <li><p class="first">Each step must be wholly contained on a line, one animation step per line.</p>
 </li>
 <li><p class="first">Blank lines are OK.</p>
 </li>
-<li><p class="first">Use double curly braces: <code class="docutils literal"><span class="pre">{{</span></code> and <code class="docutils literal"><span class="pre">}}</span></code> to mark
+<li><p class="first">Use double curly braces: <code class="docutils literal notranslate"><span class="pre">{{</span></code> and <code class="docutils literal notranslate"><span class="pre">}}</span></code> to mark
 text replaced during an animation step.
 Only 1 set of replacement text per line.</p>
 </li>
 <li><p class="first">The end braces of the original text and start of the replacement braces
-must be exactly <code class="docutils literal"><span class="pre">}}{{</span></code> - no spaces are permitted.</p>
+must be exactly <code class="docutils literal notranslate"><span class="pre">}}{{</span></code> - no spaces are permitted.</p>
 <p>The braces surround the part of the line that should be replaced,
 followed by the replacement text delimited using double curly braces.</p>
 </li>
 </ul>
 <p>To add a comment that will appear in a div beside the animation,
-denote that at the end of the step where you would like it to appear with <code class="docutils literal"><span class="pre">##</span></code>.</p>
+denote that at the end of the step where you would like it to appear with <code class="docutils literal notranslate"><span class="pre">##</span></code>.</p>
 <dl class="docutils">
 <dt>trace_mode</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">Boolean</span></code>. If <code class="docutils literal"><span class="pre">true</span></code>, will print out a new line for each step of the animation.</p>
-<p class="last">If <code class="docutils literal"><span class="pre">false</span></code>,  will display and animate a single line,
+<dd><p class="first"><code class="docutils literal notranslate"><span class="pre">Boolean</span></code>. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, will print out a new line for each step of the animation.</p>
+<p class="last">If <code class="docutils literal notranslate"><span class="pre">false</span></code>,  will display and animate a single line,
 overwriting the previous animation, during each animation step.</p>
 </dd>
 </dl>
@@ -430,7 +399,7 @@ overwriting the previous animation, during each animation step.</p>
 </div>
 <div class="section" id="languages-supported">
 <h2>Languages supported<a class="headerlink" href="#languages-supported" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">showeval</span></code> directive is language agnostic.
+<p>The <code class="docutils literal notranslate"><span class="pre">showeval</span></code> directive is language agnostic.
 Nothing is actually executed or interpreted.
 It is up to the animation author to ensure the syntax and grammar within an animation
 makes sense - no syntax checking is performed.</p>
@@ -451,10 +420,10 @@ To show the more complex interactions between variables and functions,
 consider using <a class="reference internal" href="codelens.html"><span class="doc">Codelens</span></a>.</p>
 <p>All text in the content area is actually parsed as HTML.
 Sphinx markup is interpreted as plain text.
-Characters that have special meaning in HTML (<code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>)
-need to be escaped in the directive text (<code class="docutils literal"><span class="pre">&amp;lt;</span></code>, <code class="docutils literal"><span class="pre">&amp;gt;</span></code>)
+Characters that have special meaning in HTML (<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>)
+need to be escaped in the directive text (<code class="docutils literal notranslate"><span class="pre">&amp;lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;gt;</span></code>)
 unless surrounded by whitespace, for example:</p>
-<div class="highlight-none"><div class="highlight"><pre># No space, HTML required
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># No space, HTML required
 if x&amp;lt;y:
 
 # OK as is
@@ -467,16 +436,16 @@ ArrayList&amp;lt;Integer&amp;gt; x = new ArrayList&amp;lt;&amp;gt;();
 ArrayList &lt; Integer &gt; x = new ArrayList &lt; &gt; ();
 </pre></div>
 </div>
-<p>A bug in <code class="docutils literal"><span class="pre">showeval</span></code> prevents it from working correctly in a <a class="reference internal" href="tab.html"><span class="doc">Tab Groups</span></a> directive.
+<p>A bug in <code class="docutils literal notranslate"><span class="pre">showeval</span></code> prevents it from working correctly in a <a class="reference internal" href="tab.html"><span class="doc">Tab Groups</span></a> directive.
 Every animation line renders twice.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The first example shows joining two arrays with showeval in trace mode
 and then shows the exact same example in replace mode.</p>
-<p>Showing the source code with <code class="docutils literal"><span class="pre">:tracemode:</span> <span class="pre">true</span></code>.</p>
+<p>Showing the source code with <code class="docutils literal notranslate"><span class="pre">:tracemode:</span> <span class="pre">true</span></code>.</p>
 <p>This source code:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">showeval</span><span class="p">::</span> showEval_true
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">showeval</span><span class="p">::</span> showEval_true
    <span class="nc">:trace_mode:</span> <span class="nf">true</span>
 
    eggs = [&#39;dogs&#39;, &#39;cats&#39;, &#39;moose&#39;]
@@ -490,46 +459,16 @@ and then shows the exact same example in replace mode.</p>
 </pre></div>
 </div>
 <p>Created this example:</p>
-<div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
-    <button class="btn btn-success" id="showEval_true_copy_nextStep">Next Step</button>
-    <button class="btn btn-default" id ="showEval_true_copy_reset">Reset</button>
-    <div class="evalCont" style="background-color: #FDFDFD;">eggs = ['dogs', 'cats', 'moose']<br />
-</div>
-    <div class="evalCont" id="showEval_true_copy"></div>
-</div>
-<script>
-    $(document).ready(function() {
-      steps = ["''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)", "{{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)", "{{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)", "'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})", "{{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}"];
-      showEval_true_copy_object = new SHOWEVAL.ShowEval($('#showEval_true_copy'), steps, true);
-      showEval_true_copy_object.setNextButton('#showEval_true_copy_nextStep');
-      showEval_true_copy_object.setResetButton('#showEval_true_copy_reset');
-    });
-</script>
 <p>This example shows the exact same code as the previous example,
-but with <code class="docutils literal"><span class="pre">:tracemode:</span> <span class="pre">false</span></code>.</p>
-<div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
-    <button class="btn btn-success" id="showEval_false_nextStep">Next Step</button>
-    <button class="btn btn-default" id ="showEval_false_reset">Reset</button>
-    <div class="evalCont" style="background-color: #FDFDFD;">eggs = ['dogs', 'cats', 'moose']<br />
-</div>
-    <div class="evalCont" id="showEval_false"></div>
-</div>
-<script>
-    $(document).ready(function() {
-      steps = ["''.join({{eggs}}{{['dogs', 'cats', 'moose']}}).upper().join(eggs)", "{{''.join(['dogs', 'cats', 'moose'])}}{{'dogscatsmoose'}}.upper().join(eggs)", "{{'dogscatsmoose'.upper()}}{{'DOGSCATSMOOSE'}}.join(eggs)", "'DOGSCATSMOOSE'.join({{eggs}}{{['dogs', 'cats', 'moose']}})", "{{'DOGSCATSMOOSE'.join(['dogs', 'cats', 'moose'])}}{{'dogsDOGSCATSMOOSEcatsDOGSCATSMOOSEmoose'}}"];
-      showEval_false_object = new SHOWEVAL.ShowEval($('#showEval_false'), steps, false);
-      showEval_false_object.setNextButton('#showEval_false_nextStep');
-      showEval_false_object.setResetButton('#showEval_false_reset');
-    });
-</script>
+but with <code class="docutils literal notranslate"><span class="pre">:tracemode:</span> <span class="pre">false</span></code>.</p>
 <div class="section" id="using-comments">
 <h3>Using comments<a class="headerlink" href="#using-comments" title="Permalink to this headline">¶</a></h3>
-<p>Comments are optional and appear after <code class="docutils literal"><span class="pre">##</span></code> on any animation line.</p>
+<p>Comments are optional and appear after <code class="docutils literal notranslate"><span class="pre">##</span></code> on any animation line.</p>
 <p>A comment is displayed as soon as an animation line is loaded,
 <strong>before</strong> the animation executes.
 When the <em>Next Step</em> button is pressed, the comment is removed.</p>
 <p>This source code:</p>
-<div class="highlight-rst"><div class="highlight"><pre>Given:
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Given:
 
 <span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">cpp</span>
 
@@ -558,7 +497,7 @@ And given:
 </div>
 <p>Created this example:</p>
 <p>Given:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="n">RandomAccessIterable</span> <span class="n">It</span><span class="o">&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="n">RandomAccessIterable</span> <span class="n">It</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">insertion_sort</span><span class="p">(</span><span class="n">It</span> <span class="n">begin</span><span class="p">,</span> <span class="n">It</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">begin</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">upper_bound</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">i</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
@@ -567,22 +506,6 @@ And given:
 </pre></div>
 </div>
 <p>And given:</p>
-<div data-childcomponent="showeval" class="runestone explainer alert alert-warning">
-    <button class="btn btn-success" id="showEval_cpp_copy_nextStep">Next Step</button>
-    <button class="btn btn-default" id ="showEval_cpp_copy_reset">Reset</button>
-    <div class="evalCont" style="background-color: #FDFDFD;">std::vector&lt;int&gt; v = {-2, 3, 2, -3, 1, -1, 0};<br />
-insertion_sort(v.begin(), v.end());<br />
-</div>
-    <div class="evalCont" id="showEval_cpp_copy"></div>
-</div>
-<script>
-    $(document).ready(function() {
-      steps = ['v = -2 {{3 2}}{{2 3}} -3 1 -1 0         ## first, rotate 2 into v[1]', 'v = {{-2 2 3 -3}}{{-3 -2 2 3}} 1 -1 0   ## next rotate -3 into v[0]', 'v = -3 -2 {{2 3 1}}{{1 2 3}} -1 0       ## next rotate 1 into v[2]', 'v = -3 -2 {{1 2 3 -1}}{{-1 1 2 3}} 0    ## next rotate -1 into v[2]', 'v = -3 -2 -1 {{1 2 3 0}}{{0 1 2 3}}     ## finally, rotate 0 into v[3]'];
-      showEval_cpp_copy_object = new SHOWEVAL.ShowEval($('#showEval_cpp_copy'), steps, true);
-      showEval_cpp_copy_object.setNextButton('#showEval_cpp_copy_nextStep');
-      showEval_cpp_copy_object.setResetButton('#showEval_cpp_copy_reset');
-    });
-</script>
 </div>
 </div>
 </div>
@@ -616,14 +539,12 @@ insertion_sort(v.begin(), v.end());<br />
   <div class="container">
     <p class="pull-right">
       
-      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
-      
       | <a href="#">Back to top</a>
       
     </p>
     <p>
         &copy; Copyright 2013, Brad Miller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
     </p>
   </div>
 </footer>

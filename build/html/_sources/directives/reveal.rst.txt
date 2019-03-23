@@ -38,7 +38,7 @@ showtitle
 hidetitle
     ``String``. Define a label for the 'hide' button. Default is ``Hide``.
 
-    This option only applies if the ``modal`` option is **not** used. 
+    This option only applies if the ``modal`` option is **not** used.
 
 modal
     ``Boolean``. If defined, the revealed content is presented in a modal dialog.  Default is ``false``.
@@ -48,7 +48,11 @@ modal
 modaltitle
     ``String``. Title of modal dialog window. Default is "Message from the author".
 
-    This option only applies if the ``modal`` option is used. 
+    This option only applies if the ``modal`` option is used.
+
+instructoronly
+    ``Boolean``. If provided the content and reveal button will only be visible to instructors.  The proposed use of this is to provide an instructor guide embedded in the book.
+
 
 
 Languages supported

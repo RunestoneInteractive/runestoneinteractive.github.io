@@ -33,7 +33,7 @@ options(
             'appname':master_app,
             'loglevel':0,
             'course_url':master_url,
-            'use_services': 'true',
+            'use_services': 'false',
             'python3': 'true',
             'jobe_server': 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz',
             'proxy_uri_runs': '/jobe/index.php/restapi/runs/',
@@ -45,5 +45,5 @@ options(
 version = pkg_resources.require("runestone")[0].version
 options.build.template_args['runestone_version'] = version
 
-    
+
 from runestone import build  # build is called implicitly by the paver driver.

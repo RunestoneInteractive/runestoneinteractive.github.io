@@ -37,12 +37,20 @@ ActiveCode.prototype.init = function(opts) {
     this.hidecode = $(orig).data('hidecode');
     this.chatcodes = $(orig).data('chatcodes');
     this.hidehistory = $(orig).data('hidehistory');
+    this.tie = $(orig).data('tie')
     this.runButton = null;
     this.enabledownload = $(orig).data('enabledownload');
     this.downloadButton = null;
     this.saveButton = null;
     this.loadButton = null;
     this.outerDiv = null;
+    this.partner = ""
+    if ((! eBookConfig.allow_pairs) || $(orig).data('nopair')) {
+        this.enablePartner = false;
+    } else {
+        this.enablePartner = true;
+    }
+
     this.output = null; // create pre for output
     this.graphics = null; // create div for turtle graphics
     this.codecoach = null;
@@ -88,6 +96,7 @@ ActiveCode.prototype.init = function(opts) {
         this.caption = ""
     }
     this.addCaption();
+    this.addJSONLibrary();
 
     if (this.autorun) {
         $(document).ready(this.runProg.bind(this));
@@ -242,6 +251,16 @@ ActiveCode.prototype.createControls = function () {
         ctrlDiv.appendChild(butt);
         $(butt).click(this.showCodelens.bind(this));
     }
+
+    // TIE
+    if(this.tie) {
+        butt = document.createElement("button");
+        $(butt).addClass("ac_opt btn btn-default");
+        $(butt).text("Open Code Coach");
+        this.tieButt = butt;
+        ctrlDiv.appendChild(butt);
+        $(butt).click(this.showTIE.bind(this))
+    }
     // CodeCoach
     // bnm - disable code coach until it is revamped  2017-7-22
     // if (this.useRunestoneServices && $(this.origElem).data("coach")) {
@@ -263,6 +282,49 @@ ActiveCode.prototype.createControls = function () {
         this.atButton = butt;
         ctrlDiv.appendChild(butt);
         $(butt).click((function() {new AudioTour(this.divid, this.code, 1, $(this.origElem).data("audio"))}).bind(this));
+    }
+
+    if (this.enablePartner) {
+        var checkPartner = document.createElement("input");
+        checkPartner.type = 'checkbox'
+        checkPartner.id = `${this.divid}_part`
+        ctrlDiv.appendChild(checkPartner);
+        var plabel = document.createElement('label');
+        plabel.for = `${this.divid}_part`;
+        $(plabel).text("Pair?");
+        ctrlDiv.appendChild(plabel);
+        $(checkPartner).click((function () {
+            if (this.partner) {
+                this.partner = false;
+                $(partnerTextBox).hide()
+                this.partner = ''
+                partnerTextBox.value = ''
+                $(plabel).text("Pair?");
+            } else {
+                let didAgree = localStorage.getItem("partnerAgree")
+                if( ! didAgree) {
+                    didAgree = confirm("Pair Programming should only be used with the consent of your instructor." +
+                      "Your partner must be a registered member of the class and have agreed to pair with you." +
+                      "By clicking OK you certify that both of these conditions have been met."
+                      );
+                    if (didAgree) {
+                        localStorage.setItem("partnerAgree", "true");
+                    } else {
+                        return;
+                    }
+                }
+                this.partner = true;
+                $(plabel).text('with: ');
+                $(partnerTextBox).show();
+            }
+        }).bind(this))
+        var partnerTextBox = document.createElement("input")
+        partnerTextBox.type = 'text'
+        ctrlDiv.appendChild(partnerTextBox);
+        $(partnerTextBox).hide()
+        $(partnerTextBox).change((function () {
+            this.partner = partnerTextBox.value;
+        }).bind(this))
     }
 
     if(this.chatcodes && eBookConfig.enable_chatcodes) {
@@ -339,12 +401,12 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
         $(scrubberDiv).width("180px");
         var scrubber = document.createElement("div");
         this.slideit = function() {
-            console.log("slideit was called");
             this.editor.setValue(this.history[$(scrubber).slider("value")]);
             var curVal = this.timestamps[$(scrubber).slider("value")];
             var tooltip = '<div class="sltooltip"><div class="sltooltip-inner">' +
                 curVal + '</div><div class="sltooltip-arrow"></div></div>';
             $(scrubber).find(".ui-slider-handle").html(tooltip);
+            this.logBookEvent({'event': 'activecode', 'act': 'slide:'+curVal, 'div_id': this.divid})
             setTimeout(function () {
                 $(scrubber).find(".sltooltip").fadeOut()
             }, 4000);
@@ -384,7 +446,6 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
         this.histButton = null;
         this.historyScrubber = scrubber;
         $(scrubberDiv).insertAfter(this.runButton);
-        console.log("resoving deferred in addHistoryScrubber");
         deferred.resolve();
     }.bind(this)
     if (eBookConfig.practice_mode){
@@ -397,7 +458,6 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
                 for (t in data.timestamps) {
                     this.timestamps.push( (new Date(data.timestamps[t])).toLocaleString() )
                 }
-                console.log("gethist successful history updated")
             }
         }.bind(this))
             .always(helper); // For an explanation, please look at https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname
@@ -615,7 +675,7 @@ ActiveCode.prototype.showCodelens = function () {
     if (cl) {
         this.codelens.removeChild(cl)
     }
-    var code = this.editor.getValue();
+    var code = this.buildProg(false);
     var myVars = {};
     myVars.code = code;
     myVars.origin = "opt-frontend.js";
@@ -689,19 +749,79 @@ ActiveCode.prototype.showCodeCoach = function () {
     });
 };
 
+ActiveCode.prototype.showTIE = function() {
+    var tieDiv = document.createElement("div");
+    $(this.tieButt).attr("disabled","disabled");
+    $(tieDiv).addClass("tie-container");
+    $(tieDiv).data("tie-id", this.divid)
+    var ifm = document.createElement('iframe')
+    $(ifm).addClass("tie-frame")
+    ifm.src = `https://tech-interview-exercises.appspot.com/client/question.html?qid=${this.tie}`
+
+    setIframeDimensions = function() {
+        $('.tie-container').css('width', $('.tie-container').parent().width());
+    //    $('.tie-frame').css('width', $('.tie-frame').parent().width() - 120);
+    };
+    ifm.onload = setIframeDimensions;
+
+    $(function() {
+        $(window).resize(setIframeDimensions);
+      });
+
+    window.addEventListener('message', (function(evt) {
+        if (evt.origin != 'https://tech-interview-exercises.appspot.com') {
+          return;
+        }
+        // Handle the event accordingly.
+        // evt.data contains the code
+        this.logRunEvent({
+            'div_id': this.divid,
+            'code': JSON.parse(evt.data),
+            'lang': this.language,
+            'errinfo': 'TIEresult',
+            'to_save': true,
+            'prefix': this.pretext,
+            'suffix': this.suffix
+        });
+      }).bind(this), false)
+
+    this.logBookEvent({'event': 'tie', 'act': 'open', 'div_id': this.divid});
+    tieDiv.appendChild(ifm)
+    this.outerDiv.appendChild(tieDiv)
+}
 
 ActiveCode.prototype.toggleEditorVisibility = function () {
 
 };
 
 ActiveCode.prototype.addErrorMessage = function (err) {
-    //logRunEvent({'div_id': this.divid, 'code': this.prog, 'errinfo': err.toString()}); // Log the run event
+    // Add the error message
     var errHead = $('<h3>').html('Error');
     this.eContainer = this.outerDiv.appendChild(document.createElement('div'));
     this.eContainer.className = 'error alert alert-danger';
     this.eContainer.id = this.divid + '_errinfo';
     this.eContainer.appendChild(errHead[0]);
     var errText = this.eContainer.appendChild(document.createElement('pre'));
+
+    // But, adjust the line numbers.  If the line number is <= pretextLines then it is in included code
+    // if it is greater than the number of included lines but less than the pretext + current editor then it is in the student code.
+    // adjust the line number we display by eliminating the pre-included code.
+    if (err.traceback.length >= 1) {
+        errorLine = err.traceback[0].lineno;
+        if (errorLine <= this.pretextLines){
+            errText.innerHTML = "An error occurred in the hidden, included code. Sorry we can't give you a more helpful error message";
+            return;
+        }
+        else if (errorLine > (this.progLines + this.pretextLines)) {
+            errText.innerHTML = "An error occurred after the end of your code. One possible reason is that you have an unclosed parenthesis or string. Another possibility is that there is an error in the hidden test code.";
+            return;
+        }
+        else {
+            if (this.pretextLines > 0) {
+                err.traceback[0].lineno = err.traceback[0].lineno - this.pretextLines + 1;
+            }
+        }
+    }
     var errString = err.toString();
     var to = errString.indexOf(":");
     var errName = errString.substring(0, to);
@@ -758,7 +878,21 @@ errorText.NotImplementedError = $.i18n("msg_activecode_not_implemented_error");
 errorText.NotImplementedErrorFix = $.i18n("msg_activecode_not_implemented_error_fix");
 
 
-
+ActiveCode.prototype.addJSONLibrary = function () {
+    var jsonExternalLibInfo = {
+            path : eBookConfig.app + '/static/' + eBookConfig.course + '/_static/json.sk-master/__init__.js',
+            dependencies : [
+                eBookConfig.app + '/static/' + eBookConfig.course + '/_static/json.sk-master/stringify.js'
+            ]
+        };
+    if (Sk.externalLibraries) {
+        Sk.externalLibraries.json = jsonExternalLibInfo;
+    } else {
+        Sk.externalLibraries = {
+            json: jsonExternalLibInfo
+        };
+    }
+};
 
 ActiveCode.prototype.setTimeLimit = function (timer) {
     var timelimit = this.timelimit;
@@ -779,7 +913,7 @@ ActiveCode.prototype.setTimeLimit = function (timer) {
             Sk.execLimit = timelimit;
         } else {
             Sk.execLimit = 25000;
-    }
+        }
     }
 
 };
@@ -793,10 +927,27 @@ ActiveCode.prototype.builtinRead = function (x) {
 ActiveCode.prototype.fileReader = function(divid) {
     let elem = document.getElementById(divid);
     let data = ""
-    if (elem == null && Sk.builtinFiles["files"][divid]) {
+    let result = ""
+    if (elem == null && Sk.builtinFiles.files.hasOwnProperty(divid)) {
         return Sk.builtinFiles["files"][divid];
+    } else {
+        // try remote file unless it ends with .js or .py -- otherwise we'll ask the server for all
+        // kinds of modules that we are trying to import
+        if ( ! (divid.endsWith('.js') || divid.endsWith('.py')) ) {
+            $.ajax({async: false,
+                    url: `/runestone/ajax/get_datafile?course_id=${eBookConfig.course}&acid=${divid}`,
+                    success: function(data) {
+                        result = JSON.parse(data).data;
+                        },
+                    error: function(err) {
+                        result = null;
+                        }})
+            if (result) {
+                return result
+            }
+        }
     }
-    if (elem == null) {
+    if (elem == null && result === null) {
         throw new Sk.builtin.IOError($.i18n("msg_activecode_no_file_or_dir",divid));
     } else {
         if (elem.nodeName.toLowerCase() == "textarea") {
@@ -837,23 +988,81 @@ ActiveCode.prototype.outputfun = function(text) {
         $(this.output).append(text);
     };
 
-ActiveCode.prototype.buildProg = function() {
+ActiveCode.prototype.filewriter = function(bytes, name, pos) {
+    let filecomponent = document.getElementById(name);
+    if (! filecomponent) {
+        let container = document.createElement('div')
+        $(container).addClass('runestone')
+        let tab = document.createElement('div');
+        $(tab).addClass('datafile_caption');
+        tab.innerHTML = `Data file: <code>${name}</code>`;
+        filecomponent = document.createElement('textarea')
+        filecomponent.rows = 10;
+        filecomponent.cols = 50;
+        filecomponent.id = name;
+        $(filecomponent).css('margin-bottom','5px');
+        $(filecomponent).addClass('ac_output');
+        container.appendChild(tab);
+        container.appendChild(filecomponent);
+        this.outerDiv.appendChild(container)
+    } else {
+        if (pos == 0) {
+            $(filecomponent).val("")
+        }
+    }
+
+    let current = $(filecomponent).val()
+    current = current + bytes;
+    $(filecomponent).val(current);
+    $(filecomponent).css('display', 'block');
+
+    return current.length;
+}
+
+ActiveCode.prototype.getIncludedCode = function(divid) {
+    var wresult;
+    if(edList[divid]) {
+        return edList[divid].editor.getValue();
+    } else {
+        wresult = $.ajax({
+            async: false,
+            url: `/runestone/ajax/get_datafile?course_id=${eBookConfig.course}&acid=${divid}`,
+            success: function(data) {
+                result = JSON.parse(data).data;
+                },
+            error: function(err) {
+                result = null;
+            }})
+
+        return result;
+    }
+}
+
+
+ActiveCode.prototype.buildProg = function(useSuffix) {
     // assemble code from prefix, suffix, and editor for running.
     var pretext;
     var prog = this.editor.getValue() + "\n";
     this.pretext = "";
+    this.pretextLines = 0
+    this.progLines = prog.match(/\n/g).length + 1
+
     if (this.includes !== undefined) {
         // iterate over the includes, in-order prepending to prog
 
         pretext = "";
         for (var x=0; x < this.includes.length; x++) {
-            pretext = pretext + edList[this.includes[x]].editor.getValue();
+            let iCode = this.getIncludedCode(this.includes[x]);
+            pretext = pretext + iCode + "\n";
         }
         this.pretext = pretext;
+        if(this.pretext) {
+            this.pretextLines = (this.pretext.match(/\n/g) || '').length
+        }
         prog = pretext + prog
     }
 
-    if(this.suffix) {
+    if(useSuffix && this.suffix) {
         prog = prog + this.suffix;
 }
 
@@ -862,7 +1071,6 @@ ActiveCode.prototype.buildProg = function() {
 
 ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, saveCode) {
     if (this.historyScrubber === null && !this.autorun) {
-        console.log("Need a new scrubber");
         scrubber_dfd = this.addHistoryScrubber();
     } else {
         scrubber_dfd = jQuery.Deferred();
@@ -872,14 +1080,12 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
     history_dfd = jQuery.Deferred();
     scrubber_dfd.done((function () {
         if (this.historyScrubber && (this.history[$(this.historyScrubber).slider("value")] != this.editor.getValue())) {
-            console.log("updating scrubber with changed code");
             saveCode = "True";
             this.history.push(this.editor.getValue());
             this.timestamps.push((new Date()).toLocaleString());
             $(this.historyScrubber).slider("option", "max", this.history.length - 1);
             $(this.historyScrubber).slider("option", "value", this.history.length - 1);
             this.slideit();
-            console.log("finished scrubber update")
         } else {
             saveCode = "False";
         }
@@ -898,19 +1104,26 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
 
 
 ActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var saveCode = "True";
     var scrubber_dfd, history_dfd, skulpt_run_dfd;
-    console.log("starting a new run of " + this.divid);
     $(this.output).text('');
 
     $(this.eContainer).remove();
+    if (this.codelens) {
+        this.codelens.style.display = 'none';
+    }
+    if (this.clButton) {
+        this.clButton.innerText = $.i18n("msg_activecode_show_in_codelens");
+    }
     Sk.configure({
         output: this.outputfun.bind(this),
         read: this.fileReader,
+        filewriter: this.filewriter.bind(this),
         python3: this.python3,
         imageProxy: 'http://image.runestone.academy:8080/320x',
         inputfunTakesPrompt: true,
+        jsonpSites : ['https://itunes.apple.com'],
     });
     Sk.divid = this.divid;
     this.setTimeLimit();
@@ -949,7 +1162,8 @@ ActiveCode.prototype.runProg = function () {
                 'errinfo': 'success',
                 'to_save': saveCode,
                 'prefix': this.pretext,
-                'suffix': this.suffix
+                'suffix': this.suffix,
+                'partner': this.partner
             }); // Log the run event
         }).bind(this),
         (function (err) {  // fail
@@ -1016,7 +1230,7 @@ JSActiveCode.prototype.outputfun = function (a) {
 
 JSActiveCode.prototype.runProg = function() {
     var _this = this;
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var einfo;
     var scrubber_dfd, history_dfd;
     var saveCode = "True";
@@ -1069,7 +1283,7 @@ function HTMLActiveCode (opts) {
 }
 
 HTMLActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var scrubber_dfd, history_dfd, saveCode;
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
@@ -1304,7 +1518,7 @@ function AudioTour (divid, code, bnum, audio_text) {
     $(this.prev_audio).click((function () {
         this.prevAudio();
     }).bind(this));
-    
+
     // handle the click to pause or play the audio
     $(this.pause_audio).click((function () {
         this.pauseAndPlayAudio(divid);
@@ -1391,7 +1605,7 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
     }
     $(this.audio_code).html(str);
     this.len = this.aname.length; // set the number of audio file in the tour
-    
+
     this.currIndex = 0;
     this.playCurrIndexAudio();
 };
@@ -1697,6 +1911,7 @@ LiveCode.prototype.init = function(opts) {
     this.resource = eBookConfig.proxyuri_runs ||  '/runestone/proxy/jobeRun';
     this.jobePutFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobePushFile/';
     this.jobeCheckFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobeCheckFile/';
+    // TODO:  should add a proper put/check in pavement.tmpl as this is misleading and will break on runestone
 
     this.div2id = {};
     if (this.stdin) {
@@ -1737,7 +1952,7 @@ LiveCode.prototype.runProg = function() {
     var saveCode = "True";
     var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
     var source = this.editor.getValue();
-    source = this.buildProg();
+    source = this.buildProg(true);
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
@@ -1805,7 +2020,8 @@ LiveCode.prototype.runProg = function() {
         runspec['file_list'] = [];
         var promises = [];
         var instance = this;
-        $.getScript('http://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
+        //todo: Not sure why this is loaded like this. It could be loaded once.
+        $.getScript('https://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
         {
             for(var i = 0; i < files.length; i++) {
                 var fileName = files[i].name;
@@ -1836,6 +2052,7 @@ LiveCode.prototype.runProg_callback = function(data) {
         var host, source, editor;
         var saveCode = "True";
         var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
+        source = this.editor.getValue();
 
         xhr = new XMLHttpRequest();
 

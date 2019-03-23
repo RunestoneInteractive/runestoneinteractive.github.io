@@ -182,6 +182,8 @@ A simple table example.
 
    .. tab:: Try It
 
+      Does any content show up in the tab or is it just includes?
+      
       .. include:: clickable_examples/ca-ex1.txt
 
 An ``:iscode:`` based example.

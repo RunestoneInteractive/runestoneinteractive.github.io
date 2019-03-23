@@ -310,7 +310,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
     }
     var len = localStorage.length;
     if (len > 0) {
-        var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
+        var ex = localStorage.getItem(this.localStorageKey());
         if (ex !== null) {
             try {
                 var storedData = JSON.parse(ex);
@@ -318,7 +318,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
             } catch (err) {
                 // error while parsing; likely due to bad value stored in storage
                 console.log(err.message);
-                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
+                localStorage.removeItem(this.localStorageKey());
                 return;
             }
             for (var a = 0; a < answers.length; a++) {
@@ -345,7 +345,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
 MultipleChoice.prototype.setLocalStorage = function (data) {
     var timeStamp = new Date();
     var storageObj = {"answer": data.answer, "timestamp": timeStamp, "correct": data.correct};
-    localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObj));
+    localStorage.setItem(this.localStorageKey(), JSON.stringify(storageObj));
 };
 
 /*===============================
@@ -428,10 +428,10 @@ MultipleChoice.prototype.renderMCMAFeedBack = function () {
     var feedbackText = this.feedbackString;
 
     if (this.correct) {
-        $(this.feedBackDiv).html('Correct.<ol type="A">' + feedbackText + "</ul>");
-        $(this.feedBackDiv).attr("class", "alert alert-success");
+        $(this.feedBackDiv).html('✔️ <ol type="A">' + feedbackText + "</ul>");
+        $(this.feedBackDiv).attr("class", "alert alert-info");
     } else {
-        $(this.feedBackDiv).html("Incorrect.    " + "You gave " + numGiven +
+        $(this.feedBackDiv).html("✖️ " + "You gave " + numGiven +
             " " + answerStr + " and got " + numCorrect + " correct of " +
             numNeeded + ' needed.<ol type="A">' + feedbackText + "</ul>");
         $(this.feedBackDiv).attr("class", "alert alert-danger");
@@ -471,13 +471,13 @@ MultipleChoice.prototype.logMCMFsubmission = function () {
 
 MultipleChoice.prototype.renderMCMFFeedback = function (correct, feedbackText) {
     if (correct) {
-        $(this.feedBackDiv).html(feedbackText);
-        $(this.feedBackDiv).attr("class", "alert alert-success");
+        $(this.feedBackDiv).html("✔️ " + feedbackText);
+        $(this.feedBackDiv).attr("class", "alert alert-info"); // use blue for better red/green blue color blindness
     } else {
         if (feedbackText == null) {
             feedbackText = "";
         }
-        $(this.feedBackDiv).html(feedbackText);
+        $(this.feedBackDiv).html("✖️ " + feedbackText);
         $(this.feedBackDiv).attr("class", "alert alert-danger");
     }
 };

@@ -4,3 +4,4 @@ build/doctrees
 build/livereload
 .vscode/*
 build_info
+author_guide/build
