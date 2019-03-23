@@ -1,7 +1,0 @@
-.. activecode:: function-example1
-   :nocodelens:
-
-   def hello(name):
-       return "Hello, " + name + "!"
-
-   print (hello("World"))

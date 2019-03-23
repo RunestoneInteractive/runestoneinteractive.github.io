@@ -1,2 +1,0 @@
-.. dragndrop:: dnd-ex-2
-
